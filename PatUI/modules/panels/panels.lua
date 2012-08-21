@@ -1,0 +1,59 @@
+local P, C, L = unpack(Tukui)
+
+------------------------------------------------------------------------
+-- Create Datatext frames
+------------------------------------------------------------------------
+
+local DataPoint = {}
+
+for i=1, 6 do
+	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
+	DataPoint[i]:SetTemplate("Transparent")
+	DataPoint[i]:ThickBorder()
+	DataPoint[i]:SetWidth(90)
+	DataPoint[i]:SetHeight(20)
+	
+	if (i == 1) then
+		DataPoint[i]:Point("TOPLEFT", UIParent, "TOPLEFT", 2, -2)
+	else
+		DataPoint[i]:Point("TOPLEFT", "DataPoint"..i - 1, "BOTTOMLEFT", 0, -3)
+	end
+end
+
+local panels = {
+	TukuiMinimapStatsLeft,
+	TukuiMinimapStatsRight,
+	TukuiInfoLeftLineVertical,
+	TukuiInfoRightLineVertical,
+	TukuiLineToABLeft,
+	TukuiLineToABRight,
+	TukuiCubeLeft,
+	TukuiCubeRight,
+	TukuiLineToABLeftAlt,
+	TukuiLineToABRightAlt,
+	TukuiLineToPetActionBarBackground,
+}
+
+for _, panel in pairs(panels) do
+	panel:Kill()
+end
+
+for i = 1, 7 do
+	local bar = _G["TukuiBar"..i]
+	bar:SetBackdrop(nil)
+	bar:HideInsets()
+	TukuiPetBar:SetBackdrop(nil)
+	TukuiPetBar:HideInsets()
+end
+
+
+TukuiInfoLeft:SetAlpha(0)
+TukuiInfoRight:SetAlpha(0)
+
+chatbg = CreateFrame("Frame", "ChatBackground", UIParent)
+chatbg:SetTemplate("Transparent")
+chatbg:ThickBorder()
+chatbg:SetFrameStrata("BACKGROUND")
+chatbg:SetWidth(P.InfoLeftRightWidth + 12) 
+chatbg:SetHeight(177)
+chatbg:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 40)

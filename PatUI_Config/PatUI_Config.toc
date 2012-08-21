@@ -1,0 +1,6 @@
+## Interface: 50001
+## Author: Pat
+## Title: |cff18AA18PatUI Config|r
+## Notes: Default Configuration for PatUI.
+
+Config.lua
