@@ -1,6 +1,5 @@
 local P, C, L = unpack(Tukui)
 if C.classbar.comboPoints ~= true then return end
-TukuiCombo:Kill()
 
 -- Taken from Smelly_Combo :P
 local colors = { 
@@ -14,7 +13,8 @@ local colors = {
 local cpoints = CreateFrame("Frame", "TukuiComboPoints", UIParent)
 cpoints:Width(TukuiPlayer:GetWidth())
 cpoints:Height(8)
-cpoints:Point("TOP", TukuiPlayer, "BOTTOM", 5, 12)
+cpoints:Point("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 6)
+cpoints:CreateBorder()
 cpoints:SetFrameLevel(10)
 
 local points = {}
