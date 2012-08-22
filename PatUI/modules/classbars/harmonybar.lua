@@ -5,8 +5,8 @@ local self = _G["TukuiPlayer"]
 
 self.HarmonyBar:ClearAllPoints()
 self.HarmonyBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 6)
-self.HarmonyBar:Size(self:GetWidth(), 2)
-self.HarmonyBar:CreateBoreder()
+self.HarmonyBar:Size(self:GetWidth(), 10)
+self.HarmonyBar:CreateBorder()
 
 local maxChi = UnitPowerMax("player", SPELL_POWER_LIGHT_FORCE)
 
@@ -25,7 +25,7 @@ for i = 1, maxChi do
 		end
 	elseif(maxChi == 5) then
 		if(i == 5) then
-			self.HarmonyBar[i]:Size((self:GetWidth() / 5) - 1, 10)
+			self.HarmonyBar[i]:Size((self:GetWidth() / 5) - s1, 10)
 		else
 			self.HarmonyBar[i]:Size((self:GetWidth() / 5), 10)
 		end

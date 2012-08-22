@@ -2,10 +2,6 @@
 	<Script file="core\api.lua"/>
 	<Script file="core\functions.lua"/>
 	<Script file="core\fonts.lua"/>
-	<Script file="core\commands.lua"/>
-	<Script file="core\install.lua"/>
-	<Script file="core\kill.lua"/>
-	<Script file="core\popups.lua"/>
 	
 	<Include file="modules\load_modules.xml"/>
 </Ui>
