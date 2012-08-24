@@ -49,6 +49,7 @@ end
 
 TukuiInfoLeft:SetAlpha(0)
 TukuiInfoRight:SetAlpha(0)
+TukuiExitVehicleButtonRight:SetAlpha(0)
 
 chatbg = CreateFrame("Frame", "ChatBackground", UIParent)
 chatbg:SetTemplate("Transparent")
