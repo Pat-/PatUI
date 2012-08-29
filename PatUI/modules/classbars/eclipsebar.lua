@@ -1,4 +1,4 @@
-local P, C, L = unpack(Tukui)
+local P, C, L, G = unpack(Tukui)
 if P.myclass ~= "DRUID" or C.unitframes.classbar ~= true then return end
 
 local font = C.media.pixelfont

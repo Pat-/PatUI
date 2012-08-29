@@ -1,4 +1,4 @@
-local P, C, L = unpack(Tukui)
+local P, C, L, G = unpack(Tukui)
 
 WorldStateAlwaysUpFrame:ClearAllPoints()
 WorldStateAlwaysUpFrame:SetPoint("TOP", UIParent, "TOP", 0, -45)

@@ -1,4 +1,4 @@
-local P, C, L = unpack(Tukui)
+local P, C, L, G = unpack(Tukui)
 
 if P.client == "ruRU" then
 	C["media"].pixelfont = C["media"].ru_pixelfont

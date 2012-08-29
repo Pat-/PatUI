@@ -1,4 +1,4 @@
-local P, C, L = unpack(Tukui)
+local P, C, L, G = unpack(Tukui)
 if C.unitframes.mageclassbar ~= true or P.myclass ~= "MAGE" then return end
 
 local self = _G["TukuiPlayer"]

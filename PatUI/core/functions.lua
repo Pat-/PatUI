@@ -1,4 +1,4 @@
-local P, C, L = unpack(Tukui)
+local P, C, L, G = unpack(Tukui)
 
 -- just for creating text
 P.SetFontString = function(parent, fontName, fontHeight, fontStyle)

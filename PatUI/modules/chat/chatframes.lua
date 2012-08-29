@@ -1,4 +1,4 @@
-local P, C, L = unpack(Tukui)
+local P, C, L, G = unpack(Tukui)
 if C["chat"].enable ~= true then return end
 
 local function Skin(frame)

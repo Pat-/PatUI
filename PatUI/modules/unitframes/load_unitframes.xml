@@ -7,4 +7,5 @@
 	<Script file="points.lua"/>	
 	<Script file="arena.lua"/>
 	<Script file="boss.lua"/>
+	<Script file="raid.lua"/>
 </Ui>

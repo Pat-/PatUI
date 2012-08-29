@@ -1,4 +1,4 @@
-local P, C, L = unpack(Tukui)
+local P, C, L, G = unpack(Tukui)
 if C.classbar.comboPoints ~= true then return end
 
 TukuiCombo:Kill()
