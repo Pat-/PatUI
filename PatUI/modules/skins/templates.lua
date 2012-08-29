@@ -29,6 +29,12 @@ local frames = {
 	StaticPopup1,
 	StaticPopup3,
 	PetJournalParent,
+	TukuiPopupDialog1,
+	TukuiPopupDialogButtonAccept1,
+	TukuiPopupDialogButtonCancel1,
+	TradeFrame.backdrop,
+	FriendsFriendsFrame.backdrop,
+	BNConversationInviteDialog,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -117,6 +123,9 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_LookingForGuildUI") then
 		LookingForGuildFrame:SetTemplate("Transparent")
 		LookingForGuildFrame:ThickBorder()
+	elseif(addon == "Blizzard_ItemSocketingUI") then
+		ItemSocketingFrame:SetTemplate("Transparent")
+		ItemSocketingFrame:ThickBorder()
 	end
 end
 
