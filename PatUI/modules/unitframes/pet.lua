@@ -8,11 +8,7 @@ local font = C.media.pixelfont
 local fsize = C.media.pfontsize
 local self = _G["TukuiPet"]
 
-if P.lowversion then
-	P.Pet = 182
-else
-	P.Pet = 130
-end
+P.Pet = 130
 
 self.panel:Kill()
 self.shadow:Kill()

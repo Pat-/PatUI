@@ -8,11 +8,7 @@ local font = C.media.pixelfont
 local fsize = C.media.pfontsize
 local self = _G["TukuiTargetTarget"]
 
-if P.lowversion then
-	P.ToT = 182
-else
-	P.ToT = 130
-end
+P.ToT = 130
 
 self.panel:Kill()
 self.shadow:Kill()

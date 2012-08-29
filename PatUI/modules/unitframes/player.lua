@@ -8,11 +8,7 @@ local self = _G["TukuiPlayer"]
 local font = C.media.pixelfont
 local fsize = C.media.pfontsize
 
-if P.lowversion then
-	P.Player = 182
-else
-	P.Player = 227
-end
+P.Player = 227
 
 self.panel:Kill()
 self.shadow:Kill()
@@ -37,7 +33,7 @@ self.Power:Point("TOP", self.Health, "BOTTOM", 0, 4)
 self.Power:SetHeight(8)
 self.Power:SetWidth(190)
 self.Power:CreateBorder()
-self.Power:SetFrameLevel(5)
+self.Power:SetFrameLevel(10)
 self.Power.colorTapping = true
 self.Power.colorPower = true
 

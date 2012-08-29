@@ -1,6 +1,8 @@
 local P, C, L = unpack(Tukui)
 if C.classbar.comboPoints ~= true then return end
 
+TukuiCombo:Kill()
+
 -- Taken from Smelly_Combo :P
 local colors = { 
 	{.69, .31, .31, 1},
@@ -21,7 +23,7 @@ local points = {}
 
 for i=1,MAX_COMBO_POINTS do
 	points[i] = CreateFrame("Frame", "TukuiComboPoints_Point"..i, cpoints)
-	points[i]:SetWidth((TukuiPlayer:GetWidth()-(MAX_COMBO_POINTS + 9)) / MAX_COMBO_POINTS)
+	points[i]:SetWidth((TukuiPlayer:GetWidth()-(MAX_COMBO_POINTS) + 1) / MAX_COMBO_POINTS)
 	points[i]:SetHeight(8)
 	points[i].tex = points[i]:CreateTexture(nil, "OVERLAY")
 	points[i].tex:SetTexture(C.media.normTex)
