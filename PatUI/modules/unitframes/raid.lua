@@ -24,7 +24,7 @@ P.PostUpdateRaidUnit = function(self)
 	
 	self.Power:ClearAllPoints()
 	self.Power:Height(5)
-	self.Power:SetWidth(P.Scale((ChatBackground:GetWidth()/ 5 ) -6) - 20)
+	self.Power:SetWidth(P.Scale((ChatBackground:GetWidth()/ 5 ) - 6) - 20)
 	self.Power:CreateBorder()
 	self.Power:Point("TOP", self.Health, "BOTTOM", 0, 4)
 	self.Power:SetStatusBarTexture(C["media"].blank)
@@ -54,7 +54,7 @@ P.RaidFrameAttributes = function()
 		self:SetWidth(header:GetAttribute("initial-width"))
 		self:SetHeight(header:GetAttribute("initial-height"))
 	]],
-	"initial-width", P.Scale((ChatBackground:GetWidth()/ 5) -6),
+	"initial-width", P.Scale((ChatBackground:GetWidth()/ 5) - 5),
 	"initial-height", P.Scale(30),
 	"showParty", true,
 	"showRaid", true,
