@@ -2,7 +2,6 @@
 	<Script file="core\api.lua"/>
 	<Script file="core\functions.lua"/>
 	<Script file="core\fonts.lua"/>
-	<Script file="profiles\profile.lua"/>
 	
 	<Include file="modules\load_modules.xml"/>
 </Ui>
