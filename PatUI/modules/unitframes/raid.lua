@@ -68,6 +68,6 @@ P.RaidFrameAttributes = function()
 	"groupBy", "GROUP",
 	"maxColumns", 8,
 	"unitsPerColumn", 5,
-	"columnSpacing", P.Scale(4),
+	"columnSpacing", P.Scale(8),
 	"columnAnchorPoint", "TOP"
 end
