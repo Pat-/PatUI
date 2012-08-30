@@ -1,6 +1,6 @@
 ## Interface: 50001
 ## Author: Pat
-## Version: 0.2
+## Version: 0.4
 ## Credits: Tukz
 ## Title: |cff18AA18PatUI|r
 ## Notes: Pats edit of Tukui.
