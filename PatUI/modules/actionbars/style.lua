@@ -32,3 +32,23 @@ sborder:SetFrameStrata("BACKGROUND")
 TukuiStance:HookScript( "OnEvent", function( self, event, ... )
 	StanceBorder:Size((( StanceButton1:GetWidth() + P.buttonspacing) * GetNumShapeshiftForms()) + P.buttonspacing, StanceButton1:GetHeight() + 2 * P.buttonspacing)
 end)
+
+TukuiBar1:SetTemplate("Transparent")
+if TukuiBar4:IsShown() then
+	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
+end
+
+TukuiBar4:HookScript("OnHide", function()
+	TukuiBar1:SetHeight((P.buttonsize * 1) + (P.buttonspacing * 2))
+end)
+
+TukuiBar4:HookScript("OnShow", function()
+	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
+end)
+
+TukuiBar2:SetTemplate("Transparent")
+TukuiBar3:SetTemplate("Transparent")
+TukuiBar5:SetTemplate("Transparent")
+
+TukuiBar4:SetBackdrop(nil)
+TukuiBar4:HideInsets()

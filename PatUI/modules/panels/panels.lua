@@ -20,32 +20,11 @@ for i=1, 6 do
 	end
 end
 
-local panels = {
-	TukuiMinimapStatsLeft,
-	TukuiMinimapStatsRight,
-	TukuiInfoLeftLineVertical,
-	TukuiInfoRightLineVertical,
-	TukuiLineToABLeft,
-	TukuiLineToABRight,
-	TukuiCubeLeft,
-	TukuiCubeRight,
-	TukuiLineToABLeftAlt,
-	TukuiLineToABRightAlt,
-	TukuiLineToPetActionBarBackground,
-}
+local panels = { TukuiMinimapStatsLeft, TukuiMinimapStatsRight, TukuiInfoLeftLineVertical, TukuiInfoRightLineVertical, TukuiLineToABLeft, TukuiLineToABRight, TukuiCubeLeft, TukuiCubeRight, TukuiLineToABLeftAlt, TukuiLineToABRightAlt, TukuiLineToPetActionBarBackground, }
 
 for _, panel in pairs(panels) do
 	panel:Kill()
 end
-
-for i = 1, 7 do
-	local bar = _G["TukuiBar"..i]
-	bar:SetBackdrop(nil)
-	bar:HideInsets()
-	TukuiPetBar:SetBackdrop(nil)
-	TukuiPetBar:HideInsets()
-end
-
 
 TukuiInfoLeft:SetAlpha(0)
 TukuiInfoRight:SetAlpha(0)

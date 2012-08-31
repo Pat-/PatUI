@@ -20,13 +20,11 @@ self.FlashInfo:Kill()
 
 self:Size(P.Player, 30)
 
-
 self.Health:SetHeight(30)
 self.Health:CreateBorder()
 self.Health:SetFrameLevel(4)
 self.Health.bg:SetVertexColor(.25, .1, .1)
 self.Health.bg:SetTexture(C["media"].blank)
-
 
 self.Power:ClearAllPoints()
 self.Power:Point("TOP", self.Health, "BOTTOM", 0, 4)
@@ -45,17 +43,15 @@ self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
 
 -- Castbar
 self.Castbar:ClearAllPoints()
-self.Castbar:SetBorder(false, true)
-self.Castbar:Size((TukuiBar4:GetWidth()-8), 25)
-self.Castbar:Point("BOTTOM", TukuiBar4, "TOP", 0, 0)
+self.Castbar:CreateBorder()
+self.Castbar:Size((TukuiBar1:GetWidth()- 6), 25)
+self.Castbar:Point("BOTTOM", TukuiBar1, "TOP", 0, 6)
 
 self.Castbar.Time = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
 self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 0)
 
 self.Castbar.Text = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
 self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 0)
-self.Castbar.Text:Width(120)
-self.Castbar.Text:Height(10)
 
 -- experience bar on player via mouseover for player currently leveling a character
 if P.level ~= MAX_PLAYER_LEVEL then
