@@ -166,8 +166,7 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_ItemSocketingUI") then
 	
 		ItemSocketingFrame:SetTemplate("Transparent")
-		ItemSocketingFrame:ThickBorder()
-		
+		ItemSocketingFrame:ThickBorder()		
 	end
 end
 

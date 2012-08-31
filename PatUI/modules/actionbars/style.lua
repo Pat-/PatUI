@@ -1,5 +1,11 @@
 local P, C, L, G = unpack(Tukui)
 
+TukuiBar4Button:ClearAllPoints()
+TukuiBar4Button:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, 4)
+TukuiBar4Button:SetHeight(15)
+TukuiBar4Button:SetTemplate("Transparent")
+TukuiBar4Button:ThickBorder()
+
 local function style(self)
 	local name = self:GetName()
 	
@@ -34,6 +40,7 @@ TukuiStance:HookScript( "OnEvent", function( self, event, ... )
 end)
 
 TukuiBar1:SetTemplate("Transparent")
+TukuiBar1:ThickBorder()
 if TukuiBar4:IsShown() then
 	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
 end
@@ -47,8 +54,13 @@ TukuiBar4:HookScript("OnShow", function()
 end)
 
 TukuiBar2:SetTemplate("Transparent")
+TukuiBar2:ThickBorder()
 TukuiBar3:SetTemplate("Transparent")
+TukuiBar3:ThickBorder()
 TukuiBar5:SetTemplate("Transparent")
+TukuiBar5:ThickBorder()
+TukuiPetBar:SetTemplate("Transparent")
+TukuiPetBar:ThickBorder()
 
 TukuiBar4:SetBackdrop(nil)
 TukuiBar4:HideInsets()
