@@ -49,6 +49,7 @@ end)
 TukuiBar2:SetTemplate("Transparent")
 TukuiBar3:SetTemplate("Transparent")
 TukuiBar5:SetTemplate("Transparent")
+TukuiPetBar:SetTemplate("Transparent")
 
 TukuiBar4:SetBackdrop(nil)
 TukuiBar4:HideInsets()
