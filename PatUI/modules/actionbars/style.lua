@@ -3,8 +3,17 @@ local P, C, L, G = unpack(Tukui)
 TukuiBar4Button:ClearAllPoints()
 TukuiBar4Button:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, 4)
 TukuiBar4Button:SetHeight(15)
-TukuiBar4Button:SetTemplate("Transparent")
-TukuiBar4Button:ThickBorder()
+
+local buttons = {
+	TukuiBar3Button,
+	TukuiBar2Button,
+	TukuiBar4Button,
+}
+
+for _,f in pairs(buttons) do
+	f:SetTemplate("Transparent")
+	f:ThickBorder()
+end
 
 local function style(self)
 	local name = self:GetName()
@@ -64,3 +73,40 @@ TukuiPetBar:ThickBorder()
 
 TukuiBar4:SetBackdrop(nil)
 TukuiBar4:HideInsets()
+
+if C.actionbar.smallsides == true then
+	TukuiBar2:SetWidth((P.buttonsize * 3) + (P.buttonspacing * 4))
+	TukuiBar3:SetWidth((P.buttonsize * 3) + (P.buttonspacing * 4))
+
+	for i=7, 12 do
+		local button = _G["MultiBarBottomLeftButton"..i]
+		
+		button:SetSize(0, 0)
+		button:SetAlpha(0)
+	end
+
+	for i=1, 6 do
+		local button = _G["MultiBarBottomLeftButton"..i]
+		
+		if i == 4 then
+			button:ClearAllPoints()
+			button:SetPoint("TOPLEFT", TukuiBar2, P.buttonspacing, -P.buttonspacing)
+		end
+	end
+
+	for i=7, 12 do
+		local button = _G["MultiBarBottomRightButton"..i]
+		
+		button:SetSize(0, 0)
+		button:SetAlpha(0)
+	end
+
+	for i=1, 6 do
+		local button = _G["MultiBarBottomRightButton"..i]
+		
+		if i == 4 then
+			button:ClearAllPoints()
+			button:SetPoint("TOPLEFT", TukuiBar3, P.buttonspacing, -P.buttonspacing)
+		end
+	end
+end

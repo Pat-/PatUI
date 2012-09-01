@@ -43,6 +43,7 @@ OnLoad:SetScript("OnEvent", function()
 	for _,f in pairs(frames) do
 		f:SetTemplate("Transparent")
 		f:ThickBorder()
+		if f.backdrop and f.backdrop.shadow then f.backdrop.shadow:Hide() elseif f.shadow then f.shadow:Hide() end
 	end
 end)
 
@@ -64,11 +65,15 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 		ArchaeologyFrame:SetTemplate("Transparent")
 		ArchaeologyFrame:ThickBorder()
+		ArchaeologyFrame.shadow:Hide()
 		
 	elseif(addon == "Blizzard_AuctionUI") then
 	
 		AuctionFrame:SetTemplate("Transparent")
 		AuctionFrame:ThickBorder()
+		AuctionFrame.shadow:Hide()
+		SideDressUpFrame:SetTemplate("Transparent")
+		SideDressUpFrame:ThickBorder()
 		
 	elseif(addon == "Blizzard_BarbershopUI") then
 	
@@ -91,6 +96,7 @@ local function SkinBlizzardFrames(self, event, addon)
 		for _,f in pairs(frames) do
 			f:SetTemplate("Transparent")
 			f:ThickBorder()
+			if f.shadow then f.shadow:Hide() end
 		end
 		
 	elseif(addon == "Blizzard_TimeManager") then
@@ -116,6 +122,7 @@ local function SkinBlizzardFrames(self, event, addon)
 		for _,f in pairs(frames) do
 			f:SetTemplate("Transparent")
 			f:ThickBorder()
+			if f.shadow then f.shadow:Hide() end
 		end
 		
 	elseif(addon == "Blizzard_GuildBankUI") then
@@ -152,6 +159,7 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 		TradeSkillFrame:SetTemplate("Transparent")
 		TradeSkillFrame:ThickBorder()
+		TradeSkillFrame.shadow:Hide()
 		
 	elseif(addon == "Blizzard_ItemAlterationUI") then
 	
@@ -166,10 +174,12 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_ItemSocketingUI") then
 	
 		ItemSocketingFrame:SetTemplate("Transparent")
-		ItemSocketingFrame:ThickBorder()		
+		ItemSocketingFrame:ThickBorder()
+		
 	end
 end
 
 local Init = CreateFrame("Frame")
 Init:RegisterEvent("ADDON_LOADED")
 Init:SetScript("OnEvent", SkinBlizzardFrames)
+

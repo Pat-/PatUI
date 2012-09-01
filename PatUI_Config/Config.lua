@@ -16,6 +16,7 @@ C.general = {
 
 C.actionbar = {
 	hotkey = false,
+	smallsides = false,
 }
 
 C.auras = {
