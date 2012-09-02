@@ -41,7 +41,7 @@ RaidPosition:RegisterEvent("PLAYER_LOGIN")
 RaidPosition:SetScript("OnEvent", function(self, event)
 	G.UnitFrames.RaidUnits:ClearAllPoints()
 	G.UnitFrames.RaidPets:ClearAllPoints() -- Pets can kiss my ass.
-	G.UnitFrames.RaidUnits:SetPoint("BOTTOMLEFT", ChatBackground, "TOPLEFT", 2, 6)
+	G.UnitFrames.RaidUnits:SetPoint("BOTTOMLEFT", ChatBackground, "TOPLEFT", 2, 18)
 end)
 
 P.RaidFrameAttributes = function()

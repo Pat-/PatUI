@@ -30,7 +30,6 @@ local function SkinTempChat()
 
 	SkinAndPosition(frame)
 end
-
 hooksecurefunc("FCF_OpenTemporaryWindow", SkinTempChat)
 
 -- default position of chat
@@ -40,7 +39,10 @@ P.SetDefaultChatPosition = function(frame)
 		local name = FCF_GetChatWindowInfo(id)
 		
 		if id == 1 then
-			frame:Size(P.InfoLeftRightWidth, 166)
+			frame:ClearAllPoints()
+			frame:Point("BOTTOMLEFT", ChatBackground, "BOTTOMLEFT", 5, 4)
+			frame:Point("BOTTOMRIGHT", ChatBackground, "BOTTOMRIGHT", -5, 0)
+			frame:Size(P.InfoLeftRightWidth, 167)
 		elseif id == 4 then
 			frame:ClearAllPoints()
 			frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -500, -500)
