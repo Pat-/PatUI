@@ -3,6 +3,7 @@
 	<Script file="chat\chatframes.lua"/>
 	<Script file="datatext\datatext.lua"/>
 	<Script file="bags\bags.lua"/>
+	<Script file="map\map.lua"/>
 
 	<Include file="actionbars\load_actionbars.xml"/>
 	<Include file="unitframes\load_unitframes.xml"/>

@@ -1,10 +1,28 @@
 local P, C, L, G = unpack(Tukui)
 
-TukuiMinimap:ClearAllPoints()
-TukuiMinimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -3, -3)
+local function LargeSkin()	
+	WorldMapFrame.backdrop:ClearAllPoints()
+	WorldMapFrame.backdrop:Point("TOPLEFT", WorldMapDetailFrame, "TOPLEFT", -25, 70)
+	WorldMapFrame.backdrop:Point("BOTTOMRIGHT", WorldMapDetailFrame, "BOTTOMRIGHT", 25, -30)
+end
 
-TukuiAurasPlayerBuffs:ClearAllPoints()
-TukuiAurasPlayerBuffs:SetPoint("TOPRIGHT", TukuiMinimap, "TOPLEFT", -18, 0)
+local function QuestSkin()
+	WorldMapFrame.backdrop:ClearAllPoints()
+	WorldMapFrame.backdrop:Point("TOPLEFT", WorldMapDetailFrame, "TOPLEFT", -25, 70)
+	WorldMapFrame.backdrop:Point("BOTTOMRIGHT", WorldMapDetailFrame, "BOTTOMRIGHT", 325, -235)
+end
+
+local function FixSkin()
+	if WORLDMAP_SETTINGS.size == WORLDMAP_FULLMAP_SIZE then
+		LargeSkin()
+	elseif WORLDMAP_SETTINGS.size == WORLDMAP_QUESTLIST_SIZE then
+		QuestSkin()
+	end
+end
+
+WorldMapFrame:HookScript("OnShow", FixSkin)
+hooksecurefunc("WorldMapFrame_SetFullMapView", LargeSkin)
+hooksecurefunc("WorldMapFrame_SetQuestMapView", QuestSkin)
 
 -- Overriding defualt Tukui Skin Templates here if I can.
 local frames = {

@@ -3,4 +3,5 @@
 	<Script file="threatbar.lua"/>
 	<Script file="capturebar.lua"/>
 	<Script file="mail.lua"/>
+	<Script file="test.lua"/>
 </Ui>
