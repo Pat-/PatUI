@@ -10,34 +10,108 @@ C.media = {
 }
 
 C.general = {
+	autoscale = true,
+	uiscale = 0.71,
+	overridelowtohigh = false,
 	backdropcolor = {.05, .05, .05},
 	bordercolor = {.15, .15, .15},
+	blizzardreskin = true,
 }
 
-C.actionbar = {
-	hotkey = false,
-	smallsides = false,
+C.unitframes = {
+	-- general options	
+	enable = true,
+	enemyhcolor = false,
+	unitcastbar = true,
+	cblatency = true,
+	cbicons = false,
+	classiccombo = false,
+	movecombobar = false,
+	auratimer = true,
+	auratextscale = 11,
+	targetauras = true,
+	lowThreshold = 20,
+	targetpowerpvponly = false,
+	totdebuffs = false,
+	showtotalhpmp = false,
+	showsmooth = true,
+	charportrait = false,
+	maintank = false,
+	mainassist = false,
+	unicolor = true,
+	combatfeedback = false,
+	playeraggro = true,
+	healcomm = false,
+	onlyselfdebuffs = false,
+	showfocustarget = true,
+	bordercolor = {.15, .15, .15},
+	
+	-- raid layout
+	raid = true,
+	showrange = true,
+	raidalphaoor = 0.3,
+	showsymbols = true,
+	aggro = true,
+	raidunitdebuffwatch = true,
+	gridhealthvertical = true,
+	gridscale = 1,
+	gridvertical = true,
+	raidunitspercolumn = 10,
+	showraidpets = true,
+	maxraidplayers = false,
+	
+	-- boss frames
+	showboss = true,
+	
+	-- arena frames
+	arena = true,
+	
+	-- priest only plugin
+	weakendsoulbar = true,
+	
+	-- class bar
+	classbar = true,
+	
+	-- these class bar are considered optional
+	druidmanabar = false,
+	druidmushroombar = false,
+	mageclassbar = true,
 }
 
 C.auras = {
+	player = true,
 	consolidate = false,
+	flash = false,
+	classictimer = false,
 }
 
-C.unitframes = {	
-    unicolor = true,
-	targetpowerpvponly = false,
-	cbicons = false,
-	combatfeedback = false,
-	showplayerinparty = true,
-	showfocustarget = false,
-	cblatency = true,
-	druidmanabar = false,
-	druidmushroombar = false,
+C.actionbar = {
+	enable = true,
+	hotkey = true,
+	macro = false,
+	hideshapeshift = false,
+	buttonsize = 27,
+	petbuttonsize = 29,
+	buttonspacing = 4,
+	ownshdbar = false,
+	ownmetabar = false,
+	ownwarstancebar = false,
+	
+	smallsides = false,
 }
 
-C.nameplate = {
-    showhealth = true,
-	enhancethreat = true,
+C.bags = {
+	enable = true,
+}
+
+C.loot = {
+	lootframe = true,
+	rolllootframe = true,
+}
+
+C.cooldown = {
+	enable = true,
+	treshold = 8,
 }
 
 C.datatext = {
@@ -67,6 +141,44 @@ C.datatext = {
 	time24 = false,
 	localtime = true,
 	battleground = false,
+}
+
+C.chat = {
+	enable = true,
+	whispersound = false,
+	background = false, -- never turn on
+}
+
+C.nameplate = {
+	enable = true,
+    showhealth = true,
+	enhancethreat = true,
+	combat = false,
+	goodcolor = { 75/255,  175/255, 76/255 },
+	badcolor = { 0.78, 0.25, 0.25 },
+	transitioncolor = { 218/255, 197/255, 92/255 },
+}
+
+C.tooltip = {
+	enable = true,
+	hidecombat = false,
+	hidebuttons = false,
+	hideuf = false,
+	cursor = false,
+}
+
+C.merchant = {
+	sellgrays = true,
+	autorepair = true,
+	sellmisc = true,
+}
+
+C.error = {
+	enable = true,
+}
+
+C.invite = {
+	autoaccept = true,
 }
 
 C.classbar = {
