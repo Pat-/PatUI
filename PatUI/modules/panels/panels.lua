@@ -26,7 +26,6 @@ for _, panel in pairs(panels) do
 	panel:Kill()
 end
 
-TukuiInfoLeft:SetAlpha(0)
 TukuiInfoRight:SetAlpha(0)
 TukuiExitVehicleButtonRight:SetAlpha(0)
 
@@ -37,3 +36,8 @@ chatbg:SetFrameStrata("BACKGROUND")
 chatbg:SetWidth(P.InfoLeftRightWidth + 12) 
 chatbg:SetHeight(177)
 chatbg:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 40)
+
+TukuiInfoLeft:ClearAllPoints()
+TukuiInfoLeft:SetPoint("TOP", ChatBackground, "BOTTOM", 0, -3)
+TukuiInfoLeft:SetWidth(P.InfoLeftRightWidth + 12)
+TukuiInfoLeft:SetAlpha(0)

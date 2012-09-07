@@ -34,6 +34,27 @@ P.PostUpdateRaidUnit = function(self)
 	self.Name:ClearAllPoints()
 	self.Name:SetPoint("BOTTOM", 0, 8)
 	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
+	
+	if C.unitframes.raidunitdebuffwatch == true then		
+		self.RaidDebuffs:ClearAllPoints()
+		self.RaidDebuffs:Height(24)
+		self.RaidDebuffs:Width(24)
+		self.RaidDebuffs:Point('CENTER', self.Health, 1,0)
+		self.RaidDebuffs:SetFrameStrata(self.Health:GetFrameStrata())
+		self.RaidDebuffs:SetFrameLevel(self.Health:GetFrameLevel() + 2)
+		
+		self.RaidDebuffs.icon:SetTexCoord(.1,.9,.1,.9)
+		self.RaidDebuffs.icon:Point("TOPLEFT", 2, -2)
+		self.RaidDebuffs.icon:Point("BOTTOMRIGHT", -2, 2)
+		
+		self.RaidDebuffs.count:SetFont(C.media.uffont, 12, "THINOUTLINE")
+		self.RaidDebuffs.count:SetPoint('BOTTOMRIGHT', RaidDebuffs, 'BOTTOMRIGHT', 0, 2)
+		self.RaidDebuffs.count:SetTextColor(1, .9, 0)
+		
+		self.RaidDebuffs:FontString('time', C.media.uffont, 12, "THINOUTLINE")
+		self.RaidDebuffs.time:SetPoint('CENTER')
+		self.RaidDebuffs.time:SetTextColor(1, .9, 0)
+	end
 end
 
 local RaidPosition = CreateFrame("Frame")

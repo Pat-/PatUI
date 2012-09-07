@@ -35,6 +35,7 @@ local frames = {
 	TradeFrame.backdrop,
 	FriendsFriendsFrame.backdrop,
 	BNConversationInviteDialog,
+	AddFriendFrame,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -50,6 +51,12 @@ end)
 -- Since BNet Converstaion frame is Transparent in my UI give the List a Template so it looks nice.
 BNConversationInviteDialogList:SetTemplate("Default")
 BNConversationInviteDialogList:ThickBorder()
+
+local spellbookbg = CreateFrame("Frame", nil, SpellBookFrame)
+spellbookbg:SetTemplate("Default")
+spellbookbg:Point("TOPLEFT", SpellBookPage1, "TOPLEFT", -2, 2)
+spellbookbg:Point("BOTTOMRIGHT", SpellBookFrame, "BOTTOMRIGHT", -8, 4)
+SpellBookFrameTutorialButton:Kill()
 
 -----------------------------------------------
 -- Method of Skinning other frames
@@ -175,6 +182,9 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 		ItemSocketingFrame:SetTemplate("Transparent")
 		ItemSocketingFrame:ThickBorder()
+		ItemSocketingScrollFrame:SetTemplate("Default")
+		ItemSocketingScrollFrame:SetHeight(ItemSocketingScrollFrame:GetHeight() + 10)
+		ItemSocketingScrollFrame:SetFrameLevel(ItemSocketingFrame:GetFrameLevel() + 4)
 		
 	end
 end
