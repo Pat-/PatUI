@@ -6,6 +6,7 @@ local P, C, L, G = unpack(Tukui)
 
 local font = C.media.pixelfont
 local fsize = C.media.pfontsize
+local raidscale = 1
 	
 P.PostUpdateRaidUnit = function(self)
 	self.panel:Kill()
@@ -13,7 +14,8 @@ P.PostUpdateRaidUnit = function(self)
 	self.Health:ClearAllPoints()
 	self.Health:SetAllPoints(self)
 	self.Health:CreateBorder()
-	self.Health:SetFrameLevel(10)
+	self.Health:SetStatusBarTexture(C.media.normTex)
+	self.Health:SetStatusBarColor(.3, .3, .3, 1)
 	
 	self.Health.value:Point("CENTER", self.Health, 1, 13)
 	self.Health.value:SetFont(font, fsize, "MONOCHROMEOUTLINE")
@@ -35,6 +37,14 @@ P.PostUpdateRaidUnit = function(self)
 	self.Name:SetPoint("BOTTOM", 0, 8)
 	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	
+	local LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
+	LFDRole:Height(15*raidscale)
+	LFDRole:Width(15*raidscale)
+	LFDRole:Point("TOPLEFT", 1, -1)
+	LFDRole.Override = P.RoleIconUpdate
+	self:RegisterEvent("UNIT_CONNECTION", P.RoleIconUpdate)
+	self.LFDRole = LFDRole
+	
 	if C.unitframes.raidunitdebuffwatch == true then		
 		self.RaidDebuffs:ClearAllPoints()
 		self.RaidDebuffs:Height(24)
@@ -54,6 +64,37 @@ P.PostUpdateRaidUnit = function(self)
 		self.RaidDebuffs:FontString('time', C.media.uffont, 12, "THINOUTLINE")
 		self.RaidDebuffs.time:SetPoint('CENTER')
 		self.RaidDebuffs.time:SetTextColor(1, .9, 0)
+		
+	end
+	
+	if C.unitframes.healcomm then
+		local mhpb = CreateFrame("StatusBar", "mhpb", self.Health)
+		if C.unitframes.gridhealthvertical then
+			mhpb:SetOrientation("VERTICAL")
+			mhpb:SetPoint("BOTTOM", self.Health:GetStatusBarTexture(), "TOP", 0, 0)
+			mhpb:Width(P.Scale((ChatBackground:GetWidth()/ 5) - 5))
+			mhpb:Height(30)		
+		else
+			mhpb:SetPoint("TOPLEFT", self.Health:GetStatusBarTexture(), "TOPRIGHT", 0, 0)
+			mhpb:SetPoint("BOTTOMLEFT", self.Health:GetStatusBarTexture(), "BOTTOMRIGHT", 0, 0)
+			mhpb:Width(self.Health:GetWidth())
+		end				
+		mhpb:SetStatusBarTexture(normTex)
+		mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
+
+		local ohpb = CreateFrame("StatusBar", "ohpb", self.Health)
+		if C.unitframes.gridhealthvertical then
+			ohpb:SetOrientation("VERTICAL")
+			ohpb:SetPoint("BOTTOM", mhpb:GetStatusBarTexture(), "TOP", 0, 0)
+			ohpb:Width(P.Scale((ChatBackground:GetWidth()/ 5) - 5))
+			ohpb:Height(30)
+		else
+			ohpb:SetPoint("TOPLEFT", mhpb:GetStatusBarTexture(), "TOPRIGHT", 0, 0)
+			ohpb:SetPoint("BOTTOMLEFT", mhpb:GetStatusBarTexture(), "BOTTOMRIGHT", 0, 0)
+			ohpb:Width(6)
+		end
+		ohpb:SetStatusBarTexture(normTex)
+		ohpb:SetStatusBarColor(0, 1, 0, 0.25)
 	end
 end
 
@@ -61,7 +102,6 @@ local RaidPosition = CreateFrame("Frame")
 RaidPosition:RegisterEvent("PLAYER_LOGIN")
 RaidPosition:SetScript("OnEvent", function(self, event)
 	G.UnitFrames.RaidUnits:ClearAllPoints()
-	G.UnitFrames.RaidPets:ClearAllPoints() -- Pets can kiss my ass.
 	G.UnitFrames.RaidUnits:SetPoint("BOTTOMLEFT", ChatBackground, "TOPLEFT", 2, 18)
 end)
 

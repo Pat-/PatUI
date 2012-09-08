@@ -36,6 +36,7 @@ local frames = {
 	FriendsFriendsFrame.backdrop,
 	BNConversationInviteDialog,
 	AddFriendFrame,
+	LootHistoryFrame,
 }
 
 local OnLoad = CreateFrame("Frame")

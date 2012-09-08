@@ -43,6 +43,7 @@ P.SetDefaultChatPosition = function(frame)
 			frame:Point("BOTTOMLEFT", ChatBackground, "BOTTOMLEFT", 5, 4)
 			frame:Point("BOTTOMRIGHT", ChatBackground, "BOTTOMRIGHT", -5, 0)
 			frame:Size(P.InfoLeftRightWidth, 167)
+			frame:SetParent(ChatBackground)
 		elseif id == 4 and name == LOOT then
 			if not frame.isDocked then
 				FCF_SetLocked(ChatFrame4, 1)

@@ -38,6 +38,7 @@ chatbg:SetHeight(177)
 chatbg:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 40)
 
 TukuiInfoLeft:ClearAllPoints()
-TukuiInfoLeft:SetPoint("TOP", ChatBackground, "BOTTOM", 0, -3)
+TukuiInfoLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 15)
 TukuiInfoLeft:SetWidth(P.InfoLeftRightWidth + 12)
+TukuiInfoLeft:SetParent(UIParent)
 TukuiInfoLeft:SetAlpha(0)

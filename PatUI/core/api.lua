@@ -86,6 +86,26 @@ local function ThickBorder(f, force)
 	end
 end
 
+P.RoleIconUpdate = function(self, event)
+	local lfdrole = self.LFDRole
+
+	local role = UnitGroupRolesAssigned(self.unit)
+
+	if(role == 'TANK' or role == 'HEALER' or role == 'DAMAGER') and UnitIsConnected(self.unit) then
+		if role == 'TANK' then
+			lfdrole:SetTexture([[Interface\AddOns\PatUI\media\textures\tank.tga]])
+		elseif role == 'HEALER' then
+			lfdrole:SetTexture([[Interface\AddOns\PatUI\media\textures\healer.tga]])
+		elseif role == 'DAMAGER' then
+			lfdrole:SetTexture([[Interface\AddOns\PatUI\media\textures\dps.tga]])
+		end
+		
+		lfdrole:Show()
+	else
+		lfdrole:Hide()
+	end	
+end
+
 local function addapi(object)
 	local mt = getmetatable(object).__index
 	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
