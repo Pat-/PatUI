@@ -1,6 +1,10 @@
 local P, C, L, G = unpack(Tukui)
 
 -- used for testing things
+TukuiTooltipAnchor:ClearAllPoints()
+TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", ChatBackground2, "TOPRIGHT", 0, -TukuiInfoRight:GetHeight())
+
+
 -- Make Tooltip Transparent
 local Tooltips = {GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ShoppingTooltip3,WorldMapTooltip,WorldMapCompareTooltip1,WorldMapCompareTooltip2,WorldMapCompareTooltip3}
 

@@ -25,9 +25,9 @@ P.PostUpdateRaidUnit = function(self)
 	self.Health.bg:SetTexture(C["media"].blank)
 	
 	self.Power:ClearAllPoints()
-	self.Power:Height(5)
-	self.Power:SetWidth(P.Scale((ChatBackground:GetWidth()/ 5 ) - 6) - 20)
-	self.Power:CreateBorder()
+	self.Power:Height(1)
+	self.Power:SetWidth(P.Scale((ChatBackground:GetWidth()/ 5 ) - 6) - 26)
+	self.Power:SetBorder(false, true)
 	self.Power:Point("TOP", self.Health, "BOTTOM", 0, 4)
 	self.Power:SetStatusBarTexture(C["media"].blank)
 	self.Power:SetFrameLevel(15)
@@ -38,8 +38,8 @@ P.PostUpdateRaidUnit = function(self)
 	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	
 	local LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
-	LFDRole:Height(15*raidscale)
-	LFDRole:Width(15*raidscale)
+	LFDRole:Height(15)
+	LFDRole:Width(15)
 	LFDRole:Point("TOPLEFT", 1, -1)
 	LFDRole.Override = P.RoleIconUpdate
 	self:RegisterEvent("UNIT_CONNECTION", P.RoleIconUpdate)
@@ -96,6 +96,10 @@ P.PostUpdateRaidUnit = function(self)
 		ohpb:SetStatusBarTexture(normTex)
 		ohpb:SetStatusBarColor(0, 1, 0, 0.25)
 	end
+	
+	-- highlight
+	self:HighlightUnit(218/255, 197/255, 92/255)
+
 end
 
 local RaidPosition = CreateFrame("Frame")

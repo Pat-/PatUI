@@ -37,6 +37,16 @@ chatbg:SetWidth(P.InfoLeftRightWidth + 12)
 chatbg:SetHeight(177)
 chatbg:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 40)
 
+if C.chat.lootchat == true then
+	chatbg2 = CreateFrame("Frame", "ChatBackground2", UIParent)
+	chatbg2:SetTemplate("Transparent")
+	chatbg2:ThickBorder()
+	chatbg2:SetFrameStrata("BACKGROUND")
+	chatbg2:SetWidth(P.InfoLeftRightWidth + 12) 
+	chatbg2:SetHeight(177)
+	chatbg2:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -30, 40)
+end
+
 TukuiInfoLeft:ClearAllPoints()
 TukuiInfoLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 15)
 TukuiInfoLeft:SetWidth(P.InfoLeftRightWidth + 12)

@@ -147,6 +147,7 @@ C.chat = {
 	enable = true,
 	whispersound = false,
 	background = false, -- never turn on
+	lootchat = true,
 }
 
 C.nameplate = {

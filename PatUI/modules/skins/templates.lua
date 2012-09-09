@@ -37,6 +37,7 @@ local frames = {
 	BNConversationInviteDialog,
 	AddFriendFrame,
 	LootHistoryFrame,
+	FriendsFrameBattlenetFrame.BroadcastFrame,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -58,6 +59,17 @@ spellbookbg:SetTemplate("Default")
 spellbookbg:Point("TOPLEFT", SpellBookPage1, "TOPLEFT", -2, 2)
 spellbookbg:Point("BOTTOMRIGHT", SpellBookFrame, "BOTTOMRIGHT", -8, 4)
 SpellBookFrameTutorialButton:Kill()
+
+TokenFrame:HookScript("OnShow", function()
+	TokenFramePopup:SetTemplate("Transparent")	
+	TokenFramePopup:ThickBorder()
+end)
+
+local function UpdateFactionSkins()
+	ReputationDetailFrame:SetTemplate("Transparent")
+	ReputationDetailFrame:ThickBorder()
+end
+ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 
 -----------------------------------------------
 -- Method of Skinning other frames
@@ -132,6 +144,8 @@ local function SkinBlizzardFrames(self, event, addon)
 			f:ThickBorder()
 			if f.shadow then f.shadow:Hide() end
 		end
+		
+		GuildMemberDetailFrame:Point("TOPLEFT", GuildFrame, "TOPRIGHT", 4, -28)
 		
 	elseif(addon == "Blizzard_GuildBankUI") then
 	

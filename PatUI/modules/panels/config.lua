@@ -66,10 +66,12 @@ chat_Button:SetScript("OnMouseDown", function(self)
 	
 	if ChatBackground:IsShown() then
 			ChatBackground:Hide()
+			ChatBackground2:Hide()
 			db.hidechat = true
 	else
 		if not ChatBackground:IsShown() then
 			ChatBackground:Show()
+			ChatBackground2:Show()
 			db.hidechat = false
 		end 
 	end
@@ -84,6 +86,7 @@ init:SetScript("OnEvent", function(self, event)
 	
 	if db.hidechat then
 		ChatBackground:Hide()
+		ChatBackground2:Hide()
 	end
 end)
 

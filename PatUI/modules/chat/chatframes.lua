@@ -46,8 +46,16 @@ P.SetDefaultChatPosition = function(frame)
 			frame:SetParent(ChatBackground)
 		elseif id == 4 and name == LOOT then
 			if not frame.isDocked then
-				FCF_SetLocked(ChatFrame4, 1)
-				FCF_DockFrame(ChatFrame4)
+				if C.chat.lootchat == true then
+					frame:ClearAllPoints()
+					frame:Point("BOTTOMLEFT", ChatBackground2, "BOTTOMLEFT", 5, 4)
+					frame:Point("BOTTOMRIGHT", ChatBackground2, "BOTTOMRIGHT", -5, 0)
+					frame:Size(P.InfoLeftRightWidth, 167)
+					frame:SetParent(ChatBackground2)
+				else
+					FCF_SetLocked(ChatFrame4, 1)
+					FCF_DockFrame(ChatFrame4)
+				end
 			end
 		end
 		

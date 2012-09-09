@@ -18,8 +18,8 @@ FramePositions:SetScript("OnEvent", function(self, event, addon)
 		TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
 		TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
 	elseif(IsAddOnLoaded("PatUI_Healing")) then
-		TukuiPlayer:Point("TOP", UIParent, "BOTTOM", -309 , 300)
-		TukuiTarget:Point("TOP", UIParent, "BOTTOM", 310, 300)
+		TukuiPlayer:Point("TOP", UIParent, "BOTTOM", -309 , 315)
+		TukuiTarget:Point("TOP", UIParent, "BOTTOM", 310, 315)
 	else
 		TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
 		TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
