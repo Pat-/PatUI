@@ -102,7 +102,8 @@ local RaidPosition = CreateFrame("Frame")
 RaidPosition:RegisterEvent("PLAYER_LOGIN")
 RaidPosition:SetScript("OnEvent", function(self, event)
 	G.UnitFrames.RaidUnits:ClearAllPoints()
-	G.UnitFrames.RaidUnits:SetPoint("BOTTOMLEFT", ChatBackground, "TOPLEFT", 2, 18)
+	G.UnitFrames.RaidPets:ClearAllPoints()
+	G.UnitFrames.RaidUnits:SetPoint("TOP", UIParent, "BOTTOM", 0, 315)
 end)
 
 P.RaidFrameAttributes = function()
@@ -124,11 +125,11 @@ P.RaidFrameAttributes = function()
 	"xoffset", P.Scale(6),
 	"yOffset", P.Scale(-6),
 	"point", "LEFT",
-	"groupFilter", "1,2,3,4,5,6,7,8",
-	"groupingOrder", "1,2,3,4,5,6,7,8",
+	"groupFilter", "1,2,3,4,5",
+	"groupingOrder", "1,2,3,4,5",
 	"groupBy", "GROUP",
 	"maxColumns", 8,
 	"unitsPerColumn", 5,
 	"columnSpacing", P.Scale(8),
-	"columnAnchorPoint", "TOP"
+	"columnAnchorPoint", "BOTTOM"
 end

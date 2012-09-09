@@ -15,7 +15,7 @@ self.EclipseBar.LunarBar:SetSize(self.EclipseBar:GetWidth(), self.EclipseBar:Get
 self.EclipseBar.SolarBar:SetSize(self.EclipseBar:GetWidth(), self.EclipseBar:GetHeight())
 
 self.EclipseBar.Text:ClearAllPoints()
-self.EclipseBar.Text:SetPoint("TOP", self.EclipseBar, 0, 25)
+self.EclipseBar.Text:SetPoint("CENTER", self.Health, 0, 0)
 self.EclipseBar.Text:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 self.EclipseBar.Text:SetShadowOffset(0, 0)
 

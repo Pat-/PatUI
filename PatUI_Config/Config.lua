@@ -43,7 +43,7 @@ C.unitframes = {
 	playeraggro = true,
 	healcomm = false,
 	onlyselfdebuffs = false,
-	showfocustarget = true,
+	showfocustarget = false,
 	bordercolor = {.15, .15, .15},
 	
 	-- raid layout

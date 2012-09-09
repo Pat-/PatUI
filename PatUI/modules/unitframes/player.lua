@@ -101,3 +101,11 @@ if P.level == MAX_PLAYER_LEVEL then
 	repBG:SetFrameStrata("BACKGROUND")
 	repBG:ThickBorder()
 end
+
+local PVP = self.Health:CreateTexture(nil, "OVERLAY")
+PVP:SetHeight(32)
+PVP:SetWidth(32)
+PVP:SetPoint("CENTER", self.Health, "CENTER", 0, -7)
+self.PvP = PVP
+
+self:EnableElement("PvP")

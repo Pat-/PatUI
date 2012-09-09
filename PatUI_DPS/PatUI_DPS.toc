@@ -1,0 +1,7 @@
+## Interface: 50001
+## Title: |cff18AA18PatUI DPS|r
+## Notes:
+## Author: Pat
+## RequiredDeps: Tukui, PatUI, PatUI_Config
+
+DPS.lua
