@@ -27,8 +27,7 @@ P.SkinCloseButton(MinArchHistButtonClose)
 
 MinArchHist:HookScript("OnShow", function(self) 
 	if not self.skinned then 
-		MinArchScrollBar:SkinSlideBar(8) self.skinned = true 
-		MinArchScrollBar:SetWidth(8)
+		MinArchScrollBar:SkinSlideBar(8) self.skinned = true
 	end 
 end)
 

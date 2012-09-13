@@ -84,7 +84,7 @@ self.Buffs.spacing = 3
 self.Buffs.initialAnchor = 'TOPLEFT'
 self.Buffs["growth-y"] = "UP"
 self.Buffs["growth-x"] = "RIGHT"
-self.Buffs:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 5)
+self.Buffs:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", -1, 5)
 self.Buffs.PostCreateIcon = P.PostCreateAura
 self.Buffs.PostUpdateIcon = P.PostUpdateAura
 

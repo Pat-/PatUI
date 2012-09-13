@@ -14,6 +14,8 @@ self.panel:Kill()
 self.shadow:Kill()
 self.FlashInfo:Kill()
 
+
+TukuiStatueBar:Kill()
 ------------------------------------------------------------------------
 -- Setup Player Frames
 ------------------------------------------------------------------------
