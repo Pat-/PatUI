@@ -38,6 +38,7 @@ local frames = {
 	AddFriendFrame,
 	LootHistoryFrame,
 	FriendsFrameBattlenetFrame.BroadcastFrame,
+	RaidInfoFrame.backdrop,
 }
 
 local OnLoad = CreateFrame("Frame")

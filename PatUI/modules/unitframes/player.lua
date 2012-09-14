@@ -15,7 +15,9 @@ self.shadow:Kill()
 self.FlashInfo:Kill()
 
 
-TukuiStatueBar:Kill()
+if P.myclass == "MONK" or P.myclass == "DEATHKNIGHT" or P.myclass == "WARRIOR" or P.myclass == "PRIEST" then
+	TukuiStatueBar:Kill()
+end
 ------------------------------------------------------------------------
 -- Setup Player Frames
 ------------------------------------------------------------------------

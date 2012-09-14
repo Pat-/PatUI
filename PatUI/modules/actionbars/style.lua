@@ -35,7 +35,7 @@ end
 hooksecurefunc("ActionButton_Update", style)
 
 TukuiStance:ClearAllPoints()
-TukuiStance:SetPoint("TOPLEFT", DataPoint6, "BOTTOMLEFT", 4, -44)
+TukuiStance:SetPoint("TOPLEFT", Minimap_Button, "BOTTOMLEFT", 4, -44)
 
 local sborder = CreateFrame("Frame", "StanceBorder", StanceButton1)
 sborder:Point("LEFT", -P.buttonspacing, 0)

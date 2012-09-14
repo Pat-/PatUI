@@ -44,7 +44,7 @@ self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
 
 -- setup castbar
 self.Castbar:ClearAllPoints()
-self.Castbar:SetBorder(false, true)
+self.Castbar:CreateBorder()
 self.Castbar:Size(250, 25)
 self.Castbar:Point("CENTER", UIParent, "CENTER", 0, -150)
 self.Castbar:SetFrameLevel(4)
@@ -76,29 +76,29 @@ end
 hooksecurefunc(P, "PostCreateAura", PostCreateAura)
 
 -- edited position, size, space, etc of buffs
-self.Buffs:SetHeight(22)
-self.Buffs:SetWidth(196)
-self.Buffs.size = 22
-self.Buffs.num = 9
+self.Buffs:SetHeight(23.5)
+self.Buffs:SetWidth(225)
+self.Buffs.size = 23.5
+self.Buffs.num = 21
 self.Buffs.spacing = 3
 self.Buffs.initialAnchor = 'TOPLEFT'
 self.Buffs["growth-y"] = "UP"
 self.Buffs["growth-x"] = "RIGHT"
-self.Buffs:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", -1, 5)
+self.Buffs:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", -2, 5)
 self.Buffs.PostCreateIcon = P.PostCreateAura
 self.Buffs.PostUpdateIcon = P.PostUpdateAura
 
 -- edited position, size, space, etc of buffs
-self.Debuffs:SetHeight(22)
-self.Debuffs:SetWidth(196)
-self.Debuffs.size = 22
+self.Debuffs:SetHeight(23.5)
+self.Debuffs:SetWidth(225)
+self.Debuffs.size = 23.5
 self.Debuffs.num = 21
 self.Debuffs.spacing = 3
 self.Debuffs.initialAnchor = 'TOPRIGHT'
 self.Debuffs["growth-y"] = "UP"
 self.Debuffs["growth-x"] = "LEFT"
 self.Debuffs:ClearAllPoints()
-self.Debuffs:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 35)
+self.Debuffs:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 2, 35)
 self.Debuffs.PostCreateIcon = P.PostCreateAura
 self.Debuffs.PostUpdateIcon = P.PostUpdateAura
 
