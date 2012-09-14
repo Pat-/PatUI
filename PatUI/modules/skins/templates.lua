@@ -39,6 +39,8 @@ local frames = {
 	LootHistoryFrame,
 	FriendsFrameBattlenetFrame.BroadcastFrame,
 	RaidInfoFrame.backdrop,
+	TukuiChatCopyFrame,
+	RaidBrowserFrame.backdrop,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -54,12 +56,6 @@ end)
 -- Since BNet Converstaion frame is Transparent in my UI give the List a Template so it looks nice.
 BNConversationInviteDialogList:SetTemplate("Default")
 BNConversationInviteDialogList:ThickBorder()
-
-local spellbookbg = CreateFrame("Frame", nil, SpellBookFrame)
-spellbookbg:SetTemplate("Default")
-spellbookbg:Point("TOPLEFT", SpellBookPage1, "TOPLEFT", -2, 2)
-spellbookbg:Point("BOTTOMRIGHT", SpellBookFrame, "BOTTOMRIGHT", -8, 4)
-SpellBookFrameTutorialButton:Kill()
 
 TokenFrame:HookScript("OnShow", function()
 	TokenFramePopup:SetTemplate("Transparent")	
@@ -112,6 +108,9 @@ local function SkinBlizzardFrames(self, event, addon)
 			CalendarFrame,
 			CalendarCreateEventFrame,
 			CalendarTexturePickerFrame,
+			CalendarViewEventFrame,
+			CalendarViewHolidayFrame,
+			CalendarViewRaidFrame
 		}
 		
 		for _,f in pairs(frames) do
