@@ -57,6 +57,8 @@ end)
 BNConversationInviteDialogList:SetTemplate("Default")
 BNConversationInviteDialogList:ThickBorder()
 
+WorldMapQuestRewardScrollFrameScrollBar:SkinScrollBar()
+
 TokenFrame:HookScript("OnShow", function()
 	TokenFramePopup:SetTemplate("Transparent")	
 	TokenFramePopup:ThickBorder()

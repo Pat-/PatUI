@@ -76,9 +76,9 @@ end
 hooksecurefunc(P, "PostCreateAura", PostCreateAura)
 
 -- edited position, size, space, etc of buffs
-self.Buffs:SetHeight(23.5)
-self.Buffs:SetWidth(225)
-self.Buffs.size = 23.5
+self.Buffs:SetHeight(23.3)
+self.Buffs:SetWidth(226)
+self.Buffs.size = 23.3
 self.Buffs.num = 21
 self.Buffs.spacing = 3
 self.Buffs.initialAnchor = 'TOPLEFT'

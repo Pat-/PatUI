@@ -115,7 +115,7 @@ C.cooldown = {
 }
 
 C.datatext = {
-	fps_ms = 0,
+	fps_ms = 2,
 	system = 0,
 	bags = 0,
 	gold = 6,
@@ -125,7 +125,7 @@ C.datatext = {
 	friends = 3,
 	dps_text = 0,
 	hps_text = 0,
-	power = 2,
+	power = 0,
 	haste = 0,
 	crit = 0,
 	avd = 0,

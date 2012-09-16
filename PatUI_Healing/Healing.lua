@@ -7,6 +7,34 @@ local P, C, L, G = unpack(Tukui)
 local font = C.media.pixelfont
 local fsize = C.media.pfontsize
 local raidscale = 1
+
+P.RaidFrameAttributes = function()
+	return
+	"TukuiRaid",
+	nil,
+	"custom [petbattle] hide;show",
+	"oUF-initialConfigFunction", [[
+		local header = self:GetParent()
+		self:SetWidth(header:GetAttribute("initial-width"))
+		self:SetHeight(header:GetAttribute("initial-height"))
+	]],
+	"initial-width", P.Scale((ChatBackground:GetWidth()/ 5) - 5),
+	"initial-height", P.Scale(30),
+	"showParty", true,
+	"showRaid", true,
+	"showPlayer", true,
+	--"showSolo", true, -- used to test raid frame without a party.
+	"xoffset", P.Scale(6),
+	"yOffset", P.Scale(-6),
+	"point", "LEFT",
+	"groupFilter", "1,2,3,4,5",
+	"groupingOrder", "1,2,3,4,5",
+	"groupBy", "GROUP",
+	"maxColumns", 8,
+	"unitsPerColumn", 5,
+	"columnSpacing", P.Scale(8),
+	"columnAnchorPoint", "BOTTOM"
+end
 	
 P.PostUpdateRaidUnit = function(self)
 	self.panel:Kill()
@@ -105,35 +133,11 @@ end
 local RaidPosition = CreateFrame("Frame")
 RaidPosition:RegisterEvent("PLAYER_LOGIN")
 RaidPosition:SetScript("OnEvent", function(self, event)
+
+	if C.unitframes.showraidpets == true then
+		G.UnitFrames.RaidPets:ClearAllPoints()
+	end
+
 	G.UnitFrames.RaidUnits:ClearAllPoints()
-	G.UnitFrames.RaidPets:ClearAllPoints()
 	G.UnitFrames.RaidUnits:SetPoint("TOP", UIParent, "BOTTOM", 0, 315)
 end)
-
-P.RaidFrameAttributes = function()
-	return
-	"TukuiRaid",
-	nil,
-	"custom [petbattle] hide;show",
-	"oUF-initialConfigFunction", [[
-		local header = self:GetParent()
-		self:SetWidth(header:GetAttribute("initial-width"))
-		self:SetHeight(header:GetAttribute("initial-height"))
-	]],
-	"initial-width", P.Scale((ChatBackground:GetWidth()/ 5) - 5),
-	"initial-height", P.Scale(30),
-	"showParty", true,
-	"showRaid", true,
-	"showPlayer", true,
-	--"showSolo", true, -- used to test raid frame without a party.
-	"xoffset", P.Scale(6),
-	"yOffset", P.Scale(-6),
-	"point", "LEFT",
-	"groupFilter", "1,2,3,4,5",
-	"groupingOrder", "1,2,3,4,5",
-	"groupBy", "GROUP",
-	"maxColumns", 8,
-	"unitsPerColumn", 5,
-	"columnSpacing", P.Scale(8),
-	"columnAnchorPoint", "BOTTOM"
-end
