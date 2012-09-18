@@ -24,7 +24,7 @@ local points = {}
 for i=1,MAX_COMBO_POINTS do
 	points[i] = CreateFrame("Frame", "TukuiComboPoints_Point"..i, cpoints)
 	points[i]:SetWidth((TukuiPlayer:GetWidth()-(MAX_COMBO_POINTS) + 1) / MAX_COMBO_POINTS)
-	points[i]:SetHeight(8)
+	points[i]:SetHeight(6)
 	points[i].tex = points[i]:CreateTexture(nil, "OVERLAY")
 	points[i].tex:SetTexture(C.media.normTex)
 	points[i].tex:SetVertexColor(unpack(colors[i]))

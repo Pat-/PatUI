@@ -5,16 +5,16 @@ local self = _G["TukuiPlayer"]
 
 self.HolyPower:ClearAllPoints()
 self.HolyPower:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 6)
-self.HolyPower:Size(self:GetWidth(), 10)
+self.HolyPower:Size(self:GetWidth(), 6)
 self.HolyPower:CreateBorder()
 
 if P.level ~= MAX_PLAYER_LEVEL then
 	for i = 1, 3 do
 		self.HolyPower[i]:SetStatusBarColor(228/255, 225/255, 16/255)
 		if(i == 3) then
-			self.HolyPower[i]:Size((self:GetWidth() / 5) - 2, 10)
+			self.HolyPower[i]:Size((self:GetWidth() / 5) - 2, 6)
 		else
-			self.HolyPower[i]:Size((self:GetWidth() / 5), 10)
+			self.HolyPower[i]:Size((self:GetWidth() / 5), 6)
 		end
 
 		if(i == 1) then
@@ -27,9 +27,9 @@ else
 	for i = 1, 5 do
 		self.HolyPower[i]:SetStatusBarColor(228/255, 225/255, 16/255)
 		if(i == 5) then
-			self.HolyPower[i]:Size((self:GetWidth() / 5) - 2, 10)
+			self.HolyPower[i]:Size((self:GetWidth() / 5) - 2, 6)
 		else
-			self.HolyPower[i]:Size((self:GetWidth() / 5), 10)
+			self.HolyPower[i]:Size((self:GetWidth() / 5), 6)
 		end
 
 		if(i == 1) then

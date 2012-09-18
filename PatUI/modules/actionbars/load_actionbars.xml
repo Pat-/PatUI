@@ -1,3 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="style.lua"/>
+	<Script file="stance.lua"/>
+	<Script file="layout1.lua"/>
+	<Script file="layout2.lua"/>
 </Ui>

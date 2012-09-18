@@ -8,7 +8,7 @@ local self = _G["TukuiPlayer"]
 
 self.EclipseBar:ClearAllPoints()
 self.EclipseBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 6)
-self.EclipseBar:Size(self:GetWidth(), 10)
+self.EclipseBar:Size(self:GetWidth(), 6)
 self.EclipseBar:CreateBorder()
 
 self.EclipseBar.LunarBar:SetSize(self.EclipseBar:GetWidth(), self.EclipseBar:GetHeight())
@@ -22,11 +22,11 @@ self.EclipseBar.Text:SetShadowOffset(0, 0)
 if C.unitframes.druidmushroombar == true then
 	self.WildMushroom:ClearAllPoints()
 	self.WildMushroom:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 26)
-	self.WildMushroom:Size(self:GetWidth(), 10)
+	self.WildMushroom:Size(self:GetWidth(), 6)
 	self.WildMushroom:CreateBorder()
 
 	for i = 1, 3 do
-		self.WildMushroom[i]:Size((self:GetWidth() / 3), 10)
+		self.WildMushroom[i]:Size((self:GetWidth() / 3), 6)
 
 		if( i == 1 ) then
 			self.WildMushroom[i]:SetPoint("LEFT", self.WildMushroom, "LEFT", 0, 0)

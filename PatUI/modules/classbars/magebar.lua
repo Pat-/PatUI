@@ -5,11 +5,11 @@ local self = _G["TukuiPlayer"]
 
 self.ArcaneChargeBar:ClearAllPoints()
 self.ArcaneChargeBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 6)
-self.ArcaneChargeBar:Size(self:GetWidth(), 10)
+self.ArcaneChargeBar:Size(self:GetWidth(), 6)
 self.ArcaneChargeBar:CreateBorder()
 
 for i = 1, 6 do
-	self.ArcaneChargeBar[i]:Size((self:GetWidth() / 6) - 1 , 10)
+	self.ArcaneChargeBar[i]:Size((self:GetWidth() / 6) - 1 , 6)
 	if(i == 1) then
 		self.ArcaneChargeBar[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 6)
 	else

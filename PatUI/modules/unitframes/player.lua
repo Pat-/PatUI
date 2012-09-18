@@ -14,26 +14,22 @@ self.panel:Kill()
 self.shadow:Kill()
 self.FlashInfo:Kill()
 
-
-if P.myclass == "MONK" or P.myclass == "DEATHKNIGHT" or P.myclass == "WARRIOR" or P.myclass == "PRIEST" then
-	TukuiStatueBar:Kill()
-end
 ------------------------------------------------------------------------
 -- Setup Player Frames
 ------------------------------------------------------------------------
 
-self:Size(P.Player, 30)
+self:Size(P.Player, 25)
 
-self.Health:SetHeight(30)
+self.Health:SetHeight(25)
 self.Health:CreateBorder()
 self.Health:SetFrameLevel(4)
 self.Health.bg:SetVertexColor(.25, .1, .1)
 self.Health.bg:SetTexture(C["media"].blank)
 
 self.Power:ClearAllPoints()
-self.Power:Point("TOP", self.Health, "BOTTOM", 0, 4)
-self.Power:SetHeight(8)
-self.Power:SetWidth(190)
+self.Power:Point("TOPLEFT", self.Health, "BOTTOMLEFT", 6, 2)
+self.Power:SetHeight(6)
+self.Power:SetWidth(130)
 self.Power:CreateBorder()
 self.Power:SetFrameLevel(10)
 self.Power.colorTapping = true
@@ -48,7 +44,11 @@ self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
 -- Castbar
 self.Castbar:ClearAllPoints()
 self.Castbar:CreateBorder()
-self.Castbar:Size((TukuiBar1:GetWidth()- 6), 25)
+if C.actionbar.style == 1 then
+	self.Castbar:Size((TukuiBar1:GetWidth()- 6), 25)
+else
+	self.Castbar:Size(250, 25)
+end
 self.Castbar:Point("BOTTOM", TukuiBar1, "TOP", 0, 6)
 
 self.Castbar.Time = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
@@ -109,7 +109,7 @@ end
 local PVP = self.Health:CreateTexture(nil, "OVERLAY")
 PVP:SetHeight(32)
 PVP:SetWidth(32)
-PVP:SetPoint("CENTER", self.Health, "CENTER", 0, -7)
+PVP:SetPoint("CENTER", self.Health, "CENTER", 0, -4)
 self.PvP = PVP
 
 self:EnableElement("PvP")

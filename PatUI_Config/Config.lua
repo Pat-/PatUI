@@ -76,6 +76,7 @@ C.unitframes = {
 	druidmanabar = false,
 	druidmushroombar = false,
 	mageclassbar = true,
+	showstatuebar = false,
 }
 
 C.auras = {
@@ -98,6 +99,7 @@ C.actionbar = {
 	ownwarstancebar = false,
 	
 	smallsides = false,
+	style = 2,  -- 1 for more then 1 actionbar, 2 for just 1 actionbar.
 }
 
 C.bags = {
@@ -152,7 +154,7 @@ C.chat = {
 
 C.nameplate = {
 	enable = true,
-    showhealth = true,
+    showhealth = false,
 	enhancethreat = true,
 	combat = false,
 	goodcolor = { 75/255,  175/255, 76/255 },

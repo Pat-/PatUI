@@ -5,9 +5,8 @@ if C.unitframes.enable ~= true then return end
 -- Setup Frame Points
 ------------------------------------------------------------------------
 local FramePositions = CreateFrame("Frame")
-FramePositions:RegisterEvent("PLAYER_ENTERING_WORLD")
+FramePositions:RegisterEvent("ADDON_LOADED")
 FramePositions:SetScript("OnEvent", function(self, event, addon)
-
 	TukuiPlayer:ClearAllPoints()
 	TukuiTarget:ClearAllPoints()
 	TukuiPet:ClearAllPoints()
@@ -15,11 +14,21 @@ FramePositions:SetScript("OnEvent", function(self, event, addon)
 	TukuiFocus:ClearAllPoints()
 	
 	if(IsAddOnLoaded("PatUI_DPS")) then
-		TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
-		TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
-	elseif(IsAddOnLoaded("PatUI_Healing")) then
-		TukuiPlayer:Point("TOP", UIParent, "BOTTOM", -309 , 315)
-		TukuiTarget:Point("TOP", UIParent, "BOTTOM", 310, 315)
+		if C.actionbar.style == 1 then
+			TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
+			TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
+		else
+			TukuiPlayer:SetPoint("CENTER", UIParent, "CENTER", -228 , -201)
+			TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
+		end
+	elseif(IsAddOnLoaded("PatUI_Healing")) then		
+		if C.actionbar.style == 1 then
+			TukuiPlayer:Point("TOP", UIParent, "BOTTOM", -309 , 315)
+			TukuiTarget:Point("TOP", UIParent, "BOTTOM", 310, 315)
+		else
+			TukuiPlayer:SetPoint("CENTER", UIParent, "CENTER", -228 , -201)
+			TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
+		end
 	else
 		TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
 		TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)

@@ -139,5 +139,9 @@ RaidPosition:SetScript("OnEvent", function(self, event)
 	end
 
 	G.UnitFrames.RaidUnits:ClearAllPoints()
-	G.UnitFrames.RaidUnits:SetPoint("TOP", UIParent, "BOTTOM", 0, 315)
+	if C.actionbar.style == 1 then
+		G.UnitFrames.RaidUnits:SetPoint("TOP", UIParent, "BOTTOM", 0, 315)
+	else
+		G.UnitFrames.RaidUnits:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 10)
+	end
 end)

@@ -12,25 +12,24 @@ P.Target = 227
 
 self.panel:Kill()
 self.shadow:Kill()
+self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 
 ------------------------------------------------------------------------
 -- Setup Target Frames
 ------------------------------------------------------------------------
 
-self:Size(P.Target + 4, 30)
+self:Size(P.Target + 4, 25)
 
-self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
-
-self.Health:SetHeight(30)
+self.Health:SetHeight(25)
 self.Health:CreateBorder()
 self.Health:SetFrameLevel(4)
 self.Health.bg:SetVertexColor(.25, .1, .1)
 self.Health.bg:SetTexture(C["media"].blank)
 
 self.Power:ClearAllPoints()
-self.Power:Point("TOP", self.Health, "BOTTOM", 0, 4)
-self.Power:SetHeight(8)
-self.Power:SetWidth(190)
+self.Power:Point("TOPRIGHT", self.Health, "BOTTOMRIGHT", -6, 2)
+self.Power:SetHeight(6)
+self.Power:SetWidth(130)
 self.Power:CreateBorder()
 self.Power:SetFrameLevel(10)
 self.Power.colorTapping = true
@@ -46,7 +45,11 @@ self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
 self.Castbar:ClearAllPoints()
 self.Castbar:CreateBorder()
 self.Castbar:Size(250, 25)
-self.Castbar:Point("CENTER", UIParent, "CENTER", 0, -150)
+if C.actionbar.style == 1 then
+	self.Castbar:Point("CENTER", UIParent, "CENTER", 0, -150)
+else
+	self.Castbar:Point("CENTER", UIParent, "CENTER", 0, -50)
+end
 self.Castbar:SetFrameLevel(4)
 
 self.Castbar.Time = P.SetFontString(self.Castbar, font, C.media.pfontsize, "MONOCHROMEOUTLINE")
