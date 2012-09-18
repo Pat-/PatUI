@@ -1,7 +1,7 @@
 ## Interface: 50001
 ## Title: |cff18AA18PatUI|r
 ## Notes:
-## Version: 0.7
+## Version: 0.7.1
 ## Author: Pat
 ## RequiredDeps: PatUI_Config, Tukui
 ## SavedVariablesPerCharacter: PatUIDataPerChar

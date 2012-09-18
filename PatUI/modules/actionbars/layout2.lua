@@ -33,6 +33,11 @@ bar:HookScript("OnEvent", function(self, event, unit)
 	end
 end)
 
+TukuiPetBar:ClearAllPoints()
+TukuiPetBar:Point("RIGHT", UIParent, "RIGHT", 0, 0)
+TukuiPetBar:SetBackdrop(nil)
+TukuiPetBar:HideInsets()
+
 ---------------------------------
 -- Set up the only actionbar here
 ---------------------------------
