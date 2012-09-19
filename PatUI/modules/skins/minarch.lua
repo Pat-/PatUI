@@ -41,10 +41,6 @@ for i =1, 10 do
 	_G["MinArchMainArtifactBar"..i]:SetStatusBarTexture(C["media"].normTex)
 	_G["MinArchMainArtifactBar"..i]:SetStatusBarColor(1.0, 0.4, 0)
 	P.SkinButton(_G["MinArchMainArtifactBar"..i.."ButtonSolve"])
-	
-	_G["MinArchMainArtifactBar"..i.."ButtonSolve"]:FontString("text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
-	_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetPoint("CENTER", 1, 1)
-	_G["MinArchMainArtifactBar"..i.."ButtonSolve"].text:SetText("Solve")
 end
 
 for i=1, 10 do
