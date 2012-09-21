@@ -210,3 +210,12 @@ local Init = CreateFrame("Frame")
 Init:RegisterEvent("ADDON_LOADED")
 Init:SetScript("OnEvent", SkinBlizzardFrames)
 
+
+ReportCheatingDialog:StripTextures()
+ReportCheatingDialog:SetTemplate("Transparent")
+ReportCheatingDialog:ThickBorder()
+ReportCheatingDialogReportButton:SkinButton()
+ReportCheatingDialogCancelButton:SkinButton()
+ReportCheatingDialogCommentFrame:StripTextures()
+ReportCheatingDialogCommentFrameEditBox:SkinEditBox()
+

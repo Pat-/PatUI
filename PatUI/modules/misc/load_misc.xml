@@ -4,4 +4,7 @@
 	<Script file="capturebar.lua"/>
 	<Script file="mail.lua"/>
 	<Script file="test.lua"/>
+	<Script file="config.lua"/>
+	<Script file="buttons.lua"/>
+	<Script file="scripts.lua"/>
 </Ui>
