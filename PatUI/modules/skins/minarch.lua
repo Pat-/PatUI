@@ -35,7 +35,7 @@ MinArchMainSkillBar:StripTextures()
 MinArchMainSkillBar:CreateBackdrop()
 MinArchMainSkillBar:SetStatusBarTexture(C["media"].normTex)
 
-for i =1, 10 do
+for i =1, 12 do
 	_G["MinArchMainArtifactBar"..i]:StripTextures()
 	_G["MinArchMainArtifactBar"..i]:CreateBackdrop()
 	_G["MinArchMainArtifactBar"..i]:SetStatusBarTexture(C["media"].normTex)
@@ -43,7 +43,7 @@ for i =1, 10 do
 	P.SkinButton(_G["MinArchMainArtifactBar"..i.."ButtonSolve"])
 end
 
-for i=1, 10 do
+for i=1, 12 do
 	_G["MinArchOptionPanelHideArtifact"..i]:SkinCheckBox()
 	_G["MinArchOptionPanelFragmentCap"..i]:SkinCheckBox()
 end
@@ -75,6 +75,10 @@ for i=1,2 do
 end
 
 for i=4, 9 do
+	_G["MinArchOptionPanelUseKeystones"..i]:SkinCheckBox()
+end
+
+for i=11, 12 do
 	_G["MinArchOptionPanelUseKeystones"..i]:SkinCheckBox()
 end
 

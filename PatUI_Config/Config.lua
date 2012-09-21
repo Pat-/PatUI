@@ -99,7 +99,7 @@ C.actionbar = {
 	ownwarstancebar = false,
 	
 	smallsides = false,
-	style = 2,  -- 1 for more then 1 actionbar, 2 for just 1 actionbar.
+	style = 1,  -- 1 for more then 1 actionbar, 2 for just 1 actionbar.
 }
 
 C.bags = {
