@@ -2,7 +2,11 @@ local P, C, L, G = unpack(Tukui)
 
 -- used for testing things
 TukuiTooltipAnchor:ClearAllPoints()
-TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", ChatBackground2, "TOPRIGHT", 0, -TukuiInfoRight:GetHeight())
+if C.chat.lootchat then
+	TukuiTooltipAnchor:Point("BOTTOMRIGHT", ChatBackground2, "TOPRIGHT", 0, -TukuiInfoRight:GetHeight())
+else
+	TukuiTooltipAnchor:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -3, 3)
+end
 
 
 -- Make Tooltip Transparent

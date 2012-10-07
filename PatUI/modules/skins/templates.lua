@@ -112,7 +112,8 @@ local function SkinBlizzardFrames(self, event, addon)
 			CalendarTexturePickerFrame,
 			CalendarViewEventFrame,
 			CalendarViewHolidayFrame,
-			CalendarViewRaidFrame
+			CalendarViewRaidFrame,
+			CalendarMassInviteFrame,
 		}
 		
 		for _,f in pairs(frames) do
@@ -120,6 +121,8 @@ local function SkinBlizzardFrames(self, event, addon)
 			f:ThickBorder()
 			if f.shadow then f.shadow:Hide() end
 		end
+		
+		CalendarMassInviteCloseButton:StripTextures()
 		
 	elseif(addon == "Blizzard_TimeManager") then
 	
@@ -218,4 +221,3 @@ ReportCheatingDialogReportButton:SkinButton()
 ReportCheatingDialogCancelButton:SkinButton()
 ReportCheatingDialogCommentFrame:StripTextures()
 ReportCheatingDialogCommentFrameEditBox:SkinEditBox()
-

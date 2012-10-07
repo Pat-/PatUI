@@ -37,7 +37,7 @@ local function CreateBorder(self)
 	local border = CreateFrame("Frame", nil, self)
 	border:SetPoint("TOPLEFT", self, "TOPLEFT", P.Scale(-2), P.Scale(2))
 	border:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", P.Scale(2), P.Scale(-2))
-	border:SetTemplate("Default")
+	border:SetTemplate("Transparent")
 	border:SetFrameLevel(self:GetFrameLevel())
 	border:ThickBorder()
 end

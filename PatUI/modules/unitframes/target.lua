@@ -43,7 +43,6 @@ self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
 
 -- setup castbar
 self.Castbar:ClearAllPoints()
-self.Castbar:CreateBorder()
 self.Castbar:Size(250, 25)
 if C.actionbar.style == 1 then
 	self.Castbar:Point("CENTER", UIParent, "CENTER", 0, -150)
@@ -51,6 +50,8 @@ else
 	self.Castbar:Point("CENTER", UIParent, "CENTER", 0, -50)
 end
 self.Castbar:SetFrameLevel(4)
+self.Castbar:CreateBackdrop("Transparent")
+self.Castbar.bg:Kill()
 
 self.Castbar.Time = P.SetFontString(self.Castbar, font, C.media.pfontsize, "MONOCHROMEOUTLINE")
 self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 0)

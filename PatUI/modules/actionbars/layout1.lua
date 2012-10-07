@@ -23,6 +23,8 @@ TukuiBar4:HookScript("OnShow", function()
 	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
 end)
 
+TukuiBar5:ClearAllPoints()
+TukuiBar5:Point("RIGHT", UIParent, "RIGHT", -4, 0)
 
 -- Setting up Actionbar templates here
 TukuiBar2:SetTemplate("Transparent")
@@ -51,7 +53,6 @@ for _,f in pairs(buttons) do
 	f:SetTemplate("Transparent")
 	f:ThickBorder()
 end
-
 
 -- for people that want a 3x3 side bar style.
 if C.actionbar.smallsides == true then

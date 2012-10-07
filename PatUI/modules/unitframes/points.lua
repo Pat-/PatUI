@@ -30,8 +30,13 @@ FramePositions:SetScript("OnEvent", function(self, event, addon)
 			TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
 		end
 	else
-		TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
-		TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
+		if C.actionbar.style == 1 then
+			TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
+			TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
+		else
+			TukuiPlayer:SetPoint("CENTER", UIParent, "CENTER", -228 , -201)
+			TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
+		end
 	end
 
 	TukuiPet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -13)

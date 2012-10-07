@@ -44,6 +44,7 @@ P.PostUpdateRaidUnit = function(self)
 	self.Health:CreateBorder()
 	self.Health:SetStatusBarTexture(C.media.normTex)
 	self.Health:SetStatusBarColor(.3, .3, .3, 1)
+	self.Health:SetFrameLevel(3)
 	
 	self.Health.value:Point("CENTER", self.Health, 1, 13)
 	self.Health.value:SetFont(font, fsize, "MONOCHROMEOUTLINE")

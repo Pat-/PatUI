@@ -35,7 +35,7 @@ chatbg:ThickBorder()
 chatbg:SetFrameStrata("BACKGROUND")
 chatbg:SetWidth(P.InfoLeftRightWidth + 12) 
 chatbg:SetHeight(177)
-chatbg:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 40)
+chatbg:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 3, 3)
 
 chatbg2 = CreateFrame("Frame", "ChatBackground2", UIParent)
 chatbg2:SetTemplate("Transparent")
@@ -43,7 +43,7 @@ chatbg2:ThickBorder()
 chatbg2:SetFrameStrata("BACKGROUND")
 chatbg2:SetWidth(P.InfoLeftRightWidth + 12) 
 chatbg2:SetHeight(177)
-chatbg2:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -30, 40)
+chatbg2:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -3, 3)
 
 if C.chat.lootchat == true then
 	chatbg2:Show()
@@ -52,7 +52,11 @@ else
 end
 
 TukuiInfoLeft:ClearAllPoints()
-TukuiInfoLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 15)
+TukuiInfoLeft:SetPoint("BOTTOM", ChatBackground, "TOP", 0, -2)
 TukuiInfoLeft:SetWidth(P.InfoLeftRightWidth + 12)
 TukuiInfoLeft:SetParent(UIParent)
 TukuiInfoLeft:SetAlpha(0)
+
+-- put this closer to minimap bottom
+TukuiRaidUtilityShowButton:ClearAllPoints()
+TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)

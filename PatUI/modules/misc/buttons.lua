@@ -4,15 +4,18 @@ local P, C, L, G = unpack(Tukui)
 -- Create Buttons here
 -----------------------
 
+-- Toggle Mininmap Button
 local mmb = CreateFrame("Frame", "Minimap_Button", ControlPanelBackground)
 mmb:SetTemplate("Transparent")
 mmb:Size(70, 13)
 mmb:Point("LEFT", ControlPanelBackground, "LEFT", 4, -34)
 mmb:SetFrameStrata("BACKGROUND")
+
 mmb:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 mmb.Text:Point("CENTER", Minimap_Button)
 mmb.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."Hide Minimap")
 
+-- Toggle Chat button
 local cb = CreateFrame("Frame", "chat_Button", ControlPanelBackground)
 cb:SetTemplate("Transparent")
 cb:Size(70, 13)
@@ -23,6 +26,7 @@ cb:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 cb.Text:Point("CENTER", chat_Button)
 cb.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."Hide Chat")
 
+-- ReloadUI Button
 local rlb = CreateFrame("Button", "Reload_Button", ControlPanelBackground, "SecureActionButtonTemplate")
 rlb:SetTemplate("Transparent")
 rlb:Size(70, 13) 
@@ -34,6 +38,7 @@ rlb:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 rlb.Text:Point("CENTER", Reload_Button)
 rlb.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."Reload")
 
+-- iFilger Button
 local ifb = CreateFrame("Button", "iFilger_Button", ControlPanelBackground, "SecureActionButtonTemplate")
 ifb:SetTemplate("Transparent")
 ifb:Size(70, 13) 
@@ -45,27 +50,33 @@ ifb:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 ifb.Text:Point("CENTER", iFilger_Button)
 ifb.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."iFilger")
 
+-- moveui button
+local muib = CreateFrame("Button", "MoveUI_Button", ControlPanelBackground, "SecureActionButtonTemplate")
+muib:SetTemplate("Transparent")
+muib:Size(70, 13) 
+muib:Point("LEFT", ControlPanelBackground, "LEFT", 4, 33)
+muib:SetAttribute("type", "macro")
+muib:SetAttribute("macrotext", "/moveui")
+
+muib:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
+muib.Text:Point("CENTER", MoveUI_Button)
+muib.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."MoveUI")
+
+-- resetui button
+local ib = CreateFrame("Button", "Install_Button", ControlPanelBackground, "SecureActionButtonTemplate")
+ib:SetTemplate("Transparent")
+ib:Size(70, 13) 
+ib:Point("RIGHT", ControlPanelBackground, "RIGHT", -4, 33)
+ib:SetAttribute("type", "macro")
+ib:SetAttribute("macrotext", "/resetui")
+
+ib:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
+ib.Text:Point("CENTER", Install_Button)
+ib.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."Install")
+
 -------------------------------------------------------------------
 -- Create Filler Buttons until I have time to think of more buttons
 -------------------------------------------------------------------
-
-local fb1 = CreateFrame("Button", "Filler_Button1", ControlPanelBackground, "SecureActionButtonTemplate")
-fb1:SetTemplate("Transparent")
-fb1:Size(70, 13) 
-fb1:Point("LEFT", ControlPanelBackground, "LEFT", 4, 33)
-
-fb1:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
-fb1.Text:Point("CENTER", Filler_Button1)
-fb1.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."Filler")
-
-local fb2 = CreateFrame("Button", "Filler_Button2", ControlPanelBackground, "SecureActionButtonTemplate")
-fb2:SetTemplate("Transparent")
-fb2:Size(70, 13) 
-fb2:Point("RIGHT", ControlPanelBackground, "RIGHT", -4, 33)
-
-fb2:FontString("Text", C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
-fb2.Text:Point("CENTER", Filler_Button2)
-fb2.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."Filler")
 
 local fb3 = CreateFrame("Button", "Filler_Button3", ControlPanelBackground, "SecureActionButtonTemplate")
 fb3:SetTemplate("Transparent")

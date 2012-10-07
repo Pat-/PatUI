@@ -43,13 +43,14 @@ self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
 
 -- Castbar
 self.Castbar:ClearAllPoints()
-self.Castbar:CreateBorder()
 if C.actionbar.style == 1 then
 	self.Castbar:Size((TukuiBar1:GetWidth()- 6), 25)
 else
 	self.Castbar:Size(250, 25)
 end
 self.Castbar:Point("BOTTOM", TukuiBar1, "TOP", 0, 6)
+self.Castbar:CreateBackdrop("Transparent")
+self.Castbar.bg:Kill()
 
 self.Castbar.Time = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
 self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 0)
