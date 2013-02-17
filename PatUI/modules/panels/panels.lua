@@ -127,3 +127,5 @@ TukuiInfoLeft:HideInsets()
 
 TukuiRaidUtilityShowButton:ClearAllPoints()
 TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)
+
+

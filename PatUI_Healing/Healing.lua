@@ -163,3 +163,8 @@ TukuiRaidPosition:SetScript("OnEvent", function(self, event)
 		pets:ClearAllPoints()
 	end
 end)
+
+-- Just because it looks better this way moving target castbar when in healing layout.
+
+TukuiTarget.Castbar:ClearAllPoints()
+TukuiTarget.Castbar:Point("TOP", TukuiTarget.Health, "BOTTOM", 0, -3)

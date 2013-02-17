@@ -55,7 +55,7 @@ self.Power.value:SetShadowOffset(0, 0)
 
 self.Castbar:ClearAllPoints()
 self.Castbar:SetSize(240, 19)
-self.Castbar:SetPoint("TOP", self.Power, "BOTTOM", 0, -3) -- Move this up since we moved the player/target
+self.Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
 self.Castbar:SetBorder(false, true)
 self.Castbar.bg:SetVertexColor( 0.2, 0.2, 0.2, .7)
 self.Castbar.bg:SetTexture(.2, .2, .2)

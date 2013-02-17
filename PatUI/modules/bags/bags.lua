@@ -31,18 +31,20 @@ local function BagsLayout(self, lb)
 	end
 	
 	f:SetTemplate("Transparent")
-	f:ThickBorder()
+	f:SetBorder(false, true)
+	f:SetBackdropBorderColor(0,0,0,0)
+	f:HideInsets()
 end
 hooksecurefunc(Stuffing, "Layout", BagsLayout)
 
 TukuiBags:ClearAllPoints()
-TukuiBags:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -30, 40)
+TukuiBags:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
 
 local function BagsUpdateBankPosition(self, value)
 	local bag = _G["Tukui"..value]
 	if(value == "Bank") then
 		bag:ClearAllPoints()
-		bag:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 30, 40)
+		bag:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
 	end
 end
 hooksecurefunc(Stuffing, "CreateBagFrame", BagsUpdateBankPosition)

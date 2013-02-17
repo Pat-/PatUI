@@ -1,5 +1,9 @@
 local P, C, L, G = unpack(Tukui)
 
+TukuiTooltipAnchor:ClearAllPoints()
+TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 4, -4)
+
+
 -- Make Tooltip Transparent
 local Tooltips = {GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ShoppingTooltip3,WorldMapTooltip,WorldMapCompareTooltip1,WorldMapCompareTooltip2,WorldMapCompareTooltip3}
 
@@ -48,7 +52,9 @@ end
 
 local SetStyle = function(self)
 	self:SetTemplate("Transparent")
-	self:ThickBorder()
+	self:SetBorder(false, true)
+	self:SetBackdropBorderColor(0,0,0,0)
+	self:HideInsets()
 	BorderColor(self)
 end
 
