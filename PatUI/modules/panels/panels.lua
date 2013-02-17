@@ -1,24 +1,8 @@
 local P, C, L, G = unpack(Tukui)
 
 ------------------------------------------------------------------------
--- Create Datatext frames
+-- Setting up Panels
 ------------------------------------------------------------------------
-
-local DataPoint = {}
-
-for i=1, 6 do
-	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
-	DataPoint[i]:SetTemplate("Transparent")
-	DataPoint[i]:ThickBorder()
-	DataPoint[i]:SetWidth(90)
-	DataPoint[i]:SetHeight(20)
-	
-	if (i == 1) then
-		DataPoint[i]:Point("TOPLEFT", UIParent, "TOPLEFT", 2, -2)
-	else
-		DataPoint[i]:Point("TOPLEFT", "DataPoint"..i - 1, "BOTTOMLEFT", 0, -3)
-	end
-end
 
 local panels = { TukuiMinimapStatsLeft, TukuiMinimapStatsRight, TukuiInfoLeftLineVertical, TukuiInfoRightLineVertical, TukuiLineToABLeft, TukuiLineToABRight, TukuiCubeLeft, TukuiCubeRight, TukuiLineToABLeftAlt, TukuiLineToABRightAlt, TukuiLineToPetActionBarBackground, }
 
@@ -26,37 +10,120 @@ for _, panel in pairs(panels) do
 	panel:Kill()
 end
 
-TukuiInfoRight:SetAlpha(0)
-TukuiExitVehicleButtonRight:SetAlpha(0)
+------------------------------------------------------------------------
+-- Setting up Actionbars
+------------------------------------------------------------------------
 
-chatbg = CreateFrame("Frame", "ChatBackground", UIParent)
-chatbg:SetTemplate("Transparent")
-chatbg:ThickBorder()
-chatbg:SetFrameStrata("BACKGROUND")
-chatbg:SetWidth(P.InfoLeftRightWidth + 12) 
-chatbg:SetHeight(177)
-chatbg:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 3, 3)
-
-chatbg2 = CreateFrame("Frame", "ChatBackground2", UIParent)
-chatbg2:SetTemplate("Transparent")
-chatbg2:ThickBorder()
-chatbg2:SetFrameStrata("BACKGROUND")
-chatbg2:SetWidth(P.InfoLeftRightWidth + 12) 
-chatbg2:SetHeight(177)
-chatbg2:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -3, 3)
-
-if C.chat.lootchat == true then
-	chatbg2:Show()
-else
-	chatbg2:Hide()
+TukuiBar1:ClearAllPoints()
+TukuiBar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
+TukuiBar1:SetWidth((P.buttonsize * 12) + (P.buttonspacing * 13))
+TukuiBar1:SetTemplate("Transparent")
+TukuiBar1:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiBar1:HideInsets()
+TukuiBar1:SetBorder(false, true)
+if TukuiBar4:IsShown() then
+	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
 end
 
-TukuiInfoLeft:ClearAllPoints()
-TukuiInfoLeft:SetPoint("BOTTOM", ChatBackground, "TOP", 0, -2)
-TukuiInfoLeft:SetWidth(P.InfoLeftRightWidth + 12)
-TukuiInfoLeft:SetParent(UIParent)
-TukuiInfoLeft:SetAlpha(0)
+TukuiBar4:HookScript("OnHide", function()
+	TukuiBar1:SetHeight((P.buttonsize * 1) + (P.buttonspacing * 2))
+end)
 
--- put this closer to minimap bottom
+TukuiBar4:HookScript("OnShow", function()
+	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
+end)
+
+TukuiBar2:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
+TukuiBar2:Height(TukuiBar1:GetHeight())
+TukuiBar2:SetTemplate("Transparent")
+TukuiBar2:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiBar2:HideInsets()
+TukuiBar2:SetBorder(false, true)
+
+TukuiBar3:ClearAllPoints()
+TukuiBar3:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 8)
+TukuiBar3:Width((P.buttonsize * 12) + (P.buttonspacing * 13))
+TukuiBar3:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
+TukuiBar3:SetTemplate("Transparent")
+TukuiBar3:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiBar3:HideInsets()
+TukuiBar3:SetBorder(false, true)
+
+TukuiBar4:ClearAllPoints()
+TukuiBar4:Point("CENTER", TukuiBar1, "CENTER", 0, 0)
+TukuiBar4:HideInsets()
+TukuiBar4:SetTemplate("Transparent")
+TukuiBar4:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiBar4:SetBackdrop(nil)
+
+TukuiBar5:ClearAllPoints()
+TukuiBar5:SetHeight((P.buttonsize * 12) + (P.buttonspacing * 12))
+TukuiBar5:SetWidth((P.buttonsize * 1) + (P.buttonspacing * 2))
+TukuiBar5:Point("RIGHT", UIParent, "RIGHT", -2, -14)
+TukuiBar5:SetTemplate("Transparent")
+TukuiBar5:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiBar5:HideInsets()
+TukuiBar5:SetBorder(false, true)
+
+------------------------------------------------------------------------
+-- Setting up Actionbar Buttons
+------------------------------------------------------------------------
+
+TukuiBar4Button:Size(TukuiBar1:GetWidth(), 19)
+TukuiBar4Button:ClearAllPoints()
+TukuiBar4Button:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, 3)
+TukuiBar4Button:SetTemplate("Transparent")
+TukuiBar4Button:SetBorder(false, true)
+TukuiBar4Button:HideInsets()
+TukuiBar4Button:SetBackdropBorderColor(0, 0, 0, 0)
+
+TukuiBar5ButtonTop:SetTemplate("Transparent")
+TukuiBar5ButtonTop:SetBorder(false, true)
+TukuiBar5ButtonTop:HideInsets()
+TukuiBar5ButtonTop:SetBackdropBorderColor(0, 0, 0, 0)
+
+TukuiBar5ButtonBottom:SetTemplate("Transparent")
+TukuiBar5ButtonBottom:SetBorder(false, true)
+TukuiBar5ButtonBottom:HideInsets()
+TukuiBar5ButtonBottom:SetBackdropBorderColor(0, 0, 0, 0)
+
+
+------------------------------------------------------------------------
+-- Setting up ChatFrames
+------------------------------------------------------------------------
+
+TukuiChatBackgroundLeft:SetFrameStrata("Background")
+TukuiChatBackgroundLeft:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiChatBackgroundLeft:HideInsets()
+TukuiChatBackgroundLeft:SetBorder(false, true)
+TukuiChatBackgroundLeft:ClearAllPoints()
+TukuiChatBackgroundLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 2, 2)
+
+TukuiTabsLeftBackground:ClearAllPoints()
+TukuiTabsLeftBackground:Point("BOTTOM", TukuiChatBackgroundLeft, "TOP", 0, 3)
+TukuiTabsLeftBackground:SetWidth(TukuiChatBackgroundLeft:GetWidth())
+TukuiTabsLeftBackground:SetBackdrop(nil)
+TukuiTabsLeftBackground:SetTemplate("Transparent")
+TukuiTabsLeftBackground:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiTabsLeftBackground:SetBorder(false, true)
+TukuiTabsLeftBackground:HideInsets()
+
+TukuiChatBackgroundRight:Hide()
+TukuiTabsRightBackground:Hide()
+TukuiInfoRight:Hide()
+
+TukuiInfoLeft:ClearAllPoints()
+TukuiInfoLeft:Point("BOTTOM", UIParent, "BOTTOM", 0, -50)
+TukuiInfoLeft:SetFrameStrata("Background")
+TukuiInfoLeft:SetTemplate("Transparent")
+TukuiInfoLeft:SetHeight(14)
+TukuiInfoLeft:SetBackdrop(nil)
+TukuiInfoLeft:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiInfoLeft:HideInsets()
+
+------------------------------------------------------------------------
+-- Reanchor the Raid Util
+------------------------------------------------------------------------
+
 TukuiRaidUtilityShowButton:ClearAllPoints()
 TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)

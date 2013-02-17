@@ -7,14 +7,14 @@ local function SetBorder(f, i, o)
 		border:Point("TOPLEFT", P.mult, -P.mult)
 		border:Point("BOTTOMRIGHT", -P.mult, P.mult)
 		border:SetBackdrop({
-			edgeFile = C.media.blank, 
+			edgeFile = C["media"].blank, 
 			edgeSize = P.mult, 
 			insets = { left = P.mult, right = P.mult, top = P.mult, bottom = P.mult }
 		})
-		border:SetBackdropBorderColor(unpack(C.media.backdropcolor))
+		border:SetBackdropBorderColor(0, 0, 0)
 		f.iborder = border
 	end
-
+	
 	if o then
 		if f.oborder then return end
 		local border = CreateFrame("Frame", f:GetName() and f:GetName() .. "OuterBorder" or nil, f)
@@ -22,11 +22,11 @@ local function SetBorder(f, i, o)
 		border:Point("BOTTOMRIGHT", P.mult, -P.mult)
 		border:SetFrameLevel(f:GetFrameLevel() + 1)
 		border:SetBackdrop({
-			edgeFile = C.media.blank, 
+			edgeFile = C["media"].blank, 
 			edgeSize = P.mult, 
 			insets = { left = P.mult, right = P.mult, top = P.mult, bottom = P.mult }
 		})
-		border:SetBackdropBorderColor(unpack(C.media.backdropcolor))
+		border:SetBackdropBorderColor(0, 0, 0)
 		f.oborder = border
 	end
 end

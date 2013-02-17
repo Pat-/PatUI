@@ -14,32 +14,23 @@ FramePositions:SetScript("OnEvent", function(self, event, addon)
 	TukuiFocus:ClearAllPoints()
 	
 	if(IsAddOnLoaded("PatUI_DPS")) then
-		if C.actionbar.style == 1 then
-			TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
-			TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
-		else
-			TukuiPlayer:SetPoint("CENTER", UIParent, "CENTER", -228 , -201)
-			TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
-		end
+		TukuiPlayer:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", -160, 130)
+		TukuiTarget:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPRIGHT", 160, 130)
+		
+		TukuiTargetTarget:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, 130)
+		TukuiPet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 15)
+		TukuiFocus:SetPoint("BOTTOM", UIParent, "BOTTOM", -400, 400)
+		
 	elseif(IsAddOnLoaded("PatUI_Healing")) then		
-		if C.actionbar.style == 1 then
-			TukuiPlayer:Point("TOP", UIParent, "BOTTOM", -309 , 315)
-			TukuiTarget:Point("TOP", UIParent, "BOTTOM", 310, 315)
-		else
-			TukuiPlayer:SetPoint("CENTER", UIParent, "CENTER", -228 , -201)
-			TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
-		end
+		TukuiPlayer:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", -254, 150)
+		TukuiTarget:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPRIGHT", 254, 150)
+		
+		TukuiTargetTarget:SetPoint("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -30)
+		TukuiPet:SetPoint("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -30)
+		TukuiFocus:SetPoint("BOTTOM", UIParent, "BOTTOM", -600, 400)
+		
 	else
-		if C.actionbar.style == 1 then
-			TukuiPlayer:SetPoint("TOP", UIParent, "BOTTOM", -179 , 230)
-			TukuiTarget:SetPoint("TOP", UIParent, "BOTTOM", 179 , 230)
-		else
-			TukuiPlayer:SetPoint("CENTER", UIParent, "CENTER", -228 , -201)
-			TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
-		end
+		TukuiPlayer:SetPoint("CENTER", UIParent, "CENTER", -228 , -201)
+		TukuiTarget:SetPoint("CENTER", UIParent, "CENTER", 228 , -201)
 	end
-
-	TukuiPet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -13)
-	TukuiTargetTarget:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -13)
-	TukuiFocus:Point("RIGHT", TukuiPlayer, "LEFT", -7, 0)
 end)

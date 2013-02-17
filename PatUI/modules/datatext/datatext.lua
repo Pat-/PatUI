@@ -1,6 +1,6 @@
 local P, C, L, G = unpack(Tukui)
 
--- our own datatext position function because we made our custom panel
+--[[ our own datatext position function because we made our custom panel
 local DataTextPosition = function(f, t, o)
 	local points = {DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5, DataPoint6}
 	
@@ -58,3 +58,4 @@ end
 if C.datatext.friends > 0 then
 	TukuiStatFriendsText:SetShadowOffset(0, 0)
 end
+]]

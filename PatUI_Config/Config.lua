@@ -5,7 +5,7 @@ C.media = {
 	pixelfont = [=[Interface\AddOns\PatUI\media\fonts\pixelfont.ttf]=],
 	ru_pixelfont = [[Interface\AddOns\PatUI\media\fonts\pixel_font.ttf]],
 	dmgfont = [=[Interface\AddOns\PatUI\media\fonts\font.ttf]=],
-	pfontsize = 12,
+	pfontsize = 10,
 	ru_pfontsize = 10,
 }
 
@@ -92,14 +92,11 @@ C.actionbar = {
 	macro = false,
 	hideshapeshift = false,
 	buttonsize = 27,
-	petbuttonsize = 29,
-	buttonspacing = 4,
+	petbuttonsize = 27,
+	buttonspacing = 1,
 	ownshdbar = false,
 	ownmetabar = false,
 	ownwarstancebar = false,
-	
-	smallsides = false,
-	style = 1,  -- 1 for more then 1 actionbar, 2 for just 1 actionbar.
 }
 
 C.bags = {
@@ -148,8 +145,7 @@ C.datatext = {
 C.chat = {
 	enable = true,
 	whispersound = false,
-	background = false, -- never turn on
-	lootchat = false,
+	background = true,
 }
 
 C.nameplate = {

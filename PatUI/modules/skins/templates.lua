@@ -48,25 +48,24 @@ OnLoad:RegisterEvent("PLAYER_ENTERING_WORLD")
 OnLoad:SetScript("OnEvent", function()
 	for _,f in pairs(frames) do
 		f:SetTemplate("Transparent")
-		f:ThickBorder()
 		if f.backdrop and f.backdrop.shadow then f.backdrop.shadow:Hide() elseif f.shadow then f.shadow:Hide() end
+		f:SetBackdropBorderColor(0,0,0,0)
+		f:SetBorder(false, true)
+		f:HideInsets()
 	end
 end)
 
 -- Since BNet Converstaion frame is Transparent in my UI give the List a Template so it looks nice.
 BNConversationInviteDialogList:SetTemplate("Default")
-BNConversationInviteDialogList:ThickBorder()
 
 WorldMapQuestRewardScrollFrameScrollBar:SkinScrollBar()
 
 TokenFrame:HookScript("OnShow", function()
-	TokenFramePopup:SetTemplate("Transparent")	
-	TokenFramePopup:ThickBorder()
+	TokenFramePopup:SetTemplate("Transparent")
 end)
 
 local function UpdateFactionSkins()
 	ReputationDetailFrame:SetTemplate("Transparent")
-	ReputationDetailFrame:ThickBorder()
 end
 ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 

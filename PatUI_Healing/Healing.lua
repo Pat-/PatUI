@@ -1,147 +1,165 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
---------------------------------------------------------------
--- Setting up raid frames here
---------------------------------------------------------------
-
-local font = C.media.pixelfont
-local fsize = C.media.pfontsize
-local raidscale = 1
-
-P.RaidFrameAttributes = function()
+T.RaidFrameAttributes = function()
 	return
 	"TukuiRaid",
 	nil,
-	"custom [petbattle] hide;show",
+	"solo,raid,party",
 	"oUF-initialConfigFunction", [[
 		local header = self:GetParent()
 		self:SetWidth(header:GetAttribute("initial-width"))
 		self:SetHeight(header:GetAttribute("initial-height"))
 	]],
-	"initial-width", P.Scale((ChatBackground:GetWidth()/ 5) - 5),
-	"initial-height", P.Scale(30),
+	"initial-width", 65,
+	"initial-height", 34,
 	"showParty", true,
 	"showRaid", true,
 	"showPlayer", true,
-	--"showSolo", true, -- used to test raid frame without a party.
-	"xoffset", P.Scale(6),
-	"yOffset", P.Scale(-6),
+	"showSolo", false,
+	"xoffset", T.Scale(3),
+	"yOffset", T.Scale(3),
 	"point", "LEFT",
-	"groupFilter", "1,2,3,4,5",
-	"groupingOrder", "1,2,3,4,5",
+	"groupFilter", "1,2,3,4,5,6,7,8",
+	"groupingOrder", "1,2,3,4,5,6,7,8",
 	"groupBy", "GROUP",
 	"maxColumns", 8,
 	"unitsPerColumn", 5,
-	"columnSpacing", P.Scale(8),
+	"columnSpacing", T.Scale(3),
 	"columnAnchorPoint", "BOTTOM"
 end
-	
-P.PostUpdateRaidUnit = function(self)
-	self.panel:Kill()
 
+T.PostUpdateRaidUnit = function(self)
+	------------------------------
+	-- misc
+	------------------------------
+	self.panel:Kill()
+	self:SetBackdropColor(0.0, 0.0, 0.0, 0.0)
+	--self:HighlightUnit()
+
+	------------------------------
+	-- health
+	------------------------------
 	self.Health:ClearAllPoints()
 	self.Health:SetAllPoints(self)
-	self.Health:CreateBorder()
-	self.Health:SetStatusBarTexture(C.media.normTex)
-	self.Health:SetStatusBarColor(.3, .3, .3, 1)
+	self.Health:SetBorder(false, true)
+	self.Health:SetFrameStrata("LOW")
+	self.Health:SetOrientation'HORIZONTAL'
 	
-	self.Health.value:Point("CENTER", self.Health, 1, 13)
-	self.Health.value:SetFont(font, fsize, "MONOCHROMEOUTLINE")
-	self.Health.PostUpdate = P.PostUpdateHealthRaid
-	self.Health.bg:SetVertexColor(.25, .1, .1)
+	self.Health.bg:ClearAllPoints()
+	self.Health.bg:SetPoint"LEFT"
+	self.Health.bg:SetPoint"RIGHT"
+	self.Health.bg:SetPoint"TOP"
+	self.Health.bg:SetPoint"BOTTOM"
+	self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
+
+	self.Health.colorDisconnected = false
+	self.Health.colorClass = false
+	self.Health:SetStatusBarColor(0.12, 0.12, 0.12, .7)
+	self.Health.value:Point("CENTER", self.Health, 1, -6)
+	self.Health.value:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 	self.Health.value:SetShadowOffset(0, 0)
-	self.Health.bg:SetTexture(C["media"].blank)
+
+	if C.unitframes.unicolor == true then
+		self.Health.colorDisconnected = false
+		self.Health.colorClass = false
+		self.Health:SetStatusBarColor(0.05, 0.05, 0.05, .7)
+		self.Health.bg:SetVertexColor(.6, .2, .2, 1)
+		self.Health.bg:SetTexture(C.media.normTex)
+	else
+		self.Health.bg:SetVertexColor(0.05, 0.05, 0.05)
+		self.Health.bg:SetTexture(0.05, 0.05, 0.05)
+		self.Health.colorDisconnected = true
+		self.Health.colorClass = true
+		self.Health.colorReaction = true
+	end
+
+	if C.unitframes.unicolor == true then
+		self:HookScript("OnEnter", function(self)
+			if(not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit)) then return end
+			local hover = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
+			if(not hover) then return end
+			self.Health:SetStatusBarColor(hover.r, hover.g, hover.b, .7)
+		end)
+
+		self:HookScript("OnLeave", function(self)
+			if(not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit)) then return end
+			self.Health:SetStatusBarColor(0.05, 0.05, 0.05, .7)
+		end)
+	end
+
+	------------------------------
+	-- Power.
+	------------------------------
 	
 	self.Power:ClearAllPoints()
-	self.Power:Height(1)
-	self.Power:SetWidth(P.Scale((ChatBackground:GetWidth()/ 5 ) - 6) - 26)
+	self.Power:SetPoint("BOTTOM", self.Health, "BOTTOM", 0, 1)
+	self.Power:SetHeight(1)
+	self.Power:SetWidth(65)
+	self.Power:SetFrameLevel(self.Health:GetFrameLevel() + 2)
+	self.Power:SetFrameStrata("MEDIUM")
 	self.Power:SetBorder(false, true)
-	self.Power:Point("TOP", self.Health, "BOTTOM", 0, 4)
-	self.Power:SetStatusBarTexture(C["media"].blank)
-	self.Power:SetFrameLevel(15)
-
+	
+	------------------------------
+	-- name
+	------------------------------
+	
 	self.Name:SetParent(self.Health)
 	self.Name:ClearAllPoints()
-	self.Name:SetPoint("BOTTOM", 0, 8)
-	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
+	self.Name:SetPoint("CENTER", 0, 6)
+	self.Name:SetShadowOffset(0, 0)
+	self.Name:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+	self.Name:SetAlpha(1)
+
+	------------------------------
+	-- debuffs
+	------------------------------
 	
+	if C.unitframes.raidunitdebuffwatch == true then
+		self.RaidDebuffs:Height(21 * C["unitframes"]["gridscale"])
+		self.RaidDebuffs:Width(21 * C["unitframes"]["gridscale"])
+		self.RaidDebuffs:Point("CENTER", self.Health, 2, 1)
+
+		self.RaidDebuffs.count:ClearAllPoints()
+		self.RaidDebuffs.count:SetPoint("CENTER", self.Health, -6, 6)
+		self.RaidDebuffs.count:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+
+		self.RaidDebuffs.time:ClearAllPoints()
+		self.RaidDebuffs.time:SetPoint("CENTER", self.Health, 2, 0)
+		self.RaidDebuffs.time:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+	end
+
+	------------------------------
+	-- icons
+	------------------------------
+
 	local LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
-	LFDRole:Height(15)
-	LFDRole:Width(15)
-	LFDRole:Point("TOPLEFT", 1, -1)
-	LFDRole.Override = P.RoleIconUpdate
-	self:RegisterEvent("UNIT_CONNECTION", P.RoleIconUpdate)
+	LFDRole:Height(5)
+	LFDRole:Width(5)
+	LFDRole:Point("RIGHT", -3, 0)
+	LFDRole:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\lfdicons.blp")
 	self.LFDRole = LFDRole
-	
-	if C.unitframes.raidunitdebuffwatch == true then		
-		self.RaidDebuffs:ClearAllPoints()
-		self.RaidDebuffs:Height(24)
-		self.RaidDebuffs:Width(24)
-		self.RaidDebuffs:Point('CENTER', self.Health, 1,0)
-		self.RaidDebuffs:SetFrameStrata(self.Health:GetFrameStrata())
-		self.RaidDebuffs:SetFrameLevel(self.Health:GetFrameLevel() + 2)
-		
-		self.RaidDebuffs.icon:SetTexCoord(.1,.9,.1,.9)
-		self.RaidDebuffs.icon:Point("TOPLEFT", 2, -2)
-		self.RaidDebuffs.icon:Point("BOTTOMRIGHT", -2, 2)
-		
-		self.RaidDebuffs.count:SetFont(C.media.uffont, 12, "THINOUTLINE")
-		self.RaidDebuffs.count:SetPoint('BOTTOMRIGHT', RaidDebuffs, 'BOTTOMRIGHT', 0, 2)
-		self.RaidDebuffs.count:SetTextColor(1, .9, 0)
-		
-		self.RaidDebuffs:FontString('time', C.media.uffont, 12, "THINOUTLINE")
-		self.RaidDebuffs.time:SetPoint('CENTER')
-		self.RaidDebuffs.time:SetTextColor(1, .9, 0)
-		
-	end
-	
-	if C.unitframes.healcomm then
-		local mhpb = CreateFrame("StatusBar", "mhpb", self.Health)
-		if C.unitframes.gridhealthvertical then
-			mhpb:SetOrientation("VERTICAL")
-			mhpb:SetPoint("BOTTOM", self.Health:GetStatusBarTexture(), "TOP", 0, 0)
-			mhpb:Width(P.Scale((ChatBackground:GetWidth()/ 5) - 5))
-			mhpb:Height(30)		
-		else
-			mhpb:SetPoint("TOPLEFT", self.Health:GetStatusBarTexture(), "TOPRIGHT", 0, 0)
-			mhpb:SetPoint("BOTTOMLEFT", self.Health:GetStatusBarTexture(), "BOTTOMRIGHT", 0, 0)
-			mhpb:Width(self.Health:GetWidth())
-		end				
-		mhpb:SetStatusBarTexture(normTex)
-		mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
 
-		local ohpb = CreateFrame("StatusBar", "ohpb", self.Health)
-		if C.unitframes.gridhealthvertical then
-			ohpb:SetOrientation("VERTICAL")
-			ohpb:SetPoint("BOTTOM", mhpb:GetStatusBarTexture(), "TOP", 0, 0)
-			ohpb:Width(P.Scale((ChatBackground:GetWidth()/ 5) - 5))
-			ohpb:Height(30)
-		else
-			ohpb:SetPoint("TOPLEFT", mhpb:GetStatusBarTexture(), "TOPRIGHT", 0, 0)
-			ohpb:SetPoint("BOTTOMLEFT", mhpb:GetStatusBarTexture(), "BOTTOMRIGHT", 0, 0)
-			ohpb:Width(6)
-		end
-		ohpb:SetStatusBarTexture(normTex)
-		ohpb:SetStatusBarColor(0, 1, 0, 0.25)
-	end
-	
-	-- highlight
-	self:HighlightUnit(218/255, 197/255, 92/255)
+	local Resurrect = CreateFrame("Frame", nil, self.Health)
+	Resurrect:SetFrameLevel(self.Health:GetFrameLevel() + 1)
+	Resurrect:Size(20)
+	Resurrect:SetPoint("CENTER")
 
+	local ResurrectIcon = Resurrect:CreateTexture(nil, "OVERLAY")
+	ResurrectIcon:SetAllPoints()
+	ResurrectIcon:SetDrawLayer("OVERLAY", 7)
+	self.ResurrectIcon = ResurrectIcon
 end
 
-local RaidPosition = CreateFrame("Frame")
-RaidPosition:RegisterEvent("PLAYER_LOGIN")
-RaidPosition:SetScript("OnEvent", function(self, event)
-
+local TukuiRaidPosition = CreateFrame("Frame")
+TukuiRaidPosition:RegisterEvent("PLAYER_LOGIN")
+TukuiRaidPosition:SetScript("OnEvent", function(self, event)
+	local raid = G.UnitFrames.RaidUnits
+	
+	raid:ClearAllPoints()
+	raid:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", 0, 25)
+	
 	if C.unitframes.showraidpets == true then
-		G.UnitFrames.RaidPets:ClearAllPoints()
-	end
-
-	G.UnitFrames.RaidUnits:ClearAllPoints()
-	if C.actionbar.style == 1 then
-		G.UnitFrames.RaidUnits:SetPoint("TOP", UIParent, "BOTTOM", 0, 315)
-	else
-		G.UnitFrames.RaidUnits:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 10)
+	local pets = G.UnitFrames.RaidPets
+		pets:ClearAllPoints()
 	end
 end)

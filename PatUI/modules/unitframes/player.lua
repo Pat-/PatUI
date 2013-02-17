@@ -8,109 +8,93 @@ local self = _G["TukuiPlayer"]
 local font = C.media.pixelfont
 local fsize = C.media.pfontsize
 
-P.Player = 227
-
 self.panel:Kill()
 self.shadow:Kill()
 self.FlashInfo:Kill()
+
+self:SetBackdrop(nil)
+self:SetBackdropColor(0, 0, 0)
 
 ------------------------------------------------------------------------
 -- Setup Player Frames
 ------------------------------------------------------------------------
 
-self:Size(P.Player, 25)
+self:Size(240, 26)
 
-self.Health:SetHeight(25)
-self.Health:CreateBorder()
-self.Health:SetFrameLevel(4)
-self.Health.bg:SetVertexColor(.25, .1, .1)
-self.Health.bg:SetTexture(C["media"].blank)
+self.Health:SetHeight(23)
+self.Health:SetFrameLevel(9)
+self.Health:SetFrameStrata("LOW")
+self.Health:SetBorder(false, true)
 
-self.Power:ClearAllPoints()
-self.Power:Point("TOPLEFT", self.Health, "BOTTOMLEFT", 6, 2)
-self.Power:SetHeight(6)
-self.Power:SetWidth(130)
-self.Power:CreateBorder()
-self.Power:SetFrameLevel(10)
-self.Power.colorTapping = true
-self.Power.colorPower = true
+self.Health.bg:SetTexture(C.media.normTex)
+self.Health:SetStatusBarColor(0.1, 0.1, 0.1, 0.7)
+self.Health.bg:SetVertexColor(.6, .2, .2, 1)
+
+self.Health.bg:ClearAllPoints()
+self.Health.bg:SetPoint"LEFT"
+self.Health.bg:SetPoint"RIGHT"
+self.Health.bg:SetPoint"TOP"
+self.Health.bg:SetPoint"BOTTOM"
+self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Health.value:Point("TOPLEFT", self.Health, "TOPLEFT", 2, 0)
+self.Health.value:Point("RIGHT", self.Health, "RIGHT", -4, -5)
+self.Health.value:SetShadowOffset(0, 0)
 
-self.Power.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
+self.Power:Size(240, 2)
+self.Power:ClearAllPoints()
+self.Power:SetFrameLevel(1)
+self.Power:SetFrameStrata("Background")
+self.Power:Point("TOP", self.Health, "BOTTOM", 0, -3)
+self.Power:SetBorder(false, true)
+self.Power.bg:SetVertexColor(.12, .12, .12, .7)
 
--- Castbar
+self.Power.value = P.SetFontString( self.Health, font, fsize, "MONOCHROMEOUTLINE")
+self.Power.value:Point("LEFT", self.Health, "LEFT", 4, -5)
+self.Power.value:SetShadowOffset(0, 0)
+
 self.Castbar:ClearAllPoints()
-if C.actionbar.style == 1 then
-	self.Castbar:Size((TukuiBar1:GetWidth()- 6), 25)
-else
-	self.Castbar:Size(250, 25)
-end
-self.Castbar:Point("BOTTOM", TukuiBar1, "TOP", 0, 6)
-self.Castbar:CreateBackdrop("Transparent")
-self.Castbar.bg:Kill()
+self.Castbar:SetSize((TukuiBar1:GetWidth()), 19)
+self.Castbar:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPRIGHT", 0, 3)
+self.Castbar:SetBorder(false, true)
+self.Castbar.bg:SetVertexColor(0.2, 0.2, 0.2, .7)
+self.Castbar.bg:SetTexture(0.2, 0.2, 0.2)
 
 self.Castbar.Time = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
-self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 0)
+self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 1)
 
 self.Castbar.Text = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
-self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 0)
+self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 1)
 
 -- experience bar on player via mouseover for player currently leveling a character
 if P.level ~= MAX_PLAYER_LEVEL then
-    self.Experience:Width(5)
-	self.Experience:Height(140)
-	self.Experience:ClearAllPoints()
-	self.Experience:Point("RIGHT", TukuiMinimap, "LEFT", -5, 0)
-	self.Experience:SetOrientation("Vertical")
-	self.Experience.Rested:SetOrientation("Vertical")
-	self.Experience:SetFrameLevel(10)
+   	self.Experience:ClearAllPoints()
+	self.Experience:SetStatusBarColor( 0, 0.4, 1, 0.8 )
+
+	self.Experience:Size(TukuiTabsLeftBackground:GetWidth(), 2)
+	self.Experience:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 3)
+	self.Experience:SetFrameLevel(3)
 	self.Experience:SetAlpha(1)
+	self.Experience:SetBorder(false, true)
+
+	self.Experience:SetBackdropColor(.12, .12, .12, .9)
+
 	self.Experience:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
-	
-	local xpBG = CreateFrame("Frame", nil,self.Experience)
-	xpBG:SetTemplate("Transparent")
-	xpBG:SetWidth(self.Experience:GetWidth())
-	xpBG:SetHeight(self.Experience:GetHeight())
-	xpBG:Point("TOPLEFT", self.Experience, "TOPLEFT", -2, 2)
-	xpBG:Point("BOTTOMRIGHT", self.Experience, "BOTTOMRIGHT", 2, -2)
-	xpBG:SetFrameLevel(self.Experience:GetFrameLevel() - 1)
-	xpBG:SetFrameStrata("BACKGROUND")
-	xpBG:ThickBorder()
-	
+
 	self.Resting:SetTexture(nil)
 end
 
 -- reputation bar for max level character
 if P.level == MAX_PLAYER_LEVEL then
-    self.Reputation:SetOrientation("Vertical")
-	self.Reputation:Width(5)
-	self.Reputation:Height(140)
-	self.Reputation:ClearAllPoints()
-	self.Reputation:Point("RIGHT", TukuiMinimap, "LEFT", -5, 0)
-	self.Reputation:SetFrameLevel(10)
-	self.Reputation:SetOrientation("Vertical")
+   self.Reputation:ClearAllPoints()
+
+	self.Reputation:Size(TukuiTabsLeftBackground:GetWidth(), 2)
+	self.Reputation:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 3)
+	self.Reputation:SetFrameLevel(3)
 	self.Reputation:SetAlpha(1)
-	self.Reputation:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
-	self.Reputation:SetParent(TukuiMinimap)
-	
-	local repBG = CreateFrame("Frame", nil, self.Reputation)
-	repBG:SetTemplate("Transparent")
-	repBG:SetWidth(self.Reputation:GetWidth())
-	repBG:SetHeight(self.Reputation:GetHeight())
-	repBG:Point("TOPLEFT", self.Reputation, "TOPLEFT", -2, 2)
-	repBG:Point("BOTTOMRIGHT", self.Reputation, "BOTTOMRIGHT", 2, -2)
-	repBG:SetFrameLevel(self.Reputation:GetFrameLevel() - 1)
-	repBG:SetFrameStrata("BACKGROUND")
-	repBG:ThickBorder()
+	self.Reputation:SetBorder(false, true)
+
+	self.Reputation:SetBackdropColor(.12, .12, .12, .9)
+
+	self.Reputation:SetScript("OnLeave", function(self) self:SetAlpha(1) end)
 end
-
-local PVP = self.Health:CreateTexture(nil, "OVERLAY")
-PVP:SetHeight(32)
-PVP:SetWidth(32)
-PVP:SetPoint("CENTER", self.Health, "CENTER", 0, -4)
-self.PvP = PVP
-
-self:EnableElement("PvP")
