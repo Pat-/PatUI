@@ -150,7 +150,7 @@ C.chat = {
 
 C.nameplate = {
 	enable = true,
-    showhealth = false,
+    showhealth = true,
 	enhancethreat = true,
 	combat = false,
 	goodcolor = { 75/255,  175/255, 76/255 },

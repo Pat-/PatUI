@@ -46,10 +46,10 @@ T.PostUpdateRaidUnit = function(self)
 	self.Health:SetOrientation'HORIZONTAL'
 	
 	self.Health.bg:ClearAllPoints()
-	self.Health.bg:SetPoint"LEFT"
-	self.Health.bg:SetPoint"RIGHT"
-	self.Health.bg:SetPoint"TOP"
-	self.Health.bg:SetPoint"BOTTOM"
+	self.Health.bg:SetPoint("LEFT")
+	self.Health.bg:SetPoint("RIGHT")
+	self.Health.bg:SetPoint("TOP")
+	self.Health.bg:SetPoint("BOTTOM")
 	self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 	self.Health.colorDisconnected = false
@@ -167,4 +167,4 @@ end)
 -- Just because it looks better this way moving target castbar when in healing layout.
 
 TukuiTarget.Castbar:ClearAllPoints()
-TukuiTarget.Castbar:Point("TOP", TukuiTarget.Health, "BOTTOM", 0, -3)
+TukuiTarget.Castbar:Point("TOP", TukuiTarget.Power, "BOTTOM", 0, -3)

@@ -53,7 +53,7 @@ TukuiAurasPlayerBuffs:SetAttribute("xOffset", -29)
 TukuiAurasPlayerBuffs:SetAttribute("wrapYOffset", 35)
 
 TukuiAurasPlayerBuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -146, 0)
-TukuiAurasPlayerDebuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -146, -137)
+TukuiAurasPlayerDebuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -146, -107)
 
 local HookFrames = {
 	TukuiAurasPlayerBuffs,

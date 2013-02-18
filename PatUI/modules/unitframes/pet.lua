@@ -29,10 +29,10 @@ self.Health.bg:SetVertexColor( 0.2, 0.2, 0.2, 1 )
 
 self.Health.bg:SetTexture(.2, .2, .2)
 self.Health.bg:ClearAllPoints()
-self.Health.bg:SetPoint"LEFT"
-self.Health.bg:SetPoint"RIGHT"
-self.Health.bg:SetPoint"TOP"
-self.Health.bg:SetPoint"BOTTOM"
+self.Health.bg:SetPoint("LEFT")
+self.Health.bg:SetPoint("RIGHT")
+self.Health.bg:SetPoint("TOP")
+self.Health.bg:SetPoint("BOTTOM")
 self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")

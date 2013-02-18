@@ -54,10 +54,10 @@ P.PostUpdateRaidUnit = function(self)
 	self.Health:SetOrientation'HORIZONTAL'
 	
 	self.Health.bg:ClearAllPoints()
-	self.Health.bg:SetPoint"LEFT"
-	self.Health.bg:SetPoint"RIGHT"
-	self.Health.bg:SetPoint"TOP"
-	self.Health.bg:SetPoint"BOTTOM"
+	self.Health.bg:SetPoint("LEFT")
+	self.Health.bg:SetPoint("RIGHT")
+	self.Health.bg:SetPoint("TOP")
+	self.Health.bg:SetPoint("BOTTOM")
 	self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 	self.Health.colorDisconnected = false

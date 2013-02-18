@@ -31,10 +31,10 @@ self.Health:SetStatusBarColor(0.1, 0.1, 0.1, 0.7)
 self.Health.bg:SetVertexColor(.6, .2, .2, 1)
 
 self.Health.bg:ClearAllPoints()
-self.Health.bg:SetPoint"LEFT"
-self.Health.bg:SetPoint"RIGHT"
-self.Health.bg:SetPoint"TOP"
-self.Health.bg:SetPoint"BOTTOM"
+self.Health.bg:SetPoint("LEFT")
+self.Health.bg:SetPoint("RIGHT")
+self.Health.bg:SetPoint("TOP")
+self.Health.bg:SetPoint("BOTTOM")
 self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
@@ -100,7 +100,7 @@ self.Buffs.PostCreateIcon = P.PostCreateAura
 self.Buffs.PostUpdateIcon = P.PostUpdateAura
 
 -- edited position, size, space, etc of buffs
-self.Debuffs:SetHeight(24)
+self.Debuffs:SetHeight(35)
 self.Debuffs:SetWidth(240)
 self.Debuffs.size = 26
 self.Debuffs.num = 21
@@ -109,7 +109,7 @@ self.Debuffs.initialAnchor = 'TOPRIGHT'
 self.Debuffs["growth-y"] = "UP"
 self.Debuffs["growth-x"] = "LEFT"
 self.Debuffs:ClearAllPoints()
-self.Debuffs:SetPoint("BOTTOMRIGHT", self.Buffs, "TOPRIGHT", 0, 0)
+self.Debuffs:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 2, 35)
 self.Debuffs.PostCreateIcon = P.PostCreateAura
 self.Debuffs.PostUpdateIcon = P.PostUpdateAura
 

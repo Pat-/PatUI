@@ -98,6 +98,7 @@ TukuiChatBackgroundLeft:HideInsets()
 TukuiChatBackgroundLeft:SetBorder(false, true)
 TukuiChatBackgroundLeft:ClearAllPoints()
 TukuiChatBackgroundLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 2, 2)
+TukuiChatBackgroundLeft:SetHeight(125)
 
 TukuiTabsLeftBackground:ClearAllPoints()
 TukuiTabsLeftBackground:Point("BOTTOM", TukuiChatBackgroundLeft, "TOP", 0, 3)

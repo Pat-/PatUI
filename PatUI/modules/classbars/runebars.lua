@@ -4,7 +4,7 @@ if P.myclass ~= "DEATHKNIGHT" or C.unitframes.classbar ~= true then return end
 local self = _G["TukuiPlayer"]
 
 self.Runes:ClearAllPoints()
-self.Runes:SetPoint("BOTTOm", self, "TOP", 0, 6)
+self.Runes:SetPoint("BOTTOM", self, "TOP", 0, 6)
 self.Runes:Size(self:GetWidth(), 6)
 self.Runes:SetBackdrop(nil)
 

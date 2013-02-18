@@ -31,10 +31,10 @@ self.Health:SetStatusBarColor(0.1, 0.1, 0.1, 0.7)
 self.Health.bg:SetVertexColor(.6, .2, .2, 1)
 
 self.Health.bg:ClearAllPoints()
-self.Health.bg:SetPoint"LEFT"
-self.Health.bg:SetPoint"RIGHT"
-self.Health.bg:SetPoint"TOP"
-self.Health.bg:SetPoint"BOTTOM"
+self.Health.bg:SetPoint("LEFT")
+self.Health.bg:SetPoint("RIGHT")
+self.Health.bg:SetPoint("TOP")
+self.Health.bg:SetPoint("BOTTOM")
 self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")

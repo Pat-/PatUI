@@ -41,6 +41,7 @@ local frames = {
 	RaidInfoFrame.backdrop,
 	TukuiChatCopyFrame,
 	RaidBrowserFrame.backdrop,
+	BattleTagInviteFrame,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -191,6 +192,11 @@ local function SkinBlizzardFrames(self, event, addon)
 		MacroFrame:SetBackdropBorderColor(0, 0, 0, 0)
 		MacroFrame:SetBorder(false, true)
 		MacroFrame:HideInsets()
+		
+		MacroPopupFrame:SetTemplate("Transparent")
+		MacroPopupFrame:SetBackdropBorderColor(0, 0, 0, 0)
+		MacroPopupFrame:SetBorder(false, true)
+		MacroPopupFrame:HideInsets()
 		
 	elseif(addon == "Blizzard_VoidStorageUI") then
 	
