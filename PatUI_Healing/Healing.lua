@@ -1,5 +1,7 @@
 local T, C, L, G = unpack(Tukui)
 
+local raidscale = 1
+
 T.RaidFrameAttributes = function()
 	return
 	"TukuiRaid",
@@ -113,8 +115,8 @@ T.PostUpdateRaidUnit = function(self)
 	LFDRole:Height(15*raidscale)
 	LFDRole:Width(15*raidscale)
 	LFDRole:Point("TOPLEFT", 1, -1)
-	LFDRole.Override = P.RoleIconUpdate
-	self:RegisterEvent("UNIT_CONNECTION", P.RoleIconUpdate)
+	LFDRole.Override = T.RoleIconUpdate
+	self:RegisterEvent("UNIT_CONNECTION", T.RoleIconUpdate)
 	self.LFDRole = LFDRole
 
 	local Resurrect = CreateFrame("Frame", nil, self.Health)

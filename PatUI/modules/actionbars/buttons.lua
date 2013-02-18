@@ -142,6 +142,8 @@ Bar4Button:SetScript("OnClick", function(self) UpdateBar(self, Bar4) end)
 Bar4Button:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
 Bar4Button:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
 Bar4Button.text = P.SetFontString(Bar4Button, C.media.uffont, 30)
+Bar4Button.text:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+Bar4Button.text:SetShadowOffset(0, 0)
 Bar4Button.text:SetPoint("CENTER", 0, 0)
 Bar4Button.text:SetText("|cff4BAF4C-|r")
 

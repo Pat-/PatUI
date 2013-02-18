@@ -4,6 +4,5 @@
 ## Version: 0.8
 ## Author: Pat
 ## RequiredDeps: PatUI_Config, Tukui
-## SavedVariablesPerCharacter: PatUIDataPerChar
 
 PatUI.xml

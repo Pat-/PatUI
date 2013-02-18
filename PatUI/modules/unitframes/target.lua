@@ -83,6 +83,7 @@ local function PostCreateAura(self, button)
 
 	-- change the font
 	button.remaining:SetFont(font, fsize, "MONOCHROMEOUTLINE")
+	button.remaining:SetShadowOffset(0, 0)
 end
 hooksecurefunc(P, "PostCreateAura", PostCreateAura)
 
@@ -100,7 +101,7 @@ self.Buffs.PostCreateIcon = P.PostCreateAura
 self.Buffs.PostUpdateIcon = P.PostUpdateAura
 
 -- edited position, size, space, etc of buffs
-self.Debuffs:SetHeight(35)
+self.Debuffs:SetHeight(29)
 self.Debuffs:SetWidth(240)
 self.Debuffs.size = 26
 self.Debuffs.num = 21
@@ -109,7 +110,7 @@ self.Debuffs.initialAnchor = 'TOPRIGHT'
 self.Debuffs["growth-y"] = "UP"
 self.Debuffs["growth-x"] = "LEFT"
 self.Debuffs:ClearAllPoints()
-self.Debuffs:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 2, 35)
+self.Debuffs:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 35)
 self.Debuffs.PostCreateIcon = P.PostCreateAura
 self.Debuffs.PostUpdateIcon = P.PostUpdateAura
 
