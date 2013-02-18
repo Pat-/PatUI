@@ -37,16 +37,9 @@ P.RaidFrameAttributes = function()
 end
 
 P.PostUpdateRaidUnit = function(self)
-	------------------------------
-	-- misc
-	------------------------------
 	self.panel:Kill()
 	self:SetBackdropColor(0.0, 0.0, 0.0, 0.0)
-	--self:HighlightUnit()
-
-	------------------------------
-	-- health
-	------------------------------
+	
 	self.Health:ClearAllPoints()
 	self.Health:SetAllPoints(self)
 	self.Health:SetBorder(false, true)
@@ -98,9 +91,6 @@ P.PostUpdateRaidUnit = function(self)
 	-- Power.
 	self.Power:Kill()-- Dun want it on the DPS layout. 3:
 	
-	------------------------------
-	-- name
-	------------------------------
 	self.Name:SetParent(self.Health)
 	self.Name:ClearAllPoints()
 	self.Name:SetPoint("CENTER", 0, 5)
@@ -108,9 +98,6 @@ P.PostUpdateRaidUnit = function(self)
 	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	self.Name:SetAlpha(1)
 
-	------------------------------
-	-- debuffs
-	------------------------------
 	if C.unitframes.raidunitdebuffwatch == true then
 		self.RaidDebuffs:Height(21 * C.unitframes.gridscale)
 		self.RaidDebuffs:Width(21 * C.unitframes.gridscale)
@@ -124,17 +111,13 @@ P.PostUpdateRaidUnit = function(self)
 		self.RaidDebuffs.time:SetPoint("CENTER", self.Health, 0, 0)
 		self.RaidDebuffs.time:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	end
-	
-
-	------------------------------
-	-- icons
-	------------------------------
 
 	local LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
-	LFDRole:Height(5)
-	LFDRole:Width(5)
-	LFDRole:Point("BOTTOMRIGHT", -2, 2)
-	LFDRole:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\lfdicons.blp")
+	LFDRole:Height(15*raidscale)
+	LFDRole:Width(15*raidscale)
+	LFDRole:Point("TOPLEFT", 1, -1)
+	LFDRole.Override = P.RoleIconUpdate
+	self:RegisterEvent("UNIT_CONNECTION", P.RoleIconUpdate)
 	self.LFDRole = LFDRole
 
 	local Resurrect = CreateFrame("Frame", nil, self.Health)

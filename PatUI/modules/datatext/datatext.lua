@@ -1,10 +1,10 @@
 local P, C, L, G = unpack(Tukui)
 
---[[ our own datatext position function because we made our custom panel
+--our own datatext position function because we made our custom panel
 local DataTextPosition = function(f, t, o)
-	local points = {DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5, DataPoint6}
-	
-	if o >= 1 and o <= 6 then
+	local points = { Datatext1, Datatext2, Datatext3, Datatext4, Datatext5 }
+		
+	if o >= 1 and o <= 5 then
 		t:ClearAllPoints()
 		t:SetParent(points[o])
 		t:SetPoint("TOPLEFT")
@@ -58,4 +58,3 @@ end
 if C.datatext.friends > 0 then
 	TukuiStatFriendsText:SetShadowOffset(0, 0)
 end
-]]

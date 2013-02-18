@@ -21,6 +21,8 @@ TukuiMinimapZone:SetTemplate("Transparent")
 TukuiMinimapZone:HideInsets()
 TukuiMinimapZone:SetBackdropBorderColor(0, 0, 0, 0)
 TukuiMinimapZone:SetBackdrop(nil)
+TukuiMinimapZone:ClearAllPoints()
+TukuiMinimapZone.Text:Point("TOP", TukuiMinimap, "TOP", 0, -20)
 TukuiMinimapZoneText:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE") -- So sexeh.
 
 -- Skin the ticket panel.
@@ -29,7 +31,7 @@ TukuiTicket:HideInsets()
 TukuiTicket:SetBackdropBorderColor(0, 0, 0, 0)
 TukuiTicket:SetBorder(false, true)
 TukuiTicket:Size(23)
-TukuiTicket.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor1)).."T")
+TukuiTicket.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."T")
 TukuiTicket.Text:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 TukuiTicket:ClearAllPoints()
 TukuiTicket:SetPoint("BOTTOMLEFT", TukuiMinimap, "BOTTOMLEFT", 2, 2)

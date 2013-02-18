@@ -29,16 +29,9 @@ T.RaidFrameAttributes = function()
 end
 
 T.PostUpdateRaidUnit = function(self)
-	------------------------------
-	-- misc
-	------------------------------
 	self.panel:Kill()
 	self:SetBackdropColor(0.0, 0.0, 0.0, 0.0)
-	--self:HighlightUnit()
-
-	------------------------------
-	-- health
-	------------------------------
+	
 	self.Health:ClearAllPoints()
 	self.Health:SetAllPoints(self)
 	self.Health:SetBorder(false, true)
@@ -86,10 +79,6 @@ T.PostUpdateRaidUnit = function(self)
 			self.Health:SetStatusBarColor(0.05, 0.05, 0.05, .7)
 		end)
 	end
-
-	------------------------------
-	-- Power.
-	------------------------------
 	
 	self.Power:ClearAllPoints()
 	self.Power:SetPoint("BOTTOM", self.Health, "BOTTOM", 0, 1)
@@ -99,10 +88,6 @@ T.PostUpdateRaidUnit = function(self)
 	self.Power:SetFrameStrata("MEDIUM")
 	self.Power:SetBorder(false, true)
 	
-	------------------------------
-	-- name
-	------------------------------
-	
 	self.Name:SetParent(self.Health)
 	self.Name:ClearAllPoints()
 	self.Name:SetPoint("CENTER", 0, 6)
@@ -110,10 +95,6 @@ T.PostUpdateRaidUnit = function(self)
 	self.Name:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 	self.Name:SetAlpha(1)
 
-	------------------------------
-	-- debuffs
-	------------------------------
-	
 	if C.unitframes.raidunitdebuffwatch == true then
 		self.RaidDebuffs:Height(21 * C["unitframes"]["gridscale"])
 		self.RaidDebuffs:Width(21 * C["unitframes"]["gridscale"])
@@ -128,15 +109,12 @@ T.PostUpdateRaidUnit = function(self)
 		self.RaidDebuffs.time:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 	end
 
-	------------------------------
-	-- icons
-	------------------------------
-
 	local LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
-	LFDRole:Height(5)
-	LFDRole:Width(5)
-	LFDRole:Point("RIGHT", -3, 0)
-	LFDRole:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\lfdicons.blp")
+	LFDRole:Height(15*raidscale)
+	LFDRole:Width(15*raidscale)
+	LFDRole:Point("TOPLEFT", 1, -1)
+	LFDRole.Override = P.RoleIconUpdate
+	self:RegisterEvent("UNIT_CONNECTION", P.RoleIconUpdate)
 	self.LFDRole = LFDRole
 
 	local Resurrect = CreateFrame("Frame", nil, self.Health)
@@ -165,6 +143,5 @@ TukuiRaidPosition:SetScript("OnEvent", function(self, event)
 end)
 
 -- Just because it looks better this way moving target castbar when in healing layout.
-
 TukuiTarget.Castbar:ClearAllPoints()
 TukuiTarget.Castbar:Point("TOP", TukuiTarget.Power, "BOTTOM", 0, -3)
