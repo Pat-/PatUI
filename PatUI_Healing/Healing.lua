@@ -83,8 +83,8 @@ T.PostUpdateRaidUnit = function(self)
 	end
 	
 	self.Power:ClearAllPoints()
-	self.Power:SetPoint("BOTTOM", self.Health, "BOTTOM", 0, 1)
-	self.Power:SetHeight(1)
+	self.Power:SetPoint("BOTTOM", self.Health, "BOTTOM", 0, -1)
+	self.Power:SetHeight(2)
 	self.Power:SetWidth(65)
 	self.Power:SetFrameLevel(self.Health:GetFrameLevel() + 2)
 	self.Power:SetFrameStrata("MEDIUM")
@@ -136,7 +136,7 @@ TukuiRaidPosition:SetScript("OnEvent", function(self, event)
 	local raid = G.UnitFrames.RaidUnits
 	
 	raid:ClearAllPoints()
-	raid:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", 0, 25)
+	raid:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", 0, 26)
 	
 	if C.unitframes.showraidpets == true then
 	local pets = G.UnitFrames.RaidPets

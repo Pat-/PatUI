@@ -43,6 +43,9 @@ local frames = {
 	RaidBrowserFrame.backdrop,
 	BattleTagInviteFrame,
 	SideDressUpFrame,
+	QueueStatusFrame,
+	LFGDungeonReadyStatus,
+	StackSplitFrame,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -61,6 +64,8 @@ end)
 BNConversationInviteDialogList:SetTemplate("Default")
 
 WorldMapQuestRewardScrollFrameScrollBar:SkinScrollBar()
+
+QueueStatusFrame:SetFrameStrata("HIGH")
 
 TokenFrame:HookScript("OnShow", function()
 	TokenFramePopup:SetTemplate("Transparent")
@@ -88,6 +93,10 @@ local function SkinBlizzardFrames(self, event, addon)
 		AchievementFrame.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
 		AchievementFrame.backdrop:SetBorder(false, true)
 		AchievementFrame.backdrop:HideInsets()
+		
+		AchievementFrameCategoriesContainer.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
+		AchievementFrameCategoriesContainer.backdrop:SetBorder(false, true)
+		AchievementFrameCategoriesContainer.backdrop:HideInsets()
 		
 	elseif(addon == "Blizzard_ArchaeologyUI") then
 	
@@ -270,6 +279,13 @@ local function SkinBlizzardFrames(self, event, addon)
 		ItemUpgradeFrame:SetBorder(false, true)
 		ItemUpgradeFrame:HideInsets()
 		
+	elseif(addon == "Blizzard_DebugTools") then
+		
+		ScriptErrorsFrame:SetTemplate("Transparent")
+		ScriptErrorsFrame:SetBackdropBorderColor(0, 0, 0, 0)
+		ScriptErrorsFrame:SetBorder(false, true)
+		ScriptErrorsFrame:HideInsets()
+		
 	end
 end
 
@@ -277,11 +293,7 @@ local Init = CreateFrame("Frame")
 Init:RegisterEvent("ADDON_LOADED")
 Init:SetScript("OnEvent", SkinBlizzardFrames)
 
-
-ReportCheatingDialog:StripTextures()
 ReportCheatingDialog:SetTemplate("Transparent")
-ReportCheatingDialog:ThickBorder()
-ReportCheatingDialogReportButton:SkinButton()
-ReportCheatingDialogCancelButton:SkinButton()
-ReportCheatingDialogCommentFrame:StripTextures()
-ReportCheatingDialogCommentFrameEditBox:SkinEditBox()
+ReportCheatingDialog:SetBorder(false, true)
+ReportCheatingDialog:SetBackdropBorderColor(0, 0, 0, 0)
+ReportCheatingDialog:HideInsets()

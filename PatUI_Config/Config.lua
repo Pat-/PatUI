@@ -14,7 +14,7 @@ C.general = {
 	uiscale = 0.71,
 	overridelowtohigh = false,
 	backdropcolor = {.05, .05, .05},
-	bordercolor = {.15, .15, .15},
+	bordercolor = {.1, .1, .1},
 	blizzardreskin = true,
 }
 

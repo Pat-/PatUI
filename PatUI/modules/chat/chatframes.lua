@@ -9,6 +9,7 @@ local function Skin(frame)
 	_G[chat.."TabText"]:SetTextColor(unpack(C.media.datatextcolor2))
 	_G[chat.."TabText"]:SetFont(C["media"].pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 	_G[chat.."TabText"].SetTextColor = P.dummy
+	_G[chat.."TabText"]:SetShadowOffset(0, 0)
 	
 	frame.isPatSkinned = true
 end

@@ -91,7 +91,7 @@ hooksecurefunc(P, "PostCreateAura", PostCreateAura)
 self.Buffs:SetHeight(24)
 self.Buffs:SetWidth(240)
 self.Buffs.size = 21
-self.Buffs.num = 9
+self.Buffs.num = 10
 self.Buffs.spacing = 3
 self.Buffs.initialAnchor = 'TOPLEFT'
 self.Buffs["growth-y"] = "UP"
