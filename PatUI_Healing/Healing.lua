@@ -50,7 +50,7 @@ T.PostUpdateRaidUnit = function(self)
 	self.Health.colorDisconnected = false
 	self.Health.colorClass = false
 	self.Health:SetStatusBarColor(0.12, 0.12, 0.12, .7)
-	self.Health.value:Point("CENTER", self.Health, 1, -6)
+	self.Health.value:Point("TOP", self.Health, 0, 0)
 	self.Health.value:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 	self.Health.value:SetShadowOffset(0, 0)
 
@@ -92,7 +92,7 @@ T.PostUpdateRaidUnit = function(self)
 	
 	self.Name:SetParent(self.Health)
 	self.Name:ClearAllPoints()
-	self.Name:SetPoint("CENTER", 0, 6)
+	self.Name:SetPoint("BOTTOM", 0, 6)
 	self.Name:SetShadowOffset(0, 0)
 	self.Name:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 	self.Name:SetAlpha(1)

@@ -1,61 +1,17 @@
 local P, C, L, G = unpack(Tukui)
 
 TukuiTooltipAnchor:ClearAllPoints()
-TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 4, -4)
-
+TukuiTooltipAnchor:SetClampedToScreen(false)
+TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, -25)
 
 -- Make Tooltip Transparent
-local Tooltips = {GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ShoppingTooltip3,WorldMapTooltip,WorldMapCompareTooltip1,WorldMapCompareTooltip2,WorldMapCompareTooltip3}
-
--- need to ask Tukz to make this global
-local BorderColor = function(self)
-	local GMF = GetMouseFocus()
-	local unit = (select(2, self:GetUnit())) or (GMF and GMF:GetAttribute("unit"))
-		
-	local reaction = unit and UnitReaction(unit, "player")
-	local player = unit and UnitIsPlayer(unit)
-	local tapped = unit and UnitIsTapped(unit)
-	local tappedbyme = unit and UnitIsTappedByPlayer(unit)
-	local connected = unit and UnitIsConnected(unit)
-	local dead = unit and UnitIsDead(unit)
-	local r, g, b
-
-	if player then
-		local class = select(2, UnitClass(unit))
-		local c = P.UnitColor.class[class]
-		r, g, b = c[1], c[2], c[3]
-		self:SetBackdropBorderColor(r, g, b)
-		G.Tooltips.GameTooltip.Health.Background:SetBackdropBorderColor(r, g, b)
-		G.Tooltips.GameTooltip.Health:SetStatusBarColor(r, g, b)
-	elseif reaction then
-		local c = P.UnitColor.reaction[reaction]
-		r, g, b = c[1], c[2], c[3]
-		self:SetBackdropBorderColor(r, g, b)
-		G.Tooltips.GameTooltip.Health.Background:SetBackdropBorderColor(r, g, b)
-		G.Tooltips.GameTooltip.Health:SetStatusBarColor(r, g, b)
-	else
-		local _, link = self:GetItem()
-		local quality = link and select(3, GetItemInfo(link))
-		if quality and quality >= 2 then
-			local r, g, b = GetItemQualityColor(quality)
-			self:SetBackdropBorderColor(r, g, b)
-		else
-			self:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-			G.Tooltips.GameTooltip.Health.Background:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-			G.Tooltips.GameTooltip.Health:SetStatusBarColor(unpack(C["media"].bordercolor))
-		end
-	end
-	
-	-- need this
-	NeedBackdropBorderRefresh = true
-end
+local Tooltips = {GameTooltip, ShoppingTooltip1, ShoppingTooltip2, ShoppingTooltip3, WorldMapTooltip, WorldMapCompareTooltip1, WorldMapCompareTooltip2, WorldMapCompareTooltip3}
 
 local SetStyle = function(self)
 	self:SetTemplate("Transparent")
 	self:SetBorder(false, true)
-	self:SetBackdropBorderColor(0,0,0,0)
+	self:SetBackdropBorderColor(0, 0, 0, 0)
 	self:HideInsets()
-	BorderColor(self)
 end
 
 TukuiTooltip:HookScript("OnEvent", function(self, event, addon)
@@ -65,4 +21,34 @@ TukuiTooltip:HookScript("OnEvent", function(self, event, addon)
 	
 	ItemRefTooltip:HookScript("OnTooltipSetItem", SetStyle)
 	ItemRefTooltip:HookScript("OnShow", SetStyle)
+	
+	if FrameStackTooltip then
+		FrameStackTooltip:SetScale(C.general.uiscale)
+		
+		-- Skin it
+		FrameStackTooltip:HookScript("OnShow", function(self) 
+		self:SetTemplate("Transparent") 
+		FrameStackTooltip:SetBackdropBorderColor(0, 0, 0, 0)
+		FrameStackTooltip:HideInsets()
+		FrameStackTooltip:SetBorder(false, true)
+		end)
+	end
 end)
+
+G.Tooltips.GameTooltip.Health:SetBackdropBorderColor(0, 0, 0, 0)
+G.Tooltips.GameTooltip.Health:HideInsets()
+G.Tooltips.GameTooltip.Health:SetBorder(false, true)
+
+local healthbackground = CreateFrame("Frame", healthbackground, G.Tooltips.GameTooltip.Health)
+healthbackground:ClearAllPoints()
+healthbackground:Point("TOPLEFT", 0, 0)
+healthbackground:Point("BOTTOMRIGHT", 0, 0)
+healthbackground:Size(1, 1)
+healthbackground:SetTemplate("Transparent")
+healthbackground:HideInsets()
+healthbackground:SetBackdropBorderColor(0, 0, 0, 0)
+healthbackground:SetFrameStrata("BACKGROUND")
+
+G.Tooltips.GameTooltip.Health.Background:SetBackdropBorderColor(0, 0, 0, 0)
+G.Tooltips.GameTooltip.Health.Background:HideInsets()
+G.Tooltips.GameTooltip.Health.Background:SetAlpha(0)

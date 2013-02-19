@@ -58,6 +58,13 @@ TukuiBar5:SetBackdropBorderColor(0, 0, 0, 0)
 TukuiBar5:HideInsets()
 TukuiBar5:SetBorder(false, true)
 
+TukuiPetBar:SetTemplate("Transparent")
+TukuiPetBar:SetBackdropBorderColor(0, 0, 0, 0)
+TukuiPetBar:HideInsets()
+TukuiPetBar:SetBorder(false, true)
+
+TukuiLineToPetActionBarBackground:SetBackdrop(nil)
+
 ------------------------------------------------------------------------
 -- Setting up Actionbar Buttons
 ------------------------------------------------------------------------

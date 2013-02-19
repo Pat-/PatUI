@@ -28,3 +28,5 @@ statusbg:SetFrameLevel(status:GetFrameLevel() - 1)
 
 -- change the font
 text:SetFont(C["media"].pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+text:ClearAllPoints()
+text:Point("CENTER", status, "CENTER", 0, 0)

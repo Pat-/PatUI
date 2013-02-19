@@ -57,12 +57,13 @@ for i = 1, MAX_BOSS_FRAMES do
 	
 	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	self.Name:SetShadowOffset(0, 0)
+	self.Name:SetPoint("TOP", self.Health, "TOP", 0, 0)
 	
 	self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-	self.Health.value:Point("TOPLEFT", self.Health, "TOPLEFT", 2, 0)
+	self.Health.value:Point("RIGHT", self.Health, "RIGHT", -4, -5)
 
 	self.Power.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-	self.Power.value:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, 0)
+	self.Power.value:Point("LEFT", self.Health, "LEFT", 4, -5)
 	
 	self.Castbar:ClearAllPoints()
 	self.Castbar:SetSize(215, 23)

@@ -42,6 +42,7 @@ local frames = {
 	TukuiChatCopyFrame,
 	RaidBrowserFrame.backdrop,
 	BattleTagInviteFrame,
+	SideDressUpFrame,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -98,16 +99,20 @@ local function SkinBlizzardFrames(self, event, addon)
 		
 	elseif(addon == "Blizzard_AuctionUI") then
 	
+		local frame = _G["SideDressUpFrame"]
+	
 		AuctionFrame:SetTemplate("Transparent")
 		AuctionFrame:SetBackdropBorderColor(0, 0, 0, 0)
 		AuctionFrame:SetBorder(false, true)
 		AuctionFrame:HideInsets()
 		AuctionFrame.shadow:Hide()
 		
-		SideDressUpFrame:SetTemplate("Transparent")
-		SideDressUpFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		SideDressUpFrame:SetBorder(false, true)
-		SideDressUpFrame:HideInsets()
+		frame:HookScript("OnShow", function(self) 
+			frame:SetTemplate("Transparent") 
+			frame:SetBackdropBorderColor(0, 0, 0, 0) 
+			frame:SetBorder(false, true) 
+			frame:HideInsets() 
+		end)
 		
 	elseif(addon == "Blizzard_BarbershopUI") then
 	

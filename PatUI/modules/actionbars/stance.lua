@@ -1,5 +1,8 @@
 local P, C, L, G = unpack(Tukui)
 
+TukuiStance:ClearAllPoints()
+TukuiStance:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 3, -37)
+
 local sborder = CreateFrame("Frame", "StanceBorder", StanceButton1)
 sborder:Point("LEFT", -P.buttonspacing, 0)
 sborder:SetTemplate("Transparent")
