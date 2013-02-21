@@ -42,7 +42,6 @@ local frames = {
 	TukuiChatCopyFrame,
 	RaidBrowserFrame.backdrop,
 	BattleTagInviteFrame,
-	SideDressUpFrame,
 	QueueStatusFrame,
 	LFGDungeonReadyStatus,
 	StackSplitFrame,
@@ -62,8 +61,6 @@ end)
 
 -- Since BNet Converstaion frame is Transparent in my UI give the List a Template so it looks nice.
 BNConversationInviteDialogList:SetTemplate("Default")
-
-WorldMapQuestRewardScrollFrameScrollBar:SkinScrollBar()
 
 QueueStatusFrame:SetFrameStrata("HIGH")
 
@@ -274,17 +271,45 @@ local function SkinBlizzardFrames(self, event, addon)
 		ItemSocketingScrollFrame:SetFrameLevel(ItemSocketingFrame:GetFrameLevel() + 4)
 		
 	elseif(addon == "Blizzard_ItemUpgradeUI") then
+	
 		ItemUpgradeFrame:SetTemplate("Transparent")
 		ItemUpgradeFrame:SetBackdropBorderColor(0, 0, 0, 0)
 		ItemUpgradeFrame:SetBorder(false, true)
 		ItemUpgradeFrame:HideInsets()
-		
+
 	elseif(addon == "Blizzard_DebugTools") then
 		
 		ScriptErrorsFrame:SetTemplate("Transparent")
 		ScriptErrorsFrame:SetBackdropBorderColor(0, 0, 0, 0)
 		ScriptErrorsFrame:SetBorder(false, true)
 		ScriptErrorsFrame:HideInsets()
+	
+	elseif(addon == "Blizzard_EncounterJournal") then
+		
+		local frames = {
+			EncounterJournal,
+			EncounterJournalNavBarHomeButton,
+		}
+		
+		for _,f in pairs(frames) do
+			f:SetBackdropBorderColor(0, 0, 0, 0)
+			f:SetBorder(false, true)
+			f:HideInsets()
+		end
+		
+		EncounterJournalEncounterFrameInfoLootScrollFrameScrollBar:SkinScrollBar()
+		EncounterJournalEncounterFrameInfoDetailsScrollFrameScrollBar:SkinScrollBar()
+		EncounterJournalEncounterFrameInstanceFrameLoreScrollFrameScrollBar:SkinScrollBar()
+		
+		EncounterJournalNavBar.backdrop:SetTemplate("Transparent")
+		EncounterJournalNavBar.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
+		EncounterJournalNavBar.backdrop:SetBorder(false, true)
+		EncounterJournalNavBar.backdrop:HideInsets()
+		
+		EncounterJournal.backdrop:ClearAllPoints()
+		EncounterJournal.backdrop2:ClearAllPoints()
+		EncounterJournal.backdrop3:SetTexture(.05, .05, .05, 0.6)
+		EncounterJournal.backdrop4:ClearAllPoints()
 		
 	end
 end
@@ -297,3 +322,8 @@ ReportCheatingDialog:SetTemplate("Transparent")
 ReportCheatingDialog:SetBorder(false, true)
 ReportCheatingDialog:SetBackdropBorderColor(0, 0, 0, 0)
 ReportCheatingDialog:HideInsets()
+
+ReportPlayerNameDialog:SetTemplate("Transparent")
+ReportPlayerNameDialog:SetBorder(false, true)
+ReportPlayerNameDialog:SetBackdropBorderColor(0, 0, 0, 0)
+ReportPlayerNameDialog:HideInsets()

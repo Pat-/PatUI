@@ -20,7 +20,6 @@ local function SetBorder(f, i, o)
 		local border = CreateFrame("Frame", f:GetName() and f:GetName() .. "OuterBorder" or nil, f)
 		border:Point("TOPLEFT", -P.mult, P.mult)
 		border:Point("BOTTOMRIGHT", P.mult, -P.mult)
-		border:SetFrameLevel(f:GetFrameLevel() + 1)
 		border:SetBackdrop({
 			edgeFile = C["media"].blank, 
 			edgeSize = P.mult, 

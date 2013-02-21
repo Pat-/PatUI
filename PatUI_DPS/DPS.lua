@@ -44,7 +44,7 @@ P.PostUpdateRaidUnit = function(self)
 	self.Health:SetAllPoints(self)
 	self.Health:SetBorder(false, true)
 	self.Health:SetFrameStrata("LOW")
-	self.Health:SetOrientation'HORIZONTAL'
+	self.Health:SetOrientation('HORIZONTAL')
 	
 	self.Health.bg:ClearAllPoints()
 	self.Health.bg:SetPoint("LEFT")
@@ -55,7 +55,7 @@ P.PostUpdateRaidUnit = function(self)
 
 	self.Health.colorDisconnected = false
 	self.Health.colorClass = false
-	self.Health.value:Point("CENTER", self.Health, 1, -5)
+	self.Health.value:Point("TOP", self.Health, 0, 0)
 	self.Health.value:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	self.Health.value:SetShadowOffset(0, 0)
 
@@ -93,7 +93,7 @@ P.PostUpdateRaidUnit = function(self)
 	
 	self.Name:SetParent(self.Health)
 	self.Name:ClearAllPoints()
-	self.Name:SetPoint("CENTER", 0, 5)
+	self.Name:SetPoint("BOTTOM", 0, 0)
 	self.Name:SetShadowOffset(0, 0)
 	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	self.Name:SetAlpha(1)
