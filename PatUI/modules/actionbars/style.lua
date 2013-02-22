@@ -47,6 +47,7 @@ end
 hooksecurefunc("ActionButton_Update", style)
 
 
+-- Flying got 1px border going on Pet/Stance bars :P
 function P.StyleActionBarPetAndShiftButton(normal, button, icon, name, pet)
 	if button.isSkinned then return end
 	

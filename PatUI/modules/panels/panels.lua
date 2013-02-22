@@ -122,6 +122,7 @@ TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)
 
 local DataPoint = {}
 
+-- Flying found the proper SetPoints + Minimap points.
 for i=1, 3 do
 	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
 	DataPoint[i]:Width((TukuiBar1:GetWidth() / 3) - 2)
