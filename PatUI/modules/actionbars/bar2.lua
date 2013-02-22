@@ -15,7 +15,7 @@ SplitBarRight:SetBorder(false, true)
 SplitBarRight:SetFrameLevel(TukuiBar1:GetFrameLevel())
 SplitBarRight:SetFrameStrata(TukuiBar1:GetFrameStrata())
 
--- Flying figured out how to make buttons 8-12 to work properly.
+-- Flying figured out how to make buttons 8-12 work properly.
 TukuiBar2:HookScript("OnHide", function()
 	SplitBarRight:Hide()
 end)
