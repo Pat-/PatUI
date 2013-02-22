@@ -39,7 +39,7 @@ local function style(self)
 	buttonBG:Size(1, 1)
 	buttonBG:SetTemplate("Transparent")
 	buttonBG:SetBorder(false, true)
-	buttonBG:SetBackdropBorderColor(0,0,0,0)
+	buttonBG:SetBackdropBorderColor(0, 0, 0, 0)
 	buttonBG:HideInsets()
 	buttonBG:SetFrameLevel(Button.backdrop:GetFrameLevel() - 1)
 	
@@ -47,7 +47,7 @@ end
 hooksecurefunc("ActionButton_Update", style)
 
 
-function P.StyleActionBarShiftButton(normal, button, icon, name, pet)
+function P.StyleActionBarPetAndShiftButton(normal, button, icon, name, pet)
 	if button.isSkinned then return end
 	
 	button:SetWidth(P.petbuttonsize)
@@ -84,6 +84,7 @@ function P.StyleActionBarShiftButton(normal, button, icon, name, pet)
 	buttonBG:SetBackdropBorderColor(0, 0, 0, 0)
 	buttonBG:HideInsets()
 	buttonBG:SetFrameLevel(button:GetFrameLevel() - 1)
+	
 	button:SetNormalTexture("")
 	button.SetNormalTexture = P.dummy
 	
@@ -107,7 +108,7 @@ function P.StyleShift()
 		local button  = _G[name]
 		local icon  = _G[name.."Icon"]
 		local normal  = _G[name.."NormalTexture"]
-		P.StyleActionBarShiftButton(normal, button, icon, name)
+		P.StyleActionBarPetAndShiftButton(normal, button, icon, name)
 	end
 end
 
@@ -117,6 +118,6 @@ function P.StylePet()
 		local button  = _G[name]
 		local icon  = _G[name.."Icon"]
 		local normal  = _G[name.."NormalTexture2"]
-		P.StyleActionBarShiftButton(normal, button, icon, name, true)
+		P.StyleActionBarPetAndShiftButton(normal, button, icon, name, true)
 	end
 end

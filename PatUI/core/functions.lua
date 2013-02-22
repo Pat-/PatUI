@@ -11,9 +11,9 @@ end
 -- set the position of the datatext tooltip
 P.DataTextTooltipAnchor = function(self)
 	local panel = self:GetParent()
-	local anchor = "ANCHOR_BOTTOM"
+	local anchor = "ANCHOR_TOP"
 	local xoff = 0
-	local yoff = P.Scale(-3)
+	local yoff = P.Scale(3)
 	
 	if panel == TukuiInfoLeft then
 		anchor = "ANCHOR_TOPLEFT"

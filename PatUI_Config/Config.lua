@@ -115,11 +115,11 @@ C.cooldown = {
 
 C.datatext = {
 	fps_ms = 2,
-	system = 0,
+	system = 3,
 	bags = 0,
 	gold = 1,
 	wowtime = 4,
-	guild = 3,
+	guild = 0,
 	dur = 5,
 	friends = 0,
 	dps_text = 0,

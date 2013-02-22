@@ -2,7 +2,7 @@ local P, C, L, G = unpack(Tukui)
 
 --our own datatext position function because we made our custom panel
 local DataTextPosition = function(f, t, o)
-	local points = { Datatext1, Datatext2, Datatext3, Datatext4, Datatext5 }
+	local points = { DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5 }
 		
 	if o >= 1 and o <= 5 then
 		t:ClearAllPoints()

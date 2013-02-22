@@ -93,6 +93,7 @@ TukuiChatBackgroundLeft:SetBorder(false, true)
 TukuiChatBackgroundLeft:ClearAllPoints()
 TukuiChatBackgroundLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 2, 2)
 TukuiChatBackgroundLeft:SetHeight(125)
+TukuiChatBackgroundLeft:SetParent(UIParent)
 
 TukuiTabsLeftBackground:ClearAllPoints()
 TukuiTabsLeftBackground:Point("BOTTOM", TukuiChatBackgroundLeft, "TOP", 0, 3)
@@ -106,15 +107,7 @@ TukuiTabsLeftBackground:HideInsets()
 TukuiChatBackgroundRight:Hide()
 TukuiTabsRightBackground:Hide()
 TukuiInfoRight:Hide()
-
-TukuiInfoLeft:ClearAllPoints()
-TukuiInfoLeft:Point("BOTTOM", UIParent, "BOTTOM", 0, -50)
-TukuiInfoLeft:SetFrameStrata("Background")
-TukuiInfoLeft:SetTemplate("Transparent")
-TukuiInfoLeft:SetHeight(14)
-TukuiInfoLeft:SetBackdrop(nil)
-TukuiInfoLeft:SetBackdropBorderColor(0, 0, 0, 0)
-TukuiInfoLeft:HideInsets()
+TukuiInfoLeft:Hide()
 
 ------------------------------------------------------------------------
 -- Reanchor the Raid Util
@@ -124,49 +117,40 @@ TukuiRaidUtilityShowButton:ClearAllPoints()
 TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)
 
 ------------------------------------------------------------------------
--- Creating Datatext Points
+-- Creating DataPoints
 ------------------------------------------------------------------------
 
-local Datatext1 = CreateFrame("Frame", "Datatext1", UIParent)
-Datatext1:Point("TOPLEFT", TukuiBar1, "BOTTOMLEFT", 0, -3)
-Datatext1:Width((TukuiBar1:GetWidth() / 3) - 2)
-Datatext1:Height(18)
-Datatext1:SetTemplate("Transparent")
-Datatext1:SetBackdropBorderColor(0,0,0,0)
-Datatext1:SetBorder(false, true)
-Datatext1:HideInsets()
-Datatext1:SetFrameStrata("BACKGROUND")
+local DataPoint = {}
 
-local Datatext2 = CreateFrame("Frame", "Datatext2", UIParent)
-Datatext2:Point("TOP", TukuiBar1, "BOTTOM", 0, -3)
-Datatext2:Width((TukuiBar1:GetWidth() / 3) - 1)
-Datatext2:Height(18)
-Datatext2:SetTemplate("Transparent")
-Datatext2:SetBackdropBorderColor(0,0,0,0)
-Datatext2:SetBorder(false, true)
-Datatext2:HideInsets()
-Datatext2:SetFrameStrata("BACKGROUND")
+for i=1, 3 do
+	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
+	DataPoint[i]:Width((TukuiBar1:GetWidth() / 3) - 2)
+	DataPoint[i]:Height(18)
+	DataPoint[i]:SetTemplate("Transparent")
+	DataPoint[i]:SetBackdropBorderColor(0,0,0,0)
+	DataPoint[i]:SetBorder(false, true)
+	DataPoint[i]:HideInsets()
+	DataPoint[i]:SetFrameStrata("BACKGROUND")
+	
+	if(i == 1) then
+		DataPoint[i]:SetPoint("TOPLEFT", TukuiBar1, "BOTTOMLEFT", 0, -3)
+	elseif(i == 2) then
+		DataPoint[i]:Point("TOP", TukuiBar1, "BOTTOM", 0, -3)
+	else
+		DataPoint[i]:Point("TOPRIGHT", TukuiBar1, "BOTTOMRIGHT", 0, -3)
+	end
+end
 
-local Datatext3 = CreateFrame("Frame", "Datatext3", UIParent)
-Datatext3:Point("TOPRIGHT", TukuiBar1, "BOTTOMRIGHT", 0, -3)
-Datatext3:Width((TukuiBar1:GetWidth() / 3) - 2)
-Datatext3:Height(18)
-Datatext3:SetTemplate("Transparent")
-Datatext3:SetBackdropBorderColor(0,0,0,0)
-Datatext3:SetBorder(false, true)
-Datatext3:HideInsets()
-Datatext3:SetFrameStrata("BACKGROUND")
+DataPoint4 = CreateFrame("Frame", "DataPoint4", TukuiMinimap)
+DataPoint4:Point("BOTTOM", TukuiMinimap, "BOTTOM", 0, 2)
+DataPoint4:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
+DataPoint4:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
+DataPoint4:SetBackdrop(nil)
+DataPoint4:SetFrameStrata("HIGH")
 
-Datatext4 = CreateFrame("Frame", "Datatext4", TukuiMinimap)
-Datatext4:Point("BOTTOM", TukuiMinimap, "BOTTOM", 0, 2)
-Datatext4:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
-Datatext4:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
-Datatext4:SetBackdrop(nil)
-Datatext4:SetFrameStrata("HIGH")
-
-Datatext5 = CreateFrame("Frame", "Datatext5", TukuiMinimap)
-Datatext5:Point("TOP", TukuiMinimap, "TOP", 0, -2)
-Datatext5:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
-Datatext5:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
-Datatext5:SetBackdrop(nil)
-Datatext5:SetFrameStrata("HIGH")
+DataPoint5 = CreateFrame("Frame", "DataPoint5", TukuiMinimap)
+DataPoint5:Point("TOP", TukuiMinimap, "TOP", 0, -2)
+DataPoint5:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
+DataPoint5:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
+DataPoint5:SetBackdrop(nil)
+DataPoint5:SetFrameStrata("HIGH")

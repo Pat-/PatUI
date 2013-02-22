@@ -45,6 +45,8 @@ local frames = {
 	QueueStatusFrame,
 	LFGDungeonReadyStatus,
 	StackSplitFrame,
+	ReportPlayerNameDialog,
+	ReportCheatingDialog,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -308,7 +310,7 @@ local function SkinBlizzardFrames(self, event, addon)
 		
 		EncounterJournal.backdrop:ClearAllPoints()
 		EncounterJournal.backdrop2:ClearAllPoints()
-		EncounterJournal.backdrop3:SetTexture(.05, .05, .05, 0.6)
+		EncounterJournal.backdrop3:SetTexture(.05, .05, .05, 0.7)
 		EncounterJournal.backdrop4:ClearAllPoints()
 		
 	end
@@ -317,13 +319,3 @@ end
 local Init = CreateFrame("Frame")
 Init:RegisterEvent("ADDON_LOADED")
 Init:SetScript("OnEvent", SkinBlizzardFrames)
-
-ReportCheatingDialog:SetTemplate("Transparent")
-ReportCheatingDialog:SetBorder(false, true)
-ReportCheatingDialog:SetBackdropBorderColor(0, 0, 0, 0)
-ReportCheatingDialog:HideInsets()
-
-ReportPlayerNameDialog:SetTemplate("Transparent")
-ReportPlayerNameDialog:SetBorder(false, true)
-ReportPlayerNameDialog:SetBackdropBorderColor(0, 0, 0, 0)
-ReportPlayerNameDialog:HideInsets()
