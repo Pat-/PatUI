@@ -105,6 +105,14 @@ P.RoleIconUpdate = function(self, event)
 	end	
 end
 
+-- the hell didn't I even think of this but Flying did? :O
+local function PatSkin(f)
+	f:SetTemplate("Transparent")
+	SetBorder(f, false, true)
+	f:HideInsets()
+	f:SetBackdropBorderColor(0, 0, 0, 0)
+end
+
 local function addapi(object)
 	local mt = getmetatable(object).__index
 	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
@@ -113,6 +121,7 @@ local function addapi(object)
 	if not object.ThickBorder then mt.ThickBorder = ThickBorder end
 	if not object.InnerBorder then mt.Innerborder = innerBorder end
 	if not object.OuterBorder then mt.Outerborder = outerBorder end
+	if not object.PatSkin then mt.PatSkin = PatSkin end
 end
 
 local handled = {["Frame"] = true}

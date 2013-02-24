@@ -53,11 +53,8 @@ local OnLoad = CreateFrame("Frame")
 OnLoad:RegisterEvent("PLAYER_ENTERING_WORLD")
 OnLoad:SetScript("OnEvent", function()
 	for _,f in pairs(frames) do
-		f:SetTemplate("Transparent")
+		f:PatSkin()
 		if f.backdrop and f.backdrop.shadow then f.backdrop.shadow:Hide() elseif f.shadow then f.shadow:Hide() end
-		f:SetBackdropBorderColor(0, 0, 0, 0)
-		f:SetBorder(false, true)
-		f:HideInsets()
 	end
 end)
 
@@ -67,17 +64,11 @@ BNConversationInviteDialogList:SetTemplate("Default")
 QueueStatusFrame:SetFrameStrata("HIGH")
 
 TokenFrame:HookScript("OnShow", function()
-	TokenFramePopup:SetTemplate("Transparent")
-	TokenFramePopup:SetBackdropBorderColor(0, 0, 0, 0)
-	TokenFramePopup:SetBorder(false, true)
-	TokenFramePopup:HideInsets()
+	TokenFramePopup:PatSkin()
 end)
 
 local function UpdateFactionSkins()
-	ReputationDetailFrame:SetTemplate("Transparent")
-	ReputationDetailFrame:SetBackdropBorderColor(0, 0, 0, 0)
-	ReputationDetailFrame:SetBorder(false, true)
-	ReputationDetailFrame:HideInsets()
+	ReputationDetailFrame:PatSkin()
 end
 ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 
@@ -88,53 +79,87 @@ ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 local function SkinBlizzardFrames(self, event, addon)
 	if(addon == "Blizzard_AchievementUI") then
 	
-		AchievementFrame.backdrop:SetTemplate("Transparent")
-		AchievementFrame.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-		AchievementFrame.backdrop:SetBorder(false, true)
-		AchievementFrame.backdrop:HideInsets()
+		AchievementFrame.backdrop:PatSkin()
 		
-		AchievementFrameCategoriesContainer.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-		AchievementFrameCategoriesContainer.backdrop:SetBorder(false, true)
-		AchievementFrameCategoriesContainer.backdrop:HideInsets()
+		AchievementFrameCategoriesContainer.backdrop:PatSkin()
+		
+		for i=1, 3 do
+			_G["AchievementFrameTab"..i].backdrop:PatSkin()
+		end
 		
 	elseif(addon == "Blizzard_ArchaeologyUI") then
 	
-		ArchaeologyFrame:SetTemplate("Transparent")
-		ArchaeologyFrame.shadow:Hide()
-		ArchaeologyFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		ArchaeologyFrame:SetBorder(false, true)
-		ArchaeologyFrame:HideInsets()
+		ArchaeologyFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_AuctionUI") then
 	
 		local frame = _G["SideDressUpFrame"]
-	
-		AuctionFrame:SetTemplate("Transparent")
-		AuctionFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		AuctionFrame:SetBorder(false, true)
-		AuctionFrame:HideInsets()
-		AuctionFrame.shadow:Hide()
+		
+		local frames = {
+			AuctionFrame,
+			BrowseBidButton,
+			BrowseBuyoutButton,
+			BrowseCloseButton,
+			BrowseResetButton,
+			AuctionsCancelAuctionButton,
+			AuctionsCloseButton,
+			AuctionsCreateAuctionButton,
+			BrowseSearchButton,
+			BidBidButton,
+			BidBuyoutButton,
+			BidCloseButton,
+			BrowseDropDown.backdrop,
+			PriceDropDown.backdrop,
+			DurationDropDown.backdrop,
+			AuctionFrameBrowse.bg1,
+			AuctionFrameBrowse.bg2,
+			AuctionFrameBid.bg,
+			AuctionFrameAuctions.bg1,
+			AuctionFrameAuctions.bg2,
+			BrowseName.backdrop,
+			BrowseMinLevel.backdrop,
+			BrowseMaxLevel.backdrop,
+			BrowseBidPriceGold.backdrop,
+			BrowseBidPriceSilver.backdrop,
+			BrowseBidPriceCopper.backdrop,
+			BidBidPriceGold.backdrop,
+			BidBidPriceSilver.backdrop,
+			BidBidPriceCopper.backdrop,
+			AuctionsStackSizeEntry.backdrop,
+			AuctionsNumStacksEntry.backdrop,
+			StartPriceGold.backdrop,
+			StartPriceSilver.backdrop,
+			StartPriceCopper.backdrop,
+			BuyoutPriceGold.backdrop,
+			BuyoutPriceSilver.backdrop,
+			BuyoutPriceCopper.backdrop,
+			IsUsableCheckButton.backdrop,
+			ShowOnPlayerCheckButton.backdrop,
+			AuctionsItemButton,
+		}
+		
+		for _, f in pairs(frames) do
+			f:PatSkin()
+		end
+		
+		DurationDropDown:ClearAllPoints()
+		DurationDropDown:SetPoint("BOTTOMRIGHT", AuctionFrameAuctions.bg1, "BOTTOMRIGHT", 3, 50)
+		
+		for i=1, 3 do
+			_G["AuctionFrameTab"..i].backdrop:PatSkin()
+		end
 		
 		frame:HookScript("OnShow", function(self) 
-			frame:SetTemplate("Transparent") 
-			frame:SetBackdropBorderColor(0, 0, 0, 0) 
-			frame:SetBorder(false, true) 
-			frame:HideInsets() 
+			frame:PatSkin()
 		end)
 		
 	elseif(addon == "Blizzard_BarbershopUI") then
 	
-		BarberShopFrame:SetTemplate("Transparent")
-		BarberShopFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		BarberShopFrame:SetBorder(false, true)
-		BarberShopFrame:HideInsets()
+		BarberShopFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_BindingUI") then
 	
-		KeyBindingFrame:SetTemplate("Transparent")
-		KeyBindingFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		KeyBindingFrame:SetBorder(false, true)
-		KeyBindingFrame:HideInsets()
+		KeyBindingFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_Calendar") then
 	
@@ -149,28 +174,23 @@ local function SkinBlizzardFrames(self, event, addon)
 		}
 		
 		for _,f in pairs(frames) do
-			f:SetTemplate("Transparent")
+			f:PatSkin()
 			if f.shadow then f.shadow:Hide() end
-			f:SetBackdropBorderColor(0, 0, 0, 0)
-			f:SetBorder(false, true)
-			f:HideInsets()
 		end
 		
 		CalendarMassInviteCloseButton:StripTextures()
 		
 	elseif(addon == "Blizzard_TimeManager") then
 	
-		TimeManagerFrame:SetTemplate("Transparent")
-		TimeManagerFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		TimeManagerFrame:SetBorder(false, true)
-		TimeManagerFrame:HideInsets()
+		TimeManagerFrame:PatSkin()
 
 	elseif(addon == "Blizzard_TalentUI") then
 	
-		PlayerTalentFrame.backdrop:SetTemplate("Transparent")
-		PlayerTalentFrame.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-		PlayerTalentFrame.backdrop:SetBorder(false, true)
-		PlayerTalentFrame.backdrop:HideInsets()
+		PlayerTalentFrame.backdrop:PatSkin()
+		
+		for i=1, 3 do
+			_G["PlayerTalentFrameTab"..i].backdrop:PatSkin()
+		end
 		
 	elseif(addon == "Blizzard_GuildUI") then
 	
@@ -180,93 +200,91 @@ local function SkinBlizzardFrames(self, event, addon)
 			GuildLogFrame,
 			GuildNewsFiltersFrame,
 			GuildTextEditFrame,
+			GuildFactionBar.backdrop,
+			GuildXPBar.backdrop,
+			GuildLatestPerkButton.backdrop,
+			GuildNextPerkButton.backdrop,
+			GuildPerksToggleButton.backdrop,
+			GuildRosterShowOfflineButton.backdrop,
+			GuildRosterViewDropdown.backdrop,
+			GuildAddMemberButton,
+			GuildViewLogButton,
+			GuildControlButton,
+			GuildTextEditFrameAcceptButton,
 		}
 		
 		for _,f in pairs(frames) do
-			f:SetTemplate("Transparent")
+			f:PatSkin()
 			if f.shadow then f.shadow:Hide() end
-			f:SetBackdropBorderColor(0, 0, 0, 0)
-			f:SetBorder(false, true)
-			f:HideInsets()
+		end
+		
+		GuildFactionBar.backdrop:Point("TOPLEFT", GuildFactionBar.progress, "TOPLEFT", 0, 0)
+		GuildFactionBar.backdrop:Point("BOTTOMRIGHT", GuildFactionBar, "BOTTOMRIGHT", 0, 2)
+		
+		GuildXPBar.backdrop:Point("TOPLEFT", GuildXPBar.progress, "TOPLEFT", 0, 0)
+		GuildXPBar.backdrop:Point("BOTTOMRIGHT", GuildXPBar, "BOTTOMRIGHT", 0, 2)
+		
+		GuildLatestPerkButton.backdrop:Point("TOPLEFT", GuildLatestPerkButtonIconTexture, "TOPLEFT", 0, 0)
+		GuildLatestPerkButton.backdrop:Point("BOTTOMRIGHT", GuildLatestPerkButtonIconTexture, "BOTTOMRIGHT", 0, 0)
+		
+		GuildNextPerkButton.backdrop:Point("TOPLEFT", GuildNextPerkButtonIconTexture, "TOPLEFT", 0, 0)
+		GuildNextPerkButton.backdrop:Point("BOTTOMRIGHT", GuildNextPerkButtonIconTexture, "BOTTOMRIGHT", 0, 0)
+		
+		for i=1, 5 do
+			_G["GuildFrameTab"..i].backdrop:PatSkin()
+		end
+		
+		for i=1, 7 do
+			_G["GuildNewsFilterButton"..i].backdrop:PatSkin()
 		end
 		
 		GuildMemberDetailFrame:Point("TOPLEFT", GuildFrame, "TOPRIGHT", 4, -28)
 		
 	elseif(addon == "Blizzard_GuildBankUI") then
 	
-		GuildBankFrame:SetTemplate("Transparent")
-		GuildBankFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		GuildBankFrame:SetBorder(false, true)
-		GuildBankFrame:HideInsets()
+		GuildBankFrame:PatSkin()
+		
+		for i=1, 4 do
+			_G["GuildBankFrameTab"..i].backdrop:PatSkin()
+		end
 		
 	elseif(addon == "Blizzard_MacroUI") then
 	
-		MacroFrame:SetTemplate("Transparent")
-		MacroFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		MacroFrame:SetBorder(false, true)
-		MacroFrame:HideInsets()
+		MacroFrame:PatSkin()
 		
-		MacroPopupFrame:SetTemplate("Transparent")
-		MacroPopupFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		MacroPopupFrame:SetBorder(false, true)
-		MacroPopupFrame:HideInsets()
+		MacroPopupFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_VoidStorageUI") then
 	
-		VoidStorageFrame:SetTemplate("Transparent")
-		VoidStorageFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		VoidStorageFrame:SetBorder(false, true)
-		VoidStorageFrame:HideInsets()
+		VoidStorageFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_ReforgingUI") then
 	
-		ReforgingFrame:SetTemplate("Transparent")
-		ReforgingFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		ReforgingFrame:SetBorder(false, true)
-		ReforgingFrame:HideInsets()
+		ReforgingFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_TrainerUI") then
 	
-		ClassTrainerFrame.backdrop:SetTemplate("Transparent")
-		ClassTrainerFrame.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-		ClassTrainerFrame.backdrop:SetBorder(false, true)
-		ClassTrainerFrame.backdrop:HideInsets()
+		ClassTrainerFrame.backdrop:PatSkin()
 		
 	elseif(addon == "Blizzard_InspectUI") then
 	
-		InspectFrame.backdrop:SetTemplate("Transparent")
-		InspectFrame.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-		InspectFrame.backdrop:SetBorder(false, true)
-		InspectFrame.backdrop:HideInsets()
+		InspectFrame.backdrop:PatSkin()
 		
 	elseif(addon == "Blizzard_TradeSkillUI") then
 	
-		TradeSkillFrame:SetTemplate("Transparent")
-		TradeSkillFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		TradeSkillFrame:SetBorder(false, true)
-		TradeSkillFrame:HideInsets()
-		TradeSkillFrame.shadow:Hide()
+		TradeSkillFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_ItemAlterationUI") then
 	
-		TransmogrifyArtFrame:SetTemplate("Transparent")
-		TransmogrifyArtFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		TransmogrifyArtFrame:SetBorder(false, true)
-		TransmogrifyArtFrame:HideInsets()
+		TransmogrifyArtFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_LookingForGuildUI") then
 	
-		LookingForGuildFrame:SetTemplate("Transparent")
-		LookingForGuildFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		LookingForGuildFrame:SetBorder(false, true)
-		LookingForGuildFrame:HideInsets()
+		LookingForGuildFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_ItemSocketingUI") then
 	
-		ItemSocketingFrame:SetTemplate("Transparent")
-		ItemSocketingFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		ItemSocketingFrame:SetBorder(false, true)
-		ItemSocketingFrame:HideInsets()
+		ItemSocketingFrame:PatSkin()
 		
 		ItemSocketingScrollFrame:SetTemplate("Default")
 		ItemSocketingScrollFrame:SetHeight(ItemSocketingScrollFrame:GetHeight() + 10)
@@ -274,17 +292,11 @@ local function SkinBlizzardFrames(self, event, addon)
 		
 	elseif(addon == "Blizzard_ItemUpgradeUI") then
 	
-		ItemUpgradeFrame:SetTemplate("Transparent")
-		ItemUpgradeFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		ItemUpgradeFrame:SetBorder(false, true)
-		ItemUpgradeFrame:HideInsets()
+		ItemUpgradeFrame:PatSkin()
 
 	elseif(addon == "Blizzard_DebugTools") then
 		
-		ScriptErrorsFrame:SetTemplate("Transparent")
-		ScriptErrorsFrame:SetBackdropBorderColor(0, 0, 0, 0)
-		ScriptErrorsFrame:SetBorder(false, true)
-		ScriptErrorsFrame:HideInsets()
+		ScriptErrorsFrame:PatSkin()
 	
 	elseif(addon == "Blizzard_EncounterJournal") then
 		
@@ -303,15 +315,15 @@ local function SkinBlizzardFrames(self, event, addon)
 		EncounterJournalEncounterFrameInfoDetailsScrollFrameScrollBar:SkinScrollBar()
 		EncounterJournalEncounterFrameInstanceFrameLoreScrollFrameScrollBar:SkinScrollBar()
 		
-		EncounterJournalNavBar.backdrop:SetTemplate("Transparent")
-		EncounterJournalNavBar.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-		EncounterJournalNavBar.backdrop:SetBorder(false, true)
-		EncounterJournalNavBar.backdrop:HideInsets()
+		EncounterJournalNavBar.backdrop:PatSkin()
 		
 		EncounterJournal.backdrop:ClearAllPoints()
 		EncounterJournal.backdrop2:ClearAllPoints()
 		EncounterJournal.backdrop3:SetTexture(.05, .05, .05, 0.7)
 		EncounterJournal.backdrop4:ClearAllPoints()
+		
+		EncounterJournalInstanceSelectDungeonTab.backdrop:PatSkin()
+		EncounterJournalInstanceSelectRaidTab.backdrop:PatSkin()
 		
 	end
 end
