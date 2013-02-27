@@ -13,7 +13,7 @@ C.general = {
 	autoscale = true,
 	uiscale = 0.71,
 	overridelowtohigh = false,
-	backdropcolor = {.05, .05, .05},
+	backdropcolor = {.054, .054, .054},
 	bordercolor = {.1, .1, .1},
 	blizzardreskin = true,
 }
@@ -93,7 +93,7 @@ C.actionbar = {
 	hideshapeshift = false,
 	buttonsize = 27,
 	petbuttonsize = 27,
-	buttonspacing = 1,
+	buttonspacing = 4,
 	ownshdbar = false,
 	ownmetabar = false,
 	ownwarstancebar = false,

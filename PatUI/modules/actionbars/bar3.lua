@@ -9,9 +9,6 @@ Bar3:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
 Bar3:SetFrameStrata("BACKGROUND")
 Bar3:SetFrameLevel(3)
 Bar3:SetTemplate("Transparent")
-Bar3:SetBackdropBorderColor(0, 0, 0, 0)
-Bar3:HideInsets()
-Bar3:SetBorder(false, true)
 
 local bar = Bar3
 MultiBarBottomRight:SetParent(bar)

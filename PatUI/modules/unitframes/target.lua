@@ -22,12 +22,12 @@ self:SetBackdropColor(0, 0, 0)
 self:Size(240, 26)
 
 self.Health:SetHeight(23)
-self.Health:SetFrameLevel(9)
+self.Health:SetFrameLevel(5)
 self.Health:SetFrameStrata("LOW")
-self.Health:SetBorder(false, true)
+self.Health:CreateBorder()
 
 self.Health.bg:SetTexture(C.media.normTex)
-self.Health:SetStatusBarColor(0.1, 0.1, 0.1, 0.7)
+self.Health:SetStatusBarColor(.1, .1, .1, .1)
 self.Health.bg:SetVertexColor(.6, .2, .2, 1)
 
 self.Health.bg:ClearAllPoints()
@@ -38,27 +38,33 @@ self.Health.bg:SetPoint("BOTTOM")
 self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Health.value:Point("RIGHT", self.Health, "RIGHT", -4, -5)
+self.Health.value:Point("RIGHT", self.Health, "RIGHT", -4, 0)
 self.Health.value:SetShadowOffset(0, 0)
 
-self.Power:Size(240, 2)
 self.Power:ClearAllPoints()
-self.Power:SetFrameLevel(1)
-self.Power:SetFrameStrata("Background")
-self.Power:Point("TOP", self.Health, "BOTTOM", 0, -3)
-self.Power:SetBorder(false, true)
-self.Power.bg:SetVertexColor(.12, .12, .12, .7)
+self.Power:Point("TOP", self.Health, "BOTTOM", 0, -7)
+self.Power:SetHeight(2)
+self.Power:SetWidth(240)
+self.Power:CreateBorder()
+self.Power:SetFrameLevel(10)
+
+self.Power.bg:SetVertexColor(.12, .12, .12, .1)
+self.Power.bg:SetTexture(C.media.normTex)
+
+self.Power.colorTapping = true
+self.Power.colorClass = true
+self.Power.colorReaction = true
 
 self.Power.value = P.SetFontString( self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Power.value:Point("LEFT", self.Health, "LEFT", 4, -5)
+self.Power.value:Point("LEFT", self.Health, "LEFT", 4, 0)
 self.Power.value:SetShadowOffset(0, 0)
 
 self.Castbar:ClearAllPoints()
 self.Castbar:SetSize(240, 19)
 self.Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
-self.Castbar:SetBorder(false, true)
-self.Castbar.bg:SetVertexColor( 0.2, 0.2, 0.2, .7)
-self.Castbar.bg:SetTexture(.2, .2, .2)
+self.Castbar:CreateBackdrop("Transparent")
+self.Castbar.bg:Kill()
+self.Castbar:ThickBorder()
 
 self.Castbar.Time = P.SetFontString( self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
 self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 1)
@@ -74,8 +80,8 @@ local function PostCreateAura(self, button)
 
 	-- move icon just 1px inside the black inset (it hide 1px borders)
 	button:SetBorder(false, true)
-	button.icon:Point("TOPLEFT", 0, 0)
-	button.icon:Point("BOTTOMRIGHT", 0, 0)
+	button.icon:Point("TOPLEFT", 2, -2)
+	button.icon:Point("BOTTOMRIGHT", -2, 2)
 
 	-- resize the cooldown tex to fix new icon size
 	button.cd:Point("TOPLEFT", button, "TOPLEFT", 0, 0)
@@ -96,7 +102,7 @@ self.Buffs.spacing = 3
 self.Buffs.initialAnchor = 'TOPLEFT'
 self.Buffs["growth-y"] = "UP"
 self.Buffs["growth-x"] = "RIGHT"
-self.Buffs:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 0)
+self.Buffs:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 4)
 self.Buffs.PostCreateIcon = P.PostCreateAura
 self.Buffs.PostUpdateIcon = P.PostUpdateAura
 

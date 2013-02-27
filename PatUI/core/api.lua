@@ -30,17 +30,6 @@ local function SetBorder(f, i, o)
 	end
 end
 
-local function CreateBorder(self)
-	if(self:GetFrameStrata() == "BACKGROUND") then self:SetFrameStrata("LOW") end
-
-	local border = CreateFrame("Frame", nil, self)
-	border:SetPoint("TOPLEFT", self, "TOPLEFT", P.Scale(-2), P.Scale(2))
-	border:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", P.Scale(2), P.Scale(-2))
-	border:SetTemplate("Transparent")
-	border:SetFrameLevel(self:GetFrameLevel())
-	border:ThickBorder()
-end
-
 local function AllPoints(obj, frame, inset)
 	if not inset then inset = 0 end
 	obj:SetPoint("TOPLEFT", frame, "TOPLEFT", inset, -inset)
@@ -85,6 +74,17 @@ local function ThickBorder(f, force)
 	end
 end
 
+local function CreateBorder(self)
+	if(self:GetFrameStrata() == "BACKGROUND") then self:SetFrameStrata("LOW") end
+
+	local border = CreateFrame("Frame", nil, self)
+	border:SetPoint("TOPLEFT", self, "TOPLEFT", P.Scale(-2), P.Scale(2))
+	border:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", P.Scale(2), P.Scale(-2))
+	border:SetTemplate("Transparent")
+	border:SetFrameLevel(self:GetFrameLevel())
+	ThickBorder(border)
+end
+
 P.RoleIconUpdate = function(self, event)
 	local lfdrole = self.LFDRole
 
@@ -108,13 +108,35 @@ end
 -- the hell didn't I even think of this but Flying did? :O
 local function PatSkin(f)
 	f:SetTemplate("Transparent")
-	SetBorder(f, false, true)
-	f:HideInsets()
-	f:SetBackdropBorderColor(0, 0, 0, 0)
+	ThickBorder(f)
+end
+
+local function SkinCheckBox(frame)
+	frame:StripTextures()
+
+	frame.Display = CreateFrame('Frame', nil, frame)
+	frame.Display:SetSize(12, 12)
+	PatSkin(frame.Display)
+	frame.Display:SetPoint("CENTER")
+	
+	frame:SetFrameLevel(frame:GetFrameLevel()+1)
+	frame.Display:SetFrameLevel(frame:GetFrameLevel()-1)
+
+	--Time to sexify these textures
+	local checked = frame.Display:CreateTexture(nil, 'OVERLAY')
+	checked:SetTexture(0, .7, 1, 1)
+	checked:SetInside(frame.Display)
+	frame:SetCheckedTexture(checked)
+
+	local hover = frame.Display:CreateTexture(nil, 'OVERLAY')
+	hover:SetTexture(1, 1, 1, 0.3)
+	hover:SetInside(frame.Display)
+	frame:SetHighlightTexture(hover)
 end
 
 local function addapi(object)
 	local mt = getmetatable(object).__index
+	mt.SkinCheckBox = SkinCheckBox
 	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
 	if not object.SetBorder then mt.SetBorder = SetBorder end
 	if not object.AllPoints then mt.AllPoints = AllPoints end

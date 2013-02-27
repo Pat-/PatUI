@@ -17,7 +17,7 @@ end
 TukuiBar1:ClearAllPoints()
 TukuiBar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
 TukuiBar1:SetWidth((P.buttonsize * 12) + (P.buttonspacing * 13))
-TukuiBar1:PatSkin()
+TukuiBar1:SetTemplate("Transparent")
 
 local Bar4 = CreateFrame("Frame", "Bar4", UIParent, "SecureHandlerStateTemplate")
 Bar4:Point("CENTER", TukuiBar1, "CENTER", 0, 0)
@@ -41,15 +41,15 @@ end)
 
 TukuiBar2:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
 TukuiBar2:Height(TukuiBar1:GetHeight())
-TukuiBar2:PatSkin()
+TukuiBar2:SetTemplate("Transparent")
 
 TukuiBar5:ClearAllPoints()
-TukuiBar5:SetHeight((P.buttonsize * 12) + (P.buttonspacing * 12))
+TukuiBar5:SetHeight((P.buttonsize * 12) + (P.buttonspacing * 13))
 TukuiBar5:SetWidth((P.buttonsize * 1) + (P.buttonspacing * 2))
 TukuiBar5:Point("RIGHT", UIParent, "RIGHT", -2, -14)
-TukuiBar5:PatSkin()
+TukuiBar5:SetTemplate("Transparent")
 
-TukuiPetBar:PatSkin()
+TukuiPetBar:SetTemplate("Transparent")
 
 TukuiLineToPetActionBarBackground:SetBackdrop(nil)
 
@@ -69,11 +69,9 @@ TukuiBar5ButtonBottom:PatSkin()
 ------------------------------------------------------------------------
 
 TukuiChatBackgroundLeft:SetFrameStrata("Background")
-TukuiChatBackgroundLeft:SetBackdropBorderColor(0, 0, 0, 0)
-TukuiChatBackgroundLeft:HideInsets()
-TukuiChatBackgroundLeft:SetBorder(false, true)
+TukuiChatBackgroundLeft:ThickBorder()
 TukuiChatBackgroundLeft:ClearAllPoints()
-TukuiChatBackgroundLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 2, 2)
+TukuiChatBackgroundLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
 TukuiChatBackgroundLeft:SetHeight(125)
 
 TukuiTabsLeftBackground:ClearAllPoints()

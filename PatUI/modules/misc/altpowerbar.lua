@@ -20,10 +20,7 @@ statusbg:ClearAllPoints()
 statusbg:Point("TOPLEFT", 0, 0)
 statusbg:Point("BOTTOMRIGHT", 0, 0)
 statusbg:Size(1, 1)
-statusbg:SetTemplate("Default")
-statusbg:SetBorder(false, true)
-statusbg:SetBackdropBorderColor(0, 0, 0, 0)
-statusbg:HideInsets()
+statusbg:PatSkin()
 statusbg:SetFrameLevel(status:GetFrameLevel() - 1)
 
 -- change the font

@@ -14,10 +14,10 @@ FramePositions:SetScript("OnEvent", function(self, event, addon)
 	TukuiFocus:ClearAllPoints()
 	
 	if(IsAddOnLoaded("PatUI_DPS")) then
-		TukuiPlayer:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", -160, 30)
-		TukuiTarget:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPRIGHT", 160, 30)
+		TukuiPlayer:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", -160, 50)
+		TukuiTarget:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPRIGHT", 160, 50)
 		
-		TukuiTargetTarget:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, 30)
+		TukuiTargetTarget:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, 50)
 		TukuiPet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 15)
 		TukuiFocus:SetPoint("BOTTOM", UIParent, "BOTTOM", -400, 400)
 		

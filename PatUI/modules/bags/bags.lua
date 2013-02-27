@@ -31,9 +31,7 @@ local function BagsLayout(self, lb)
 	end
 	
 	f:SetTemplate("Transparent")
-	f:SetBorder(false, true)
-	f:SetBackdropBorderColor(0,0,0,0)
-	f:HideInsets()
+	f:ThickBorder()
 end
 hooksecurefunc(Stuffing, "Layout", BagsLayout)
 

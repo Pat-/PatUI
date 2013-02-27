@@ -95,55 +95,7 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 		local frame = _G["SideDressUpFrame"]
 		
-		local frames = {
-			AuctionFrame,
-			BrowseBidButton,
-			BrowseBuyoutButton,
-			BrowseCloseButton,
-			BrowseResetButton,
-			AuctionsCancelAuctionButton,
-			AuctionsCloseButton,
-			AuctionsCreateAuctionButton,
-			BrowseSearchButton,
-			BidBidButton,
-			BidBuyoutButton,
-			BidCloseButton,
-			BrowseDropDown.backdrop,
-			PriceDropDown.backdrop,
-			DurationDropDown.backdrop,
-			AuctionFrameBrowse.bg1,
-			AuctionFrameBrowse.bg2,
-			AuctionFrameBid.bg,
-			AuctionFrameAuctions.bg1,
-			AuctionFrameAuctions.bg2,
-			BrowseName.backdrop,
-			BrowseMinLevel.backdrop,
-			BrowseMaxLevel.backdrop,
-			BrowseBidPriceGold.backdrop,
-			BrowseBidPriceSilver.backdrop,
-			BrowseBidPriceCopper.backdrop,
-			BidBidPriceGold.backdrop,
-			BidBidPriceSilver.backdrop,
-			BidBidPriceCopper.backdrop,
-			AuctionsStackSizeEntry.backdrop,
-			AuctionsNumStacksEntry.backdrop,
-			StartPriceGold.backdrop,
-			StartPriceSilver.backdrop,
-			StartPriceCopper.backdrop,
-			BuyoutPriceGold.backdrop,
-			BuyoutPriceSilver.backdrop,
-			BuyoutPriceCopper.backdrop,
-			IsUsableCheckButton.backdrop,
-			ShowOnPlayerCheckButton.backdrop,
-			AuctionsItemButton,
-		}
-		
-		for _, f in pairs(frames) do
-			f:PatSkin()
-		end
-		
-		DurationDropDown:ClearAllPoints()
-		DurationDropDown:SetPoint("BOTTOMRIGHT", AuctionFrameAuctions.bg1, "BOTTOMRIGHT", 3, 50)
+		AuctionFrame:PatSkin()
 		
 		for i=1, 3 do
 			_G["AuctionFrameTab"..i].backdrop:PatSkin()
@@ -198,19 +150,7 @@ local function SkinBlizzardFrames(self, event, addon)
 			GuildFrame,
 			GuildMemberDetailFrame,
 			GuildLogFrame,
-			GuildNewsFiltersFrame,
 			GuildTextEditFrame,
-			GuildFactionBar.backdrop,
-			GuildXPBar.backdrop,
-			GuildLatestPerkButton.backdrop,
-			GuildNextPerkButton.backdrop,
-			GuildPerksToggleButton.backdrop,
-			GuildRosterShowOfflineButton.backdrop,
-			GuildRosterViewDropdown.backdrop,
-			GuildAddMemberButton,
-			GuildViewLogButton,
-			GuildControlButton,
-			GuildTextEditFrameAcceptButton,
 		}
 		
 		for _,f in pairs(frames) do
@@ -218,24 +158,8 @@ local function SkinBlizzardFrames(self, event, addon)
 			if f.shadow then f.shadow:Hide() end
 		end
 		
-		GuildFactionBar.backdrop:Point("TOPLEFT", GuildFactionBar.progress, "TOPLEFT", 0, 0)
-		GuildFactionBar.backdrop:Point("BOTTOMRIGHT", GuildFactionBar, "BOTTOMRIGHT", 0, 2)
-		
-		GuildXPBar.backdrop:Point("TOPLEFT", GuildXPBar.progress, "TOPLEFT", 0, 0)
-		GuildXPBar.backdrop:Point("BOTTOMRIGHT", GuildXPBar, "BOTTOMRIGHT", 0, 2)
-		
-		GuildLatestPerkButton.backdrop:Point("TOPLEFT", GuildLatestPerkButtonIconTexture, "TOPLEFT", 0, 0)
-		GuildLatestPerkButton.backdrop:Point("BOTTOMRIGHT", GuildLatestPerkButtonIconTexture, "BOTTOMRIGHT", 0, 0)
-		
-		GuildNextPerkButton.backdrop:Point("TOPLEFT", GuildNextPerkButtonIconTexture, "TOPLEFT", 0, 0)
-		GuildNextPerkButton.backdrop:Point("BOTTOMRIGHT", GuildNextPerkButtonIconTexture, "BOTTOMRIGHT", 0, 0)
-		
 		for i=1, 5 do
 			_G["GuildFrameTab"..i].backdrop:PatSkin()
-		end
-		
-		for i=1, 7 do
-			_G["GuildNewsFilterButton"..i].backdrop:PatSkin()
 		end
 		
 		GuildMemberDetailFrame:Point("TOPLEFT", GuildFrame, "TOPRIGHT", 4, -28)
@@ -270,6 +194,10 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 		InspectFrame.backdrop:PatSkin()
 		
+		for i=1, 4 do
+			_G["InspectFrameTab"..i].backdrop:PatSkin()
+		end
+		
 	elseif(addon == "Blizzard_TradeSkillUI") then
 	
 		TradeSkillFrame:PatSkin()
@@ -300,16 +228,9 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 	elseif(addon == "Blizzard_EncounterJournal") then
 		
-		local frames = {
-			EncounterJournal,
-			EncounterJournalNavBarHomeButton,
-		}
-		
-		for _,f in pairs(frames) do
-			f:SetBackdropBorderColor(0, 0, 0, 0)
-			f:SetBorder(false, true)
-			f:HideInsets()
-		end
+		EncounterJournal:SetTemplate("Transparent")
+		EncounterJournal:CreaterBorder()
+		EncounterJournal:SetBackdropBorderColor(0, 0, 0, 0)
 		
 		EncounterJournalEncounterFrameInfoLootScrollFrameScrollBar:SkinScrollBar()
 		EncounterJournalEncounterFrameInfoDetailsScrollFrameScrollBar:SkinScrollBar()
@@ -322,12 +243,27 @@ local function SkinBlizzardFrames(self, event, addon)
 		EncounterJournal.backdrop3:SetTexture(.05, .05, .05, 0.7)
 		EncounterJournal.backdrop4:ClearAllPoints()
 		
-		EncounterJournalInstanceSelectDungeonTab.backdrop:PatSkin()
-		EncounterJournalInstanceSelectRaidTab.backdrop:PatSkin()
-		
 	end
 end
 
 local Init = CreateFrame("Frame")
 Init:RegisterEvent("ADDON_LOADED")
 Init:SetScript("OnEvent", SkinBlizzardFrames)
+
+for i=1, 4 do
+	_G["CharacterFrameTab"..i].backdrop:PatSkin()
+	_G["SpellBookFrameTabButton"..i].backdrop:PatSkin()
+	_G["FriendsFrameTab"..i].backdrop:PatSkin()
+	_G["PVPFrameTab"..i].backdrop:PatSkin()
+end
+
+for i=1, 3 do
+	_G["FriendsTabHeaderTab"..i].backdrop:PatSkin()
+end
+
+for i=1, 2 do
+	_G["PVEFrameTab"..i].backdrop:PatSkin()
+	_G["PetJournalParentTab"..i].backdrop:PatSkin()
+	_G["MailFrameTab"..i].backdrop:PatSkin()
+	_G["MerchantFrameTab"..i].backdrop:PatSkin()
+end
