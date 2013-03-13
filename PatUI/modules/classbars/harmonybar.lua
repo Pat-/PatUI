@@ -9,7 +9,7 @@ self.HarmonyBar:Size(240, 6)
 self.HarmonyBar:SetBackdrop(nil)
 
 for i = 1, 4 do
-	self.HarmonyBar[i]:Size(50, 2)
+	self.HarmonyBar[i]:Size(55, 2)
 	self.HarmonyBar[i]:SetBorder(false, true)
 	if (i == 1) then
 		self.HarmonyBar[i]:SetPoint("BOTTOM", self, "TOP", 0, 6)

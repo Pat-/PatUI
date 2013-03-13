@@ -1,4 +1,4 @@
-## Interface: 50001
+## Interface: 50200
 ## Title: |cff18AA18PatUI|r
 ## Notes:
 ## Credits: Tukz, Sinaris, Ekst, Flyingboots, Elv22, Eclipse, Hydra

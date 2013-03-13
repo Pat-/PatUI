@@ -15,7 +15,6 @@ local frames = {
 	WorldStateScoreFrame,
 	MailFrame,
 	OpenMailFrame,
-	PVPFrame.backdrop,
 	PVEFrame.backdrop,
 	MerchantFrame,
 	MerchantBuyBackItem,
@@ -229,8 +228,6 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_EncounterJournal") then
 		
 		EncounterJournal:SetTemplate("Transparent")
-		EncounterJournal:CreaterBorder()
-		EncounterJournal:SetBackdropBorderColor(0, 0, 0, 0)
 		
 		EncounterJournalEncounterFrameInfoLootScrollFrameScrollBar:SkinScrollBar()
 		EncounterJournalEncounterFrameInfoDetailsScrollFrameScrollBar:SkinScrollBar()
@@ -240,9 +237,17 @@ local function SkinBlizzardFrames(self, event, addon)
 		
 		EncounterJournal.backdrop:ClearAllPoints()
 		EncounterJournal.backdrop2:ClearAllPoints()
-		EncounterJournal.backdrop3:SetTexture(.05, .05, .05, 0.7)
+		EncounterJournal.backdrop3:SetTexture(.05, .05, .05, 0.1)
 		EncounterJournal.backdrop4:ClearAllPoints()
 		
+	elseif(addon == "Blizzard_PVPUI") then
+	
+		PVPUIFrame:PatSkin()
+		
+		for i=1, 2 do
+			_G["PVPUIFrameTab"..i].backdrop:PatSkin()
+		end
+
 	end
 end
 
@@ -254,7 +259,6 @@ for i=1, 4 do
 	_G["CharacterFrameTab"..i].backdrop:PatSkin()
 	_G["SpellBookFrameTabButton"..i].backdrop:PatSkin()
 	_G["FriendsFrameTab"..i].backdrop:PatSkin()
-	_G["PVPFrameTab"..i].backdrop:PatSkin()
 end
 
 for i=1, 3 do

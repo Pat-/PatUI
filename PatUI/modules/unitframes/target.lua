@@ -38,7 +38,7 @@ self.Health.bg:SetPoint("BOTTOM")
 self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Health.value:Point("RIGHT", self.Health, "RIGHT", -4, 0)
+self.Health.value:Point("RIGHT", self.Health, "RIGHT", -2, -4)
 self.Health.value:SetShadowOffset(0, 0)
 
 self.Power:ClearAllPoints()
@@ -55,8 +55,8 @@ self.Power.colorTapping = true
 self.Power.colorClass = true
 self.Power.colorReaction = true
 
-self.Power.value = P.SetFontString( self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Power.value:Point("LEFT", self.Health, "LEFT", 4, 0)
+self.Power.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
+self.Power.value:Point("LEFT", self.Health, "LEFT", 2, -4)
 self.Power.value:SetShadowOffset(0, 0)
 
 self.Castbar:ClearAllPoints()

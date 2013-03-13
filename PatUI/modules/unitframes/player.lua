@@ -76,11 +76,11 @@ if P.level ~= MAX_PLAYER_LEVEL then
    	self.Experience:ClearAllPoints()
 	self.Experience:SetStatusBarColor( 0, 0.4, 1, 0.8 )
 
-	self.Experience:Size(TukuiTabsLeftBackground:GetWidth(), 2)
-	self.Experience:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 3)
+	self.Experience:Size(TukuiTabsLeftBackground:GetWidth() - 4, 2)
+	self.Experience:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 5)
 	self.Experience:SetFrameLevel(3)
 	self.Experience:SetAlpha(1)
-	self.Experience:ThickBorder()
+	self.Experience:CreateBorder()
 
 	self.Experience:SetBackdropColor(.12, .12, .12, .9)
 
@@ -94,10 +94,10 @@ if P.level == MAX_PLAYER_LEVEL then
    self.Reputation:ClearAllPoints()
 
 	self.Reputation:Size(TukuiTabsLeftBackground:GetWidth(), 2)
-	self.Reputation:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 3)
+	self.Reputation:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 5)
 	self.Reputation:SetFrameLevel(3)
 	self.Reputation:SetAlpha(1)
-	self.Reputation:ThickBorder()
+	self.Reputation:CreateBorder()
 
 	self.Reputation:SetBackdropColor(.12, .12, .12, .9)
 

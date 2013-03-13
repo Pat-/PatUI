@@ -42,10 +42,14 @@ P.PostUpdateRaidUnit = function(self)
 	
 	self.Health:ClearAllPoints()
 	self.Health:SetAllPoints(self)
-	self.Health:SetBorder(false, true)
+	self.Health:CreateBorder()
 	self.Health:SetFrameStrata("LOW")
 	self.Health:SetOrientation('HORIZONTAL')
+	self.Health:SetStatusBarColor(.1, .1, .1, .1)
 	
+	self.Health.bg:SetTexture(C.media.normTex)
+	self.Health.bg:SetVertexColor(.6, .2, .2, 1)
+
 	self.Health.bg:ClearAllPoints()
 	self.Health.bg:SetPoint("LEFT")
 	self.Health.bg:SetPoint("RIGHT")
@@ -58,21 +62,6 @@ P.PostUpdateRaidUnit = function(self)
 	self.Health.value:Point("TOP", self.Health, 0, 0)
 	self.Health.value:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	self.Health.value:SetShadowOffset(0, 0)
-
-
-	if C.unitframes.unicolor == true then
-		self.Health.colorDisconnected = false
-		self.Health.colorClass = false
-		self.Health:SetStatusBarColor(0.05, 0.05, 0.05, .7)
-		self.Health.bg:SetVertexColor(.6, .2, .2, 1)
-		self.Health.bg:SetTexture(C.media.normTex)
-	else
-		self.Health.bg:SetVertexColor(0.05, 0.05, 0.05)
-		self.Health.bg:SetTexture(0.05, 0.05, 0.05)
-		self.Health.colorDisconnected = true
-		self.Health.colorClass = true
-		self.Health.colorReaction = true
-	end
 
 	if C.unitframes.unicolor == true then
 		self:HookScript("OnEnter", function(self)

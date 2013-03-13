@@ -25,7 +25,7 @@ FramePositions:SetScript("OnEvent", function(self, event, addon)
 		TukuiPlayer:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPLEFT", -254, 150)
 		TukuiTarget:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPRIGHT", 254, 150)
 		
-		TukuiTargetTarget:SetPoint("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -30)
+		TukuiTargetTarget:SetPoint("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -36)
 		TukuiPet:SetPoint("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -30)
 		TukuiFocus:SetPoint("BOTTOM", UIParent, "BOTTOM", -600, 400)
 		
