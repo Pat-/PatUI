@@ -5,9 +5,7 @@ local status = TukuiAltPowerBarStatus
 local text = TukuiAltPowerBarText
 
 -- position the bar
-bar:SetBackdropBorderColor(0, 0, 0, 0)
-bar:HideInsets()
-bar:SetBackdropColor(0, 0, 0, 0)
+bar:PatSkin()
 
 -- position status bar
 status:Size(TukuiBar1:GetWidth(), 18)
@@ -20,7 +18,6 @@ statusbg:ClearAllPoints()
 statusbg:Point("TOPLEFT", 0, 0)
 statusbg:Point("BOTTOMRIGHT", 0, 0)
 statusbg:Size(1, 1)
-statusbg:PatSkin()
 statusbg:SetFrameLevel(status:GetFrameLevel() - 1)
 
 -- change the font

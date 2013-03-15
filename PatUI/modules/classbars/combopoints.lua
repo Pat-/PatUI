@@ -16,23 +16,22 @@ local cpoints = CreateFrame("Frame", "TukuiComboPoints", UIParent)
 cpoints:Width(TukuiPlayer:GetWidth())
 cpoints:Height(8)
 cpoints:Point("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 6)
-cpoints:SetBackdrop(nil)
+cpoints:CreateBorder()
+cpoints:SetFrameLevel(10)
 
 local points = {}
 
 for i=1,MAX_COMBO_POINTS do
 	points[i] = CreateFrame("Frame", "TukuiComboPoints_Point"..i, cpoints)
 	points[i]:SetWidth((TukuiPlayer:GetWidth()-(MAX_COMBO_POINTS) + 1) / MAX_COMBO_POINTS)
-	points[i]:SetHeight(6)
+	points[i]:SetHeight(8)
 	points[i].tex = points[i]:CreateTexture(nil, "OVERLAY")
 	points[i].tex:SetTexture(C.media.normTex)
 	points[i].tex:SetVertexColor(unpack(colors[i]))
 	points[i].tex:AllPoints(points[i])
-	points[i]:SetBorder(false, true)
-	points[i]:HideInsets()
-	points[i]:SetBackdropBorderColor(0, 0, 0, 0)
 	points[i].BG = points[i]:CreateTexture(nil, 'BORDER')
 	points[i].BG:SetAllPoints()
+	points[i]:SetBorder(false, true)
 	points[i].BG:SetTexture(.1, .1, .1)
 	if i==1 then
 		points[i]:SetPoint("LEFT", cpoints, "LEFT", 0, 0)

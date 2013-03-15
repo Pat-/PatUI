@@ -20,12 +20,12 @@ for i = 1, 5 do
 	
 	self.Health:Height(23)
 	self.Health:SetFrameLevel(9)
-	self.Health:SetBorder(false, true)
-	
+	self.Health:CreateBorder()
+
 	self.Health.bg:SetTexture(C.media.normTex)
-	self.Health:SetStatusBarColor(.1, .1, .1, .7)
+	self.Health:SetStatusBarColor(.1, .1, .1, .1)
 	self.Health.bg:SetVertexColor(.6, .2, .2, 1)
-	
+
 	self.Health.bg:ClearAllPoints()
 	self.Health.bg:SetPoint("LEFT")
 	self.Health.bg:SetPoint("RIGHT")
@@ -35,13 +35,15 @@ for i = 1, 5 do
 
 	self.Power:Size(215, 2)
 	self.Power:ClearAllPoints()
-	self.Power:Point("TOP", self.Health, "BOTTOM", 0, -3)
-	self.Power:SetBorder(false, true)
-	self.Power:SetFrameStrata("Low")
-	self.Power.bg:SetVertexColor(.12, .12, .12, .7)
+	self.Power:Point("TOP", self.Health, "BOTTOM", 0, -7)
+	self.Power:CreateBorder()
+	self.Power:SetFrameLevel(10)
+	
+	self.Power.bg:SetVertexColor(.12, .12, .12, .1)
+	self.Power.bg:SetTexture(C.media.normTex)
 
 	self.Power.value:ClearAllPoints()
-	self.Power.value:Point("LEFT", self.Health, "LEFT", 4, -5)
+	self.Power.value:Point("LEFT", self.Health, "LEFT", 2, -4)
 	self.Power.value:SetShadowOffset(0,0)
 	self.Power.value:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 			
@@ -50,7 +52,7 @@ for i = 1, 5 do
 	self.Name:SetShadowOffset(0, 0)
 
 	self.Health.value:ClearAllPoints()
-	self.Health.value:Point("RIGHT", self.Health, "RIGHT", -4, -5)
+	self.Health.value:Point("RIGHT", self.Health, "RIGHT", -2, -4)
 	self.Health.value:SetShadowOffset(0, 0)
 	self.Health.value:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	
@@ -65,17 +67,13 @@ for i = 1, 5 do
 	self.Power.value:Point("LEFT", self.Health, "LEFT", 4, -5)
 	
 	self.Castbar:ClearAllPoints()
-	self.Castbar:SetSize(215, 23)
+	self.Castbar:SetSize(215, 16)
 	self.Castbar:Point("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -3)
-	self.Castbar:SetBorder(false, true)
 	
+	self.Castbar:CreateBackdrop("Transparent")
+	self.Castbar:ThickBorder()
 	self.Castbar.bg:Kill()
 	self.Castbar.button:Kill()
-	
-	self.Castbar.bg = self.Castbar:CreateTexture(nil, "BORDER")
-	self.Castbar.bg:SetAllPoints(self.Castbar)
-	self.Castbar.bg:SetTexture(C.media.normTex)
-	self.Castbar.bg:SetVertexColor(0, 0, 0, .7)
 	
 	self.Castbar.Time = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
 	self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 0)

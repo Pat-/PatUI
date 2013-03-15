@@ -46,6 +46,12 @@ local frames = {
 	StackSplitFrame,
 	ReportPlayerNameDialog,
 	ReportCheatingDialog,
+	ChatConfigBackgroundFrame,
+	ChatConfigCategoryFrame,
+	HelpFrame.backdrop,
+	HelpFrameMainInset.backdrop,
+	HelpFrameLeftInset.backdrop,
+	TicketStatusFrameButton,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -61,6 +67,9 @@ end)
 BNConversationInviteDialogList:SetTemplate("Default")
 
 QueueStatusFrame:SetFrameStrata("HIGH")
+
+HelpFrameGM_ResponseScrollFrame2ScrollBar:SkinScrollBar()
+HelpFrameGM_ResponseScrollFrame1ScrollBar:SkinScrollBar()
 
 TokenFrame:HookScript("OnShow", function()
 	TokenFramePopup:PatSkin()
@@ -150,6 +159,7 @@ local function SkinBlizzardFrames(self, event, addon)
 			GuildMemberDetailFrame,
 			GuildLogFrame,
 			GuildTextEditFrame,
+			GuildNewsFiltersFrame,
 		}
 		
 		for _,f in pairs(frames) do
@@ -180,6 +190,7 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_VoidStorageUI") then
 	
 		VoidStorageFrame:PatSkin()
+		SideDressUpFrame.backdrop:PatSkin()
 		
 	elseif(addon == "Blizzard_ReforgingUI") then
 	
@@ -247,6 +258,11 @@ local function SkinBlizzardFrames(self, event, addon)
 		for i=1, 2 do
 			_G["PVPUIFrameTab"..i].backdrop:PatSkin()
 		end
+		
+	elseif(addon == "Blizzard_GMSurveyUI") then
+		
+		GMSurveyScrollFrameScrollBar:SkinScrollBar()
+		GMSurveyFrame:PatSkin()
 
 	end
 end

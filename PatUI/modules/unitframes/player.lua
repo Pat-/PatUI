@@ -93,7 +93,7 @@ end
 if P.level == MAX_PLAYER_LEVEL then
    self.Reputation:ClearAllPoints()
 
-	self.Reputation:Size(TukuiTabsLeftBackground:GetWidth(), 2)
+	self.Reputation:Size(TukuiTabsLeftBackground:GetWidth() - 4, 2)
 	self.Reputation:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 5)
 	self.Reputation:SetFrameLevel(3)
 	self.Reputation:SetAlpha(1)
