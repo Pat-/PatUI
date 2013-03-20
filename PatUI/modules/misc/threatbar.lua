@@ -10,11 +10,5 @@ status:CreateBorder()
 
 status.bg:SetVertexColor(0, 0, 0, 0)
 
-local background = CreateFrame("Frame", nil, status)
-background:SetFrameLevel(status:GetFrameLevel() - 1)
-background:Point("TOPLEFT", 2, -2)
-background:Point("BOTTOMRIGHT", -2, 2)
-background:SetTemplate("Transparent")
-
 status.text:SetFont(C["media"].pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 status.Title:SetFont(C["media"].pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")

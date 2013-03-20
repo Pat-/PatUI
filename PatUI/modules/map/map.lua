@@ -38,4 +38,4 @@ TukuiAurasPlayerBuffs:SetAttribute("xOffset", -29)
 TukuiAurasPlayerBuffs:SetAttribute("wrapYOffset", -36)
 
 TukuiAurasPlayerBuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -153, -4)
-TukuiAurasPlayerDebuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -153, -107)
+TukuiAurasPlayerDebuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -153, -118)

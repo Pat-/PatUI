@@ -48,6 +48,16 @@ power:Point("TOP", self.Health, "BOTTOM", 0, -7)
 power:CreateBorder()
 power:SetStatusBarTexture(C.media.normTex)
 
+self.Castbar:ClearAllPoints()
+self.Castbar:AllPoints(self.Health)
+self.Castbar:CreateBackdrop("Transparent")
+self.Castbar.bg:Kill()
+
+self.Castbar.Time:ClearAllPoints()
+
+self.Castbar.Text = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
+self.Castbar.Text:Point("CENTER", self.Castbar, "CENTER", 0, 0)
+
 local powerBG = power:CreateTexture(nil, "BORDER")
 powerBG:SetAllPoints(power)
 powerBG:SetTexture(C.media.normTex)

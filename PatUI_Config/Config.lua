@@ -5,6 +5,7 @@ C.media = {
 	pixelfont = [=[Interface\AddOns\PatUI\media\fonts\pixelfont.ttf]=],
 	ru_pixelfont = [[Interface\AddOns\PatUI\media\fonts\pixel_font.ttf]],
 	dmgfont = [=[Interface\AddOns\PatUI\media\fonts\font.ttf]=],
+	logo = [=[Interface\AddOns\PatUI\media\textures\logo.tga]=],
 	pfontsize = 10,
 	ru_pfontsize = 10,
 }

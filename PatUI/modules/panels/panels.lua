@@ -129,3 +129,4 @@ DataPoint5:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
 DataPoint5:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
 DataPoint5:SetBackdrop(nil)
 DataPoint5:SetFrameStrata("HIGH")
+

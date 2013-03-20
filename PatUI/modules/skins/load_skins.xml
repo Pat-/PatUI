@@ -2,5 +2,4 @@
 	<Script file="templates.lua"/>
 	<Script file="clique.lua"/>
 	<Script file="minarch.lua"/>
-	<Script file="frames.lua"/>
 </Ui>

@@ -3,7 +3,7 @@ local P, C, L, G = unpack(Tukui)
 TukuiBar3:SetAlpha(0)
 
 local Bar3 = CreateFrame("Frame", "Bar3", UIParent, "SecureHandlerStateTemplate")
-Bar3:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 8)
+Bar3:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 10)
 Bar3:Width((P.buttonsize * 12) + (P.buttonspacing * 13))
 Bar3:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
 Bar3:SetFrameStrata("BACKGROUND")

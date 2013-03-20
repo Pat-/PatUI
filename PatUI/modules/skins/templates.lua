@@ -52,6 +52,7 @@ local frames = {
 	HelpFrameMainInset.backdrop,
 	HelpFrameLeftInset.backdrop,
 	TicketStatusFrameButton,
+	ReadyCheckFrame,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -70,6 +71,8 @@ QueueStatusFrame:SetFrameStrata("HIGH")
 
 HelpFrameGM_ResponseScrollFrame2ScrollBar:SkinScrollBar()
 HelpFrameGM_ResponseScrollFrame1ScrollBar:SkinScrollBar()
+RaidFinderQueueFramePartyBackfillBackfillButton:SkinButton()
+RaidFinderQueueFramePartyBackfillNoBackfillButton:SkinButton()
 
 TokenFrame:HookScript("OnShow", function()
 	TokenFramePopup:PatSkin()
@@ -100,18 +103,27 @@ local function SkinBlizzardFrames(self, event, addon)
 		ArchaeologyFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_AuctionUI") then
-	
-		local frame = _G["SideDressUpFrame"]
 		
 		AuctionFrame:PatSkin()
+		AuctionFrameBrowse.bg1:PatSkin()
+		AuctionFrameBrowse.bg2:PatSkin()
+		AuctionFrameBid.bg:PatSkin()
+		AuctionFrameAuctions.bg1:PatSkin()
+		AuctionFrameAuctions.bg2:PatSkin()
 		
 		for i=1, 3 do
 			_G["AuctionFrameTab"..i].backdrop:PatSkin()
 		end
 		
+		local frame = _G["SideDressUpFrame"]
+		
 		frame:HookScript("OnShow", function(self) 
 			frame:PatSkin()
 		end)
+		
+	elseif(addon == "Blizzard_BlackMarketUI") then
+		
+		BlackMarketFrame:PatSkin()
 		
 	elseif(addon == "Blizzard_BarbershopUI") then
 	
@@ -160,6 +172,8 @@ local function SkinBlizzardFrames(self, event, addon)
 			GuildLogFrame,
 			GuildTextEditFrame,
 			GuildNewsFiltersFrame,
+			GuildFactionBar.backdrop,
+			GuildXPBar.backdrop,
 		}
 		
 		for _,f in pairs(frames) do
@@ -172,6 +186,13 @@ local function SkinBlizzardFrames(self, event, addon)
 		end
 		
 		GuildMemberDetailFrame:Point("TOPLEFT", GuildFrame, "TOPRIGHT", 4, -28)
+		
+		GuildXPBar.backdrop:Point("TOPLEFT", GuildXPBar.progress, "TOPLEFT", -2, 2)
+		GuildXPBar.backdrop:Point("BOTTOMRIGHT", GuildXPBar, "BOTTOMRIGHT", 2, 0)
+
+		GuildFactionBar.backdrop:Point("TOPLEFT", GuildFactionBar.progress, "TOPLEFT", -2, 2)
+		GuildFactionBar.backdrop:Point("BOTTOMRIGHT", GuildFactionBar, "BOTTOMRIGHT", 0, 1)
+		
 		
 	elseif(addon == "Blizzard_GuildBankUI") then
 	
@@ -262,7 +283,7 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_GMSurveyUI") then
 		
 		GMSurveyScrollFrameScrollBar:SkinScrollBar()
-		GMSurveyFrame:PatSkin()
+		GMSurveyFrame.backdrop:PatSkin()
 
 	end
 end

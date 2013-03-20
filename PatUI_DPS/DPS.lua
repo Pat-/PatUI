@@ -124,8 +124,23 @@ local TukuiRaidPosition = CreateFrame("Frame")
 TukuiRaidPosition:RegisterEvent("PLAYER_LOGIN")
 TukuiRaidPosition:SetScript("OnEvent", function(self, event)
 	local raid = G.UnitFrames.RaidUnits
+	
 	raid:ClearAllPoints()
 	raid:SetPoint("BOTTOMLEFT", TukuiTabsLeftBackground, "TOPLEFT", 2, 14)
+	
+	if Bar3:IsShown() then
+		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 3)
+	end
+	
+	Bar3:HookScript("OnHide", function()
+		raid:ClearAllPoints()
+		raid:SetPoint("BOTTOMLEFT", TukuiTabsLeftBackground, "TOPLEFT", 2, 14)
+	end)
+	
+	Bar3:HookScript("OnShow", function()
+		raid:ClearAllPoints()
+		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 3)
+	end)
 	
 	if C.unitframes.showraidpets == true then
 	local pets = G.UnitFrames.RaidPets
