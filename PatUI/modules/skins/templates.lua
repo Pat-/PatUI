@@ -69,11 +69,6 @@ BNConversationInviteDialogList:SetTemplate("Default")
 
 QueueStatusFrame:SetFrameStrata("HIGH")
 
-HelpFrameGM_ResponseScrollFrame2ScrollBar:SkinScrollBar()
-HelpFrameGM_ResponseScrollFrame1ScrollBar:SkinScrollBar()
-RaidFinderQueueFramePartyBackfillBackfillButton:SkinButton()
-RaidFinderQueueFramePartyBackfillNoBackfillButton:SkinButton()
-
 TokenFrame:HookScript("OnShow", function()
 	TokenFramePopup:PatSkin()
 end)
@@ -281,8 +276,7 @@ local function SkinBlizzardFrames(self, event, addon)
 		end
 		
 	elseif(addon == "Blizzard_GMSurveyUI") then
-		
-		GMSurveyScrollFrameScrollBar:SkinScrollBar()
+	
 		GMSurveyFrame.backdrop:PatSkin()
 
 	end
