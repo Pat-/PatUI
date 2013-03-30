@@ -53,6 +53,38 @@ TukuiPetBar:SetTemplate("Transparent")
 
 TukuiLineToPetActionBarBackground:SetBackdrop(nil)
 
+SplitBarRight = CreateFrame("Frame", "SplitBarRight", UIParent)
+SplitBarRight:Point("BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 6, 0)
+SplitBarRight:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
+SplitBarRight:Height(TukuiBar1:GetHeight())
+SplitBarRight:SetTemplate("Transparent")
+SplitBarRight:SetFrameLevel(TukuiBar1:GetFrameLevel())
+SplitBarRight:SetFrameStrata(TukuiBar1:GetFrameStrata())
+
+-- Flying figured out how to make buttons 8-12 work properly.
+TukuiBar2:HookScript("OnHide", function()
+	SplitBarRight:Hide()
+end)
+
+TukuiBar2:HookScript("OnShow", function()
+	SplitBarRight:Show()
+end)
+
+if Bar4:IsShown() then
+	SplitBarRight:Height((P.buttonsize * 2) + (P.buttonspacing * 3))
+else
+	SplitBarRight:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
+end
+
+Bar4:HookScript("OnHide", function()
+	SplitBarRight:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
+end)
+
+Bar4:HookScript("OnShow", function()
+	SplitBarRight:Height((P.buttonsize * 2) + (P.buttonspacing * 3))
+end)
+
+
 ------------------------------------------------------------------------
 -- Setting up Actionbar Buttons
 ------------------------------------------------------------------------
@@ -101,7 +133,7 @@ local DataPoint = {}
 
 -- Flying found the proper SetPoints + Minimap points.
 for i=1, 3 do
-	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
+	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, TukuiBar1)
 	DataPoint[i]:Width((TukuiBar1:GetWidth() / 3) - 2)
 	DataPoint[i]:Height(18)
 	DataPoint[i]:PatSkin()
@@ -130,3 +162,16 @@ DataPoint5:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
 DataPoint5:SetBackdrop(nil)
 DataPoint5:SetFrameStrata("HIGH")
 
+DataPoint6 = CreateFrame("Frame", "DataPoint6", TukuiBar2)
+DataPoint6:Point("TOP", TukuiBar2, "BOTTOM", 0, -3)
+DataPoint6:Size(TukuiBar2:GetWidth(), 18)
+DataPoint6:SetFrameLevel((TukuiBar2:GetFrameLevel()) + 2)
+DataPoint6:PatSkin()
+DataPoint6:SetFrameStrata("HIGH")
+
+DataPoint7 = CreateFrame("Frame", "DataPoint7", SplitBarRight)
+DataPoint7:Point("TOP", SplitBarRight, "BOTTOM", 0, -3)
+DataPoint7:Size(SplitBarRight:GetWidth(), 18)
+DataPoint7:SetFrameLevel((SplitBarRight:GetFrameLevel()) + 2)
+DataPoint7:PatSkin()
+DataPoint7:SetFrameStrata("HIGH")

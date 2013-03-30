@@ -2,9 +2,9 @@ local P, C, L, G = unpack(Tukui)
 
 --our own datatext position function because we made our custom panel
 local DataTextPosition = function(f, t, o)
-	local points = { DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5 }
+	local points = { DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5, DataPoint6, DataPoint7 }
 		
-	if o >= 1 and o <= 5 then
+	if o >= 1 and o <= 7 then
 		t:ClearAllPoints()
 		t:SetParent(points[o])
 		t:SetPoint("TOPLEFT")
