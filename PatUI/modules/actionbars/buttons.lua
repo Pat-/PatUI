@@ -8,9 +8,9 @@ local function ShowOrHideBar(bar, button)
 		UnregisterStateDriver(bar, "visibility")
 		bar:Hide()
 		
-		-- for bar 2½+3½+4, high reso only
 		if bar == Bar4 then
 			TukuiBar2:SetHeight(TukuiBar1:GetHeight())
+			SplitBarRight:SetHeight(TukuiBar1:GetHeight())
 			if not P.lowversion then
 				for i = 7, 12 do
 					local left = _G["MultiBarBottomLeftButton"..i]
@@ -22,9 +22,9 @@ local function ShowOrHideBar(bar, button)
 		RegisterStateDriver(bar, "visibility", "[vehicleui][petbattle][overridebar] hide; show")
 		bar:Show()
 		
-		-- for bar 2½+3½+4, high reso only
 		if bar == Bar4 then
-			TukuiBar2:SetHeight(Bar4:GetHeight())
+			TukuiBar2:SetHeight(TukuiBar1:GetHeight())
+			SplitBarRight:SetHeight(TukuiBar1:GetHeight())
 			if not P.lowversion then
 				for i = 7, 12 do
 					local left = _G["MultiBarBottomLeftButton"..i]
@@ -38,21 +38,21 @@ end
 local function MoveButtonBar(button, bar)
 	local db = TukuiDataPerChar
 	
-	if button == SplitButton then
+	if button == SplitBarButton then
 		if bar:IsShown() then
 			db.hidebar2 = false
 			button:ClearAllPoints()
-			button:Point("RIGHT", ChatBarButton, "LEFT", -3, 0)
-			button.text:SetText("|cff18AA18 - |r")
+			button:Point("TOP", TukuiBar1, "BOTTOM", 0, -3)
+			button.text:SetText("|cff18AA18 Hide Splitbar |r")
 		else
 			db.hidebar2 = true
 			button:ClearAllPoints()
-			button:Point("RIGHT", ChatBarButton, "LEFT", -3, 0)
-			button.text:SetText("|cff18AA18 + |r")
+			button:Point("TOP", TukuiBar1, "BOTTOM", 0, -3)
+			button.text:SetText("|cff18AA18 Show Splitbar |r")
 		end
 	end	
 	
-	if button == ChatBarButton then
+	if button == Bar3Button then
 		if bar:IsShown() then
 			db.hidebar3 = false
 			button:ClearAllPoints()
@@ -90,29 +90,33 @@ end
 TukuiBar2Button:Hide()
 TukuiBar3Button:Hide()
 
-local ChatBarButton = CreateFrame("Button", "ChatBarButton", TukuiPetBattleHider)
-ChatBarButton:Size(19)
-ChatBarButton:Point("RIGHT", TukuiTabsLeftBackground, "RIGHT", -2, 0)
-ChatBarButton:PatSkin()
-ChatBarButton:RegisterForClicks("AnyUp")
-ChatBarButton:SetFrameLevel(6)
-ChatBarButton:SetFrameStrata("HIGH")
-ChatBarButton:SetScript("OnClick", function(self) UpdateBar(self, Bar3) end)
-ChatBarButton.text = P.SetFontString(ChatBarButton, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-ChatBarButton.text:Point("CENTER", 0, 0)
-ChatBarButton.text:SetText("|cff18AA18 + |r")
+local Bar3Button = CreateFrame("Button", "Bar3Button", TukuiPetBattleHider)
+Bar3Button:Size(19)
+Bar3Button:Point("RIGHT", TukuiTabsLeftBackground, "RIGHT", -2, 0)
+Bar3Button:PatSkin()
+Bar3Button:RegisterForClicks("AnyUp")
+Bar3Button:SetFrameLevel(6)
+Bar3Button:SetFrameStrata("HIGH")
+Bar3Button:SetScript("OnClick", function(self) UpdateBar(self, Bar3) end)
+Bar3Button.text = P.SetFontString(Bar3Button, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+Bar3Button.text:Point("CENTER", 0, 0)
+Bar3Button.text:SetText("|cff18AA18 - |r")
 
-local SplitButton = CreateFrame("Button", "SplitButton", TukuiPetBattleHider)
-SplitButton:Size(19)
-SplitButton:Point("RIGHT", ChatBarButton, "LEFT", -3, 0)
-SplitButton:PatSkin()
-SplitButton:RegisterForClicks("AnyUp")
-SplitButton:SetFrameLevel(6)
-SplitButton:SetFrameStrata("HIGH")
-SplitButton:SetScript("OnClick", function(self) UpdateBar(self, TukuiBar2) end)
-SplitButton.text = P.SetFontString(SplitButton, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-SplitButton.text:Point("CENTER", 0, 0)
-SplitButton.text:SetText("|cff18AA18 + |r")
+local SplitBarButton = CreateFrame("Button", "SplitBarButton", TukuiPetBattleHider)
+SplitBarButton:Size((TukuiBar1:GetWidth() / 3) - 1, 18)
+SplitBarButton:Point("TOP", TukuiBar1, "BOTTOM", 0, -3)
+SplitBarButton:SetTemplate('Default')
+SplitBarButton:RegisterForClicks("AnyUp")
+SplitBarButton:SetFrameLevel(6)
+SplitBarButton:SetAlpha(0)
+SplitBarButton:SetFrameStrata("HIGH")
+SplitBarButton:SetScript("OnClick", function(self) UpdateBar(self, TukuiBar2) end)
+SplitBarButton:HookScript("OnClick", function(self) UpdateBar(self, SplitBarRight) end)
+SplitBarButton:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
+SplitBarButton:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
+SplitBarButton.text = P.SetFontString(SplitBarButton, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+SplitBarButton.text:Point("CENTER", 0, 0)
+SplitBarButton.text:SetText("|cff18AA18 Hide SplitBars |r")
 
 local Bar4Button = CreateFrame("Button", "Bar4Button", TukuiPetBattleHider)
 Bar4Button:Size(TukuiBar1:GetWidth(), 19)
@@ -135,11 +139,12 @@ init:SetScript("OnEvent", function(self, event)
 	
 	if not P.lowversion and db.hidebar2 then
 		UpdateBar(TukuiBar2Button, TukuiBar2) -- need this for splitbar to hide on rl/login, no idea why :S
-		UpdateBar(SplitButton, TukuiBar2)
+		UpdateBar(SplitBarButton, TukuiBar2)
+		UpdateBar(SplitBarButton, SplitBarRight)
 	end
 	
 	if not P.lowversion and db.hidebar3 then
-		UpdateBar(ChatBarButton, Bar3)
+		UpdateBar(Bar3Button, Bar3)
 	end
 	
 	if db.hidebar4 then

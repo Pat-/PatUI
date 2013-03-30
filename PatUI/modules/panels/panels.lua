@@ -39,6 +39,14 @@ Bar4:HookScript("OnShow", function()
 	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
 end)
 
+local Bar3 = CreateFrame("Frame", "Bar3", UIParent, "SecureHandlerStateTemplate")
+Bar3:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 10)
+Bar3:Width((P.buttonsize * 12) + (P.buttonspacing * 13))
+Bar3:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
+Bar3:SetFrameStrata("BACKGROUND")
+Bar3:SetFrameLevel(3)
+Bar3:SetTemplate("Transparent")
+
 TukuiBar2:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
 TukuiBar2:Height(TukuiBar1:GetHeight())
 TukuiBar2:SetTemplate("Transparent")
@@ -50,10 +58,9 @@ TukuiBar5:Point("RIGHT", UIParent, "RIGHT", -2, -14)
 TukuiBar5:SetTemplate("Transparent")
 
 TukuiPetBar:SetTemplate("Transparent")
-
 TukuiLineToPetActionBarBackground:SetBackdrop(nil)
 
-SplitBarRight = CreateFrame("Frame", "SplitBarRight", UIParent)
+SplitBarRight = CreateFrame("Frame", "SplitBarRight", UIParent, "SecureHandlerStateTemplate")
 SplitBarRight:Point("BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 6, 0)
 SplitBarRight:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
 SplitBarRight:Height(TukuiBar1:GetHeight())
@@ -61,40 +68,13 @@ SplitBarRight:SetTemplate("Transparent")
 SplitBarRight:SetFrameLevel(TukuiBar1:GetFrameLevel())
 SplitBarRight:SetFrameStrata(TukuiBar1:GetFrameStrata())
 
--- Flying figured out how to make buttons 8-12 work properly.
-TukuiBar2:HookScript("OnHide", function()
-	SplitBarRight:Hide()
-end)
-
-TukuiBar2:HookScript("OnShow", function()
-	SplitBarRight:Show()
-end)
-
-if Bar4:IsShown() then
-	SplitBarRight:Height((P.buttonsize * 2) + (P.buttonspacing * 3))
-else
-	SplitBarRight:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
-end
-
-Bar4:HookScript("OnHide", function()
-	SplitBarRight:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
-end)
-
-Bar4:HookScript("OnShow", function()
-	SplitBarRight:Height((P.buttonsize * 2) + (P.buttonspacing * 3))
-end)
-
-
 ------------------------------------------------------------------------
 -- Setting up Actionbar Buttons
 ------------------------------------------------------------------------
 
 TukuiBar4Button:ClearAllPoints()
-
 TukuiBar5ButtonTop:PatSkin()
-
 TukuiBar5ButtonBottom:PatSkin()
-
 
 ------------------------------------------------------------------------
 -- Setting up ChatFrames
@@ -148,30 +128,31 @@ for i=1, 3 do
 	end
 end
 
-DataPoint4 = CreateFrame("Frame", "DataPoint4", TukuiMinimap)
-DataPoint4:Point("BOTTOM", TukuiMinimap, "BOTTOM", 0, 2)
-DataPoint4:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
-DataPoint4:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
-DataPoint4:SetBackdrop(nil)
-DataPoint4:SetFrameStrata("HIGH")
+for i=4, 5 do
+	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, TukuiMinimap)
+	DataPoint[i]:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
+	DataPoint[i]:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
+	DataPoint[i]:SetBackdrop(nil)
+	DataPoint[i]:SetFrameStrata("HIGH")
+	
+	if(i == 4) then
+		DataPoint[i]:Point("BOTTOM", TukuiMinimap, "BOTTOM", 0, 2)
+	else
+		DataPoint[i]:Point("TOP", TukuiMinimap, "TOP", 0, -2)
+	end
+end
 
-DataPoint5 = CreateFrame("Frame", "DataPoint5", TukuiMinimap)
-DataPoint5:Point("TOP", TukuiMinimap, "TOP", 0, -2)
-DataPoint5:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
-DataPoint5:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
-DataPoint5:SetBackdrop(nil)
-DataPoint5:SetFrameStrata("HIGH")
-
-DataPoint6 = CreateFrame("Frame", "DataPoint6", TukuiBar2)
-DataPoint6:Point("TOP", TukuiBar2, "BOTTOM", 0, -3)
-DataPoint6:Size(TukuiBar2:GetWidth(), 18)
-DataPoint6:SetFrameLevel((TukuiBar2:GetFrameLevel()) + 2)
-DataPoint6:PatSkin()
-DataPoint6:SetFrameStrata("HIGH")
-
-DataPoint7 = CreateFrame("Frame", "DataPoint7", SplitBarRight)
-DataPoint7:Point("TOP", SplitBarRight, "BOTTOM", 0, -3)
-DataPoint7:Size(SplitBarRight:GetWidth(), 18)
-DataPoint7:SetFrameLevel((SplitBarRight:GetFrameLevel()) + 2)
-DataPoint7:PatSkin()
-DataPoint7:SetFrameStrata("HIGH")
+for i=6, 7 do
+	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, TukuiBar2)
+	DataPoint[i]:Point("TOP", TukuiBar2, "BOTTOM", 0, -3)
+	DataPoint[i]:Size(TukuiBar2:GetWidth(), 18)
+	DataPoint[i]:SetFrameLevel((TukuiBar2:GetFrameLevel()) + 2)
+	DataPoint[i]:PatSkin()
+	DataPoint[i]:SetFrameStrata("HIGH")
+	
+	if(i == 6) then
+		DataPoint[i]:Point("TOP", TukuiBar2, "BOTTOM", 0, -3)
+	else
+		DataPoint[i]:Point("TOP", SplitBarRight, "BOTTOM", 0, -3)
+	end
+end

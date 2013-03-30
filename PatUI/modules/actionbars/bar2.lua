@@ -18,11 +18,9 @@ for i=1, 12 do
 	elseif i == 7 then
 		b:SetPoint("TOPLEFT", bar, P.buttonspacing, -P.buttonspacing)
 	elseif i == 4 then
-		b:ClearAllPoints()
-		b:SetPoint("BOTTOMLEFT", SplitBarRight, P.buttonspacing, P.buttonspacing)
+		b:SetPoint("BOTTOMLEFT", bar2, P.buttonspacing, P.buttonspacing)
 	elseif i == 10 then
-		b:ClearAllPoints()
-		b:SetPoint("TOPLEFT", SplitBarRight, P.buttonspacing, -P.buttonspacing)
+		b:SetPoint("TOPLEFT", bar2, P.buttonspacing, -P.buttonspacing)
 	else
 		b:SetPoint("LEFT", b2, "RIGHT", P.buttonspacing, 0)
 	end
