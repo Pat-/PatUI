@@ -1,5 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="templates.lua"/>
-	<Script file="clique.lua"/>
-	<Script file="minarch.lua"/>
-</Ui>

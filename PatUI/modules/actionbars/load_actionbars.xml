@@ -1,8 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="style.lua"/>
-	<Script file="stance.lua"/>
-	<Script file="bar2.lua"/>
-	<Script file="bar3.lua"/>
-	<Script file="bar4.lua"/>
-	<Script file="buttons.lua"/>
-</Ui>
