@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="combopoints.lua"/>
+	
+	<Script file="eclipsebar.lua"/>
+	
+	<Script file="holypower.lua"/>
+	
+	<Script file="runebars.lua"/>
+	
+	<Script file="soulshards.lua"/>
+	
+	<Script file="totemtimers.lua"/>
+	
+	<Script file="magebar.lua"/>
+	
+	<Script file="harmonybar.lua"/>
+	
+	<Script file="shadoworbar.lua"/>
+</Ui>

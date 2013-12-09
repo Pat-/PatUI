@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+	<Script file="player.lua"/>
+	<Script file="target.lua"/>
+	<Script file="pet.lua"/>
+	<Script file="tot.lua"/>
+	<Script file="focus.lua"/>
+	<Script file="points.lua"/>	
+	<Script file="arena.lua"/>
+	<Script file="boss.lua"/>
+</Ui>
