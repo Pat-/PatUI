@@ -1,4 +1,4 @@
-## Interface: 50200
+## Interface: 50400
 ## Title: |cff18AA18PatUI DPS|r
 ## Notes:
 ## Author: Pat

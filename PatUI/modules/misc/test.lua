@@ -8,8 +8,7 @@ TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, -25)
 local Tooltips = {GameTooltip, ShoppingTooltip1, ShoppingTooltip2, ShoppingTooltip3, WorldMapTooltip, WorldMapCompareTooltip1, WorldMapCompareTooltip2, WorldMapCompareTooltip3}
 
 local SetStyle = function(self)
-	self:SetTemplate("Transparent")
-	self:ThickBorder()
+	self:PatSkin()
 end
 
 TukuiTooltip:HookScript("OnEvent", function(self, event, addon)
@@ -25,8 +24,7 @@ TukuiTooltip:HookScript("OnEvent", function(self, event, addon)
 		
 		-- Skin it
 		FrameStackTooltip:HookScript("OnShow", function(self) 
-		self:SetTemplate("Transparent") 
-		FrameStackTooltip:ThickBorder()
+		self:PatSkin()
 		end)
 	end
 end)
@@ -34,3 +32,8 @@ end)
 GameTooltipStatusBar:HookScript("OnValueChanged", function(self, value)
 	if self.text then self.text:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE") end
 end)
+
+if P.myrealm == "Emerald Dream" then
+	C.actionbar.hotkey = true
+	C.actionbar.macro = true
+end

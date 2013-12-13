@@ -47,6 +47,7 @@ self.Power:SetHeight(2)
 self.Power:SetWidth(240)
 self.Power:CreateBorder()
 self.Power:SetFrameLevel(10)
+self.Power:SetFrameStrata("LOW")
 
 self.Power.bg:SetVertexColor(.12, .12, .12, .1)
 self.Power.bg:SetTexture(C.media.normTex)
@@ -59,12 +60,19 @@ self.Power.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE"
 self.Power.value:Point("LEFT", self.Health, "LEFT", 2, -4)
 self.Power.value:SetShadowOffset(0, 0)
 
-self.Castbar:ClearAllPoints()
-self.Castbar:SetSize(240, 19)
-self.Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
 self.Castbar:CreateBackdrop("Transparent")
 self.Castbar.bg:Kill()
 self.Castbar:ThickBorder()
+
+if (IsAddOnLoaded("PatUI_Heal")) then
+	self.Castbar:SetSize(240, 16)
+	self.Castbar:ClearAllPoints()
+	self.Castbar:Point("TOP", self.Power, "BOTTOM", 0, -7)
+else
+	self.Castbar:SetSize(240, 19)
+	self.Castbar:ClearAllPoints()
+	self.Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
+end
 
 self.Castbar.Time = P.SetFontString( self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
 self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 1)
@@ -95,10 +103,10 @@ hooksecurefunc(P, "PostCreateAura", PostCreateAura)
 
 -- edited position, size, space, etc of buffs
 self.Buffs:SetHeight(27)
-self.Buffs:SetWidth(240)
-self.Buffs.size = 24
+self.Buffs:SetWidth(260)
+self.Buffs.size = 24.5
 self.Buffs.num = 9
-self.Buffs.spacing = 2
+self.Buffs.spacing = 3
 self.Buffs.initialAnchor = 'TOPLEFT'
 self.Buffs["growth-y"] = "UP"
 self.Buffs["growth-x"] = "RIGHT"
@@ -109,7 +117,7 @@ self.Buffs.PostUpdateIcon = P.PostUpdateAura
 -- edited position, size, space, etc of buffs
 self.Debuffs:SetHeight(29)
 self.Debuffs:SetWidth(240)
-self.Debuffs.size = 26
+self.Debuffs.size = 27.5
 self.Debuffs.num = 21
 self.Debuffs.spacing = 3
 self.Debuffs.initialAnchor = 'TOPRIGHT'

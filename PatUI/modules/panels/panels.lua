@@ -39,17 +39,17 @@ Bar4:HookScript("OnShow", function()
 	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
 end)
 
-local Bar3 = CreateFrame("Frame", "Bar3", UIParent, "SecureHandlerStateTemplate")
-Bar3:Point("BOTTOM", TukuiTabsLeftBackground, "TOP", 0, 10)
-Bar3:Width((P.buttonsize * 12) + (P.buttonspacing * 13))
-Bar3:Height((P.buttonsize * 1) + (P.buttonspacing * 2))
-Bar3:SetFrameStrata("BACKGROUND")
-Bar3:SetFrameLevel(3)
-Bar3:SetTemplate("Transparent")
-
 TukuiBar2:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
 TukuiBar2:Height(TukuiBar1:GetHeight())
 TukuiBar2:SetTemplate("Transparent")
+
+SplitBarRight = CreateFrame("Frame", "SplitBarRight", UIParent, "SecureHandlerStateTemplate")
+SplitBarRight:Point("BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 6, 0)
+SplitBarRight:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
+SplitBarRight:Height(TukuiBar1:GetHeight())
+SplitBarRight:SetTemplate("Transparent")
+SplitBarRight:SetFrameLevel(TukuiBar1:GetFrameLevel())
+SplitBarRight:SetFrameStrata(TukuiBar1:GetFrameStrata())
 
 TukuiBar5:ClearAllPoints()
 TukuiBar5:SetHeight((P.buttonsize * 12) + (P.buttonspacing * 13))
@@ -59,14 +59,6 @@ TukuiBar5:SetTemplate("Transparent")
 
 TukuiPetBar:SetTemplate("Transparent")
 TukuiLineToPetActionBarBackground:SetBackdrop(nil)
-
-SplitBarRight = CreateFrame("Frame", "SplitBarRight", UIParent, "SecureHandlerStateTemplate")
-SplitBarRight:Point("BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 6, 0)
-SplitBarRight:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
-SplitBarRight:Height(TukuiBar1:GetHeight())
-SplitBarRight:SetTemplate("Transparent")
-SplitBarRight:SetFrameLevel(TukuiBar1:GetFrameLevel())
-SplitBarRight:SetFrameStrata(TukuiBar1:GetFrameStrata())
 
 ------------------------------------------------------------------------
 -- Setting up Actionbar Buttons
@@ -114,7 +106,7 @@ local DataPoint = {}
 -- Flying found the proper SetPoints + Minimap points.
 for i=1, 3 do
 	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, TukuiBar1)
-	DataPoint[i]:Width((TukuiBar1:GetWidth() / 3) - 2)
+	DataPoint[i]:Width((TukuiBar1:GetWidth() / 3) - 3)
 	DataPoint[i]:Height(18)
 	DataPoint[i]:PatSkin()
 	DataPoint[i]:SetFrameStrata("BACKGROUND")

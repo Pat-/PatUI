@@ -5,10 +5,10 @@ local self = _G["TukuiPlayer"]
 
 for i = 1, 4 do
 	self.TotemBar[i]:ClearAllPoints()
-	self.TotemBar[i]:Size(53, 6)
+	self.TotemBar[i]:Size(53, 3)
 
 	if(i == 1) then
-		self.TotemBar[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 5, -3)
+		self.TotemBar[i]:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 5, 0)
 	else
 		self.TotemBar[i]:Point("LEFT", self.TotemBar[i - 1], "RIGHT", 6, 0)
 	end

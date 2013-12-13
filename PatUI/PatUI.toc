@@ -1,8 +1,8 @@
-## Interface: 50200
+## Interface: 50400
 ## Title: |cff18AA18PatUI|r
 ## Notes:
 ## Credits: Tukz, Sinaris, Ekst, Flyingboots, Elv22, Eclipse, Hydra
-## Version: 0.9
+## Version: 1.0a
 ## Author: Pat
 ## RequiredDeps: PatUI_Config, Tukui
 

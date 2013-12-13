@@ -85,6 +85,37 @@ local function CreateBorder(self)
 	ThickBorder(border)
 end
 
+-- using Elvz code to skin transmog frame when you're about to use an item that can be still be returned for a refund.
+function HandleItemButton(b, shrinkIcon)
+	if b.isSkinned then return; end
+
+	b:StripTextures()
+	b:CreateBackdrop("Default")
+	b:StyleButton()
+	
+	local icon = b.icon or b.IconTexture
+	if b:GetName() and _G[b:GetName()..'IconTexture'] then
+		icon = _G[b:GetName()..'IconTexture']
+	elseif b:GetName() and _G[b:GetName()..'Icon'] then
+		icon = _G[b:GetName()..'Icon']
+	end
+	
+	if icon then
+		icon:SetTexCoord(.08, .92, .08, .92)
+
+		-- create a backdrop around the icon
+		
+		if shrinkIcon then
+			b.backdrop:SetAllPoints()
+			icon:SetInside(b)
+		else
+			b.backdrop:SetOutside(icon)
+		end
+		icon:SetParent(b.backdrop)
+	end
+	b.isSkinned = true
+end
+
 P.RoleIconUpdate = function(self, event)
 	local lfdrole = self.LFDRole
 
@@ -111,32 +142,8 @@ local function PatSkin(f)
 	ThickBorder(f)
 end
 
-local function SkinCheckBox(frame)
-	frame:StripTextures()
-
-	frame.Display = CreateFrame('Frame', nil, frame)
-	frame.Display:SetSize(12, 12)
-	PatSkin(frame.Display)
-	frame.Display:SetPoint("CENTER")
-	
-	frame:SetFrameLevel(frame:GetFrameLevel()+1)
-	frame.Display:SetFrameLevel(frame:GetFrameLevel()-1)
-
-	--Time to sexify these textures
-	local checked = frame.Display:CreateTexture(nil, 'OVERLAY')
-	checked:SetTexture(0, .7, 1, 1)
-	checked:SetInside(frame.Display)
-	frame:SetCheckedTexture(checked)
-
-	local hover = frame.Display:CreateTexture(nil, 'OVERLAY')
-	hover:SetTexture(1, 1, 1, 0.3)
-	hover:SetInside(frame.Display)
-	frame:SetHighlightTexture(hover)
-end
-
 local function addapi(object)
 	local mt = getmetatable(object).__index
-	mt.SkinCheckBox = SkinCheckBox
 	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
 	if not object.SetBorder then mt.SetBorder = SetBorder end
 	if not object.AllPoints then mt.AllPoints = AllPoints end
@@ -144,6 +151,7 @@ local function addapi(object)
 	if not object.InnerBorder then mt.Innerborder = innerBorder end
 	if not object.OuterBorder then mt.Outerborder = outerBorder end
 	if not object.PatSkin then mt.PatSkin = PatSkin end
+	if not object.HandleItemButton then mt.HandleItemButton = HandleItemButton end
 end
 
 local handled = {["Frame"] = true}

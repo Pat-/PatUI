@@ -75,6 +75,7 @@ end)
 
 local function UpdateFactionSkins()
 	ReputationDetailFrame:PatSkin()
+	ReputationDetailFrame:SetAlpha(0.7)
 end
 ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 
@@ -188,10 +189,14 @@ local function SkinBlizzardFrames(self, event, addon)
 		GuildFactionBar.backdrop:Point("TOPLEFT", GuildFactionBar.progress, "TOPLEFT", -2, 2)
 		GuildFactionBar.backdrop:Point("BOTTOMRIGHT", GuildFactionBar, "BOTTOMRIGHT", 0, 1)
 		
+	elseif(addon == "Blizzard_GuildControlUI") then
+	
+		GuildControlUI:PatSkin()
 		
 	elseif(addon == "Blizzard_GuildBankUI") then
 	
 		GuildBankFrame:PatSkin()
+		GuildBankPopupFrame:PatSkin()
 		
 		for i=1, 4 do
 			_G["GuildBankFrameTab"..i].backdrop:PatSkin()
@@ -231,6 +236,12 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_ItemAlterationUI") then
 	
 		TransmogrifyArtFrame:PatSkin()
+		TransmogrifyConfirmationPopup:StripTextures()
+		TransmogrifyConfirmationPopup:PatSkin()
+		TransmogrifyConfirmationPopup.Button1:SkinButton()
+		TransmogrifyConfirmationPopup.Button2:SkinButton()
+		TransmogrifyConfirmationPopupItemFrame1:HandleItemButton(true)
+		TransmogrifyConfirmationPopupItemFrame2:HandleItemButton(true)
 		
 	elseif(addon == "Blizzard_LookingForGuildUI") then
 	
@@ -259,6 +270,7 @@ local function SkinBlizzardFrames(self, event, addon)
 		EncounterJournalEncounterFrameInfoLootScrollFrameScrollBar:SkinScrollBar()
 		EncounterJournalEncounterFrameInfoDetailsScrollFrameScrollBar:SkinScrollBar()
 		EncounterJournalEncounterFrameInstanceFrameLoreScrollFrameScrollBar:SkinScrollBar()
+		EncounterJournalEncounterFrameInfoBossesScrollFrameScrollBar:SkinScrollBar()
 		
 		EncounterJournalNavBar.backdrop:PatSkin()
 		
@@ -270,10 +282,6 @@ local function SkinBlizzardFrames(self, event, addon)
 	elseif(addon == "Blizzard_PVPUI") then
 	
 		PVPUIFrame:PatSkin()
-		
-		for i=1, 2 do
-			_G["PVPUIFrameTab"..i].backdrop:PatSkin()
-		end
 		
 	elseif(addon == "Blizzard_GMSurveyUI") then
 	
@@ -297,8 +305,31 @@ for i=1, 3 do
 end
 
 for i=1, 2 do
-	_G["PVEFrameTab"..i].backdrop:PatSkin()
 	_G["PetJournalParentTab"..i].backdrop:PatSkin()
 	_G["MailFrameTab"..i].backdrop:PatSkin()
 	_G["MerchantFrameTab"..i].backdrop:PatSkin()
 end
+
+InterfaceOptionsControlsPanelBlockChatChannelInvites:SkinCheckBox()
+
+FriendsTabHeaderRecruitAFriendButton:SkinButton()
+FriendsTabHeaderRecruitAFriendButton:StyleButton()
+FriendsTabHeaderRecruitAFriendButtonIcon:SetDrawLayer("OVERLAY")
+FriendsTabHeaderRecruitAFriendButtonIcon:SetTexCoord(.08, .92, .08, .92)
+FriendsTabHeaderRecruitAFriendButtonIcon:SetInside()
+
+RecruitAFriendFrame:StripTextures()
+RecruitAFriendFrame:PatSkin()
+RecruitAFriendNameEditBox:SkinEditBox()
+RecruitAFriendFrameSendButton:SkinButton()
+RecruitAFriendFrameCloseButton:SkinCloseButton()
+RecruitAFriendNoteFrame:StripTextures()
+RecruitAFriendNoteFrame:SetTemplate("Default")
+RecruitAFriendNoteFrameScrollFrameScrollBar:SkinScrollBar()
+
+ScrollOfResurrectionSelectionFrame:PatSkin()
+
+GearManagerDialogPopup:SetAlpha(0.8)
+GearManagerDialogPopup:ThickBorder()
+
+LFRBrowseFrameListScrollFrameScrollBar:SkinScrollBar()

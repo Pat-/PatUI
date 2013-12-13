@@ -68,8 +68,8 @@ for i = 1, MAX_BOSS_FRAMES do
 	self.Power.value:Point("LEFT", self.Health, "LEFT", 4, -5)
 	
 	self.Castbar:ClearAllPoints()
-	self.Castbar:SetSize(215, 16)
-	self.Castbar:Point("TOPRIGHT", self.Power, "BOTTOMRIGHT", 0, -3)
+	self.Castbar:SetAllPoints(self.Health)
+	self.Castbar:SetFrameLevel(15)
 	
 	self.Castbar:CreateBackdrop("Transparent")
 	self.Castbar:ThickBorder()

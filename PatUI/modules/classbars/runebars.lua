@@ -5,12 +5,12 @@ local self = _G["TukuiPlayer"]
 
 self.Runes:ClearAllPoints()
 self.Runes:SetPoint("BOTTOM", self, "TOP", 0, 5)
-self.Runes:Size(self:GetWidth(), 6)
+self.Runes:Size(self:GetWidth(), 3)
 self.Runes:CreateBorder()
 self.Runes:SetFrameLevel(10)
 
 for i = 1, 6 do
-	self.Runes[i]:SetSize(39, 6)
+	self.Runes[i]:SetSize(39.1, 3)
 	
 	self.Runes[i]:ClearAllPoints()
 	if(i == 1) then

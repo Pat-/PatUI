@@ -7,7 +7,7 @@ local self = _G["TukuiPlayer"]
 
 self.HolyPower:ClearAllPoints()
 self.HolyPower:SetPoint("BOTTOM", self, "TOP", 0, 5)
-self.HolyPower:Size(self:GetWidth(), 7) --240 
+self.HolyPower:Size(self:GetWidth(), 3) --240 
 self.HolyPower:CreateBorder()
 self.HolyPower:SetFrameLevel(10)
 
@@ -27,7 +27,7 @@ self.HolyPower:SetScript('OnEvent', function(self, event)
 			self[i]:SetPoint("LEFT", self[i-1], "RIGHT", 1, 0)
 		end
 
-		self[i]:SetSize((totalWidth-((maxHolyPower-1)*3))/maxHolyPower, 7)
+		self[i]:SetSize((totalWidth-((maxHolyPower-1)*3))/maxHolyPower, 3)
 
 		if i == maxHolyPower then
 			self[i]:SetPoint("RIGHT", self, "RIGHT", 0, 0)

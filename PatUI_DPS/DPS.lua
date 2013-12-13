@@ -82,7 +82,7 @@ P.PostUpdateRaidUnit = function(self)
 	
 	self.Name:SetParent(self.Health)
 	self.Name:ClearAllPoints()
-	self.Name:SetPoint("BOTTOM", 0, 0)
+	self.Name:SetPoint("BOTTOM", 0, 2)
 	self.Name:SetShadowOffset(0, 0)
 	self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 	self.Name:SetAlpha(1)
@@ -126,20 +126,20 @@ TukuiRaidPosition:SetScript("OnEvent", function(self, event)
 	local raid = G.UnitFrames.RaidUnits
 	
 	raid:ClearAllPoints()
-	raid:SetPoint("BOTTOMLEFT", TukuiTabsLeftBackground, "TOPLEFT", 2, 14)
+	raid:SetPoint("BOTTOMLEFT", TukuiTabsLeftBackground, "TOPLEFT", 2, 16)
 	
 	if Bar3:IsShown() then
-		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 3)
+		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 7)
 	end
 	
 	Bar3:HookScript("OnHide", function()
 		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", TukuiTabsLeftBackground, "TOPLEFT", 2, 14)
+		raid:SetPoint("BOTTOMLEFT", TukuiTabsLeftBackground, "TOPLEFT", 2, 16)
 	end)
 	
 	Bar3:HookScript("OnShow", function()
 		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 3)
+		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 7)
 	end)
 	
 	if C.unitframes.showraidpets == true then
