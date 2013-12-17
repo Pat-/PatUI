@@ -151,3 +151,14 @@ init:SetScript("OnEvent", function(self, event)
 		UpdateBar(Bar4Button, Bar4)
 	end
 end)
+
+TukuiExitVehicleButtonRight:Size(19)
+TukuiExitVehicleButtonRight:PatSkin()
+TukuiExitVehicleButtonRight:ClearAllPoints()
+TukuiExitVehicleButtonRight:Point("RIGHT", Bar3Button, "LEFT", -3, 0)
+TukuiExitVehicleButtonRight:SetFrameLevel(20)
+TukuiExitVehicleButtonRight.text:SetText("|cff4BAF4C V|r")
+TukuiExitVehicleButtonRight:SetBackdropBorderColor(unpack(C.general.bordercolor))
+
+
+

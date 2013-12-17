@@ -333,3 +333,4 @@ GearManagerDialogPopup:SetAlpha(0.8)
 GearManagerDialogPopup:ThickBorder()
 
 LFRBrowseFrameListScrollFrameScrollBar:SkinScrollBar()
+LFRBrowseFrameRoleInset:StripTextures()

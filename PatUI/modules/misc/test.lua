@@ -34,6 +34,6 @@ GameTooltipStatusBar:HookScript("OnValueChanged", function(self, value)
 end)
 
 if P.myrealm == "Emerald Dream" then
-	C.actionbar.hotkey = true
+	--C.actionbar.hotkey = true
 	C.actionbar.macro = true
 end

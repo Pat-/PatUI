@@ -72,19 +72,10 @@ T.PostUpdateRaidUnit = function(self)
 	end
 	
 	self.Power:ClearAllPoints()
-	self.Power:SetPoint("BOTTOM", self.Health, "BOTTOM", 0, 2)
-	self.Power:SetHeight(2)
-	self.Power:SetWidth(60)
-	self.Power:SetFrameLevel(self.Health:GetFrameLevel() + 2)
-	self.Power:SetFrameStrata("MEDIUM")
-	self.Power:SetBorder(false, true)
-	self.Power:SetFrameLevel(10)
-
-	self.Power.bg:SetTexture(C.media.normTex)
 	
 	self.Name:SetParent(self.Health)
 	self.Name:ClearAllPoints()
-	self.Name:SetPoint("BOTTOM", 0, 8)
+	self.Name:SetPoint("CENTER", 0, 0)
 	self.Name:SetShadowOffset(0, 0)
 	self.Name:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 	self.Name:SetAlpha(1)
