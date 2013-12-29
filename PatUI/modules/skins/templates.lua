@@ -334,3 +334,5 @@ GearManagerDialogPopup:ThickBorder()
 
 LFRBrowseFrameListScrollFrameScrollBar:SkinScrollBar()
 LFRBrowseFrameRoleInset:StripTextures()
+
+GameMenuButtonStore:SkinButton()

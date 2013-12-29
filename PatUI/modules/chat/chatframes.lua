@@ -46,8 +46,11 @@ P.SetDefaultChatPosition = function(frame)
 			frame:SetParent(TukuiChatBackgroundLeft)
 		elseif id == 4 and name == LOOT then
 			if not frame.isDocked then
-				FCF_SetLocked(ChatFrame4, 1)
-				FCF_DockFrame(ChatFrame4)
+				frame:ClearAllPoints()
+				frame:Point("TOPLEFT", TukuiChatBackgroundRight, "TOPLEFT", 3, 2)
+				frame:Point("BOTTOMRIGHT", TukuiChatBackgroundRight, "BOTTOMRIGHT", -5, 0)
+				frame:SetParent(TukuiChatBackgroundRight)
+				frame:SetJustifyH("LEFT")
 			end
 		end
 		

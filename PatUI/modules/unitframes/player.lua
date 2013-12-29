@@ -51,8 +51,8 @@ self.Power:SetFrameLevel(10)
 self.Power.bg:SetVertexColor(.12, .12, .12, .1)
 self.Power.bg:SetTexture(C.media.normTex)
 
-self.Power.colorClass = true
-self.Power.colorReaction = true
+self.Power.colorClass = false
+self.Power.colorReaction = false
 
 self.Power.value = P.SetFontString( self.Health, font, fsize, "MONOCHROMEOUTLINE")
 self.Power.value:Point("LEFT", self.Health, "LEFT", 4, 0)
@@ -70,6 +70,9 @@ self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 1)
 
 self.Castbar.Text = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
 self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 1)
+
+self.Combat:ClearAllPoints()
+self.Combat:Point("CENTER", self.Health, "CENTER", 0, 0)
 
 -- experience bar on player via mouseover for player currently leveling a character
 if P.level ~= MAX_PLAYER_LEVEL then

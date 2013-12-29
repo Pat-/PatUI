@@ -2,7 +2,7 @@ local P, C, L, G = unpack(Tukui)
 
 TukuiTooltipAnchor:ClearAllPoints()
 TukuiTooltipAnchor:SetClampedToScreen(false)
-TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, -25)
+TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", TukuiTabsRightBackground, "TOPRIGHT", 0, -25)
 
 -- Make Tooltip Transparent
 local Tooltips = {GameTooltip, ShoppingTooltip1, ShoppingTooltip2, ShoppingTooltip3, WorldMapTooltip, WorldMapCompareTooltip1, WorldMapCompareTooltip2, WorldMapCompareTooltip3}
@@ -34,6 +34,8 @@ GameTooltipStatusBar:HookScript("OnValueChanged", function(self, value)
 end)
 
 if P.myrealm == "Emerald Dream" then
-	--C.actionbar.hotkey = true
+	C.actionbar.hotkey = true
 	C.actionbar.macro = true
 end
+
+TukuiAurasPlayerBuffs:SetAttribute("xOffset", -33)

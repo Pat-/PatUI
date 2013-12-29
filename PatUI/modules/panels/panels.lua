@@ -83,9 +83,20 @@ TukuiTabsLeftBackground:Point("BOTTOM", TukuiChatBackgroundLeft, "TOP", 0, 3)
 TukuiTabsLeftBackground:SetWidth(TukuiChatBackgroundLeft:GetWidth())
 TukuiTabsLeftBackground:PatSkin()
 
-TukuiChatBackgroundRight:Hide()
-TukuiTabsRightBackground:Hide()
-TukuiInfoRight:Hide()
+TukuiChatBackgroundRight:SetFrameStrata("Background")
+TukuiChatBackgroundRight:ThickBorder()
+TukuiChatBackgroundRight:ClearAllPoints()
+TukuiChatBackgroundRight:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
+TukuiChatBackgroundRight:SetHeight(125)
+
+TukuiTabsRightBackground:ClearAllPoints()
+TukuiTabsRightBackground:Point("BOTTOM", TukuiChatBackgroundRight, "TOP", 0, 3)
+TukuiTabsRightBackground:SetWidth(TukuiChatBackgroundRight:GetWidth())
+TukuiTabsRightBackground:PatSkin()
+TukuiTabsRightBackground:SetParent(TukuiChatBackgroundRight)
+
+TukuiInfoRight:ClearAllPoints()
+TukuiInfoRight:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", -1000, 0)
 
 TukuiInfoLeft:ClearAllPoints()
 TukuiInfoLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", -1000, 0)
@@ -103,48 +114,16 @@ TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)
 
 local DataPoint = {}
 
--- Flying found the proper SetPoints + Minimap points.
-for i=1, 3 do
-	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, TukuiBar1)
+for i=1, 6 do
+	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
 	DataPoint[i]:Width((TukuiBar1:GetWidth() / 3) - 3)
 	DataPoint[i]:Height(18)
 	DataPoint[i]:PatSkin()
 	DataPoint[i]:SetFrameStrata("BACKGROUND")
 	
 	if(i == 1) then
-		DataPoint[i]:SetPoint("TOPLEFT", TukuiBar1, "BOTTOMLEFT", 0, -3)
-	elseif(i == 2) then
-		DataPoint[i]:Point("TOP", TukuiBar1, "BOTTOM", 0, -3)
+		DataPoint[i]:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -4)
 	else
-		DataPoint[i]:Point("TOPRIGHT", TukuiBar1, "BOTTOMRIGHT", 0, -3)
-	end
-end
-
-for i=4, 5 do
-	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, TukuiMinimap)
-	DataPoint[i]:Size((TukuiMinimap:GetWidth() - 7) / 2, 20)
-	DataPoint[i]:SetFrameLevel((TukuiMinimap:GetFrameLevel()) + 2)
-	DataPoint[i]:SetBackdrop(nil)
-	DataPoint[i]:SetFrameStrata("HIGH")
-	
-	if(i == 4) then
-		DataPoint[i]:Point("BOTTOM", TukuiMinimap, "BOTTOM", 0, 2)
-	else
-		DataPoint[i]:Point("TOP", TukuiMinimap, "TOP", 0, -2)
-	end
-end
-
-for i=6, 7 do
-	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, TukuiBar2)
-	DataPoint[i]:Point("TOP", TukuiBar2, "BOTTOM", 0, -3)
-	DataPoint[i]:Size(TukuiBar2:GetWidth(), 18)
-	DataPoint[i]:SetFrameLevel((TukuiBar2:GetFrameLevel()) + 2)
-	DataPoint[i]:PatSkin()
-	DataPoint[i]:SetFrameStrata("HIGH")
-	
-	if(i == 6) then
-		DataPoint[i]:Point("TOP", TukuiBar2, "BOTTOM", 0, -3)
-	else
-		DataPoint[i]:Point("TOP", SplitBarRight, "BOTTOM", 0, -3)
+		DataPoint[i]:Point("TOP", "DataPoint"..i - 1, "BOTTOM", 0, -3)
 	end
 end

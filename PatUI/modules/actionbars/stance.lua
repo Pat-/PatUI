@@ -1,7 +1,7 @@
 local P, C, L, G = unpack(Tukui)
 
 TukuiStance:ClearAllPoints()
-TukuiStance:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 6, -40)
+TukuiStance:SetPoint("LEFT", TukuiChatBackgroundLeft, "TOPRIGHT", 6, -40)
 
 local sborder = CreateFrame("Frame", "StanceBorder", StanceButton1)
 sborder:Point("LEFT", -P.buttonspacing, 0)

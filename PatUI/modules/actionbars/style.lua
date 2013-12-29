@@ -14,6 +14,6 @@ local function style(self)
 	local HotKey = _G[name.."HotKey"]
 	
 	Count:SetFont(C["media"].pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-	HotKey:SetFont(C["media"].font, 12, "THINOUTLINE33")
+	HotKey:SetFont(C["media"].font, 12, "THINOUTLINE")
 end
 hooksecurefunc("ActionButton_Update", style)

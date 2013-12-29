@@ -53,8 +53,8 @@ self.Power.bg:SetVertexColor(.12, .12, .12, .1)
 self.Power.bg:SetTexture(C.media.normTex)
 
 self.Power.colorTapping = true
-self.Power.colorClass = true
-self.Power.colorReaction = true
+self.Power.colorClass = false
+self.Power.colorReaction = false
 
 self.Power.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
 self.Power.value:Point("LEFT", self.Health, "LEFT", 2, -4)

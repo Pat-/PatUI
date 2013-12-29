@@ -2,13 +2,23 @@ local P, C, L, G = unpack(Tukui)
 
 --our own datatext position function because we made our custom panel
 local DataTextPosition = function(f, t, o)
-	local points = { DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5, DataPoint6, DataPoint7 }
+	local points = { DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5, DataPoint6 }
 		
-	if o >= 1 and o <= 7 then
+	if o >= 1 and o <= 6 then
 		t:ClearAllPoints()
 		t:SetParent(points[o])
 		t:SetPoint("TOPLEFT")
 		t:SetPoint("BOTTOMRIGHT", 0, 1)
+	elseif o == 7 then
+		t:ClearAllPoints()
+		t:SetParent(TukuiTabsRightBackground)
+		t:SetPoint("CENTER")
+		t:SetPoint("CENTER", 0, 1)
+	elseif o == 8 then
+		t:ClearAllPoints()
+		t:SetParent(TukuiTabsRightBackground)
+		t:SetPoint("RIGHT")
+		t:SetPoint("RIGHT", -18, 1)
 	else
 		-- hide everything that we don't use and enabled by default on tukui
 		f:Hide()
