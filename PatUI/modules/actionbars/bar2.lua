@@ -1,7 +1,25 @@
 local P, C, L, G = unpack(Tukui)
 
-local bar = TukuiBar2
-local bar2 = SplitBarRight
+TukuiBar2:SetAlpha(0)
+
+local LeftBar2 = CreateFrame("Frame", "LeftBar2", UIParent, "SecureHandlerStateTemplate")
+LeftBar2:Point("BOTTOMRIGHT", TukuiBar1, "BOTTOMLEFT", -6, 0)
+LeftBar2:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
+LeftBar2:Height((P.buttonsize * 2) + (P.buttonspacing * 3))
+LeftBar2:SetTemplate("Transparent")
+LeftBar2:SetFrameLevel(TukuiBar1:GetFrameLevel())
+LeftBar2:SetFrameStrata(TukuiBar1:GetFrameStrata())
+
+local RightBar2 = CreateFrame("Frame", "RightBar2", UIParent, "SecureHandlerStateTemplate")
+RightBar2:Point("BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 6, 0)
+RightBar2:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
+RightBar2:Height((P.buttonsize * 2) + (P.buttonspacing * 3))
+RightBar2:SetTemplate("Transparent")
+RightBar2:SetFrameLevel(TukuiBar1:GetFrameLevel())
+RightBar2:SetFrameStrata(TukuiBar1:GetFrameStrata())
+
+local bar = LeftBar2
+local bar2 = RightBar2
 MultiBarBottomLeft:SetParent(bar)
 
 -- setup the bar

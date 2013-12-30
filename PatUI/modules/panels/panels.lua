@@ -4,7 +4,7 @@ local P, C, L, G = unpack(Tukui)
 -- Setting up Panels
 ------------------------------------------------------------------------
 
-local panels = { TukuiMinimapStatsLeft, TukuiMinimapStatsRight, TukuiInfoLeftLineVertical, TukuiInfoRightLineVertical, TukuiLineToABLeft, TukuiLineToABRight, TukuiCubeLeft, TukuiCubeRight, TukuiLineToABLeftAlt, TukuiLineToABRightAlt, TukuiLineToPetActionBarBackground, }
+local panels = { TukuiMinimapStatsLeft, TukuiMinimapStatsRight, TukuiInfoLeftLineVertical, TukuiInfoRightLineVertical, TukuiLineToABLeft, TukuiLineToABRight, TukuiCubeLeft, TukuiCubeRight, TukuiLineToABLeftAlt, TukuiLineToABRightAlt, TukuiLineToPetActionBarBackground }
 
 for _, panel in pairs(panels) do
 	panel:Kill()
@@ -13,49 +13,6 @@ end
 ------------------------------------------------------------------------
 -- Setting up Actionbars
 ------------------------------------------------------------------------
-
-TukuiBar1:ClearAllPoints()
-TukuiBar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
-TukuiBar1:SetWidth((P.buttonsize * 12) + (P.buttonspacing * 13))
-TukuiBar1:SetTemplate("Transparent")
-
-local Bar4 = CreateFrame("Frame", "Bar4", UIParent, "SecureHandlerStateTemplate")
-Bar4:Point("CENTER", TukuiBar1, "CENTER", 0, 0)
-Bar4:SetWidth((P.buttonsize * 12) + (P.buttonspacing * 13))
-Bar4:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
-Bar4:HideInsets()
-Bar4:SetBackdropBorderColor(0, 0, 0, 0)
-Bar4:SetBackdrop(nil)
-
-if Bar4:IsShown() then
-	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
-end
-
-Bar4:HookScript("OnHide", function()
-	TukuiBar1:SetHeight((P.buttonsize * 1) + (P.buttonspacing * 2))
-end)
-
-Bar4:HookScript("OnShow", function()
-	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
-end)
-
-TukuiBar2:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
-TukuiBar2:Height(TukuiBar1:GetHeight())
-TukuiBar2:SetTemplate("Transparent")
-
-SplitBarRight = CreateFrame("Frame", "SplitBarRight", UIParent, "SecureHandlerStateTemplate")
-SplitBarRight:Point("BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 6, 0)
-SplitBarRight:Width((P.buttonsize * 3) + (P.buttonspacing * 4))
-SplitBarRight:Height(TukuiBar1:GetHeight())
-SplitBarRight:SetTemplate("Transparent")
-SplitBarRight:SetFrameLevel(TukuiBar1:GetFrameLevel())
-SplitBarRight:SetFrameStrata(TukuiBar1:GetFrameStrata())
-
-TukuiBar5:ClearAllPoints()
-TukuiBar5:SetHeight((P.buttonsize * 12) + (P.buttonspacing * 13))
-TukuiBar5:SetWidth((P.buttonsize * 1) + (P.buttonspacing * 2))
-TukuiBar5:Point("RIGHT", UIParent, "RIGHT", -2, -14)
-TukuiBar5:SetTemplate("Transparent")
 
 TukuiPetBar:SetTemplate("Transparent")
 TukuiLineToPetActionBarBackground:SetBackdrop(nil)
@@ -76,7 +33,7 @@ TukuiChatBackgroundLeft:SetFrameStrata("Background")
 TukuiChatBackgroundLeft:ThickBorder()
 TukuiChatBackgroundLeft:ClearAllPoints()
 TukuiChatBackgroundLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
-TukuiChatBackgroundLeft:SetHeight(125)
+TukuiChatBackgroundLeft:SetHeight(151.5)
 
 TukuiTabsLeftBackground:ClearAllPoints()
 TukuiTabsLeftBackground:Point("BOTTOM", TukuiChatBackgroundLeft, "TOP", 0, 3)
@@ -87,19 +44,18 @@ TukuiChatBackgroundRight:SetFrameStrata("Background")
 TukuiChatBackgroundRight:ThickBorder()
 TukuiChatBackgroundRight:ClearAllPoints()
 TukuiChatBackgroundRight:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
-TukuiChatBackgroundRight:SetHeight(125)
+TukuiChatBackgroundRight:SetHeight(151.5)
 
 TukuiTabsRightBackground:ClearAllPoints()
 TukuiTabsRightBackground:Point("BOTTOM", TukuiChatBackgroundRight, "TOP", 0, 3)
 TukuiTabsRightBackground:SetWidth(TukuiChatBackgroundRight:GetWidth())
 TukuiTabsRightBackground:PatSkin()
-TukuiTabsRightBackground:SetParent(TukuiChatBackgroundRight)
 
 TukuiInfoRight:ClearAllPoints()
-TukuiInfoRight:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", -1000, 0)
+TukuiInfoRight:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, -1000)
 
 TukuiInfoLeft:ClearAllPoints()
-TukuiInfoLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", -1000, 0)
+TukuiInfoLeft:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, -1000)
 
 ------------------------------------------------------------------------
 -- Reanchor the Raid Util
