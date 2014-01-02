@@ -19,7 +19,7 @@ TukuiMinimapZone:HideInsets()
 TukuiMinimapZone:SetBackdropBorderColor(0, 0, 0, 0)
 TukuiMinimapZone:SetBackdrop(nil)
 TukuiMinimapZone:ClearAllPoints()
-TukuiMinimapZone.Text:Point("TOP", TukuiMinimap, "TOP", 0, -20)
+TukuiMinimapZone.Text:Point("TOP", TukuiMinimap, "TOP", 0, 0)
 TukuiMinimapZoneText:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE") -- So sexeh.
 
 -- Skin the ticket panel.
@@ -34,7 +34,7 @@ TukuiAurasPlayerBuffs:ClearAllPoints()
 TukuiAurasPlayerDebuffs:ClearAllPoints()
 
 TukuiAurasPlayerBuffs:SetAttribute("wrapAfter", 17)
-TukuiAurasPlayerBuffs:SetAttribute("xOffset", -29)
+TukuiAurasPlayerBuffs:SetAttribute("xOffset", -33)
 TukuiAurasPlayerBuffs:SetAttribute("wrapYOffset", -36)
 
 TukuiAurasPlayerBuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -153, -4)

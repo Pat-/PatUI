@@ -22,9 +22,9 @@ end
 P.PostNamePosition = function(self)
 	self.Name:ClearAllPoints()
 	if (self.Power.value:GetText() and UnitIsEnemy("player", "target") and C["unitframes"].targetpowerpvponly == true) or (self.Power.value:GetText() and C["unitframes"].targetpowerpvponly == false) then
-		self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 5)
+		self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 	else
 		self.Power.value:SetAlpha(0)
-		self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 5)
+		self.Name:SetPoint("RIGHT", self.Health, "RIGHT", -4, 0)
 	end
 end

@@ -11,8 +11,8 @@ C.media = {
 }
 
 C.general = {
-	backdropcolor = {.054, .054, .054},
-	bordercolor = {.1, .1, .1},
+	backdropcolor = {.08, .08, .08},
+	bordercolor = {.2, .2, .2},
 }
 
 C.unitframes = {
@@ -86,6 +86,9 @@ C.nameplate = {
 	enable = true,
     showhealth = true,
 	enhancethreat = true,
+	goodcolor = { 75/255,  175/255, 76/255 },
+	badcolor = { 0.78, 0.25, 0.25 },
+	transitioncolor = { 218/255, 197/255, 92/255 },
 }
 
 C.classbar = {

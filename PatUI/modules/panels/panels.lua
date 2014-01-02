@@ -14,6 +14,9 @@ end
 -- Setting up Actionbars
 ------------------------------------------------------------------------
 
+TukuiPetBar:ClearAllPoints()
+TukuiPetBar:Point("RIGHT", UIParent, "RIGHT", -2, -14)
+
 TukuiPetBar:SetTemplate("Transparent")
 TukuiLineToPetActionBarBackground:SetBackdrop(nil)
 

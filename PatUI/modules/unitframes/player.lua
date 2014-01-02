@@ -38,13 +38,13 @@ self.Health.bg:SetPoint("BOTTOM")
 self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Health.value:Point("RIGHT", self.Health, "RIGHT", -4, 0)
+self.Health.value:Point("LEFT", self.Health, "LEFT", 4, 0)
 self.Health.value:SetShadowOffset(0, 0)
 
 self.Power:ClearAllPoints()
-self.Power:Point("TOP", self.Health, "BOTTOM", 0, -7)
-self.Power:SetHeight(2)
-self.Power:SetWidth(240)
+self.Power:Point("TOPRIGHT", self.Health, "BOTTOMRIGHT", -4, 1)
+self.Power:SetHeight(3)
+self.Power:SetWidth(90)
 self.Power:CreateBorder()
 self.Power:SetFrameLevel(10)
 
@@ -55,7 +55,7 @@ self.Power.colorClass = false
 self.Power.colorReaction = false
 
 self.Power.value = P.SetFontString( self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Power.value:Point("LEFT", self.Health, "LEFT", 4, 0)
+self.Power.value:Point("RIGHT", self.Health, "RIGHT", -4, 0)
 self.Power.value:SetShadowOffset(0, 0)
 
 self.Castbar:ClearAllPoints()

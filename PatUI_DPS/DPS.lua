@@ -129,7 +129,7 @@ TukuiRaidPosition:SetScript("OnEvent", function(self, event)
 	raid:SetPoint("BOTTOMLEFT", TukuiTabsLeftBackground, "TOPLEFT", 2, 16)
 	
 	if Bar3:IsShown() then
-		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 7)
+		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", 2, 7)
 	end
 	
 	Bar3:HookScript("OnHide", function()
@@ -139,7 +139,7 @@ TukuiRaidPosition:SetScript("OnEvent", function(self, event)
 	
 	Bar3:HookScript("OnShow", function()
 		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", -1, 7)
+		raid:SetPoint("BOTTOMLEFT", Bar3, "TOPLEFT", 2, 7)
 	end)
 	
 	if C.unitframes.showraidpets == true then

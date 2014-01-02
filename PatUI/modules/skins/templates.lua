@@ -75,7 +75,7 @@ end)
 
 local function UpdateFactionSkins()
 	ReputationDetailFrame:PatSkin()
-	ReputationDetailFrame:SetAlpha(0.7)
+	ReputationDetailFrame:SetAlpha(0.9)
 end
 ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 
@@ -146,6 +146,12 @@ local function SkinBlizzardFrames(self, event, addon)
 			if f.shadow then f.shadow:Hide() end
 		end
 		
+		for i=1, 42 do
+			local frame = _G["CalendarDayButton"..i]
+			
+			frame:SetTemplate("Transparent")
+		end
+		
 		CalendarMassInviteCloseButton:StripTextures()
 		
 	elseif(addon == "Blizzard_TimeManager") then
@@ -156,7 +162,7 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 		PlayerTalentFrame.backdrop:PatSkin()
 		
-		for i=1, 3 do
+		for i=1, 4 do
 			_G["PlayerTalentFrameTab"..i].backdrop:PatSkin()
 		end
 		
@@ -329,10 +335,16 @@ RecruitAFriendNoteFrameScrollFrameScrollBar:SkinScrollBar()
 
 ScrollOfResurrectionSelectionFrame:PatSkin()
 
-GearManagerDialogPopup:SetAlpha(0.8)
+GearManagerDialogPopup:SetAlpha(0.9)
 GearManagerDialogPopup:ThickBorder()
 
 LFRBrowseFrameListScrollFrameScrollBar:SkinScrollBar()
 LFRBrowseFrameRoleInset:StripTextures()
 
 GameMenuButtonStore:SkinButton()
+
+PVPReadyDialog:StripTextures()
+PVPReadyDialog:PatSkin()
+PVPReadyDialogEnterBattleButton:SkinButton()
+PVPReadyDialogLeaveQueueButton:SkinButton()
+PVPReadyDialogCloseButton:SkinCloseButton()

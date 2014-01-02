@@ -4,6 +4,8 @@
 	<Script file="datatext\datatext.lua"/>
 	<Script file="bags\bags.lua"/>
 	<Script file="map\map.lua"/>
+	<Script file="tooltip\tooltip.lua"/>
+	<SCript file="nameplates\nameplates.lua"/>
 
 	<Include file="actionbars\load_actionbars.xml"/>
 	<Include file="unitframes\load_unitframes.xml"/>
