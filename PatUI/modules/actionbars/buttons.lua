@@ -95,7 +95,7 @@ end
 
 local Bar3Button = CreateFrame("Button", "Bar3Button", TukuiPetBattleHider)
 Bar3Button:Size(19)
-Bar3Button:Point("RIGHT", TukuiTabsLeftBackground, "RIGHT", 0, 0)
+Bar3Button:Point("RIGHT", TukuiTabsLeftBackground, "RIGHT", -2, 0)
 Bar3Button:PatSkin()
 Bar3Button:SkinButton()
 Bar3Button:RegisterForClicks("AnyUp")
