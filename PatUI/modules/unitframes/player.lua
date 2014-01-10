@@ -23,19 +23,10 @@ self:Size(240, 26)
 
 self.Health:SetHeight(23)
 self.Health:SetFrameLevel(5)
-self.Health:SetFrameStrata("LOW")
 self.Health:CreateBorder()
 
 self.Health.bg:SetTexture(C.media.normTex)
-self.Health:SetStatusBarColor(.1, .1, .1, .1)
-self.Health.bg:SetVertexColor(.6, .2, .2, 1)
-
-self.Health.bg:ClearAllPoints()
-self.Health.bg:SetPoint("LEFT")
-self.Health.bg:SetPoint("RIGHT")
-self.Health.bg:SetPoint("TOP")
-self.Health.bg:SetPoint("BOTTOM")
-self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
+self.Health.bg:SetVertexColor(.6, .2, .2)
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
 self.Health.value:Point("LEFT", self.Health, "LEFT", 4, 0)
@@ -45,10 +36,10 @@ self.Power:ClearAllPoints()
 self.Power:Point("TOPRIGHT", self.Health, "BOTTOMRIGHT", -4, 1)
 self.Power:SetHeight(3)
 self.Power:SetWidth(90)
+self.Power:SetFrameLevel(6)
 self.Power:CreateBorder()
-self.Power:SetFrameLevel(10)
 
-self.Power.bg:SetVertexColor(.12, .12, .12, .1)
+self.Power.bg:SetVertexColor(.12, .12, .12)
 self.Power.bg:SetTexture(C.media.normTex)
 
 self.Power.colorClass = false

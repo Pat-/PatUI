@@ -7,8 +7,8 @@ local fsize = C.media.pfontsize
 local self = _G["TukuiPlayer"]
 
 self.EclipseBar:ClearAllPoints()
-self.EclipseBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 6)
-self.EclipseBar:Size(self:GetWidth(), 3)
+self.EclipseBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 4, -1)
+self.EclipseBar:Size(130, 3)
 self.EclipseBar:CreateBorder()
 
 self.EclipseBar.LunarBar:SetSize(self.EclipseBar:GetWidth(), self.EclipseBar:GetHeight())

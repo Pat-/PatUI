@@ -81,7 +81,7 @@ local function CreateBorder(self)
 	border:SetPoint("TOPLEFT", self, "TOPLEFT", P.Scale(-2), P.Scale(2))
 	border:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", P.Scale(2), P.Scale(-2))
 	border:SetTemplate("Transparent")
-	border:SetFrameLevel(self:GetFrameLevel())
+	border:SetFrameLevel(self:GetFrameLevel() - 1)
 	ThickBorder(border)
 end
 

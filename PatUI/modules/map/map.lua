@@ -10,7 +10,7 @@ TukuiMinimapCoord:HideInsets()
 TukuiMinimapCoord:SetBackdropBorderColor(0, 0, 0, 0)
 TukuiMinimapCoord:SetBackdrop(nil)
 TukuiMinimapCoord:ClearAllPoints()
-TukuiMinimapCoord:SetPoint("BOTTOMRIGHT", TukuiMinimap, "BOTTOMRIGHT", -2, 2)
+TukuiMinimapCoord:SetPoint("BOTTOMLEFT", TukuiMinimap, "BOTTOMLEFT", 2, 2)
 TukuiMinimapCoordText:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
 
 -- Zone text when hovering minimap.

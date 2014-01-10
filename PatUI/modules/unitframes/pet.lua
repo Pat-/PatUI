@@ -26,24 +26,13 @@ self.Health:SetFrameLevel(5)
 self.Health:CreateBorder()
 
 self.Health.bg:SetTexture(C.media.normTex)
-self.Health:SetStatusBarColor(.1, .1, .1, .1)
-self.Health.bg:SetVertexColor(.6, .2, .2, 1)
-
-self.Health.bg:ClearAllPoints()
-self.Health.bg:SetPoint("LEFT")
-self.Health.bg:SetPoint("RIGHT")
-self.Health.bg:SetPoint("TOP")
-self.Health.bg:SetPoint("BOTTOM")
-self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
+self.Health.bg:SetVertexColor(.6, .2, .2)
 
 self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
 self.Name:SetShadowOffset(0, 0)
 self.Name:Point("CENTER", self.Health, "CENTER", 0, 0)
 
 self.Castbar:ClearAllPoints()
-self.Castbar:AllPoints(self.Health)
-self.Castbar:CreateBackdrop("Transparent")
-self.Castbar.bg:Kill()
 
 self.Castbar.Time:ClearAllPoints()
 

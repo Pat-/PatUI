@@ -153,6 +153,7 @@ Bar5Button.text:SetText("|cff18AA18 < |r")
 
 TukuiExitVehicleButtonRight:Size(19)
 TukuiExitVehicleButtonRight:PatSkin()
+TukuiExitVehicleButtonRight:SkinButton()
 TukuiExitVehicleButtonRight:ClearAllPoints()
 TukuiExitVehicleButtonRight:Point("RIGHT", Bar3Button, "LEFT", -3, 0)
 TukuiExitVehicleButtonRight:SetFrameLevel(20)
@@ -165,12 +166,12 @@ init:SetScript("OnEvent", function(self, event)
 	if not PatUICharData then PatUICharData = {} end
 	local db = PatUICharData
 	
-	if not P.lowversion and db.hidebar2 then
+	if db.hidebar2 then
 		UpdateBar(Bar2Button, LeftBar2)
 		UpdateBar(Bar2Button, RightBar2)
 	end
 	
-	if not P.lowversion and db.hidebar3 then
+	if db.hidebar3 then
 		UpdateBar(Bar3Button, Bar3)
 	end
 	
@@ -186,3 +187,5 @@ end)
 
 TukuiBar2Button:Hide()
 TukuiBar3Button:Hide()
+TukuiBar5ButtonTop:Hide()
+TukuiBar5ButtonBottom:Hide()

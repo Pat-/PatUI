@@ -27,15 +27,7 @@ self.Health:SetFrameStrata("LOW")
 self.Health:CreateBorder()
 
 self.Health.bg:SetTexture(C.media.normTex)
-self.Health:SetStatusBarColor(.1, .1, .1, .1)
-self.Health.bg:SetVertexColor(.6, .2, .2, 1)
-
-self.Health.bg:ClearAllPoints()
-self.Health.bg:SetPoint("LEFT")
-self.Health.bg:SetPoint("RIGHT")
-self.Health.bg:SetPoint("TOP")
-self.Health.bg:SetPoint("BOTTOM")
-self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
+self.Health.bg:SetVertexColor(.6, .2, .2)
 
 self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
 self.Health.value:Point("LEFT", self.Health, "LEFT", 4, 0)
@@ -62,6 +54,8 @@ self.Power.value:SetShadowOffset(0, 0)
 self.Castbar:CreateBackdrop("Transparent")
 self.Castbar.bg:Kill()
 self.Castbar:ThickBorder()
+
+self:Tag(self.Name, "[Tukui:getnamecolor][Tukui:nameshort][Tukui:diffcolor] [shortclassification]")
 
 if (IsAddOnLoaded("PatUI_Heal")) then
 	self.Castbar:SetSize(240, 16)

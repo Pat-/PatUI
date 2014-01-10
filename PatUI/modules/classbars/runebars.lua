@@ -4,13 +4,13 @@ if P.myclass ~= "DEATHKNIGHT" or C.unitframes.classbar ~= true then return end
 local self = _G["TukuiPlayer"]
 
 self.Runes:ClearAllPoints()
-self.Runes:SetPoint("BOTTOM", self, "TOP", 0, 5)
-self.Runes:Size(self:GetWidth(), 3)
+self.Runes:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 4, -1)
+self.Runes:Size(130, 3)
 self.Runes:CreateBorder()
 self.Runes:SetFrameLevel(10)
 
 for i = 1, 6 do
-	self.Runes[i]:SetSize(39.1, 3)
+	self.Runes[i]:SetSize(20.9, 3)
 	
 	self.Runes[i]:ClearAllPoints()
 	if(i == 1) then

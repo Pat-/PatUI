@@ -53,6 +53,7 @@ local frames = {
 	HelpFrameLeftInset.backdrop,
 	TicketStatusFrameButton,
 	ReadyCheckFrame,
+	PetStableFrame,
 }
 
 local OnLoad = CreateFrame("Frame")
@@ -162,7 +163,7 @@ local function SkinBlizzardFrames(self, event, addon)
 	
 		PlayerTalentFrame.backdrop:PatSkin()
 		
-		for i=1, 4 do
+		for i=1, NUM_TALENT_FRAME_TABS do
 			_G["PlayerTalentFrameTab"..i].backdrop:PatSkin()
 		end
 		

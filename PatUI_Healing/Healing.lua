@@ -38,6 +38,7 @@ T.PostUpdateRaidUnit = function(self)
 	self.Health:SetAllPoints(self)
 	self.Health:CreateBorder()
 	self.Health:SetFrameStrata("LOW")
+	self.Health:SetFrameLevel(5)
 	self.Health:SetOrientation('HORIZONTAL')
 	self.Health:SetStatusBarColor(.1, .1, .1, .1)
 	

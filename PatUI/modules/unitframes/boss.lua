@@ -24,15 +24,7 @@ for i = 1, MAX_BOSS_FRAMES do
 	self.Health:CreateBorder()
 
 	self.Health.bg:SetTexture(C.media.normTex)
-	self.Health:SetStatusBarColor(.1, .1, .1, .1)
-	self.Health.bg:SetVertexColor(.6, .2, .2, 1)
-
-	self.Health.bg:ClearAllPoints()
-	self.Health.bg:SetPoint("LEFT")
-	self.Health.bg:SetPoint("RIGHT")
-	self.Health.bg:SetPoint("TOP")
-	self.Health.bg:SetPoint("BOTTOM")
-	self.Health.bg:SetPoint("LEFT", self.Health:GetStatusBarTexture(), "RIGHT")
+	self.Health.bg:SetVertexColor(.6, .2, .2)
 
 	self.Power:Size(215, 2)
 	self.Power:ClearAllPoints()

@@ -3,6 +3,8 @@ if C.classbar.comboPoints ~= true then return end
 
 TukuiCombo:Kill()
 
+local self = _G["TukuiPlayer"]
+
 -- Taken from Smelly_Combo :P
 local colors = { 
 	{.69, .31, .31, 1},
@@ -13,9 +15,9 @@ local colors = {
 }
 
 local cpoints = CreateFrame("Frame", "TukuiComboPoints", UIParent)
-cpoints:Width(TukuiPlayer:GetWidth())
+cpoints:Width(130)
 cpoints:Height(3)
-cpoints:Point("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 6)
+cpoints:Point("BOTTOMLEFT", self, "TOPLEFT", 4, -1)
 cpoints:CreateBorder()
 cpoints:SetFrameLevel(10)
 
@@ -23,7 +25,7 @@ local points = {}
 
 for i=1,MAX_COMBO_POINTS do
 	points[i] = CreateFrame("Frame", "TukuiComboPoints_Point"..i, cpoints)
-	points[i]:SetWidth((TukuiPlayer:GetWidth()-(MAX_COMBO_POINTS) + 1) / MAX_COMBO_POINTS)
+	points[i]:SetWidth((130-(MAX_COMBO_POINTS) + 1) / MAX_COMBO_POINTS)
 	points[i]:SetHeight(3)
 	points[i].tex = points[i]:CreateTexture(nil, "OVERLAY")
 	points[i].tex:SetTexture(C.media.normTex)
@@ -31,7 +33,7 @@ for i=1,MAX_COMBO_POINTS do
 	points[i].tex:AllPoints(points[i])
 	points[i].BG = points[i]:CreateTexture(nil, 'BORDER')
 	points[i].BG:SetAllPoints()
-	points[i]:SetBorder(false, true)
+	--points[i]:SetBorder(false, true)
 	points[i].BG:SetTexture(.1, .1, .1)
 	if i==1 then
 		points[i]:SetPoint("LEFT", cpoints, "LEFT", 0, 0)

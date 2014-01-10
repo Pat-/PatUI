@@ -6,8 +6,8 @@ if P.myclass ~= "PALADIN" or C.unitframes.classbar ~= true then return end
 local self = _G["TukuiPlayer"]
 
 self.HolyPower:ClearAllPoints()
-self.HolyPower:SetPoint("BOTTOM", self, "TOP", 0, 5)
-self.HolyPower:Size(self:GetWidth(), 3) --240 
+self.HolyPower:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 4, -1)
+self.HolyPower:Size(130, 3) 
 self.HolyPower:CreateBorder()
 self.HolyPower:SetFrameLevel(10)
 
