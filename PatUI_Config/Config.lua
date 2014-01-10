@@ -1,4 +1,5 @@
 local C = {}
+if not (select(4, GetAddOnInfo('PatUI'))) then return end
 
 C.media = {
 	datatextcolor2 = {0, .7, 1},

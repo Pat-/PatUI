@@ -2,7 +2,5 @@
 ## Title: |cff18AA18PatUI Config|r
 ## Notes:
 ## Author: Pat
-## Notes: Default Configuration for PatUI.
-## RequiredDeps: PatUI
 
 Config.lua
