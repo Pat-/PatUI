@@ -185,7 +185,7 @@ init:SetScript("OnEvent", function(self, event)
 	end
 end)
 
-TukuiBar2Button:Hide()
-TukuiBar3Button:Hide()
-TukuiBar5ButtonTop:Hide()
-TukuiBar5ButtonBottom:Hide()
+TukuiBar2Button:ClearAllPoints()
+TukuiBar3Button:ClearAllPoints()
+TukuiBar5ButtonTop:ClearAllPoints()
+TukuiBar5ButtonBottom:ClearAllPoints()

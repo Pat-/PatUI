@@ -36,7 +36,7 @@ self.Power:ClearAllPoints()
 self.Power:Point("TOPRIGHT", self.Health, "BOTTOMRIGHT", -4, 1)
 self.Power:SetHeight(3)
 self.Power:SetWidth(90)
-self.Power:SetFrameLevel(6)
+self.Power:SetFrameLevel(10)
 self.Power:CreateBorder()
 
 self.Power.bg:SetVertexColor(.12, .12, .12)

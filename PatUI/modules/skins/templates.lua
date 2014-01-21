@@ -54,6 +54,7 @@ local frames = {
 	TicketStatusFrameButton,
 	ReadyCheckFrame,
 	PetStableFrame,
+	PetitionFrame,
 }
 
 local OnLoad = CreateFrame("Frame")

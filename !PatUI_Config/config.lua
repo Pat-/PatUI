@@ -45,7 +45,7 @@ C.unitframes = {
 }
 
 C.actionbar = {
-	hotkey = false,
+	hotkey = true,
 	macro = false,
 	hideshapeshift = true,
 }
@@ -84,9 +84,12 @@ C.chat = {
 }
 
 C.nameplate = {
-	enable = true,
+	enable = false,
     showhealth = true,
 	enhancethreat = true,
+	height = 5,
+	width = 170,
+	adwidth = 5,
 	goodcolor = { 75/255,  175/255, 76/255 },
 	badcolor = { 0.78, 0.25, 0.25 },
 	transitioncolor = { 218/255, 197/255, 92/255 },

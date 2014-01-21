@@ -2,6 +2,6 @@
 ## Title: |cff18AA18PatUI Healing|r
 ## Notes:
 ## Author: Pat
-## RequiredDeps: Tukui, PatUI, PatUI_Config
+## RequiredDeps: Tukui, PatUI, !PatUI_Config
 
 Healing.lua

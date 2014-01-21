@@ -45,10 +45,9 @@ P.PostUpdateRaidUnit = function(self)
 	self.Health:CreateBorder()
 	self.Health:SetFrameStrata("LOW")
 	self.Health:SetOrientation('HORIZONTAL')
-	self.Health:SetStatusBarColor(.1, .1, .1, .1)
 	
 	self.Health.bg:SetTexture(C.media.normTex)
-	self.Health.bg:SetVertexColor(.6, .2, .2, 1)
+	self.Health.bg:SetVertexColor(.6, .2, .2)
 
 	self.Health.bg:ClearAllPoints()
 	self.Health.bg:SetPoint("LEFT")
@@ -68,12 +67,12 @@ P.PostUpdateRaidUnit = function(self)
 			if(not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit)) then return end
 			local hover = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
 			if(not hover) then return end
-			self.Health:SetStatusBarColor(hover.r, hover.g, hover.b, .7)
+			self.Health:SetStatusBarColor(hover.r, hover.g, hover.b)
 		end)
 
 		self:HookScript("OnLeave", function(self)
 			if(not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit)) then return end
-			self.Health:SetStatusBarColor(0.05, 0.05, 0.05, .1)
+			self.Health:SetStatusBarColor(.3, .3, .3)
 		end)
 	end
 

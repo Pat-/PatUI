@@ -1,5 +1,4 @@
 -- Credits: Saft for getting this shit to work after giving me much headaches.
-
 local P, C, L, G = unpack(Tukui)
 if P.myclass ~= "PALADIN" or C.unitframes.classbar ~= true then return end
 
@@ -15,7 +14,7 @@ self.HolyPower:RegisterEvent('PLAYER_LEVEL_UP')
 self.HolyPower:RegisterEvent('PLAYER_ENTERING_WORLD')
 self.HolyPower:SetScript('OnEvent', function(self, event)
 	local maxHolyPower = UnitLevel('player') < 85 and 3 or 5
-	local totalWidth = self:GetWidth()
+	local totalWidth = 130
 
 	for i = 1, maxHolyPower do
 		self[i]:SetStatusBarColor(228/255, 225/255, 16/255)
