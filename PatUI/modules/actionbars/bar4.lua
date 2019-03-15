@@ -1,50 +1,55 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L = Tukui:unpack()
 
-TukuiBar1:ClearAllPoints()
-TukuiBar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
-TukuiBar1:SetWidth((P.buttonsize * 12) + (P.buttonspacing * 13))
-TukuiBar1:SetTemplate("Transparent")
+local Panels = T.Panels
+local ActionBars = T.ActionBars
+local Num = NUM_ACTIONBAR_BUTTONS
 
-local Bar4 = CreateFrame("Frame", "Bar4", UIParent, "SecureHandlerStateTemplate")
-Bar4:Point("CENTER", TukuiBar1, "CENTER", 0, 0)
-Bar4:SetWidth((P.buttonsize * 12) + (P.buttonspacing * 13))
-Bar4:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
-Bar4:HideInsets()
-Bar4:SetBackdropBorderColor(0, 0, 0, 0)
-Bar4:SetBackdrop(nil)
-
-if Bar4:IsShown() then
-	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
-end
-
-Bar4:HookScript("OnHide", function()
-	TukuiBar1:SetHeight((P.buttonsize * 1) + (P.buttonspacing * 2))
-end)
-
-Bar4:HookScript("OnShow", function()
-	TukuiBar1:SetHeight((P.buttonsize * 2) + (P.buttonspacing * 3))
-end)
-
-TukuiBar4:SetAlpha(0)
-TukuiBar4Button:ClearAllPoints()
-
-local bar = Bar4
-bar:SetAlpha(1)
-MultiBarLeft:SetParent(bar)
-
-for i= 1, 12 do
-	local b = _G["MultiBarLeftButton"..i]
-	local b2 = _G["MultiBarLeftButton"..i-1]
-	b:SetSize(P.buttonsize, P.buttonsize)
-	b:ClearAllPoints()
-	b:SetFrameStrata("BACKGROUND")
-	b:SetFrameLevel(15)
+hooksecurefunc(ActionBars, 'CreateBar4', function()
+    local Size = C.ActionBars.NormalButtonSize
+    local Spacing = C.ActionBars.ButtonSpacing
+    local ActionBar4 = Panels.ActionBar4
+    local ActionBar1 = Panels.ActionBar1
 	
-	if i == 1 then
-		b:SetPoint("TOPLEFT", bar, P.buttonspacing, -P.buttonspacing)
-	else
-		b:SetPoint("LEFT", b2, "RIGHT", P.buttonspacing, 0)
-	end
-	
-	Bar4["Button"..i] = b
-end
+	ActionBar4.Backdrop:SetAlpha(0)
+
+    local LeftBar4 = CreateFrame("Frame", "LeftBar4", UIParent, "SecureHandlerStateTemplate")
+	LeftBar4:Point("BOTTOMRIGHT", ActionBar1, "BOTTOMLEFT", -6, 0)
+	LeftBar4:Width((Size * 3) + (Spacing * 4))
+	LeftBar4:Height((Size * 2) + (Spacing * 3))
+	LeftBar4:SetTemplate("Transparent")
+	LeftBar4:SetFrameLevel(ActionBar1:GetFrameLevel())
+	LeftBar4:SetFrameStrata(ActionBar1:GetFrameStrata())
+
+	local RightBar4 = CreateFrame("Frame", "RightBar4", UIParent, "SecureHandlerStateTemplate")
+	RightBar4:Point("BOTTOMLEFT", ActionBar1, "BOTTOMRIGHT", 6, 0)
+	RightBar4:Width((Size * 3) + (Spacing * 4))
+	RightBar4:Height((Size * 2) + (Spacing * 3))
+	RightBar4:SetTemplate("Transparent")
+	RightBar4:SetFrameLevel(ActionBar1:GetFrameLevel())
+	RightBar4:SetFrameStrata(ActionBar1:GetFrameStrata())
+
+	local bar = LeftBar4
+	local bar2 = RightBar4
+    MultiBarRight:SetParent(bar)
+
+    for i= 1, Num do
+        local b = _G["MultiBarRightButton"..i]
+        local b2 = _G["MultiBarRightButton"..i-1]
+        b:SetSize(Size, Size)
+        b:ClearAllPoints()
+        b:SetFrameStrata("BACKGROUND")
+        b:SetFrameLevel(15)
+
+        if i == 1 then
+			b:SetPoint("BOTTOMLEFT", bar, Spacing, Spacing)
+		elseif i == 7 then
+			b:SetPoint("TOPLEFT", bar, Spacing, -Spacing)
+		elseif i == 4 then
+			b:SetPoint("BOTTOMLEFT", bar2, Spacing, Spacing)
+		elseif i == 10 then
+			b:SetPoint("TOPLEFT", bar2, Spacing, -Spacing)
+		else
+			b:SetPoint("LEFT", b2, "RIGHT", Spacing, 0)
+		end
+    end
+end)
