@@ -4,6 +4,7 @@
 ## Credits: Tukz, Sinaris, Ekst, Flyingboots, Elv22, Eclipse, Hydra
 ## Version: 0.1
 ## Author: Pat
+## SavedVariablesPerCharacter: PatUICharData
 ## RequiredDeps: Tukui, Tukui_Config
 
 PatUI.xml
