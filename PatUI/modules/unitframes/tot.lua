@@ -42,7 +42,7 @@ local function CreateUnits()
 	ToT:SetWidth(110)
 	
 	ToT:ClearAllPoints()
-	ToT:SetPoint("BOTTOM", Bar1, "TOP", 0, 50)
+	ToT:SetPoint("BOTTOM", PatBar1, "TOP", 0, 50)
 	ToT:SetBackdrop(nil)
 end
 hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)

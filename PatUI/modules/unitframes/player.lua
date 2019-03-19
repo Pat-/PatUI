@@ -110,7 +110,7 @@ local function CreateUnits()
 	Player:SetWidth(240)
 	
 	Player:ClearAllPoints()
-	Player:SetPoint("BOTTOMLEFT", Bar1, "TOPLEFT", -160, 50)
+	Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -160, 50)
 end
 hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
@@ -153,14 +153,15 @@ local function Player(self)
 	Power:SetWidth(90)
 	Power:SetFrameLevel(10)
 	Power:CreateBackdrop("Default")
+	Power:CreateShadow()
 	
 	Power.Value:ClearAllPoints()
 	Power.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
 	Power.Value:SetShadowOffset(0, 0)
 
 	Castbar:ClearAllPoints()
-	Castbar:SetSize((Bar1:GetWidth() - 4), 19)
-	Castbar:SetPoint("BOTTOMRIGHT", Bar1, "TOPRIGHT", -2, 5)
+	Castbar:SetSize((PatBar1:GetWidth() - 4), 19)
+	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -2, 5)
 	Castbar:CreateBackdrop("Transparent")
 	Castbar.Background:Hide()
 	
@@ -172,6 +173,38 @@ local function Player(self)
 	
 	Combat:ClearAllPoints()
 	Combat:Point("CENTER", Health, "CENTER", 0, 0)
+	
+	CombatFeedbackText:ClearAllPoints()
+	
+	if (Class == "ROGUE" or Class == "DRUID") then
+		
+		ComboPointsBar:ClearAllPoints()
+		ComboPointsBar:Size(240, 5)
+		ComboPointsBar:SetFrameLevel(15)
+		ComboPointsBar:SetAlpha(1)
+		ComboPointsBar:SetBackdrop(nil)
+		ComboPointsBar:CreateBackdrop("Default")
+		
+		ComboPointsBar:SetPoint("BOTTOM", Health, "TOP", 0, 3)
+		
+		for i = 1, 6 do
+		ComboPointsBar[i]:ClearAllPoints()
+		ComboPointsBar[i]:CreateBackdrop()
+		ComboPointsBar[i]:Height(5)
+
+			if i == 1 then
+				ComboPointsBar[i]:Point("LEFT", ComboPointsBar, "LEFT", 0, 0)
+				ComboPointsBar[i]:SetWidth(32)
+				ComboPointsBar[i].BarSizeForMaxComboIs6 = 32
+				ComboPointsBar[i].BarSizeForMaxComboIs5 = 48
+			else
+				ComboPointsBar[i]:Point("LEFT", ComboPointsBar[i-1], "RIGHT", 1, 0)
+				ComboPointsBar[i]:SetWidth(32)
+				ComboPointsBar[i].BarSizeForMaxComboIs6 = 32
+				ComboPointsBar[i].BarSizeForMaxComboIs5 = 47
+			end
+		end
+	end
 	
 end
 hooksecurefunc(UnitFrames, "Player", Player)

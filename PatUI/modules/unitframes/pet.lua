@@ -50,7 +50,7 @@ local function CreateUnits()
 	Pet:SetWidth(110)
 	
 	Pet:ClearAllPoints()
-	Pet:SetPoint("BOTTOM", Bar1, "TOP", 0, 90)
+	Pet:SetPoint("BOTTOM", PatBar1, "TOP", 0, 90)
 	Pet:SetBackdrop(nil)
 end
 hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)

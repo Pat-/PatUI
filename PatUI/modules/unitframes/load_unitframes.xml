@@ -4,7 +4,7 @@
 	<Script file="pet.lua"/>
 	<Script file="tot.lua"/>
 	<Script file="focus.lua"/>
-	<Script file="points.lua"/>	
 	<Script file="arena.lua"/>
 	<Script file="boss.lua"/>
+	<Script file="raid.lua"/>
 </Ui>

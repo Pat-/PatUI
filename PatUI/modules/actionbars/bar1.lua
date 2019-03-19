@@ -13,11 +13,19 @@ hooksecurefunc(ActionBars, 'CreateBar1', function()
 	ActionBar1:ClearAllPoints()
 	ActionBar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
 	
-	local Bar1 = CreateFrame("Frame", "Bar1", UIParent, "SecureHandlerStateTemplate")
+	local Bar1 = CreateFrame("Frame", "PatBar1", UIParent, "SecureHandlerStateTemplate")
 	Bar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
 	Bar1:SetWidth((Size * 12) + (Spacing * 13))
 	Bar1:SetHeight((Size * 2) + (Spacing * 3))
 	Bar1:SetTemplate("Transparent")
+	Bar1:CreateShadow()
 	
 	ActionBar1:SetParent(Bar1)
+end)
+
+hooksecurefunc(ActionBars, 'CreatePetBar', function()
+	local PetBar = Panels.PetActionBar
+	
+	PetBar:ClearAllPoints()
+	PetBar:Point("RIGHT", UIParent, "RIGHT", -3, -14)
 end)

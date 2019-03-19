@@ -16,20 +16,22 @@ hooksecurefunc(ActionBars, 'CreateBar5', function()
 	local buttonsize = 25
 
 	local LeftBar = CreateFrame("Frame", "LeftBar", UIParent, "SecureHandlerStateTemplate")
-	LeftBar:Point("LEFT", LeftChatBG, "RIGHT", 3, 0)
+	LeftBar:Point("LEFT", LeftChatBG, "RIGHT", 4, 0)
 	LeftBar:Width((buttonsize * 1) + (Spacing * 2))
 	LeftBar:Height((buttonsize * 6) + (Spacing * 7))
 	LeftBar:SetFrameStrata("BACKGROUND")
 	LeftBar:SetFrameLevel(3)
 	LeftBar:SetTemplate("Transparent")
+	LeftBar:CreateShadow()
 
 	local RightBar = CreateFrame("Frame", "RightBar", UIParent, "SecureHandlerStateTemplate")
-	RightBar:Point("RIGHT", RightChatBG, "LEFT", -3, 0)
+	RightBar:Point("RIGHT", RightChatBG, "LEFT", -4, 0)
 	RightBar:Width((buttonsize * 1) + (Spacing * 2))
 	RightBar:Height((buttonsize * 6) + (Spacing * 7))
 	RightBar:SetFrameStrata("BACKGROUND")
 	RightBar:SetFrameLevel(3)
 	RightBar:SetTemplate("Transparent")
+	RightBar:CreateShadow()
 
 	local bar = LeftBar
 	local bar2 = RightBar

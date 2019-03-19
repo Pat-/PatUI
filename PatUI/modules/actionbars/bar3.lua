@@ -15,13 +15,14 @@ hooksecurefunc(ActionBars, 'CreateBar3', function()
 
 	local buttonsize = 27.7
 
-	local Bar3 = CreateFrame("Frame", "Bar3", UIParent, "SecureHandlerStateTemplate")
-	Bar3:Point("BOTTOM", LeftChatBG, "TOP", 0, 12)
+	local Bar3 = CreateFrame("Frame", "PatBar3", UIParent, "SecureHandlerStateTemplate")
+	Bar3:Point("BOTTOM", LeftChatBG, "TOP", 0, 13)
 	Bar3:Width((buttonsize * 12) + (Spacing * 13))
 	Bar3:Height((buttonsize * 1) + (Spacing * 2))
 	Bar3:SetFrameStrata("BACKGROUND")
 	Bar3:SetFrameLevel(3)
 	Bar3:SetTemplate("Transparent")
+	Bar3:CreateShadow()
 
 	local bar = Bar3
 	MultiBarBottomRight:SetParent(bar)

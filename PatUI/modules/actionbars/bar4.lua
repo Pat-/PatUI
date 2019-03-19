@@ -19,6 +19,7 @@ hooksecurefunc(ActionBars, 'CreateBar4', function()
 	LeftBar4:SetTemplate("Transparent")
 	LeftBar4:SetFrameLevel(ActionBar1:GetFrameLevel())
 	LeftBar4:SetFrameStrata(ActionBar1:GetFrameStrata())
+	LeftBar4:CreateShadow()
 
 	local RightBar4 = CreateFrame("Frame", "RightBar4", UIParent, "SecureHandlerStateTemplate")
 	RightBar4:Point("BOTTOMLEFT", ActionBar1, "BOTTOMRIGHT", 6, 0)
@@ -27,6 +28,7 @@ hooksecurefunc(ActionBars, 'CreateBar4', function()
 	RightBar4:SetTemplate("Transparent")
 	RightBar4:SetFrameLevel(ActionBar1:GetFrameLevel())
 	RightBar4:SetFrameStrata(ActionBar1:GetFrameStrata())
+	RightBar4:CreateShadow()
 
 	local bar = LeftBar4
 	local bar2 = RightBar4

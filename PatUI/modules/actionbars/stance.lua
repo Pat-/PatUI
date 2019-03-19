@@ -10,5 +10,5 @@ hooksecurefunc(ActionBars, 'CreateStanceBar', function()
 	local LeftChatBG = Panels.LeftChatBG
 
 	StanceBar:ClearAllPoints()
-	StanceBar:SetPoint("TOPLEFT", LeftChatBG, "TOPLEFT", -1, 82)
+	StanceBar:SetPoint("TOPLEFT", LeftChatBG, "TOPLEFT", -1, 84)
 end)

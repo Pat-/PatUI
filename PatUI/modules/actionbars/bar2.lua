@@ -13,13 +13,25 @@ hooksecurefunc(ActionBars, 'CreateBar2', function()
 
 	ActionBar2.Backdrop:SetAlpha(0)
 
-	local Bar2 = CreateFrame("Frame", "Bar2", UIParent, "SecureHandlerStateTemplate")
-	Bar2:Point("CENTER", ActionBar1, "CENTER", 0, 16)
+	local Bar2 = CreateFrame("Frame", "PatBar2", UIParent, "SecureHandlerStateTemplate")
+	Bar2:Point("CENTER", ActionBar1, "CENTER", 0, 15)
 	Bar2:SetWidth((Size * 12) + (Spacing * 13))
 	Bar2:SetHeight((Size * 2) + (Spacing * 3))
 	Bar2:SetBackdropBorderColor(0, 0, 0, 0)
 	Bar2:SetBackdrop(nil)
 	
+	if Bar2:IsShown() then
+		PatBar1:SetHeight((Size * 2) + (Spacing * 3))
+	end
+
+	Bar2:HookScript("OnHide", function()
+		PatBar1:SetHeight((Size * 1) + (Spacing * 2))
+	end)
+
+	Bar2:HookScript("OnShow", function()
+		PatBar1:SetHeight((Size * 2) + (Spacing * 3))
+	end)
+		
 	local bar = Bar2
 	MultiBarBottomLeft:SetParent(bar)
 
@@ -39,3 +51,16 @@ hooksecurefunc(ActionBars, 'CreateBar2', function()
 		end
 	end
 end)
+
+
+local VehicleIndicator = T.Miscellaneous.VehicleIndicator
+
+function VehicleIndicator:Enable()
+	local Indicator = VehicleSeatIndicator
+
+	Indicator:ClearAllPoints()
+	Indicator:SetParent(UIParent)
+
+	-- This will block UIParent_ManageFramePositions() to be executed
+	Indicator.IsShown = function() return false end
+end

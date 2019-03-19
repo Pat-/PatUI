@@ -5,8 +5,6 @@ local T, C, L = Tukui:unpack()
 ------------------------------------------------------------------------
 
 local UnitFrames = T.UnitFrames
-local Panels = T.Panels
-local ActionBars = T.ActionBars
 local Noop = function() end
 
 --[[local self = _G["TukuiTarget"]
@@ -140,7 +138,7 @@ local function CreateUnits()
 	Target:SetWidth(240)
 	
 	Target:ClearAllPoints()
-	Target:SetPoint("BOTTOMRIGHT", Bar1, "TOPRIGHT", 160, 50)
+	Target:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 160, 50)
 end
 hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
@@ -162,6 +160,10 @@ local function Target(self)
 	local absorbBar = self.HealthPrediction.absorbBar
 	
 	Panel:Hide()
+	Panel:ClearAllPoints()
+	Panel:Point("LEFT", Health, "LEFT", 4, 0)
+	
+	CombatFeedbackText:ClearAllPoints()
 	
 	Health:SetHeight(23)
 	
@@ -181,16 +183,16 @@ local function Target(self)
 	Power:SetWidth(90)
 	Power:SetFrameLevel(10)
 	Power:CreateBackdrop("Default")
+	Power:CreateShadow()
 	
 	Power.Value:ClearAllPoints()
-	Power.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
+	Power.Value:Point("LEFT", Health, "LEFT", 4, 0)
 	Power.Value:SetShadowOffset(0, 0)
 	
 	Name:ClearAllPoints()
 	Name:SetParent(Health)
 	Name:Point("LEFT", Health, "LEFT", 4, 0)
-	Name:SetJustifyH("LEFT")
-	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [classification][pvp]")
+	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [classification]")
 
 	Castbar:SetSize(240, 19)
 	Castbar:ClearAllPoints()
@@ -202,6 +204,12 @@ local function Target(self)
 	Castbar.Time:Point("RIGHT", Castbar, "RIGHT", -4, 1)
 
 	Castbar.Text:ClearAllPoints()
-	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)	
+	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
+	
+	if (C.UnitFrames.TargetAuras) then
+		Debuffs:ClearAllPoints()
+		Debuffs:SetParent(Health)
+		Debuffs:SetPoint("TOPRIGHT", Health, "TOPRIGHT", 2, 0)
+	end
 end
 hooksecurefunc(UnitFrames, "Target", Target)
