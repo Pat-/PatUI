@@ -176,6 +176,14 @@ local function Player(self)
 	
 	CombatFeedbackText:ClearAllPoints()
 	
+	AdditionalPower:ClearAllPoints()
+	AdditionalPower:SetPoint("BOTTOM", Health, "TOP", 0, 3)
+	AdditionalPower:SetFrameLevel(3)
+	AdditionalPower:CreateShadow()
+	AdditionalPower:SetFrameStrata("BACKGROUND")
+	AdditionalPower:Width(240)
+	AdditionalPower:Height(5)
+	
 	if (Class == "ROGUE" or Class == "DRUID") then
 		
 		ComboPointsBar:ClearAllPoints()
@@ -195,12 +203,12 @@ local function Player(self)
 			if i == 1 then
 				ComboPointsBar[i]:Point("LEFT", ComboPointsBar, "LEFT", 0, 0)
 				ComboPointsBar[i]:SetWidth(32)
-				ComboPointsBar[i].BarSizeForMaxComboIs6 = 32
+				ComboPointsBar[i].BarSizeForMaxComboIs6 = 40
 				ComboPointsBar[i].BarSizeForMaxComboIs5 = 48
 			else
 				ComboPointsBar[i]:Point("LEFT", ComboPointsBar[i-1], "RIGHT", 1, 0)
 				ComboPointsBar[i]:SetWidth(32)
-				ComboPointsBar[i].BarSizeForMaxComboIs6 = 32
+				ComboPointsBar[i].BarSizeForMaxComboIs6 = 39
 				ComboPointsBar[i].BarSizeForMaxComboIs5 = 47
 			end
 		end

@@ -14,5 +14,28 @@ local function Player(self)
 	local ArcaneChargeBar = self.ArcaneChargeBar
 	local Health = self.Health
 	local Shadow = self.Shadow
+	
+	ArcaneChargeBar:Size(240, 5)
+	ArcaneChargeBar:Hide()
+	ArcaneChargeBar:ClearAllPoints()
+	ArcaneChargeBar:Point("BOTTOM", Health, "TOP", 0, 3)
+	ArcaneChargeBar:CreateShadow()
+	
+	for i = 1, 4 do
+		ArcaneChargeBar[i]:ClearAllPoints()
+		ArcaneChargeBar[i]:SetParent(self)
+		ArcaneChargeBar[i]:SetFrameLevel(5)
+		
+		if i == 1 then
+			ArcaneChargeBar[i]:Height(5)
+			ArcaneChargeBar[i]:Width(60)
+			ArcaneChargeBar[i]:Point("LEFT", ArcaneChargeBar, "LEFT", 0, 0)
+		else
+			ArcaneChargeBar[i]:Height(5)
+			ArcaneChargeBar[i]:Width(59)
+			ArcaneChargeBar[i]:Point("LEFT", ArcaneChargeBar[i-1], "RIGHT", 1, 0)
+		end
+	end
+	
 end
 hooksecurefunc(TukuiUnitFrames, "Player", Player)
