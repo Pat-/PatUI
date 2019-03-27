@@ -166,6 +166,7 @@ local function Target(self)
 	CombatFeedbackText:ClearAllPoints()
 	
 	Health:SetHeight(23)
+	Health:SetInside(self)
 	
 	Health.Value:ClearAllPoints()
 	Health.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
@@ -192,7 +193,7 @@ local function Target(self)
 	Name:ClearAllPoints()
 	Name:SetParent(Health)
 	Name:Point("LEFT", Health, "LEFT", 4, 0)
-	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [classification]")
+	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [shortclassification]")
 
 	Castbar:SetSize(240, 19)
 	Castbar:ClearAllPoints()
@@ -206,10 +207,32 @@ local function Target(self)
 	Castbar.Text:ClearAllPoints()
 	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
 	
-	if (C.UnitFrames.TargetAuras) then
+	AltPower:Hide()
+	
+	if (C["UnitFrames"]["TargetAuras"]) then
+		Buffs:SetHeight(27)
+		Buffs:SetWidth(260)
+		Buffs.size = 24.5
+		Buffs.num = 9
+		Buffs.spacing = 1
+		Buffs.initialAnchor = 'TOPLEFT'
+		Buffs["growth-y"] = "UP"
+		Buffs["growth-x"] = "RIGHT"
+		Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -2, 1)
+		
+		Debuffs:SetHeight(29)
+		Debuffs:SetWidth(240)
+		Debuffs.size = 27.5
+		Debuffs.num = 21
+		Debuffs.spacing = 1
+		Debuffs.initialAnchor = 'TOPRIGHT'
+		Debuffs["growth-y"] = "UP"
+		Debuffs["growth-x"] = "LEFT"
 		Debuffs:ClearAllPoints()
-		Debuffs:SetParent(Health)
-		Debuffs:SetPoint("TOPRIGHT", Health, "TOPRIGHT", 2, 0)
+		Debuffs:SetPoint("BOTTOMRIGHT", Health, "TOPRIGHT", 0, 35)
+		
+		Buffs.ClearAllPoints = T.dummy
+		Debuffs.ClearAllPoints = T.dummy
 	end
 end
 hooksecurefunc(UnitFrames, "Target", Target)

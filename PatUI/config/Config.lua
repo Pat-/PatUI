@@ -10,6 +10,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	--C["General"]["BorderColor"] = {class.r*0.03, class.g*0.03, class.b*0.03}
 	C["General"]["HideShadows"] = false
 	C["General"]["Scaling"]["Value"] = "Pixel Perfection"
+	C["General"]["AFKSaver"] = false
 
 -- Actionbars	
 	C["ActionBars"]["Enable"] = true
@@ -111,7 +112,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Raid"]["MaxUnitPerColumn"] = 5
 	C["Raid"]["Font"] = "Pixel"
 	C["Raid"]["HealthFont"] = "Pixel"
-	C["Raid"]["GroupBy"]["Value"] = "GROUP"
+	C["Raid"]["GroupBy"]["Value"] = "ROLE"
 	C["Raid"]["HealthTexture"] = "Blank"
 	C["Raid"]["PowerTexture"] = "Blank"
 
@@ -152,10 +153,10 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["UnitFrames"]["TotemBar"] = true
 	C["UnitFrames"]["TargetAuras"] = true
 	C["UnitFrames"]["FocusAuras"] = true
-	C["UnitFrames"]["FocusTargetAuras"] = true
-	C["UnitFrames"]["ArenaAuras"] = true
+	C["UnitFrames"]["FocusTargetAuras"] = false
+	C["UnitFrames"]["ArenaAuras"] = false
 	C["UnitFrames"]["BossAuras"] = true
-	C["UnitFrames"]["OnlySelfDebuffs"] = false
+	C["UnitFrames"]["OnlySelfDebuffs"] = true
 	C["UnitFrames"]["OnlySelfBuffs"] = false
 	C["UnitFrames"]["Threat"] = true
 	C["UnitFrames"]["AltPowerText"] = true

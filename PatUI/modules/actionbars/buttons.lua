@@ -6,7 +6,7 @@ local Panels = T["Panels"]
 local CreateToggleButtons = function()
 	-- Code for SplitBar.
 	local function ShowOrHideBar(bar, button)
-		local db = PatUIDataPerChar
+		local db = PatUICharData
 		local ActionBar1 = Panels.ActionBar1
 		
 		if bar:IsShown() then
@@ -37,7 +37,7 @@ local CreateToggleButtons = function()
 	end
 
 	local function MoveButtonBar(button, bar)
-		local db = PatUIDataPerChar
+		local db = PatUICharData
 		local LeftChatBG = Panels.LeftChatBG
 		
 		if button == Bar4Button then
@@ -162,8 +162,9 @@ local CreateToggleButtons = function()
 	local init = CreateFrame("Frame")
 	init:RegisterEvent("PLAYER_ENTERING_WORLD")
 	init:SetScript("OnEvent", function(self, event)
-		if not PatUIDataPerChar then PatUIDataPerChar = {} end
-		local db = PatUIDataPerChar
+		if not PatUICharData then PatUICharData = {} end
+		local db = PatUICharData
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 		
 		if db.hidebar4 then
 			UpdateBar(Bar4Button, LeftBar4)

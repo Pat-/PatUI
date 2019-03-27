@@ -13,7 +13,7 @@ local function CreateUnits()
 	local LeftChatBG = Panels.LeftChatBG
 	
 	Raid:ClearAllPoints()
-	Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 16)
+	Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
 end
 hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
@@ -90,8 +90,8 @@ local function Raid(self)
 	-- AuraWatch (corner and center icon)
 	if C["Raid"].AuraWatch then
 		RaidDebuffs:ClearAllPoints()
-		RaidDebuffs:SetHeight(RaidHeight-12)
-		RaidDebuffs:SetWidth(RaidHeight-12)
+		RaidDebuffs:SetHeight(15)
+		RaidDebuffs:SetWidth(15)
 		RaidDebuffs:SetPoint("CENTER", Health)
 	end
 end
@@ -104,16 +104,16 @@ PatUIRaidPosition:SetScript("OnEvent", function(self, event)
 	local LeftChatBG = Panels.LeftChatBG
 	
 	if PatBar3:IsShown() then
-		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 0, 7)
+		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 0, 5)
 	end
 	
 	PatBar3:HookScript("OnHide", function()
 		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 16)
+		raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
 	end)
 	
 	PatBar3:HookScript("OnShow", function()
 		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 0, 7)
+		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 0, 5)
 	end)
 end)

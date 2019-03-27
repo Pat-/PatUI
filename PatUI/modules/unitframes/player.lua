@@ -137,6 +137,7 @@ local function Player(self)
 	Panel:Hide()
 	
 	Health:SetHeight(23)
+	Health:SetInside(self)
 	
 	Health.Value:ClearAllPoints()
 	Health.Value:Point("LEFT", Health, "LEFT", 4, 0)
@@ -160,8 +161,8 @@ local function Player(self)
 	Power.Value:SetShadowOffset(0, 0)
 
 	Castbar:ClearAllPoints()
-	Castbar:SetSize((PatBar1:GetWidth() - 4), 19)
-	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -2, 5)
+	Castbar:SetSize((PatBar1:GetWidth()), 19)
+	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 0, 3)
 	Castbar:CreateBackdrop("Transparent")
 	Castbar.Background:Hide()
 	

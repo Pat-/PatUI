@@ -5,4 +5,5 @@
 	<Script file="paladin.lua"/>
 	<Script file="priest.lua"/>
 	<Script file="warlock.lua"/>
+	<Script file="shaman.lua"/>
 </Ui>
