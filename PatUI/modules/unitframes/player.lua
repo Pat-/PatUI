@@ -192,7 +192,7 @@ local function Player(self)
 		ComboPointsBar:SetFrameLevel(15)
 		ComboPointsBar:SetAlpha(1)
 		ComboPointsBar:SetBackdrop(nil)
-		ComboPointsBar:CreateBackdrop("Default")
+		ComboPointsBar:CreateBackdrop("Transparent")
 		
 		ComboPointsBar:SetPoint("BOTTOM", Health, "TOP", 0, 3)
 		

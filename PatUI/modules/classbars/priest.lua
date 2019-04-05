@@ -18,7 +18,7 @@ local function Player(self)
 	Atonement:ClearAllPoints()
 	Atonement:SetPoint("BOTTOM", Health, "TOP", 0, 3)
 	Atonement:SetHeight(5)
-	Atonement:SetWidth(240)
+	Atonement:SetWidth(238)
 	Atonement:CreateShadow()
 	Atonement:SetFrameStrata("BACKGROUND")
 end

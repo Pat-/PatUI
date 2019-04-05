@@ -40,6 +40,6 @@ hooksecurefunc(Auras, "CreateHeaders", CreateHeaders)
 
 local function SetDefaultPosition()
 	ObjectiveTrackerFrame:ClearAllPoints()
-	ObjectiveTrackerFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 40, -140)
+	ObjectiveTrackerFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 54, -140)
 end
 hooksecurefunc(ObjectiveTracker, "SetDefaultPosition", SetDefaultPosition)

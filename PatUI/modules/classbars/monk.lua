@@ -17,13 +17,15 @@ local function Player(self)
 	
 	Harmony:Size(240, 5)
 	Harmony:SetFrameLevel(5)
+	Harmony:Hide()
 	Harmony:ClearAllPoints()
 	Harmony:Point("BOTTOM", Health, "TOP", 0, 3)
 	Harmony:CreateShadow()
+				
 	
 	for i = 1, 6 do
 		Harmony[i]:ClearAllPoints()
-		Harmony[i]:SetParent(self)
+		--Harmony[i]:SetParent(self)
 		Harmony[i]:SetFrameLevel(5)
 		
 		if i == 1 then
@@ -39,6 +41,6 @@ local function Player(self)
 			Harmony[i].Ascension = Harmony[i]:GetWidth()
 			Harmony[i].NoTalent = 47
 		end
-	end	
+	end
 end
 hooksecurefunc(TukuiUnitFrames, "Player", Player)

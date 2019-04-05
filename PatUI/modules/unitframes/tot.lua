@@ -58,6 +58,7 @@ local function TargetOfTarget(self)
 	
 	Health:SetHeight(23)
 	Health:SetFrameLevel(5)
+	Health:CreateShadow()
 	
 	Health:SetStatusBarColor(.2, .2, .2)
 	Health.Background:SetColorTexture(.1, .1, .1)

@@ -212,17 +212,20 @@ local function Target(self)
 	if (C["UnitFrames"]["TargetAuras"]) then
 		Buffs:SetHeight(27)
 		Buffs:SetWidth(260)
-		Buffs.size = 24.5
+		Buffs.size = 24
 		Buffs.num = 9
 		Buffs.spacing = 1
 		Buffs.initialAnchor = 'TOPLEFT'
 		Buffs["growth-y"] = "UP"
 		Buffs["growth-x"] = "RIGHT"
-		Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -2, 1)
+		Buffs:ClearAllPoints()
+		Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -1, 1)
+		Buffs:SetParent(Health)
+		Buffs.PostUpdate = UnitFrames.UpdateBuffsHeaderPosition
 		
 		Debuffs:SetHeight(29)
 		Debuffs:SetWidth(240)
-		Debuffs.size = 27.5
+		Debuffs.size = 27
 		Debuffs.num = 21
 		Debuffs.spacing = 1
 		Debuffs.initialAnchor = 'TOPRIGHT'
@@ -230,6 +233,7 @@ local function Target(self)
 		Debuffs["growth-x"] = "LEFT"
 		Debuffs:ClearAllPoints()
 		Debuffs:SetPoint("BOTTOMRIGHT", Health, "TOPRIGHT", 0, 35)
+		Debuffs:SetParent(Health)
 		
 		Buffs.ClearAllPoints = T.dummy
 		Debuffs.ClearAllPoints = T.dummy

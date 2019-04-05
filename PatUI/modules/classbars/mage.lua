@@ -23,7 +23,7 @@ local function Player(self)
 	
 	for i = 1, 4 do
 		ArcaneChargeBar[i]:ClearAllPoints()
-		ArcaneChargeBar[i]:SetParent(self)
+		--ArcaneChargeBar[i]:SetParent(self)
 		ArcaneChargeBar[i]:SetFrameLevel(5)
 		
 		if i == 1 then
