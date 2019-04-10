@@ -1,12 +1,11 @@
 local T, C, L = Tukui:unpack()
 
 local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
-local UnitFrames = T.UnitFrames
-local Panels = T.Panels
+local UnitFrames = T["UnitFrames"]
+local Panels = T["Panels"]
 local Class = select(2, UnitClass("player"))
 
 function UnitFrames:GetRaidFramesAttributes()
-	--local Properties = C.Party.Enable and "custom [@raid6,exists] show;hide" or
 	return
 		"TukuiRaid", 
 		nil, 
@@ -16,21 +15,21 @@ function UnitFrames:GetRaidFramesAttributes()
 			self:SetWidth(header:GetAttribute("initial-width"))
 			self:SetHeight(header:GetAttribute("initial-height"))
 		]],
-		"initial-width", 71.8,
+		"initial-width", PatBar3:GetWidth()/5 - 3.5,
 		"initial-height", 27,
 		"showParty", true,
 		"showRaid", true,
 		"showPlayer", true,
 		"showSolo", C["Raid"]["ShowSolo"],
-		"xoffset", T.Scale(6),
-		"yOffset", T.Scale(5),
+		"xoffset", T.Scale(4),
+		"yOffset", T.Scale(-4),
 		"point", "LEFT",
 		"groupFilter", "1,2,3,4,5,6,7,8",
 		"groupingOrder", "1,2,3,4,5,6,7,8",
 		"groupBy", "GROUP",
 		"maxColumns", math.ceil(40/5),
 		"unitsPerColumn", C["Raid"].MaxUnitPerColumn,
-		"columnSpacing", T.Scale(6),
+		"columnSpacing", T.Scale(4),
 		"columnAnchorPoint", "BOTTOM"
 end
 
@@ -75,14 +74,15 @@ local function Raid(self)
 		Health:ClearAllPoints()
 		Health:SetInside(self)
 		Health:CreateBackdrop("Default")
-		self:Height(27)
-		self:Width(71.8)
+		Health:CreateShadow()
 		
 		Health:SetStatusBarColor(.2, .2, .2)
 		Health.Background:SetColorTexture(.1, .1, .1)
 		
 		Health.colorClass = false
 		Health.colorReaction = false
+		Health.colorTapping = false
+		Health.colorDisconnected = false
 		
 		-- Power	
 		Power:ClearAllPoints()

@@ -28,7 +28,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 -- Auras
 	C["Auras"]["Enable"] = true
 	C["Auras"]["Flash"] = false
-	C["Auras"]["ClassicTimer"] = true
+	C["Auras"]["ClassicTimer"] = false
 	C["Auras"]["HideBuffs"] = false
 	C["Auras"]["HideDebuffs"] = false
 	C["Auras"]["Animation"] = false

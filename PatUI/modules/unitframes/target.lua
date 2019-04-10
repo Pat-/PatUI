@@ -83,7 +83,7 @@ local function Target(self)
 	Castbar.Text:ClearAllPoints()
 	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
 	
-	AltPower:Hide()
+	AltPower:ClearAllPoints()
 	
 	if (C["UnitFrames"]["TargetAuras"]) then
 		Buffs:SetHeight(27)
