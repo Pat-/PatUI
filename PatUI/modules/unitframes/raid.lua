@@ -133,7 +133,7 @@ PatUIRaidPosition:SetScript("OnEvent", function(self, event)
 	local LeftChatBG = Panels.LeftChatBG
 	
 	if PatBar3:IsShown() then
-		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 0, 5)
+		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 1, 3)
 	end
 	
 	PatBar3:HookScript("OnHide", function()
@@ -143,6 +143,6 @@ PatUIRaidPosition:SetScript("OnEvent", function(self, event)
 	
 	PatBar3:HookScript("OnShow", function()
 		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 0, 5)
+		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 1, 3)
 	end)
 end)
