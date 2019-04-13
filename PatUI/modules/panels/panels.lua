@@ -1,6 +1,6 @@
 local T, C, L = Tukui:unpack()
 
-local Panels = T.Panels
+local Panels = T["Panels"]
 
 local function Enable()
 	local DataTextLeft = Panels.DataTextLeft

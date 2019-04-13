@@ -1,8 +1,8 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">	
 	<Script file="panels\panels.lua"/>
-	<!--Script file="chat\chatframes.lua"/-->
+	<Script file="chat\chatframes.lua"/>
 	<Script file="datatext\datatext.lua"/>
-	<!--Script file="bags\bags.lua"/-->
+	<Script file="bags\bags.lua"/>
 	<Script file="map\map.lua"/>
 	<!--Script file="tooltip\tooltip.lua"/-->
 	<!--Script file="nameplates\nameplates.lua"/-->

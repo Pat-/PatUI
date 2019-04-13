@@ -50,9 +50,10 @@ local function Target(self)
 	Health:SetStatusBarColor(.2, .2, .2)
 	Health.Background:SetColorTexture(.1, .1, .1)
 	
-	Health.colorTapping = false
 	Health.colorClass = false
 	Health.colorReaction = false
+    Health.colorTapping = false
+    Health.colorDisconnected = false
 
 	Power:ClearAllPoints()
 	Power:Point("TOPLEFT", Health, "BOTTOMLEFT", 4, 1)

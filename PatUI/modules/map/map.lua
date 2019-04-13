@@ -2,11 +2,15 @@ local T, C, L = Tukui:unpack()
 
 local Panels = T["Panels"]
 local Auras = T["Auras"]
-local Minimap = T.Maps.Minimap
-local ObjectiveTracker = T.Miscellaneous.ObjectiveTracker
+local Minimap = T["Maps"]["Minimap"]
+local ObjectiveTracker = T["Miscellaneous"]["ObjectiveTracker"]
 
 local function Enable(self)
 	local MinimapDataText = Panels.MinimapDataText
+	local Mail = MiniMapMailFrame
+	
+	Mail:ClearAllPoints()
+	Mail:Point("TOPRIGHT", 0, 0)
 	
 	Minimap:ClearAllPoints()
 	Minimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -4, -4)
@@ -43,3 +47,14 @@ local function SetDefaultPosition()
 	ObjectiveTrackerFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 54, -140)
 end
 hooksecurefunc(ObjectiveTracker, "SetDefaultPosition", SetDefaultPosition)
+
+--Change WorldMapFrame size to be smaller
+WorldMapFrame:SetScale(0.9) -- any smaller and zones become nearly impossible to click
+
+-- Attempt to reanchor WorldMapFrame (not working)
+--WorldMapFrame:ClearAllPoints()
+--WorldMapFrame:Point("CENTER", UIParent)
+
+-- Remove the blackout frames around WorldMapFrame
+WorldMapFrame.BlackoutFrame.Blackout:SetTexture()
+WorldMapFrame.BlackoutFrame:EnableMouse(false)

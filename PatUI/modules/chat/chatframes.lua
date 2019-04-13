@@ -1,35 +1,7 @@
 local T, C, L = Tukui:unpack()
 
-local Panels = T.Panels
-local Chat = T.Chat
-
---[[ default position of chat
-T.SetDefaultChatPosition = function(frame)
-	if frame then
-		local id = frame:GetID()
-		local name = FCF_GetChatWindowInfo(id)
-		local LeftChatBG = Panels.LeftChatBG
-		local RightChatBG = Panels.RightChatBG
-		
-		if id == 1 then
-			frame:ClearAllPoints()
-			frame:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 20, 20)
-			--frame:SetParent(LeftChatBG)
-		elseif id == 4 and name == LOOT then
-			if not frame.isDocked then
-				frame:ClearAllPoints()
-				frame:Point("TOPLEFT", RightChatBG, "TOPLEFT", 3, 2)
-				frame:Point("BOTTOMRIGHT", RightChatBG, "BOTTOMRIGHT", -5, 0)
-				--frame:SetParent(RightChatBG)
-				frame:SetJustifyH("LEFT")
-			end
-		end
-		
-		-- lock them if unlocked
-		if not frame.isLocked then FCF_SetLocked(frame, 1) end
-	end
-end
-hooksecurefunc("FCF_RestorePositionAndDimensions", T.SetDefaultChatPosition)]]--
+local Panels = T["Panels"]
+local Chat = T["Chat"]
 
 function Chat:SetDefaultChatFramesPositions()
 
