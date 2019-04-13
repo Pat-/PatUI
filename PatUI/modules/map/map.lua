@@ -48,13 +48,27 @@ local function SetDefaultPosition()
 end
 hooksecurefunc(ObjectiveTracker, "SetDefaultPosition", SetDefaultPosition)
 
---Change WorldMapFrame size to be smaller
-WorldMapFrame:SetScale(0.9) -- any smaller and zones become nearly impossible to click
-
--- Attempt to reanchor WorldMapFrame (not working)
---WorldMapFrame:ClearAllPoints()
---WorldMapFrame:Point("CENTER", UIParent)
+-- Resizing Larger World Map like in ElvUI
+local function SetWorldMap()
+	WorldMapFrame:SetScale(0.9)
+	WorldMapFrame.ScrollContainer.Child:SetScale(0.8)
+end
 
 -- Remove the blackout frames around WorldMapFrame
 WorldMapFrame.BlackoutFrame.Blackout:SetTexture()
 WorldMapFrame.BlackoutFrame:EnableMouse(false)
+
+-- reanchor WorldMapFrame (Credits Elvz)
+local function SynchronizeDisplayState()
+	WorldMapFrame:ClearAllPoints()
+	WorldMapFrame:Point("CENTER", UIParent)
+end
+hooksecurefunc(WorldMapFrame, "SynchronizeDisplayState", SynchronizeDisplayState)
+
+-- resize WorldMapFrame (Credits Elvz)
+local function UpdateMaximizedSize()
+	local width, height = WorldMapFrame:GetSize()
+	local magicNumber = (1 - 0.8) * 100
+	WorldMapFrame:Size((width * 0.8) - (magicNumber + 2), (height * 0.8) - 2)
+end
+hooksecurefunc(WorldMapFrame, "UpdateMaximizedSize", UpdateMaximizedSize)

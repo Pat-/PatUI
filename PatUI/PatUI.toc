@@ -2,7 +2,7 @@
 ## Title: |cff18AA18PatUI|r
 ## Notes: Tukui v18 PatUI edit
 ## Credits: Tukz, Sinaris, Ekst, Flyingboots, Elv22, Eclipse, Hydra
-## Version: 0.2
+## Version: 0.2.1
 ## Author: Pat
 ## SavedVariablesPerCharacter: PatUICharData
 ## RequiredDeps: Tukui, Tukui_Config
