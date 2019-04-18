@@ -13,6 +13,8 @@ local function CreateUnits()
 	Target:SetHeight(23)
 	Target:SetWidth(240)
 	
+	Target.Shadow:Kill()
+	
 	Target:ClearAllPoints()
 	Target:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 160, 50)
 end
@@ -42,7 +44,7 @@ local function Target(self)
 	CombatFeedbackText:ClearAllPoints()
 	
 	Health:SetHeight(23)
-	Health:SetInside(self)
+	Health:CreateShadow()
 	
 	Health.Value:ClearAllPoints()
 	Health.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
@@ -62,6 +64,7 @@ local function Target(self)
 	Power:SetFrameLevel(10)
 	Power:CreateBackdrop("Default")
 	Power:CreateShadow()
+	Power.Background:Hide()
 	
 	Power.Value:ClearAllPoints()
 	Power.Value:Point("LEFT", Health, "LEFT", 4, 0)

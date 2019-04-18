@@ -143,8 +143,12 @@ local CreateToggleButtons = function()
 	Bar2Button.text:SetText("|cff18AA18 - |r")
 
 	local Bar5Button = CreateFrame("Button", "Bar5Button", UIParent)
-	Bar5Button:Size(18, 178)
-	Bar5Button:Point("LEFT", LeftBar, "RIGHT", 3, 0)
+	if C["General"]["SmallerChat"] == true then
+		Bar5Button:Size(18, 152.5)
+	else
+		Bar5Button:Size(18, 178)
+	end
+	Bar5Button:Point("LEFT", LeftBar, "RIGHT", 2, 0)
 	Bar5Button:SetTemplate("Transparent")
 	Bar5Button:RegisterForClicks("AnyUp")
 	Bar5Button:SetFrameLevel(6)

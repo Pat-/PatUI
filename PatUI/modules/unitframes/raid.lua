@@ -15,7 +15,7 @@ function UnitFrames:GetRaidFramesAttributes()
 			self:SetWidth(header:GetAttribute("initial-width"))
 			self:SetHeight(header:GetAttribute("initial-height"))
 		]],
-		"initial-width", PatBar3:GetWidth()/5 - 3.5,
+		"initial-width", PatBar3:GetWidth()/5 - 3.6,
 		"initial-height", 27,
 		"showParty", true,
 		"showRaid", true,
@@ -71,8 +71,8 @@ local function Raid(self)
 ------------------------------------------------------------------------------------------
 
 		-- health
-		Health:ClearAllPoints()
-		Health:SetInside(self)
+		--Health:ClearAllPoints()
+		--Health:SetInside(self)
 		Health:CreateBackdrop("Default")
 		Health:CreateShadow()
 		

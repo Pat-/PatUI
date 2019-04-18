@@ -12,8 +12,12 @@ hooksecurefunc(ActionBars, 'CreateBar5', function()
 	local RightChatBG = Panels.RightChatBG
 
 	ActionBar5.Backdrop:SetAlpha(0)
-
-	local buttonsize = 25
+	
+	if C["General"]["SmallerChat"] == true then
+		buttonsize = 21
+	else
+		buttonsize = 25
+	end
 
 	local LeftBar = CreateFrame("Frame", "LeftBar", UIParent, "SecureHandlerStateTemplate")
 	LeftBar:Point("LEFT", LeftChatBG, "RIGHT", 4, 0)
@@ -40,6 +44,7 @@ hooksecurefunc(ActionBars, 'CreateBar5', function()
 	for i= 1, Num do
 		local b = _G["MultiBarLeftButton"..i]
 		local b2 = _G["MultiBarLeftButton"..i-1]
+		
 		b:SetSize(buttonsize, buttonsize)
 		b:ClearAllPoints()
 		b:SetFrameStrata("BACKGROUND")

@@ -41,8 +41,13 @@ function Chat:SetDefaultChatFramesPositions()
 			FCF_SetLocked(Frame, 1)
 		end
 
-		local Anchor1, Parent, Anchor2, X, Y = Frame:GetPoint()
-		TukuiData[GetRealmName()][UnitName("Player")].Chat["Frame" .. i] = {Anchor1, Anchor2, X, Y, Width, 139}
+		if C["General"]["SmallerChat"] == true then
+			local Anchor1, Parent, Anchor2, X, Y = Frame:GetPoint()
+			TukuiData[GetRealmName()][UnitName("Player")].Chat["Frame" .. i] = {Anchor1, Anchor2, X, Y, Width, 113}
+		else
+			local Anchor1, Parent, Anchor2, X, Y = Frame:GetPoint()
+			TukuiData[GetRealmName()][UnitName("Player")].Chat["Frame" .. i] = {Anchor1, Anchor2, X, Y, Width, 139}
+		end
 	end
 end
 

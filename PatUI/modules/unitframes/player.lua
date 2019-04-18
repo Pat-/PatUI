@@ -14,6 +14,8 @@ local function CreateUnits()
 	Player:SetHeight(23)
 	Player:SetWidth(240)
 	
+	Player.Shadow:Kill()
+	
 	Player:ClearAllPoints()
 	Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -160, 50)
 end
@@ -42,7 +44,7 @@ local function Player(self)
 	Panel:Hide()
 	
 	Health:SetHeight(23)
-	Health:SetInside(self)
+	Health:CreateShadow()
 	
 	Health.Value:ClearAllPoints()
 	Health.Value:Point("LEFT", Health, "LEFT", 4, 0)
@@ -60,6 +62,7 @@ local function Player(self)
 	Power:SetFrameLevel(10)
 	Power:CreateBackdrop("Default")
 	Power:CreateShadow()
+	Power.Background:Hide()
 	
 	Power.Value:ClearAllPoints()
 	Power.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
@@ -83,7 +86,7 @@ local function Player(self)
 	CombatFeedbackText:ClearAllPoints()
 	
 	AdditionalPower:ClearAllPoints()
-	AdditionalPower:SetPoint("BOTTOM", Health, "TOP", 0, 4)
+	AdditionalPower:SetPoint("BOTTOM", Health, "TOP", 0, 3)
 	AdditionalPower:SetFrameLevel(3)
 	AdditionalPower:CreateShadow()
 	AdditionalPower:SetFrameStrata("BACKGROUND")

@@ -11,6 +11,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["General"]["HideShadows"] = false
 	C["General"]["Scaling"]["Value"] = "Pixel Perfection"
 	C["General"]["AFKSaver"] = false
+	C["General"]["SmallerChat"] = true
 
 -- Actionbars	
 	C["ActionBars"]["Enable"] = true

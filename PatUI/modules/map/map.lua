@@ -12,6 +12,8 @@ local function Enable(self)
 	Mail:ClearAllPoints()
 	Mail:Point("TOPRIGHT", 0, 0)
 	
+	Minimap.Backdrop.Shadow:Kill() 
+	
 	Minimap:ClearAllPoints()
 	Minimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -4, -4)
 	Minimap:CreateShadow()
@@ -48,7 +50,7 @@ local function SetDefaultPosition()
 end
 hooksecurefunc(ObjectiveTracker, "SetDefaultPosition", SetDefaultPosition)
 
--- Resizing Larger World Map like in ElvUI
+--Resizing Larger World Map like in ElvUI
 local function SetWorldMap()
 	WorldMapFrame:SetScale(0.9)
 	WorldMapFrame.ScrollContainer.Child:SetScale(0.8)
@@ -58,14 +60,14 @@ end
 WorldMapFrame.BlackoutFrame.Blackout:SetTexture()
 WorldMapFrame.BlackoutFrame:EnableMouse(false)
 
--- reanchor WorldMapFrame (Credits Elvz)
+-- reanchor WorldMapFrame (Credits Simpy)
 local function SynchronizeDisplayState()
 	WorldMapFrame:ClearAllPoints()
 	WorldMapFrame:Point("CENTER", UIParent)
 end
 hooksecurefunc(WorldMapFrame, "SynchronizeDisplayState", SynchronizeDisplayState)
 
--- resize WorldMapFrame (Credits Elvz)
+-- resize WorldMapFrame (Credits Simpy)
 local function UpdateMaximizedSize()
 	local width, height = WorldMapFrame:GetSize()
 	local magicNumber = (1 - 0.8) * 100
