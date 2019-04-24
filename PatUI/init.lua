@@ -11,6 +11,7 @@ init:SetScript("OnEvent", function(self, event)
 
 	local configVersion = PatUICharData["Version"]
 	local addonVersion = GetAddOnMetadata("PatUI", "Version")
+	local major, minor, revision = configVersion:match("(%d+)%.(%d+)%.(%d+)")
 
 	if (configVersion ~= addonVersion) then
 		-- First time doing compatibility check
@@ -19,8 +20,23 @@ init:SetScript("OnEvent", function(self, event)
 			StaticPopup_Show("NEWVERSION")
 		
 		end
-		PatUICharData["Version"] = GetAddOnMetadata("PatUI", "Version")
 	end
+	
+	-- Preparing for chances of needing to do special things on version changes
+	if tonumber(major) <= 0 then
+		if tonumber(minor) <= 3 then
+			-- Do 0.3.X upgrade things here
+			-- if tonumber(revision) < 1 then
+			--     -- Do 0.3.1 upgrade here
+			-- end
+			-- if tonumber(revision) < 2 then
+			--     -- Do 0.3.2 upgrade here
+			-- end
+		end
+	end
+	
+	-- After the upgrade, set the config version
+	PatUICharData["Version"] = GetAddOnMetadata("PatUI", "Version")
 end)
 
 StaticPopupDialogs["NEWVERSION"] = {
