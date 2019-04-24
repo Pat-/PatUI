@@ -6,8 +6,6 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 ------------------------------------------------------------------------------------------
 
 -- General
-	--C["General"]["BackdropColor"] = {class.r*0.06, class.g*0.06, class.b*0.06}
-	--C["General"]["BorderColor"] = {class.r*0.03, class.g*0.03, class.b*0.03}
 	C["General"]["HideShadows"] = false
 	C["General"]["Scaling"]["Value"] = "Pixel Perfection"
 	C["General"]["AFKSaver"] = false
@@ -92,12 +90,6 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 
 -- Party	
 	C["Party"]["Enable"] = false
-	C["Party"]["HealBar"] = true
-	C["Party"]["ShowPlayer"] = true
-	C["Party"]["ShowHealthText"] = true
-	C["Party"]["RangeAlpha"] = 0.3
-	C["Party"]["Font"] = "Pixel"
-	C["Party"]["HealthFont"] = "Pixel"
 
 -- Raid	
 	C["Raid"]["Enable"] = true
@@ -116,6 +108,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Raid"]["GroupBy"]["Value"] = "ROLE"
 	C["Raid"]["HealthTexture"] = "Blank"
 	C["Raid"]["PowerTexture"] = "Blank"
+	C["Raid"]["ShowSolo"] = false
 
 -- Textures
 	C["Textures"]["QuestProgressTexture"] = "Blank"

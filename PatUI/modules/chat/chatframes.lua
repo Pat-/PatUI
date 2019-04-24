@@ -140,6 +140,7 @@ function Chat:Install()
 	ToggleChatColorNamesByClassGroup(true, "CHANNEL5")
 	ToggleChatColorNamesByClassGroup(true, "INSTANCE_CHAT")
 	ToggleChatColorNamesByClassGroup(true, "INSTANCE_CHAT_LEADER")
+	ToggleChatColorNamesByClassGroup(true, "BN_WHISPER")
 
 	DEFAULT_CHAT_FRAME:SetUserPlaced(true)
 

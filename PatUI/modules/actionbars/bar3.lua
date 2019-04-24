@@ -1,22 +1,23 @@
 local T, C, L = Tukui:unpack()
 
-local Panels = T.Panels
-local ActionBars = T.ActionBars
+local Panels = T["Panels"]
+local ActionBars =  T["ActionBars"]
 local Num = NUM_ACTIONBAR_BUTTONS
 
 
 hooksecurefunc(ActionBars, 'CreateBar3', function()
-	local Size = C.ActionBars.NormalButtonSize
-	local Spacing = C.ActionBars.ButtonSpacing
+	local Size = C["ActionBars"]["NormalButtonSize"]
+	local Spacing = C["ActionBars"]["ButtonSpacing"]
 	local ActionBar3 = Panels.ActionBar3
 	local LeftChatBG = Panels.LeftChatBG
 	
 	ActionBar3.Backdrop:SetAlpha(0)
+	ActionBar3.Backdrop.Shadow:Kill()
 
 	local buttonsize = 27.7
 
 	local Bar3 = CreateFrame("Frame", "PatBar3", UIParent, "SecureHandlerStateTemplate")
-	Bar3:Point("BOTTOM", LeftChatBG, "TOP", 0, 13)
+	Bar3:Point("BOTTOM", LeftChatBG, "TOP", 0, 4)
 	Bar3:Width((buttonsize * 12) + (Spacing * 13))
 	Bar3:Height((buttonsize * 1) + (Spacing * 2))
 	Bar3:SetFrameStrata("BACKGROUND")

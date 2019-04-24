@@ -129,12 +129,12 @@ hooksecurefunc(TukuiDT, "AddDefaults", function()
 	TukuiData[GetRealmName()][UnitName("Player")].Texts = {}
 	
 	-- Picking out our Datatexts
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Guild] = {true, 1}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Friends] = {true, 2}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Durability] = {true, 3}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Gold] = {true, 6}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Time] = {true, 4}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Memory] = {true, 5}
+	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Time] = {true, 1}
+	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Gold] = {true, 2}
+	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Memory] = {true, 3}
+	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Durability] = {true, 4}
+	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Friends] = {true, 5}
+	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Guild] = {true, 6}
 	
 	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.FPSAndMS] = {false, 0}	
 end)

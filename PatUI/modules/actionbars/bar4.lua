@@ -1,16 +1,17 @@
 local T, C, L = Tukui:unpack()
 
-local Panels = T.Panels
-local ActionBars = T.ActionBars
+local Panels = T["Panels"]
+local ActionBars =  T["ActionBars"]
 local Num = NUM_ACTIONBAR_BUTTONS
 
 hooksecurefunc(ActionBars, 'CreateBar4', function()
-    local Size = C.ActionBars.NormalButtonSize
-    local Spacing = C.ActionBars.ButtonSpacing
+    local Size = C["ActionBars"]["NormalButtonSize"]
+    local Spacing = C["ActionBars"]["ButtonSpacing"]
     local ActionBar4 = Panels.ActionBar4
     local ActionBar1 = Panels.ActionBar1
 	
-	ActionBar4.Backdrop:SetAlpha(0)
+	ActionBar4.Backdrop:Kill()
+	ActionBar4.Backdrop.Shadow:Kill()
 
     local LeftBar4 = CreateFrame("Frame", "LeftBar4", UIParent, "SecureHandlerStateTemplate")
 	LeftBar4:Point("BOTTOMRIGHT", ActionBar1, "BOTTOMLEFT", -6, 0)

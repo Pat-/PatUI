@@ -40,8 +40,14 @@ local function CreateUnits()
 	local Raid = UnitFrames.Headers.Raid
 	local LeftChatBG = Panels.LeftChatBG
 	
+	--Raid.Shadow:Kill()
+	
 	Raid:ClearAllPoints()
-	Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
+	if C["General"]["SmallerChat"] == true then
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
+	else
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
+	end
 end
 hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
@@ -70,9 +76,10 @@ local function Raid(self)
 -- health, power, name
 ------------------------------------------------------------------------------------------
 
+		
+		self.Shadow:Kill()
+		
 		-- health
-		--Health:ClearAllPoints()
-		--Health:SetInside(self)
 		Health:CreateBackdrop("Default")
 		Health:CreateShadow()
 		
@@ -138,7 +145,11 @@ PatUIRaidPosition:SetScript("OnEvent", function(self, event)
 	
 	PatBar3:HookScript("OnHide", function()
 		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
+		if C["General"]["SmallerChat"] == true then
+			raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
+		else
+			raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
+		end
 	end)
 	
 	PatBar3:HookScript("OnShow", function()

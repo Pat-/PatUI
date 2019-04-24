@@ -8,3 +8,4 @@
 ## RequiredDeps: Tukui, Tukui_Config
 
 PatUI.xml
+init.lua
