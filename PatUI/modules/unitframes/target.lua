@@ -75,7 +75,7 @@ local function Target(self)
 	Name:Point("LEFT", Health, "LEFT", 4, 0)
 	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [shortclassification]")
 
-	Castbar:SetSize(240, 19)
+	Castbar:SetSize(280, 12)
 	Castbar:ClearAllPoints()
 	Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
 	Castbar:CreateBackdrop("Transparent")
@@ -86,6 +86,7 @@ local function Target(self)
 
 	Castbar.Text:ClearAllPoints()
 	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
+	Castbar.Text:Size(130, 10) -- prevent long cast names (ex: Bloodbathed Frostbrood Vanquisher) from wrapping and going outside of the castbar
 	
 	AltPower:ClearAllPoints()
 	

@@ -69,8 +69,8 @@ local function Player(self)
 	Power.Value:SetShadowOffset(0, 0)
 
 	Castbar:ClearAllPoints()
-	Castbar:SetSize((PatBar1:GetWidth()), 19)
-	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 0, 3)
+	Castbar:SetSize((PatBar1:GetWidth()) - 2, 12)
+	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -1, 3)
 	Castbar:CreateBackdrop("Transparent")
 	Castbar.Background:Hide()
 	
@@ -79,6 +79,7 @@ local function Player(self)
 
 	Castbar.Text:ClearAllPoints()
 	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
+	Castbar.Text:Size(160, 10) -- prevent long cast names (ex: Bloodbathed Frostbrood Vanquisher) from wrapping and going outside of the castbar
 	
 	Combat:ClearAllPoints()
 	Combat:Point("CENTER", Health, "CENTER", 0, 0)
