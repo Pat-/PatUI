@@ -4,39 +4,45 @@ local Chat = T["Chat"]
 local Datatext = T["DataTexts"]
 
 local init = CreateFrame("Frame")
-init:RegisterEvent("PLAYER_ENTERING_WORLD")
+init:RegisterEvent("ADDON_LOADED")
 init:SetScript("OnEvent", function(self, event)
 	
-	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+	-- Only do then when our addon is loaded
+    if name ~= "PatUI" then return end
+    
+    -- We are done listen to ADDON_LOADED
+    self:UnregisterEvent("ADDON_LOADED")
 
 	local configVersion = PatUICharData["Version"]
 	local addonVersion = GetAddOnMetadata("PatUI", "Version")
-	local major, minor, revision = configVersion:match("(%d+)%.(%d+)%.(%d+)")
 
-	if (configVersion ~= addonVersion) then
-		-- First time doing compatibility check
-		if (configVersion == nil) then
-			
-			StaticPopup_Show("NEWVERSION")
-		
+	if not configVersion then
+		-- first time doing capatibility for version 0.2.1
+		StaticPopup_Show("NEWVERSION")
+	else
+		-- do the regular compatability
+
+		local major, minor, revision = configVersion:match("(%d+)%.(%d+)%.(%d+)")
+
+		major = tonumber(major)
+		minor = tonumber(minor)
+		revision = tonumber(revision)
+
+		if major <= 0 then
+			if minor <= 3 then
+				-- Do 0.3.X upgrade things here
+				-- if revision < 1 then
+				--     -- Do 0.3.1 upgrade here
+				-- end
+				-- if revision < 2 then
+				--     -- Do 0.3.2 upgrade here
+				-- end
+			end
 		end
 	end
-	
-	-- Preparing for chances of needing to do special things on version changes
-	if tonumber(major) <= 0 then
-		if tonumber(minor) <= 3 then
-			-- Do 0.3.X upgrade things here
-			-- if tonumber(revision) < 1 then
-			--     -- Do 0.3.1 upgrade here
-			-- end
-			-- if tonumber(revision) < 2 then
-			--     -- Do 0.3.2 upgrade here
-			-- end
-		end
-	end
-	
+
 	-- After the upgrade, set the config version
-	PatUICharData["Version"] = GetAddOnMetadata("PatUI", "Version")
+	PatUICharData["Version"] = addonVersion
 end)
 
 StaticPopupDialogs["NEWVERSION"] = {
