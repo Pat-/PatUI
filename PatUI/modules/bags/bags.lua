@@ -27,7 +27,6 @@ local function CreateContainer(self, storagetype, ...)
 end
 hooksecurefunc(Bags, "CreateContainer", CreateContainer)
 
-
 -- reagent bank anchor
 local function CreateReagentContainer(self)
 	local Reagent = self.Reagent

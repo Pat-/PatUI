@@ -17,7 +17,7 @@ init:SetScript("OnEvent", function(self, event)
 	local addonVersion = GetAddOnMetadata("PatUI", "Version")
 
 	if not configVersion then
-		-- first time doing capatibility for version 0.2.1
+		-- first time doing capatibility for version 0.2.2
 		StaticPopup_Show("NEWVERSION")
 	else
 		-- do the regular compatability
