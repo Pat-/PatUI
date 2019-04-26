@@ -125,7 +125,13 @@ end
 ------------------------------------------------------------------------------------------
 -- Defaults
 ------------------------------------------------------------------------------------------
-hooksecurefunc(TukuiDT, "AddDefaults", function()
+local baseDT = TukuiDT.AddDefaults
+
+function TukuiDT:AddDefaults()
+	-- Call the base function first
+	baseDT(self)
+	
+	-- Then my stuff
 	TukuiData[GetRealmName()][UnitName("Player")].Texts = {}
 	
 	-- Picking out our Datatexts
@@ -137,4 +143,4 @@ hooksecurefunc(TukuiDT, "AddDefaults", function()
 	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Guild] = {true, 6}
 	
 	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.FPSAndMS] = {false, 0}	
-end)
+end

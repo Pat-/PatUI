@@ -5,7 +5,15 @@ local Auras = T["Auras"]
 local Minimap = T["Maps"]["Minimap"]
 local ObjectiveTracker = T["Miscellaneous"]["ObjectiveTracker"]
 
-local function Enable(self)
+local baseEnbale = Minimap.Enable
+local baseCreateHeaders = Auras.CreateHeaders
+local baseSetDefaultPosition = ObjectiveTracker.SetDefaultPosition
+
+function Minimap:Enable()
+	-- First call the base function
+	baseEnbale(self)
+
+	-- Then my stuff
 	local MinimapDataText = Panels.MinimapDataText
 	local Mail = MiniMapMailFrame
 	
@@ -25,9 +33,12 @@ local function Enable(self)
 	Backdrop:Point("TOPLEFT", self, "TOPLEFT", -1, 1)
 	Backdrop:Point("BOTTOMRIGHT", self, "BOTTOMRIGHT", 1, -1)
 end 
-hooksecurefunc(Minimap, "Enable", Enable)
 
-local function CreateHeaders()
+function Auras:CreateHeaders()
+	-- First call the base function
+	baseCreateHeaders(self)
+	
+	-- Then my stuff
 	local Headers = Auras.Headers
 	local Buffs = Headers[1]
 	local Debuffs = Headers[2]
@@ -42,13 +53,15 @@ local function CreateHeaders()
 	Buffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -149, -4)
 	Debuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -149, -115)
 end
-hooksecurefunc(Auras, "CreateHeaders", CreateHeaders)
 
-local function SetDefaultPosition()
+function ObjectiveTracker:SetDefaultPosition()
+	-- First call the base function
+	baseSetDefaultPosition(self)
+	
+	-- Then my stuff
 	ObjectiveTrackerFrame:ClearAllPoints()
 	ObjectiveTrackerFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 54, -140)
 end
-hooksecurefunc(ObjectiveTracker, "SetDefaultPosition", SetDefaultPosition)
 
 --Resizing Larger World Map like in ElvUI
 local function SetWorldMap()

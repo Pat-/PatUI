@@ -7,7 +7,14 @@ local T, C, L = Tukui:unpack()
 local UnitFrames = T.UnitFrames
 local Noop = function() end
 
-local function CreateUnits()
+local baseCreateUnits = UnitFrames.CreateUnits
+local baseToT = UnitFrames.TargetOfTarget
+
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
 	local ToT = UnitFrames.Units.TargetOfTarget
 
 	ToT:SetHeight(23)
@@ -17,9 +24,12 @@ local function CreateUnits()
 	ToT:SetPoint("BOTTOM", PatBar1, "TOP", 0, 50)
 	ToT:SetBackdrop(nil)
 end
-hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
-local function TargetOfTarget(self)
+function UnitFrames:TargetOfTarget()
+	-- Call the base function first
+	baseToT(self)
+	
+	-- Then my stuff
 	local Panel = self.Panel
 	local Health = self.Health
 	local Name = self.Name
@@ -44,4 +54,3 @@ local function TargetOfTarget(self)
 	Name:SetParent(Health)
 	Name:Point("CENTER", self.Health, "CENTER", 0, 0)
 end
-hooksecurefunc(UnitFrames, "TargetOfTarget", TargetOfTarget)

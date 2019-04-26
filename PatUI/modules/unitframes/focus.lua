@@ -6,7 +6,14 @@ local T, C, L = Tukui:unpack()
 local UnitFrames = T.UnitFrames
 local Noop = function() end
 
-local function CreateUnits()
+local baseCreateUnits = UnitFrames.CreateUnits
+local baseFocus = UnitFrames.Focus
+
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
 	local Focus = UnitFrames.Units.Focus
 
 	Focus:SetHeight(23)
@@ -14,9 +21,12 @@ local function CreateUnits()
 	
 	Focus:SetPoint("BOTTOM", UIParent, "BOTTOM", -400, 400)
 end
-hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
-local function Focus(self)
+function UnitFrames:Focus()
+	-- Call the base function first
+	baseFocus(self)
+	
+	-- Then my stuff
 	local Health = self.Health
 	local Power = self.Power
 	local Castbar = self.Castbar
@@ -64,4 +74,3 @@ local function Focus(self)
 	Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 1)
 	
 end
-hooksecurefunc(UnitFrames, "Focus", Focus)

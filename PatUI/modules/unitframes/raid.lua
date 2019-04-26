@@ -33,10 +33,15 @@ function UnitFrames:GetRaidFramesAttributes()
 		"columnAnchorPoint", "BOTTOM"
 end
 
-------------------------------------------------------------------------------------------
--- RAID POSITION AND SIZE
-------------------------------------------------------------------------------------------
-local function CreateUnits()
+
+local baseCreateUnits = UnitFrames.CreateUnits
+local baseRaid = UnitFrames.Raid
+
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
 	local Raid = UnitFrames.Headers.Raid
 	local LeftChatBG = Panels.LeftChatBG
 	
@@ -49,12 +54,13 @@ local function CreateUnits()
 		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
 	end
 end
-hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
-------------------------------------------------------------------------------------------
--- RAID FRAMES
-------------------------------------------------------------------------------------------
-local function Raid(self)
+
+function UnitFrames:Raid()
+	-- Call the base function first
+	baseRaid(self)
+	
+	-- Then my stuff
 	local Panel = self.Panel
 	local Health = self.Health
 	local Power = self.Power
@@ -71,10 +77,7 @@ local function Raid(self)
 	local Blank = C.Medias.Blank
 	local IsInGroup = IsInGroup
 	local UnitIsUnit = UnitIsUnit
-	
-------------------------------------------------------------------------------------------
--- health, power, name
-------------------------------------------------------------------------------------------
+
 
 		
 		self.Shadow:Kill()
@@ -103,10 +106,7 @@ local function Raid(self)
 
 		local GroupNumber = Health:CreateFontString(nil, "OVERLAY")
 		local unit = self.unit
-
-------------------------------------------------------------------------------------------
--- OTHER STUFF
-------------------------------------------------------------------------------------------
+		
 		-- Ready check V	
 		ReadyCheck:ClearAllPoints()
 		ReadyCheck:Size(24)
@@ -120,9 +120,6 @@ local function Raid(self)
 		ResurrectIcon:Size(24)
 		ResurrectIcon:SetPoint("TOP")
 		
-------------------------------------------------------------------------------------------
--- Buff/Debuffs
-------------------------------------------------------------------------------------------
 	-- AuraWatch (corner and center icon)
 	if C["Raid"].AuraWatch then
 		RaidDebuffs:ClearAllPoints()
@@ -131,7 +128,6 @@ local function Raid(self)
 		RaidDebuffs:SetPoint("CENTER", Health)
 	end
 end
-hooksecurefunc(UnitFrames, "Raid", Raid)
 
 local PatUIRaidPosition = CreateFrame("Frame")
 PatUIRaidPosition:RegisterEvent("PLAYER_LOGIN")

@@ -2,7 +2,14 @@ local T, C, L = Tukui:unpack()
 
 local UnitFrames = T.UnitFrames
 
-local function CreateUnits()
+local baseCreateUnits = UnitFrames.CreateUnits
+local baseBoss = UnitFrames.Boss
+
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
 	local Boss = UnitFrames.Units.Boss
 	
 	for i = 1, 5 do
@@ -16,9 +23,12 @@ local function CreateUnits()
 		Boss[i]:Height(23)
 	end
 end
-hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
-local function Boss(self)
+function UnitFrames:Boss()
+	-- Call the base function first
+	baseBoss(self)
+	
+	-- Then my stuff
 	local Health = self.Health
 	local Power = self.Power
 	local Castbar = self.Castbar
@@ -73,4 +83,3 @@ local function Boss(self)
 	RaidIcon:Size(20)
 	RaidIcon:Point("TOP", Health, "TOP", 0, 0)
 end
-hooksecurefunc(UnitFrames, "Boss", Boss)

@@ -3,7 +3,14 @@ local T, C, L = Tukui:unpack()
 local Bags = T["Inventory"]["Bags"]
 local Panels = T["Panels"]
 
-local function CreateContainer(self, storagetype, ...)
+local baseCreateContainer = Bags.CreateContainer
+local baseCreateReagentContainer = Bags.CreateReagentContainer
+
+function Bags:CreateContainer(storagetype, ...)
+	-- Call the base function first
+	baseCreateContainer(self, storagetype, ...)
+	
+	-- Then my stuff
 	local Container = self[storagetype]
 	local LeftChatBG = Panels.LeftChatBG
 	local Sort = Container.SortButton
@@ -25,10 +32,13 @@ local function CreateContainer(self, storagetype, ...)
 		Container:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
 	end	
 end
-hooksecurefunc(Bags, "CreateContainer", CreateContainer)
 
 -- reagent bank anchor
-local function CreateReagentContainer(self)
+function Bags:CreateReagentContainer()
+	-- Call the base function first
+	baseCreateReagentContainer(self)
+	
+	-- Then my stuff
 	local Reagent = self.Reagent
 	local LeftChatBG = Panels.LeftChatBG
 	
@@ -37,4 +47,3 @@ local function CreateReagentContainer(self)
 	Reagent:ClearAllPoints()
 	Reagent:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
 end
-hooksecurefunc(Bags, "CreateReagentContainer", CreateReagentContainer)

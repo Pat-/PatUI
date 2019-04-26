@@ -10,7 +10,14 @@ end
 ------------------------------------------------------------------------------------------
 -- CLASS RESOURCES
 ------------------------------------------------------------------------------------------
-local function Player(self)
+
+local basePlayer = TukuiUnitFrames.Player
+
+function TukuiUnitFrames:Player()
+	-- Call the base function first
+	basePlayer(self)
+	
+	-- Then my stuff
 	local Harmony = self.HarmonyBar
 	local Health = self.Health
 	local Shadow = self.Shadow
@@ -43,4 +50,3 @@ local function Player(self)
 		end
 	end
 end
-hooksecurefunc(TukuiUnitFrames, "Player", Player)

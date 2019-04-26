@@ -4,11 +4,18 @@ local T, C, L = Tukui:unpack()
 --	local variables
 ------------------------------------------------------------------------
 
-local UnitFrames = T.UnitFrames
+local UnitFrames = T["UnitFrames"]
 local Noop = function() end
 local Class = select(2, UnitClass("player"))
 
-local function CreateUnits()
+local baseCreateUnits = UnitFrames.CreateUnits
+local basePlayer = UnitFrames.Player
+
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
     local Player = UnitFrames.Units.Player
 
 	Player:SetHeight(23)
@@ -19,9 +26,12 @@ local function CreateUnits()
 	Player:ClearAllPoints()
 	Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -160, 50)
 end
-hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
-local function Player(self)
+function UnitFrames:Player()
+	-- Call the base function first
+	basePlayer(self)
+	
+	-- Then my stuff
 	local Panel = self.Panel
 	local Health = self.Health
 	local Power = self.Power
@@ -34,7 +44,7 @@ local function Player(self)
 	local MasterLooter = self.MasterLooterIndicator 
 	local Leader = self.LeaderIndicator 
 	local TotemBar = self.Totems
-	ComboPointsBar = self.ComboPointsBar
+	local ComboPointsBar = self.ComboPointsBar
 	local myBar = self.HealthPrediction.myBar
 	local otherBar = self.HealthPrediction.otherBar
 	local absorbBar = self.HealthPrediction.absorbBar
@@ -125,4 +135,3 @@ local function Player(self)
 	end
 	
 end
-hooksecurefunc(UnitFrames, "Player", Player)

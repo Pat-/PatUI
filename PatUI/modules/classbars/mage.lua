@@ -10,7 +10,14 @@ end
 ------------------------------------------------------------------------------------------
 -- Arcane Charges
 ------------------------------------------------------------------------------------------
-local function Player(self)
+
+local basePlayer = TukuiUnitFrames.Player
+
+function TukuiUnitFrames:Player()
+	-- Call the base function first
+	basePlayer(self)
+	
+	-- Then my stuff
 	local ArcaneChargeBar = self.ArcaneChargeBar
 	local Health = self.Health
 	local Shadow = self.Shadow
@@ -38,4 +45,3 @@ local function Player(self)
 	end
 	
 end
-hooksecurefunc(TukuiUnitFrames, "Player", Player)

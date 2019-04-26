@@ -5,7 +5,13 @@ local ActionBars =  T["ActionBars"]
 local Num = NUM_ACTIONBAR_BUTTONS
 
 
-hooksecurefunc(ActionBars, 'CreateBar2', function()
+local baseCreateBar2 = ActionBars.CreateBar2
+
+function ActionBars:CreateBar2()
+    -- Call the base function first
+    baseCreateBar2(self)
+	
+	--- Then my stuff
 	local Size = C["ActionBars"]["NormalButtonSize"]
 	local Spacing = C["ActionBars"]["ButtonSpacing"]
 	local ActionBar1 = Panels.ActionBar1
@@ -49,7 +55,7 @@ hooksecurefunc(ActionBars, 'CreateBar2', function()
 			b:SetPoint("LEFT", b2, "RIGHT", Spacing, 0)
 		end
 	end
-end)
+end
 
 
 local VehicleIndicator = T.Miscellaneous.VehicleIndicator

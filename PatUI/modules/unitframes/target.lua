@@ -7,7 +7,14 @@ local T, C, L = Tukui:unpack()
 local UnitFrames = T.UnitFrames
 local Noop = function() end
 
-local function CreateUnits()
+local baseCreateUnits = UnitFrames.CreateUnits
+local baseTarget = UnitFrames.Target
+
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
     local Target = UnitFrames.Units.Target
 
 	Target:SetHeight(23)
@@ -18,9 +25,12 @@ local function CreateUnits()
 	Target:ClearAllPoints()
 	Target:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 160, 50)
 end
-hooksecurefunc(UnitFrames, "CreateUnits", CreateUnits)
 
-local function Target(self)
+function UnitFrames:Target()
+	-- Call the base function first
+	baseTarget(self)
+	
+	-- Then my stuff
 	local Panel = self.Panel
 	local Health = self.Health
 	local Power = self.Power
@@ -120,4 +130,3 @@ local function Target(self)
 		Debuffs.ClearAllPoints = T.dummy
 	end
 end
-hooksecurefunc(UnitFrames, "Target", Target)

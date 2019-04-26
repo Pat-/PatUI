@@ -10,7 +10,14 @@ end
 ------------------------------------------------------------------------------------------
 -- CLASS RESOURCES
 ------------------------------------------------------------------------------------------
-local function Player(self)
+
+local basePlayer = TukuiUnitFrames.Player
+
+function TukuiUnitFrames:Player()
+	-- Call the base function first
+	basePlayer(self)
+	
+	-- Then my stuff
 	local TotemBar = self.Totems
 	local Health = self.Health
 
@@ -19,4 +26,3 @@ local function Player(self)
 		TotemBar:SetPoint("BOTTOM", Health, "TOP", 0, 12)
 	end
 end
-hooksecurefunc(TukuiUnitFrames, "Player", Player)

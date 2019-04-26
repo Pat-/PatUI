@@ -4,7 +4,14 @@ local Panels = T["Panels"]
 local Experience = T["Miscellaneous"]["Experience"]
 local Minimap = T["Maps"]["Minimap"]
 
-local function Enable()
+local baseEnable = Panels.Enable
+local baseCreate = Experience.Create
+
+function Panels:Enable()
+	-- First call the base function
+	baseEnable(self)
+	
+	-- then my stuff
 	local DataTextLeft = Panels.DataTextLeft
 	local DataTextRight = Panels.DataTextRight
 	local TabsBGRight = Panels.TabsBGRight
@@ -46,9 +53,12 @@ local function Enable()
 		DataTextRight:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 152)
 	end
 end
-hooksecurefunc(Panels, "Enable", Enable)
 
-local function Create(self)
+function Experience:Create()
+	-- First call the base function
+	baseCreate(self)
+	
+	-- then my stuff
 	local LeftChatBG = Panels.LeftChatBG
 	local RightChatBG = Panels.RightChatBG
 	local XPBar = self.XPBar1
@@ -70,7 +80,6 @@ local function Create(self)
 	AzeriteBar:CreateShadow()
 	AzeriteBar:SetReverseFill(false)
 end
-hooksecurefunc(Experience, "Create", Create)
 
 ------------------------------------------------------------------------
 -- Creating DataPoints

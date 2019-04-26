@@ -4,7 +4,13 @@ local Panels = T["Panels"]
 local ActionBars =  T["ActionBars"]
 local Num = NUM_ACTIONBAR_BUTTONS
 
-hooksecurefunc(ActionBars, 'CreateBar4', function()
+local baseCreateBar4 = ActionBars.CreateBar4
+
+function ActionBars:CreateBar4()
+    -- Call the base function first
+    baseCreateBar4(self)
+	
+	--- Then my stuff
     local Size = C["ActionBars"]["NormalButtonSize"]
     local Spacing = C["ActionBars"]["ButtonSpacing"]
     local ActionBar4 = Panels.ActionBar4
@@ -55,4 +61,4 @@ hooksecurefunc(ActionBars, 'CreateBar4', function()
 			b:SetPoint("LEFT", b2, "RIGHT", Spacing, 0)
 		end
     end
-end)
+end

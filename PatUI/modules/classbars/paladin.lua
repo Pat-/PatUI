@@ -10,7 +10,14 @@ end
 ------------------------------------------------------------------------------------------
 -- Holy Power
 ------------------------------------------------------------------------------------------
-local function Player(self)
+
+local basePlayer = TukuiUnitFrames.Player
+
+function TukuiUnitFrames:Player()
+	-- Call the base function first
+	basePlayer(self)
+	
+	-- Then my stuff
 	local HPBar = self.HolyPower
 	local Shadow = self.Shadow
 	local Health = self.Health
@@ -33,5 +40,4 @@ local function Player(self)
 			HPBar[i]:Point("LEFT", HPBar[i-1], "RIGHT", 1, 0)
 		end
 	end
-end		
-hooksecurefunc(TukuiUnitFrames, "Player", Player)
+end

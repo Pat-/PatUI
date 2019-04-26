@@ -10,7 +10,14 @@ end
 ------------------------------------------------------------------------------------------
 -- Atonement
 ------------------------------------------------------------------------------------------
-local function Player(self)
+
+local basePlayer = TukuiUnitFrames.Player
+
+function TukuiUnitFrames:Player()
+	-- Call the base function first
+	basePlayer(self)
+	
+	-- Then my stuff
 	local Health = self.Health
 	local Shadow = self.Shadow
 	local Atonement = self.Atonement
@@ -22,4 +29,3 @@ local function Player(self)
 	Atonement:CreateShadow()
 	Atonement:SetFrameStrata("BACKGROUND")
 end
-hooksecurefunc(TukuiUnitFrames, "Player", Player)
