@@ -3,7 +3,13 @@ local T, C, L = Tukui:unpack()
 local ActionBars = T["ActionBars"]
 local Panels = T["Panels"]
 
-local CreateToggleButtons = function()
+local baseCreateToggleButtons = ActionBars.CreateToggleButtons
+
+function ActionBars:CreateToggleButtons()
+    -- Call the base function first
+    baseCreateToggleButtons(self)
+	
+	--- Then my stuff
 	-- Code for SplitBar.
 	local function ShowOrHideBar(bar, button)
 		local db = PatUICharData
@@ -194,4 +200,3 @@ local CreateToggleButtons = function()
 		Button:Hide()
 	end
 end
-hooksecurefunc(ActionBars, "CreateToggleButtons", CreateToggleButtons)
