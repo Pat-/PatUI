@@ -16,12 +16,17 @@ function UnitFrames:CreateUnits()
 	
 	-- Then my stuff
 	local Pet = UnitFrames.Units.Pet
+	local Player = UnitFrames.Units.Player
 
 	Pet:SetHeight(23)
 	Pet:SetWidth(110)
 	
 	Pet:ClearAllPoints()
-	Pet:SetPoint("BOTTOM", PatBar1, "TOP", 0, 90)
+	if C["Raid"]["Healer"] == true then
+		Pet:SetPoint("TOPLEFT", Player, "BOTTOMLEFT", 0, -30)
+	else
+		Pet:SetPoint("BOTTOM", PatBar1, "TOP", 0, 90)
+	end
 	Pet:SetBackdrop(nil)
 end
 

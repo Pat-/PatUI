@@ -109,6 +109,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Raid"]["HealthTexture"] = "Blank"
 	C["Raid"]["PowerTexture"] = "Blank"
 	C["Raid"]["ShowSolo"] = false
+	C["Raid"]["Healer"] = false
 
 -- Textures
 	C["Textures"]["QuestProgressTexture"] = "Blank"

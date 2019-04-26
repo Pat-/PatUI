@@ -24,7 +24,11 @@ function UnitFrames:CreateUnits()
 	Player.Shadow:Kill()
 	
 	Player:ClearAllPoints()
-	Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -160, 50)
+	if C["Raid"]["Healer"] == true then
+		Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -254, 150)
+	else
+		Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -160, 50)
+	end
 end
 
 function UnitFrames:Player()

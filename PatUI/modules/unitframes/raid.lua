@@ -47,11 +47,13 @@ function UnitFrames:CreateUnits()
 	
 	--Raid.Shadow:Kill()
 	
+	--Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
+	
 	Raid:ClearAllPoints()
-	if C["General"]["SmallerChat"] == true then
-		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
+	if C["General"]["SmallerChat"] == true and C["Raid"]["Healer"] == true then
+		Raid:SetPoint("BOTTOM", PatBar1, "TOP", 0, 32)
 	else
-		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
 	end
 end
 
@@ -132,6 +134,8 @@ end
 local PatUIRaidPosition = CreateFrame("Frame")
 PatUIRaidPosition:RegisterEvent("PLAYER_LOGIN")
 PatUIRaidPosition:SetScript("OnEvent", function(self, event)
+	if C["Raid"]["Healer"] == true then return end
+	
 	local raid = UnitFrames.Headers.Raid
 	local LeftChatBG = Panels.LeftChatBG
 	

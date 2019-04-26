@@ -16,12 +16,17 @@ function UnitFrames:CreateUnits()
 	
 	-- Then my stuff
 	local ToT = UnitFrames.Units.TargetOfTarget
+	local Target = UnitFrames.Units.Target
 
 	ToT:SetHeight(23)
 	ToT:SetWidth(110)
 	
 	ToT:ClearAllPoints()
-	ToT:SetPoint("BOTTOM", PatBar1, "TOP", 0, 50)
+	if C["Raid"]["Healer"] == true then
+		ToT:SetPoint("TOPRIGHT", Target, "BOTTOMRIGHT", 0, -36)
+	else
+		ToT:SetPoint("BOTTOM", PatBar1, "TOP", 0, 50)
+	end
 	ToT:SetBackdrop(nil)
 end
 
