@@ -6,6 +6,7 @@
 	<Script file="core\functions.lua"/>
 	<Script file="config\config.lua"/>
 	<Script file="config\locales.lua"/>
+	<Script file="media\media.lua"/>
 	
 	<Include file="modules\load_modules.xml"/>
 </Ui>

@@ -22,7 +22,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["ActionBars"]["PetButtonSize"] = 25
 	C["ActionBars"]["ButtonSpacing"] = 4
 	C["ActionBars"]["HideBackdrop"] = false
-	C["ActionBars"]["Font"] = "Pixel"
+	C["ActionBars"]["Font"] = "PatUI"
 
 -- Auras
 	C["Auras"]["Enable"] = true
@@ -32,7 +32,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Auras"]["HideDebuffs"] = false
 	C["Auras"]["Animation"] = false
 	C["Auras"]["BuffsPerRow"] = 12
-	C["Auras"]["Font"] = "Pixel"
+	C["Auras"]["Font"] = "PatUI"
 
 -- Bags
 	C["Bags"]["Enable"] = true
@@ -40,7 +40,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Bags"]["Spacing"] = 4
 	C["Bags"]["ItemsPerRow"] = 11
 	C["Bags"]["PulseNewItem"] = false
-	C["Bags"]["Font"] = "Pixel"
+	C["Bags"]["Font"] = "PatUI"
 
 -- Chat	
 	C["Chat"]["Enable"] = true
@@ -48,11 +48,11 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Chat"]["LinkColor"] = {0.08, 1, 0.36}
 	C["Chat"]["LinkBrackets"] = true
 	C["Chat"]["ScrollByX"] = 3
-	C["Chat"]["TabFont"] = "Pixel"
+	C["Chat"]["TabFont"] = "PatUI"
 	C["Chat"]["ChatFont"] = "Tukui"
 	
 -- Cooldowns
-	C["Cooldowns"]["Font"] = "Pixel"
+	C["Cooldowns"]["Font"] = "PatUI"
 
 -- Datatexts	
 	C["DataTexts"]["Battleground"] = false
@@ -60,12 +60,12 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["DataTexts"]["Time24HrFormat"] = false
 	C["DataTexts"]["NameColor"] = {class.r, class.g, class.b}
 	C["DataTexts"]["ValueColor"] = {1, 1, 1}
-	C["DataTexts"]["Font"] = "Pixel"
+	C["DataTexts"]["Font"] = "PatUI"
 
 -- Loot
 	C["Loot"]["Enable"] = true
 	C["Loot"]["StandardLoot"] = false
-	C["Loot"]["Font"] = "Pixel"
+	C["Loot"]["Font"] = "PatUI"
 
 -- Merchant	
 	C["Merchant"]["AutoSellGrays"] = true
@@ -73,7 +73,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Merchant"]["UseGuildRepair"] = false
 
 -- Misc
-	C["Misc"]["ThreatBarEnable"] = true
+	C["Misc"]["ThreatBarEnable"] = false
 	C["Misc"]["AltPowerBarEnable"] = true
 	C["Misc"]["ExperienceEnable"] = true
 	C["Misc"]["ReputationEnable"] = true
@@ -86,7 +86,7 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["NamePlates"]["Width"] = 140
 	C["NamePlates"]["Height"] = 8
 	C["NamePlates"]["CastHeight"] = 1
-	C["NamePlates"]["Font"] = "Pixel"
+	C["NamePlates"]["Font"] = "PatUI"
 
 -- Party	
 	C["Party"]["Enable"] = false
@@ -103,13 +103,14 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Raid"]["ShowPets"] = false
 	C["Raid"]["VerticalHealth"] = false
 	C["Raid"]["MaxUnitPerColumn"] = 5
-	C["Raid"]["Font"] = "Pixel"
-	C["Raid"]["HealthFont"] = "Pixel"
+	C["Raid"]["Font"] = "PatUI"
+	C["Raid"]["HealthFont"] = "PatUI"
 	C["Raid"]["GroupBy"]["Value"] = "ROLE"
 	C["Raid"]["HealthTexture"] = "Blank"
 	C["Raid"]["PowerTexture"] = "Blank"
 	C["Raid"]["ShowSolo"] = false
 	C["Raid"]["Healer"] = false
+	C["Raid"]["RoleIcons"] = true
 
 -- Textures
 	C["Textures"]["QuestProgressTexture"] = "Blank"
@@ -131,7 +132,9 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["Tooltips"]["UnitHealthText"] = true
 	C["Tooltips"]["ShowSpec"] = false
 	C["Tooltips"]["MouseOver"] = false
-	C["Tooltips"]["HealthFont"] = "Pixel"
+	C["Tooltips"]["HealthFont"] = "PatUI"
+	C["Tooltips"]["CombatHide"] = false
+	C["Tooltips"]["HideTarget"] = false
 	
 -- Unitframes	
 	C["UnitFrames"]["Enable"] = true
@@ -157,4 +160,4 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 	C["UnitFrames"]["AltPowerText"] = true
 	C["UnitFrames"]["Arena"] = true
 	C["UnitFrames"]["Boss"] = true
-	C["UnitFrames"]["Font"] = "Pixel"
+	C["UnitFrames"]["Font"] = "PatUI"

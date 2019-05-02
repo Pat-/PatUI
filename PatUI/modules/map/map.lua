@@ -5,13 +5,13 @@ local Auras = T["Auras"]
 local Minimap = T["Maps"]["Minimap"]
 local ObjectiveTracker = T["Miscellaneous"]["ObjectiveTracker"]
 
-local baseEnbale = Minimap.Enable
+local baseEnable = Minimap.Enable
 local baseCreateHeaders = Auras.CreateHeaders
 local baseSetDefaultPosition = ObjectiveTracker.SetDefaultPosition
 
 function Minimap:Enable()
 	-- First call the base function
-	baseEnbale(self)
+	baseEnable(self)
 
 	-- Then my stuff
 	local MinimapDataText = Panels.MinimapDataText

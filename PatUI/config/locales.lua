@@ -17,3 +17,21 @@ local ShowSolo = {
 	["Desc"] = "Shows Raid/Party frame while solo",
 }
 TukuiConfig.enUS["Raid"]["ShowSolo"] = ShowSolo
+
+local RoleIcons = {
+	["Name"] = "|cffFFFF99Role Icons|r",
+	["Desc"] = "Show/Hide role icons on raid/party frames",
+}
+TukuiConfig.enUS["Raid"]["RoleIcons"] = RoleIcons
+
+local CombatHide = {
+	["Name"] = "|cffFFFF99Combat Hide|r",
+	["Desc"] = "Hides tooltip when in combat",
+}
+TukuiConfig.enUS["Tooltips"]["CombatHide"] = CombatHide
+
+local HideTarget = {
+	["Name"] = "|cffFFFF99Hide Target|r",
+	["Desc"] = "Hides target info on tooltip (Experimental and buggy)",
+}
+TukuiConfig.enUS["Tooltips"]["HideTarget"] = HideTarget

@@ -1,4 +1,4 @@
-local T, C, L = Tukui:unpack()
+local T, C, L = Tukui:unpack() 
 
 local Tooltips = T["Tooltips"]
 local Inventory = T["Inventory"]
@@ -8,6 +8,7 @@ local Bags = Inventory["Bags"]
 local baseOpenAllBags = Bags.OpenAllBags
 local baseCloseAllBags = Bags.CloseAllBags
 local baseCreateAnchor = Tooltips.CreateAnchor
+--local baseOnTooltipSetUnit = Tooltips.OnTooltipSetUnit
 
 
 -- Bags load first in Tukui
@@ -57,8 +58,47 @@ function Tooltips:CreateAnchor()
 	end
 end
 
-GameTooltip:HookScript("OnShow", function(self)
-	if InCombatLockdown() then
-		self:Hide()
+if C["Tooltips"]["CombatHide"] == true then
+	GameTooltip:HookScript("OnShow", function(self)
+		if InCombatLockdown() then
+			self:Hide()
+		end
+	end)
+end
+
+-- Astral Keys causes a Lua error because it edits tooltips like Tukui
+-- So we want to disable what Tukui edits to prevent the Lua error else players
+-- choose if they want to disable this themselves
+if (IsAddOnLoaded("Astral_Keys")) or C["Tooltips"]["HideTarget"] == true  then
+	-- Cleverly construct a sandbox for our friends at Tukui (experimental and buggy)
+	local sandbox_env = {
+
+		-- Notes:
+		--   Put functions in here that you want to rewrite
+		--   They can even be secure functions! Since we aren't
+		--   actually tainting any functions, only preventing
+		--   them from running
+
+		-- Modify the behavior of UnitExists
+		UnitExists = function (unit)
+			-- Targets of Units DO NOT EXIST
+			if unit:match("target$") then
+				return
+			end
+			return UnitExists(unit)
+		end
+	}
+
+	-- Add All the Global Stuff to Our Sandbox
+	sandbox_env = setmetatable(sandbox_env, { __index = _G })
+
+	function Tooltips:OnTooltipSetUnit()
+		-- Call the base function (from Inside a Sandbox)
+		setfenv(baseOnTooltipSetUnit, sandbox_env)
+		baseOnTooltipSetUnit(self)
+
+		-- In this case, the sandbox will do all the work, but you can add any other code below
 	end
-end)
+end
+-- Dandraffbal helped with all this
+

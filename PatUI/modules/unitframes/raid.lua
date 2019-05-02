@@ -45,15 +45,14 @@ function UnitFrames:CreateUnits()
 	local Raid = UnitFrames.Headers.Raid
 	local LeftChatBG = Panels.LeftChatBG
 	
-	--Raid.Shadow:Kill()
-	
-	--Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
-	
+	-- Setting default points of raidframes based on what config setting is enabled or not
 	Raid:ClearAllPoints()
-	if C["General"]["SmallerChat"] == true and C["Raid"]["Healer"] == true then
+	if C["Raid"]["Healer"] == true then
 		Raid:SetPoint("BOTTOM", PatBar1, "TOP", 0, 32)
-	else
+	elseif C["General"]["SmallerChat"] == true then
 		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
+	else
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
 	end
 end
 
@@ -73,14 +72,9 @@ function UnitFrames:Raid()
 	local Atonement = self.Atonement
 	local RaidDebuffs = self.RaidDebuffs
 	
-	local PowerTexture = T.GetTexture(C["Raid"]["PowerTexture"])
-	local HealthTexture = T.GetTexture(C["Raid"]["HealthTexture"])
-	local RaidFont = T.GetFont(C["Raid"].Font)
-	local Blank = C.Medias.Blank
 	local IsInGroup = IsInGroup
 	local UnitIsUnit = UnitIsUnit
-
-
+	local raidscale = 1
 		
 		self.Shadow:Kill()
 		
@@ -94,7 +88,7 @@ function UnitFrames:Raid()
 		Health.colorClass = false
 		Health.colorReaction = false
 		Health.colorTapping = false
-		Health.colorDisconnected = false
+		Health.colorDisconnected = true
 		
 		-- Power	
 		Power:ClearAllPoints()
@@ -121,6 +115,17 @@ function UnitFrames:Raid()
 		-- resurrect Icon
 		ResurrectIcon:Size(24)
 		ResurrectIcon:SetPoint("TOP")
+		
+		if C["Raid"]["RoleIcons"] == true then
+			-- set our own role icons :D
+			local LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
+			LFDRole:Height(15*raidscale)
+			LFDRole:Width(15*raidscale)
+			LFDRole:Point("TOPLEFT", 1, -1)
+			LFDRole.Override = T.RoleIconUpdate
+			self:RegisterEvent("UNIT_CONNECTION", T.RoleIconUpdate)
+			self.LFDRole = LFDRole
+		end
 		
 	-- AuraWatch (corner and center icon)
 	if C["Raid"].AuraWatch then
