@@ -2,10 +2,12 @@ local T, C, L = Tukui:unpack()
 
 local Panels = T["Panels"]
 local Experience = T["Miscellaneous"]["Experience"]
+local Reputation = T["Miscellaneous"]["Reputation"]
 local Minimap = T["Maps"]["Minimap"]
 
 local baseEnable = Panels.Enable
-local baseCreate = Experience.Create
+local baseExp = Experience.Create
+local baseRep = Reputation.Create
 
 function Panels:Enable()
 	-- First call the base function
@@ -41,7 +43,7 @@ function Panels:Enable()
 	RightChatBG:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
 	RightChatBG:CreateShadow()
 	
-	if C["General"]["SmallerChat"] == true then
+	if C["PatUI"]["SmallerChat"] == true then
 		LeftChatBG:SetHeight(151.5)
 		RightChatBG:SetHeight(151.5)
 		DataTextLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 126)
@@ -56,7 +58,7 @@ end
 
 function Experience:Create()
 	-- First call the base function
-	baseCreate(self)
+	baseExp(self)
 	
 	-- then my stuff
 	local LeftChatBG = Panels.LeftChatBG
@@ -79,6 +81,39 @@ function Experience:Create()
 	AzeriteBar:Width(Minimap:GetWidth())
 	AzeriteBar:CreateShadow()
 	AzeriteBar:SetReverseFill(false)
+	
+	-- Lets declutter the screen a little and make Exp/Rep Bars hide when not moused over
+	if C["PatUI"]["RepExpMouseOver"] == true then
+		XPBar:SetAlpha(0)
+		XPBar:HookScript("OnEnter", function(self) self:SetAlpha(1) end)
+		XPBar:HookScript("OnLeave", function(self) self:SetAlpha(0) end)
+		
+		AzeriteBar:SetAlpha(0)
+		AzeriteBar:HookScript("OnEnter", function(self) self:SetAlpha(1) end)
+		AzeriteBar:HookScript("OnLeave", function(self) self:SetAlpha(0) end)
+	end
+end
+
+function Reputation:Create()
+	-- First we call the base function
+	baseRep(self)
+	
+	-- then my stuff
+	local RepBar1 = self.RepBar1
+	local RepBar2 = self.RepBar2
+	
+	RepBar1:CreateShadow()
+	RepBar2:CreateShadow()
+	
+	if C["PatUI"]["RepExpMouseOver"] == true then
+		RepBar1:SetAlpha(0)
+		RepBar1:HookScript("OnEnter", function(self) self:SetAlpha(1) end)
+		RepBar1:HookScript("OnLeave", function(self) self:SetAlpha(0) end)
+		
+		RepBar2:SetAlpha(0)
+		RepBar2:HookScript("OnEnter", function(self) self:SetAlpha(1) end)
+		RepBar2:HookScript("OnLeave", function(self) self:SetAlpha(0) end)
+	end
 end
 
 ------------------------------------------------------------------------

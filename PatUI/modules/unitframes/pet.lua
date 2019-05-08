@@ -22,7 +22,7 @@ function UnitFrames:CreateUnits()
 	Pet:SetWidth(110)
 	
 	Pet:ClearAllPoints()
-	if C["Raid"]["Healer"] == true then
+	if C["PatUI"]["Healer"] == true then
 		Pet:SetPoint("TOPLEFT", Player, "BOTTOMLEFT", 0, -30)
 	else
 		Pet:SetPoint("BOTTOM", PatBar1, "TOP", 0, 90)

@@ -22,7 +22,7 @@ function UnitFrames:CreateUnits()
 	ToT:SetWidth(110)
 	
 	ToT:ClearAllPoints()
-	if C["Raid"]["Healer"] == true then
+	if C["PatUI"]["Healer"] == true then
 		ToT:SetPoint("TOPRIGHT", Target, "BOTTOMRIGHT", 0, -36)
 	else
 		ToT:SetPoint("BOTTOM", PatBar1, "TOP", 0, 50)

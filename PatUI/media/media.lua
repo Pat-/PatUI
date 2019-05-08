@@ -4,7 +4,10 @@ if not C["Medias"] then C["Medias"] = {} end
 
 local TukuiMedia = T["Media"]
 local UnitFrames = T["UnitFrames"]
+local ActionBars = T["ActionBars"]
 local baseNameplates = UnitFrames.Nameplates
+local baseSkinButton = ActionBars.SkinButton
+
 
 -- Adding my own Pixelfont to Tukui 
 local PatUI = CreateFont("PatUI")
@@ -26,3 +29,23 @@ function UnitFrames:Nameplates()
 	
 	Castbar.Text:SetFont(PatUI, 10, "MONOCHROMEOUTLINE")
 end	
+
+function ActionBars:SkinButton()
+	
+	baseSkinButton(self)
+	
+	local Name = self:GetName()
+	local macroText = _G[Name.."Name"]
+	local Count = _G[Name.."Count"]
+	local HotKey = _G[Name.."HotKey"]
+	local PatUI = [=[Interface\AddOns\PatUI\media\fonts\pixelfont.ttf]=]
+	
+	if macroText then
+		macroText:SetFont(PatUI, 10, "MONOCHROMEOUTLINE")
+		macroText:ClearAllPoints()
+		macroText:SetPoint("BOTTOM", 1, 2.5)
+	end
+	
+	Count:SetFont(PatUI, 10, "MONOCHROMEOUTLINE")
+	HotKey:SetFont(PatUI, 10, "MONOCHROMEOUTLINE")
+end

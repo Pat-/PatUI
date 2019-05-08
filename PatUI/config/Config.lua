@@ -5,6 +5,18 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 -- in game configuration base settings (standard Tukui)
 ------------------------------------------------------------------------------------------
 
+-- Creating our own section of the Tukui Config
+	C["PatUI"] = {
+		["SmallerChat"] = true,
+		["ShowSolo"] = false,
+		["Healer"] = false,
+		["RoleIcons"] = true,
+		["CombatHide"] = false,
+		["HideTarget"] = true,
+		["RepExpMouseOver"] = true,
+		
+	}
+
 -- General
 	C["General"]["HideShadows"] = false
 	C["General"]["Scaling"]["Value"] = "Pixel Perfection"

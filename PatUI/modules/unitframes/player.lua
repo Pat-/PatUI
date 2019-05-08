@@ -24,7 +24,7 @@ function UnitFrames:CreateUnits()
 	Player.Shadow:Kill()
 	
 	Player:ClearAllPoints()
-	if C["Raid"]["Healer"] == true then
+	if C["PatUI"]["Healer"] == true then
 		Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -254, 150)
 	else
 		Player:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", -160, 50)
@@ -66,6 +66,8 @@ function UnitFrames:Player()
 	Health:SetStatusBarColor(.2, .2, .2)
 	Health.Background:SetColorTexture(.1, .1, .1)
 	
+	Health.colorTapping = false
+	Health.colorDisconnected = false
 	Health.colorClass = false
 	Health.colorReaction = false
 	

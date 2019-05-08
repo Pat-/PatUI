@@ -23,7 +23,7 @@ function UnitFrames:CreateUnits()
 	Target.Shadow:Kill()
 	
 	Target:ClearAllPoints()
-	if C["Raid"]["Healer"] == true then
+	if C["PatUI"]["Healer"] == true then
 		Target:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 254, 150)
 	else
 		Target:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 160, 50)

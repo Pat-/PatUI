@@ -20,7 +20,7 @@ function UnitFrames:CreateUnits()
 	Focus:SetWidth(240)
 	
 	Focus:ClearAllPoints()
-	if C["Raid"]["Healer"] == true then
+	if C["PatUI"]["Healer"] == true then
 		Focus:SetPoint("BOTTOM", UIParent, "BOTTOM", -600, 400)
 	else
 		Focus:SetPoint("BOTTOM", UIParent, "BOTTOM", -400, 400)

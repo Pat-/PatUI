@@ -149,7 +149,7 @@ function ActionBars:CreateToggleButtons()
 	Bar2Button.text:SetText("|cff18AA18 - |r")
 
 	local Bar5Button = CreateFrame("Button", "Bar5Button", UIParent)
-	if C["General"]["SmallerChat"] == true then
+	if C["PatUI"]["SmallerChat"] == true then
 		Bar5Button:Size(18, 152.5)
 	else
 		Bar5Button:Size(18, 178)

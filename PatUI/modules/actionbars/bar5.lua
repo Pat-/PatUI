@@ -20,7 +20,7 @@ function ActionBars:CreateBar5()
 	ActionBar5.Backdrop:Kill()
 	ActionBar5.Backdrop.Shadow:Kill()
 	
-	if C["General"]["SmallerChat"] == true then
+	if C["PatUI"]["SmallerChat"] == true then
 		buttonsize = 20.7
 	else
 		buttonsize = 25

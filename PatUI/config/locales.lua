@@ -1,37 +1,39 @@
 local T, C, L = Tukui:unpack()
 
-local SmallerChat = {
-	["Name"] = "|cffFFFF99Smaller Chat|r",
-	["Desc"] = "lowers the default chatframe heights will require a /tukui install to readjust chat window heights",
-}
-TukuiConfig.enUS["General"]["SmallerChat"] = SmallerChat
+-- Creating our own section of the Tukui Config
+local PatUI = {
+	["SmallerChat"] = {
+		["Name"] = "|cffFFFF99Smaller Chat|r",
+		["Desc"] = "lowers the default chatframe heights will require a /tukui install to readjust chat window heights",
+	},
 
-local Healer = {
-	["Name"] = "|cffFFFF99Healer|r",
-	["Desc"] = "Centers raid frame and adjusts positions of unitframes for a more healer friendly layout",
-}
-TukuiConfig.enUS["Raid"]["Healer"] = Healer
+	["Healer"] = {
+		["Name"] = "|cffFFFF99Healer|r",
+		["Desc"] = "Centers raid frame and adjusts positions of unitframes for a more healer friendly layout",
+	},
 
-local ShowSolo = {
-	["Name"] = "|cffFFFF99Show Solo|r",
-	["Desc"] = "Shows Raid/Party frame while solo",
-}
-TukuiConfig.enUS["Raid"]["ShowSolo"] = ShowSolo
+	["ShowSolo"] = {
+		["Name"] = "|cffFFFF99Show Solo|r",
+		["Desc"] = "Shows Raid/Party frame while solo",
+	},
 
-local RoleIcons = {
-	["Name"] = "|cffFFFF99Role Icons|r",
-	["Desc"] = "Show/Hide role icons on raid/party frames",
-}
-TukuiConfig.enUS["Raid"]["RoleIcons"] = RoleIcons
+	["RoleIcons"] = {
+		["Name"] = "|cffFFFF99Role Icons|r",
+		["Desc"] = "Show/Hide role icons on raid/party frames",
+	},
 
-local CombatHide = {
-	["Name"] = "|cffFFFF99Combat Hide|r",
-	["Desc"] = "Hides tooltip when in combat",
-}
-TukuiConfig.enUS["Tooltips"]["CombatHide"] = CombatHide
+	["CombatHide"] = {
+		["Name"] = "|cffFFFF99Combat Hide|r",
+		["Desc"] = "Hides tooltip when in combat",
+	},
 
-local HideTarget = {
-	["Name"] = "|cffFFFF99Hide Target|r",
-	["Desc"] = "Hides target info on tooltip (Experimental and buggy)",
+	["HideTarget"] = {
+		["Name"] = "|cffFFFF99Hide Target|r",
+		["Desc"] = "Hides target info on tooltip (Experimental and buggy)",
+	},
+	["RepExpMouseOver"] = {
+		["Name"] = "|cffFFFF99Mouseover Rep/Exp|r",
+		["Desc"] = "Enable to make Rep/Exp bars hidden unless Mouseovered",
+	},
 }
-TukuiConfig.enUS["Tooltips"]["HideTarget"] = HideTarget
+TukuiConfig.enUS["PatUI"] = PatUI

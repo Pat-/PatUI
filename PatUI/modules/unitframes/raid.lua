@@ -47,9 +47,9 @@ function UnitFrames:CreateUnits()
 	
 	-- Setting default points of raidframes based on what config setting is enabled or not
 	Raid:ClearAllPoints()
-	if C["Raid"]["Healer"] == true then
+	if C["PatUI"]["Healer"] == true then
 		Raid:SetPoint("BOTTOM", PatBar1, "TOP", 0, 32)
-	elseif C["General"]["SmallerChat"] == true then
+	elseif C["PatUI"]["SmallerChat"] == true then
 		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
 	else
 		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
@@ -85,10 +85,10 @@ function UnitFrames:Raid()
 		Health:SetStatusBarColor(.2, .2, .2)
 		Health.Background:SetColorTexture(.1, .1, .1)
 		
+		Health.colorTapping = false		
+		Health.colorDisconnected = false
 		Health.colorClass = false
 		Health.colorReaction = false
-		Health.colorTapping = false
-		Health.colorDisconnected = true
 		
 		-- Power	
 		Power:ClearAllPoints()
@@ -139,7 +139,7 @@ end
 local PatUIRaidPosition = CreateFrame("Frame")
 PatUIRaidPosition:RegisterEvent("PLAYER_LOGIN")
 PatUIRaidPosition:SetScript("OnEvent", function(self, event)
-	if C["Raid"]["Healer"] == true then return end
+	if C["PatUI"]["Healer"] == true then return end
 	
 	local raid = UnitFrames.Headers.Raid
 	local LeftChatBG = Panels.LeftChatBG
@@ -150,7 +150,7 @@ PatUIRaidPosition:SetScript("OnEvent", function(self, event)
 	
 	PatBar3:HookScript("OnHide", function()
 		raid:ClearAllPoints()
-		if C["General"]["SmallerChat"] == true then
+		if C["PatUI"]["SmallerChat"] == true then
 			raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
 		else
 			raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)

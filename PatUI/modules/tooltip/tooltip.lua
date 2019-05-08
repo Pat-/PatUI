@@ -8,7 +8,7 @@ local Bags = Inventory["Bags"]
 local baseOpenAllBags = Bags.OpenAllBags
 local baseCloseAllBags = Bags.CloseAllBags
 local baseCreateAnchor = Tooltips.CreateAnchor
---local baseOnTooltipSetUnit = Tooltips.OnTooltipSetUnit
+local baseOnTooltipSetUnit = Tooltips.OnTooltipSetUnit
 
 
 -- Bags load first in Tukui
@@ -22,7 +22,7 @@ function Tooltips:CreateAnchor()
 	local Anchor = Tooltips["Anchor"]
 	local RightChat = Panels["RightChatBG"]
 	
-	if C["General"]["SmallerChat"] then
+	if C["PatUI"]["SmallerChat"] then
 		Anchor:ClearAllPoints()
 		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
 	end
@@ -33,7 +33,7 @@ function Tooltips:CreateAnchor()
 		baseOpenAllBags(self);
 
 		-- Change the Tooltip Anchor When the Bags Get Opened
-		if C["General"]["SmallerChat"] then
+		if C["PatUI"]["SmallerChat"] then
 			local Anchor = Tooltips["Anchor"]
 			local Container = _G["TukuiBag"]
 			
@@ -48,7 +48,7 @@ function Tooltips:CreateAnchor()
 		baseCloseAllBags(self);
 
 		-- Change the Tooltip Anchor Back When the Bags Get Closed
-		if C["General"]["SmallerChat"] then
+		if C["PatUI"]["SmallerChat"] then
 			local Anchor = Tooltips["Anchor"]
 			local RightChat = Panels["RightChatBG"]
 			
@@ -58,7 +58,7 @@ function Tooltips:CreateAnchor()
 	end
 end
 
-if C["Tooltips"]["CombatHide"] == true then
+if C["PatUI"]["CombatHide"] == true then
 	GameTooltip:HookScript("OnShow", function(self)
 		if InCombatLockdown() then
 			self:Hide()
@@ -67,9 +67,7 @@ if C["Tooltips"]["CombatHide"] == true then
 end
 
 -- Astral Keys causes a Lua error because it edits tooltips like Tukui
--- So we want to disable what Tukui edits to prevent the Lua error else players
--- choose if they want to disable this themselves
-if (IsAddOnLoaded("Astral_Keys")) or C["Tooltips"]["HideTarget"] == true  then
+if C["PatUI"]["HideTarget"] == true  then
 	-- Cleverly construct a sandbox for our friends at Tukui (experimental and buggy)
 	local sandbox_env = {
 
