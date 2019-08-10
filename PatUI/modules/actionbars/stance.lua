@@ -1,15 +1,20 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L = Tukui:unpack()
 
-TukuiStance:ClearAllPoints()
-TukuiStance:SetPoint("LEFT", TukuiChatBackgroundLeft, "TOPRIGHT", 6, -40)
+local Panels = T["Panels"]
+local ActionBars = T["ActionBars"]
 
-local sborder = CreateFrame("Frame", "StanceBorder", StanceButton1)
-sborder:Point("LEFT", -P.buttonspacing, 0)
-sborder:SetTemplate("Transparent")
-sborder:SetFrameLevel(1)
-sborder:SetFrameStrata("BACKGROUND")
-sborder:ThickBorder()
+local baseCreateStanceBar = ActionBars.CreateStanceBar
 
-TukuiStance:HookScript("OnEvent", function(self, event, ...)
-	StanceBorder:Size(((StanceButton1:GetWidth() + P.buttonspacing) * GetNumShapeshiftForms()) + P.buttonspacing, StanceButton1:GetHeight() + 2 * P.buttonspacing)
-end)
+function ActionBars:CreateStanceBar()
+    -- Call the base function first
+    baseCreateStanceBar(self)
+	
+	--- Then my stuff
+	local Size = C["ActionBars"]["NormalButtonSize"]
+	local Spacing = C["ActionBars"]["ButtonSpacing"]
+	local StanceBar = Panels.StanceBar
+	local LeftChatBG = Panels.LeftChatBG
+
+	StanceBar:ClearAllPoints()
+	StanceBar:SetPoint("TOPLEFT", LeftChatBG, "TOPLEFT", -1, 84)
+end

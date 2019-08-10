@@ -1,71 +1,102 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L = Tukui:unpack()
 
-------------------------------------------------------------------------
--- Setting up Panels
-------------------------------------------------------------------------
+local Panels = T["Panels"]
+local Experience = T["Miscellaneous"]["Experience"]
+local Reputation = T["Miscellaneous"]["Reputation"]
+local Minimap = T["Maps"]["Minimap"]
 
-local panels = { TukuiMinimapStatsLeft, TukuiMinimapStatsRight, TukuiInfoLeftLineVertical, TukuiInfoRightLineVertical, TukuiLineToABLeft, TukuiLineToABRight, TukuiCubeLeft, TukuiCubeRight, TukuiLineToABLeftAlt, TukuiLineToABRightAlt, TukuiLineToPetActionBarBackground }
+local baseEnable = Panels.Enable
+local baseExp = Experience.Create
+local baseRep = Reputation.Create
 
-for _, panel in pairs(panels) do
-	panel:Kill()
+function Panels:Enable()
+	-- First call the base function
+	baseEnable(self)
+	
+	-- then my stuff
+	local DataTextLeft = Panels.DataTextLeft
+	local DataTextRight = Panels.DataTextRight
+	local TabsBGRight = Panels.TabsBGRight
+	local TabsBGLeft = Panels.TabsBGLeft
+	local LeftChatBG = Panels.LeftChatBG
+	local RightChatBG = Panels.RightChatBG
+	
+	LeftChatBG.Backdrop.Shadow:Kill()
+	RightChatBG.Backdrop.Shadow:Kill()
+	
+	DataTextLeft:SetBackdrop(nil)
+	DataTextLeft:ClearAllPoints()
+	DataTextLeft:SetFrameStrata("HIGH")
+	
+	DataTextRight:SetBackdrop(nil)
+	DataTextRight:ClearAllPoints()	
+	
+	LeftChatBG:SetParent(UIParent)
+	LeftChatBG:ClearAllPoints()
+	LeftChatBG:SetFrameStrata("BACKGROUND")
+	LeftChatBG:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
+	LeftChatBG:CreateShadow()
+	
+	RightChatBG:SetParent(UIParent)
+	RightChatBG:ClearAllPoints()
+	RightChatBG:SetFrameStrata("BACKGROUND")
+	RightChatBG:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
+	RightChatBG:CreateShadow()
+	
+	if C["PatUI"]["SmallerChat"] == true then
+		LeftChatBG:SetHeight(151.5)
+		RightChatBG:SetHeight(151.5)
+		DataTextLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 126)
+		DataTextRight:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 126)
+		DataTextLeft:Height(24)
+		DataTextRight:Height(24)
+	else
+		DataTextLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 152)
+		DataTextRight:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 152)
+	end
 end
 
-------------------------------------------------------------------------
--- Setting up Actionbars
-------------------------------------------------------------------------
+function Experience:Create()
+	-- First call the base function
+	baseExp(self)
+	
+	-- then my stuff
+	local XPBar = self.XPBar1
+	local XPBar2 = self.XPBar2
+	
+	XPBar.Backdrop.Shadow:Kill()
+	XPBar2.Backdrop.Shadow:Kill()
+	XPBar2:ClearAllPoints()
+	
+	XPBar:ClearAllPoints()
+	XPBar:Point("TOPLEFT", Minimap, "BOTTOMLEFT", 0, -3)
+	XPBar:Height(5)
+	XPBar:Width(Minimap:GetWidth())
+	XPBar:CreateShadow()
+	
+	-- Lets declutter the screen a little and make Exp/Rep Bars hide when not moused over
+	if C["PatUI"]["RepExpMouseOver"] == true then
+		XPBar:SetAlpha(0)
+		XPBar:HookScript("OnEnter", function(self) self:SetAlpha(1) end)
+		XPBar:HookScript("OnLeave", function(self) self:SetAlpha(0) end)
+	end
+end
 
-TukuiPetBar:ClearAllPoints()
-TukuiPetBar:Point("RIGHT", UIParent, "RIGHT", -2, -14)
-
-TukuiPetBar:SetTemplate("Transparent")
-TukuiLineToPetActionBarBackground:SetBackdrop(nil)
-
-------------------------------------------------------------------------
--- Setting up Actionbar Buttons
-------------------------------------------------------------------------
-
-TukuiBar4Button:ClearAllPoints()
-TukuiBar5ButtonTop:PatSkin()
-TukuiBar5ButtonBottom:PatSkin()
-
-------------------------------------------------------------------------
--- Setting up ChatFrames
-------------------------------------------------------------------------
-
-TukuiChatBackgroundLeft:SetFrameStrata("Background")
-TukuiChatBackgroundLeft:ThickBorder()
-TukuiChatBackgroundLeft:ClearAllPoints()
-TukuiChatBackgroundLeft:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
-TukuiChatBackgroundLeft:SetHeight(151.5)
-
-TukuiTabsLeftBackground:ClearAllPoints()
-TukuiTabsLeftBackground:Point("BOTTOM", TukuiChatBackgroundLeft, "TOP", 0, 3)
-TukuiTabsLeftBackground:SetWidth(TukuiChatBackgroundLeft:GetWidth())
-TukuiTabsLeftBackground:PatSkin()
-
-TukuiChatBackgroundRight:SetFrameStrata("Background")
-TukuiChatBackgroundRight:ThickBorder()
-TukuiChatBackgroundRight:ClearAllPoints()
-TukuiChatBackgroundRight:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
-TukuiChatBackgroundRight:SetHeight(151.5)
-
-TukuiTabsRightBackground:ClearAllPoints()
-TukuiTabsRightBackground:Point("BOTTOM", TukuiChatBackgroundRight, "TOP", 0, 3)
-TukuiTabsRightBackground:SetWidth(TukuiChatBackgroundRight:GetWidth())
-TukuiTabsRightBackground:PatSkin()
-
-TukuiInfoRight:ClearAllPoints()
-TukuiInfoRight:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, -1000)
-
-TukuiInfoLeft:ClearAllPoints()
-TukuiInfoLeft:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, -1000)
-
-------------------------------------------------------------------------
--- Reanchor the Raid Util
-------------------------------------------------------------------------
-
-TukuiRaidUtilityShowButton:ClearAllPoints()
-TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)
+function Reputation:Create()
+	-- First we call the base function
+	baseRep(self)
+	
+	-- then my stuff
+	local RepBar1 = self.RepBar1
+	
+	RepBar1:CreateShadow()
+	
+	if C["PatUI"]["RepExpMouseOver"] == true then
+		RepBar1:SetAlpha(0)
+		RepBar1:HookScript("OnEnter", function(self) self:SetAlpha(1) end)
+		RepBar1:HookScript("OnLeave", function(self) self:SetAlpha(0) end)
+	end
+end
 
 ------------------------------------------------------------------------
 -- Creating DataPoints
@@ -73,12 +104,13 @@ TukuiRaidUtilityShowButton:Point("TOP", TukuiMinimap, "BOTTOM", 0, -4)
 
 local DataPoint = {}
 
-for i=1, 6 do
+for i=1, 6 do	
 	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
-	DataPoint[i]:Width((TukuiBar1:GetWidth() / 3) - 3)
+	DataPoint[i]:Width(120)
 	DataPoint[i]:Height(18)
-	DataPoint[i]:PatSkin()
+	DataPoint[i]:SetTemplate("Transparent")
 	DataPoint[i]:SetFrameStrata("BACKGROUND")
+	DataPoint[i]:CreateShadow()
 	
 	if(i == 1) then
 		DataPoint[i]:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -4)

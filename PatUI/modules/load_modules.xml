@@ -5,11 +5,7 @@
 	<Script file="bags\bags.lua"/>
 	<Script file="map\map.lua"/>
 	<Script file="tooltip\tooltip.lua"/>
-	<SCript file="nameplates\nameplates.lua"/>
 
 	<Include file="actionbars\load_actionbars.xml"/>
 	<Include file="unitframes\load_unitframes.xml"/>
-	<Include file="classbars\load_classbars.xml"/>
-	<Include file="misc\load_misc.xml"/>
-	<Include file="skins\load_skins.xml"/>
 </Ui>

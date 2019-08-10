@@ -1,87 +1,95 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L = Tukui:unpack()
 
--- Code for SplitBar.
-local function ShowOrHideBar(bar, button)
-	local db = PatUICharData
+local ActionBars = T["ActionBars"]
+local Panels = T["Panels"]
+
+local baseCreateToggleButtons = ActionBars.CreateToggleButtons
+
+function ActionBars:CreateToggleButtons()
+    -- Call the base function first
+    baseCreateToggleButtons(self)
 	
-	if bar:IsShown() then
-		UnregisterStateDriver(bar, "visibility")
-		bar:Hide()
+	--- Then my stuff
+	-- Code for SplitBar.
+	local function ShowOrHideBar(bar, button)
+		local db = PatUICharData
+		local ActionBar1 = Panels.ActionBar1
 		
-		if bar == Bar4 then
-			LeftBar2:SetHeight(TukuiBar1:GetHeight())
-			RightBar2:SetHeight(TukuiBar1:GetHeight())
-			if not P.lowversion then
+		if bar:IsShown() then
+			UnregisterStateDriver(bar, "visibility")
+			bar:Hide()
+			
+			if bar == PatBar2 then
+				LeftBar4:SetHeight(PatBar1:GetHeight())
+				RightBar4:SetHeight(PatBar1:GetHeight())
 				for i = 7, 12 do
-					local left = _G["MultiBarBottomLeftButton"..i]
-					left:SetAlpha(0)
+					local buttons = _G["MultiBarRightButton"..i]
+					buttons:SetAlpha(0)
+				end
+			end
+		else
+			RegisterStateDriver(bar, "visibility", "[vehicleui][petbattle][overridebar] hide; show")
+			bar:Show()
+			
+			if bar == PatBar2 then
+				LeftBar4:SetHeight(PatBar1:GetHeight())
+				RightBar4:SetHeight(PatBar1:GetHeight())
+				for i = 7, 12 do
+					local buttons = _G["MultiBarRightButton"..i]
+					buttons:SetAlpha(1)
 				end
 			end
 		end
-	else
-		RegisterStateDriver(bar, "visibility", "[vehicleui][petbattle][overridebar] hide; show")
-		bar:Show()
+	end
+
+	local function MoveButtonBar(button, bar)
+		local db = PatUICharData
+		local LeftChatBG = Panels.LeftChatBG
 		
-		if bar == Bar4 then
-			LeftBar2:SetHeight(TukuiBar1:GetHeight())
-			RightBar2:SetHeight(TukuiBar1:GetHeight())
-			if not P.lowversion then
-				for i = 7, 12 do
-					local left = _G["MultiBarBottomLeftButton"..i]
-					left:SetAlpha(1)
-				end
+		if button == B4B then
+			if bar:IsShown() then
+				db.hidebar4 = false
+				button.text:SetText("|cff18AA18 Hide SplitBar |r")
+			else
+				db.hidebar4 = true
+				button.text:SetText("|cff18AA18 Show SplitBar |r")
+			end
+		end	
+		
+		if button == B3B then
+			if bar:IsShown() then
+				db.hidebar3 = false
+				button.text:SetText("|cff18AA18 - |r")
+			else
+				db.hidebar3 = true
+				button.text:SetText("|cff18AA18 + |r")
+			end
+		end
+		
+		if button == B2B then
+			if bar:IsShown() then
+				db.hidebar2 = false
+				button.text:SetText("|cff18AA18 - |r")
+			else
+				db.hidebar2 = true
+				button.text:SetText("|cff18AA18 + |r")
+			end
+		end
+		
+		if button == B5B then
+			if bar:IsShown() then
+				db.hidebar5 = false
+				button:ClearAllPoints()
+				button:Point("LEFT", LeftBar, "RIGHT", 3, 0)
+				button.text:SetText("|cff18AA18 < |r")
+			else
+				db.hidebar5 = true
+				button:ClearAllPoints()
+				button:Point("LEFT", LeftChatBG, "RIGHT", 3, 0)
+				button.text:SetText("|cff18AA18 > |r")
 			end
 		end
 	end
-end
-
-local function MoveButtonBar(button, bar)
-	local db = PatUICharData
-	
-	if button == Bar2Button then
-		if bar:IsShown() then
-			db.hidebar2 = false
-			button.text:SetText("|cff18AA18 Hide SplitBar |r")
-		else
-			db.hidebar2 = true
-			button.text:SetText("|cff18AA18 Show SplitBar |r")
-		end
-	end	
-	
-	if button == Bar3Button then
-		if bar:IsShown() then
-			db.hidebar3 = false
-			button.text:SetText("|cff18AA18 - |r")
-		else
-			db.hidebar3 = true
-			button.text:SetText("|cff18AA18 + |r")
-		end
-	end
-	
-	if button == Bar4Button then
-		if bar:IsShown() then
-			db.hidebar4 = false
-			button.text:SetText("|cff18AA18 - |r")
-		else
-			db.hidebar4 = true
-			button.text:SetText("|cff18AA18 + |r")
-		end
-	end
-	
-	if button == Bar5Button then
-		if bar:IsShown() then
-			db.hidebar5 = false
-			button:ClearAllPoints()
-			button:Point("LEFT", LeftBar, "RIGHT", 3, 0)
-			button.text:SetText("|cff18AA18 < |r")
-		else
-			db.hidebar5 = true
-			button:ClearAllPoints()
-			button:Point("LEFT", TukuiChatBackgroundLeft, "RIGHT", 3, 13)
-			button.text:SetText("|cff18AA18 > |r")
-		end
-	end
-end
 
 
 local function UpdateBar(self, bar)
@@ -92,100 +100,102 @@ local function UpdateBar(self, bar)
 	ShowOrHideBar(bar, button)
 	MoveButtonBar(button, bar)
 end
-
-local Bar3Button = CreateFrame("Button", "Bar3Button", TukuiPetBattleHider)
-Bar3Button:Size(19)
-Bar3Button:Point("RIGHT", TukuiTabsLeftBackground, "RIGHT", -2, 0)
-Bar3Button:PatSkin()
-Bar3Button:SkinButton()
-Bar3Button:RegisterForClicks("AnyUp")
-Bar3Button:SetFrameLevel(6)
-Bar3Button:SetFrameStrata("HIGH")
-Bar3Button:SetScript("OnClick", function(self) UpdateBar(self, Bar3) end)
-Bar3Button.text = P.SetFontString(Bar3Button, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-Bar3Button.text:Point("CENTER", 1, 1)
-Bar3Button.text:SetText("|cff18AA18 - |r")
-
-local Bar2Button = CreateFrame("Button", "Bar2Button", TukuiPetBattleHider)
-Bar2Button:Size(TukuiBar1:GetWidth(), 18)
-Bar2Button:Point("TOP", TukuiBar1, "BOTTOM", 0, -3)
-Bar2Button:PatSkin()
-Bar2Button:RegisterForClicks("AnyUp")
-Bar2Button:SetFrameLevel(6)
-Bar2Button:SetAlpha(0)
-Bar2Button:SetFrameStrata("HIGH")
-Bar2Button:SetScript("OnClick", function(self) UpdateBar(self, LeftBar2) end)
-Bar2Button:HookScript("OnClick", function(self) UpdateBar(self, RightBar2) end)
-Bar2Button:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
-Bar2Button:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
-Bar2Button.text = P.SetFontString(Bar2Button, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-Bar2Button.text:Point("CENTER", 0, 0)
-Bar2Button.text:SetText("|cff18AA18 Hide SplitBar |r")
-
-local Bar4Button = CreateFrame("Button", "Bar4Button", TukuiPetBattleHider)
-Bar4Button:Size(TukuiBar1:GetWidth(), 19)
-Bar4Button:SetPoint("BOTTOM", TukuiBar1, "TOP", 0, 3)
-Bar4Button:PatSkin()
-Bar4Button:RegisterForClicks("AnyUp")
-Bar4Button:SetAlpha(0)
-Bar4Button:SetScript("OnClick", function(self) UpdateBar(self, Bar4) end)
-Bar4Button:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
-Bar4Button:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
-Bar4Button.text = P.SetFontString(Bar4Button, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-Bar4Button.text:SetPoint("CENTER", 0, 0)
-Bar4Button.text:SetText("|cff18AA18 - |r")
-
-local Bar5Button = CreateFrame("Button", "Bar5Button", TukuiPetBattleHider)
-Bar5Button:Size(18, LeftBar:GetHeight())
-Bar5Button:Point("LEFT", LeftBar, "RIGHT", 3, 0)
-Bar5Button:PatSkin()
-Bar5Button:RegisterForClicks("AnyUp")
-Bar5Button:SetFrameLevel(6)
-Bar5Button:SetAlpha(0)
-Bar5Button:SetFrameStrata("HIGH")
-Bar5Button:SetScript("OnClick", function(self) UpdateBar(self, LeftBar) end)
-Bar5Button:HookScript("OnClick", function(self) UpdateBar(self, RightBar) end)
-Bar5Button:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
-Bar5Button:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
-Bar5Button.text = P.SetFontString(Bar5Button, C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-Bar5Button.text:Point("CENTER", 0, 0)
-Bar5Button.text:SetText("|cff18AA18 < |r")
-
-TukuiExitVehicleButtonRight:Size(19)
-TukuiExitVehicleButtonRight:PatSkin()
-TukuiExitVehicleButtonRight:SkinButton()
-TukuiExitVehicleButtonRight:ClearAllPoints()
-TukuiExitVehicleButtonRight:Point("RIGHT", Bar3Button, "LEFT", -3, 0)
-TukuiExitVehicleButtonRight:SetFrameLevel(20)
-TukuiExitVehicleButtonRight.text:SetText("|cff4BAF4C V|r")
-TukuiExitVehicleButtonRight:SetBackdropBorderColor(unpack(C.general.bordercolor))
-
-local init = CreateFrame("Frame")
-init:RegisterEvent("VARIABLES_LOADED")
-init:SetScript("OnEvent", function(self, event)
-	if not PatUICharData then PatUICharData = {} end
-	local db = PatUICharData
 	
-	if db.hidebar2 then
-		UpdateBar(Bar2Button, LeftBar2)
-		UpdateBar(Bar2Button, RightBar2)
-	end
-	
-	if db.hidebar3 then
-		UpdateBar(Bar3Button, Bar3)
-	end
-	
-	if db.hidebar4 then
-		UpdateBar(Bar4Button, Bar4)
-	end
-	
-	if db.hidebar5 then
-		UpdateBar(Bar5Button, LeftBar)
-		UpdateBar(Bar5Button, RightBar)
-	end
-end)
+	local LeftChatBG = Panels.LeftChatBG
+	local font = "Interface\\AddOns\\PatUI\\media\\fonts\\pixelfont.ttf"
+	local fontsize = 10
 
-TukuiBar2Button:ClearAllPoints()
-TukuiBar3Button:ClearAllPoints()
-TukuiBar5ButtonTop:ClearAllPoints()
-TukuiBar5ButtonBottom:ClearAllPoints()
+	local B3B = CreateFrame("Button", "B3B", UIParent)
+	B3B:Size(19)
+	B3B:Point("TOPRIGHT", LeftChatBG, "TOPRIGHT", -8, -8)
+	B3B:SetTemplate("Transparent")
+	B3B:RegisterForClicks("AnyUp")
+	B3B:SetFrameLevel(6)
+	B3B:SetScript("OnClick", function(self) UpdateBar(self, PatBar3) end)
+	B3B.text = T.SetFontString(B3B, font, fontsize, "MONOCHROMEOUTLINE")
+	B3B.text:Point("CENTER", 1, 1)
+	B3B.text:SetText("|cff18AA18 - |r")
+
+	local B4B = CreateFrame("Button", "B4B", UIParent)
+	B4B:Size(PatBar1:GetWidth(), 18)
+	B4B:Point("TOP", PatBar1, "BOTTOM", 0, -3)
+	B4B:SetTemplate("Transparent")
+	B4B:RegisterForClicks("AnyUp")
+	B4B:SetFrameLevel(6)
+	B4B:SetAlpha(0)
+	B4B:SetFrameStrata("HIGH")
+	B4B:CreateShadow()
+	B4B:SetScript("OnClick", function(self) UpdateBar(self, LeftBar4) end)
+	B4B:HookScript("OnClick", function(self) UpdateBar(self, RightBar4) end)
+	B4B:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
+	B4B:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
+	B4B.text = T.SetFontString(B4B, font, fontsize, "MONOCHROMEOUTLINE")
+	B4B.text:Point("CENTER", 0, 0)
+	B4B.text:SetText("|cff18AA18 Hide SplitBar |r")
+
+	local B2B = CreateFrame("Button", "B2B", UIParent)
+	B2B:Size(PatBar1:GetWidth(), 19)
+	B2B:SetPoint("BOTTOM", PatBar1, "TOP", 0, 3)
+	B2B:SetTemplate("Transparent")
+	B2B:RegisterForClicks("AnyUp")
+	B2B:CreateShadow()
+	B2B:SetAlpha(0)
+	B2B:SetScript("OnClick", function(self) UpdateBar(self, PatBar2) end)
+	B2B:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
+	B2B:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
+	B2B.text = T.SetFontString(B2B, font, fontsize, "MONOCHROMEOUTLINE")
+	B2B.text:SetPoint("CENTER", 0, 0)
+	B2B.text:SetText("|cff18AA18 - |r")
+
+	local B5B = CreateFrame("Button", "B5B", UIParent)
+	if C["PatUI"]["SmallerChat"] == true then
+		B5B:Size(18, 152.5)
+	else
+		B5B:Size(18, 178)
+	end
+	B5B:Point("LEFT", LeftBar, "RIGHT", 2, 0)
+	B5B:SetTemplate("Transparent")
+	B5B:RegisterForClicks("AnyUp")
+	B5B:SetFrameLevel(6)
+	B5B:SetAlpha(0)
+	B5B:SetFrameStrata("HIGH")
+	B5B:CreateShadow()
+	B5B:SetScript("OnClick", function(self) UpdateBar(self, LeftBar) end)
+	B5B:HookScript("OnClick", function(self) UpdateBar(self, RightBar) end)
+	B5B:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
+	B5B:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
+	B5B.text = T.SetFontString(B5B, font, fontsize, "MONOCHROMEOUTLINE")
+	B5B.text:Point("CENTER", 0, 0)
+	B5B.text:SetText("|cff18AA18 < |r")
+
+	local init = CreateFrame("Frame")
+	init:RegisterEvent("PLAYER_ENTERING_WORLD")
+	init:SetScript("OnEvent", function(self, event)
+		if not PatUICharData then PatUICharData = {} end
+		local db = PatUICharData
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+		
+		if db.hidebar4 then
+			UpdateBar(B4B, LeftBar4)
+			UpdateBar(B4B, RightBar4)
+		end
+		
+		if db.hidebar3 then
+			UpdateBar(B3B, PatBar3)
+		end
+		
+		if db.hidebar2 then
+			UpdateBar(B2B, PatBar2)
+		end
+		
+		if db.hidebar5 then
+			UpdateBar(B5B, LeftBar)
+			UpdateBar(B5B, RightBar)
+		end
+	end)
+
+	for i = 2, 5 do
+		local Button = T.Panels["ActionBar" .. i .. "ToggleButton"]
+		Button:Hide()
+	end
+end

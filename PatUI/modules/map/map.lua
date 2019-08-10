@@ -1,41 +1,55 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L = Tukui:unpack()
 
-TukuiMinimap:ClearAllPoints()
-TukuiMinimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -4, -4)
-TukuiMinimap:ThickBorder()
+local Panels = T["Panels"]
+local Auras = T["Auras"]
+local Minimap = T["Maps"]["Minimap"]
+local ObjectiveTracker = T["Miscellaneous"]["ObjectiveTracker"]
 
--- Zone coordinates on hovering minimap.
-TukuiMinimapCoord:SetTemplate("Transparent")
-TukuiMinimapCoord:HideInsets()
-TukuiMinimapCoord:SetBackdropBorderColor(0, 0, 0, 0)
-TukuiMinimapCoord:SetBackdrop(nil)
-TukuiMinimapCoord:ClearAllPoints()
-TukuiMinimapCoord:SetPoint("BOTTOMLEFT", TukuiMinimap, "BOTTOMLEFT", 2, 2)
-TukuiMinimapCoordText:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
+local baseEnable = Minimap.Enable
+local baseCreateHeaders = Auras.CreateHeaders
+local baseSetDefaultPosition = ObjectiveTracker.SetDefaultPosition
 
--- Zone text when hovering minimap.
-TukuiMinimapZone:SetTemplate("Transparent")
-TukuiMinimapZone:HideInsets()
-TukuiMinimapZone:SetBackdropBorderColor(0, 0, 0, 0)
-TukuiMinimapZone:SetBackdrop(nil)
-TukuiMinimapZone:ClearAllPoints()
-TukuiMinimapZone.Text:Point("TOP", TukuiMinimap, "TOP", 0, 0)
-TukuiMinimapZoneText:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE") -- So sexeh.
+function Minimap:Enable()
+	-- First call the base function
+	baseEnable(self)
 
--- Skin the ticket panel.
-TukuiTicket:SetTemplate("Transparent")
-TukuiTicket:Size(23)
-TukuiTicket.Text:SetText(P.RGBToHex(unpack(C.media.datatextcolor2)).."T")
-TukuiTicket.Text:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-TukuiTicket:ClearAllPoints()
-TukuiTicket:SetPoint("BOTTOMLEFT", TukuiMinimap, "BOTTOMLEFT", 2, 2)
+	-- Then my stuff
+	local MinimapDataText = Panels.MinimapDataText
+	local Mail = MiniMapMailFrame
+	
+	Mail:ClearAllPoints()
+	Mail:Point("TOPRIGHT", 0, 0)
+	
+	Minimap.Backdrop.Shadow:Kill() 
+	
+	Minimap:ClearAllPoints()
+	Minimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -4, -4)
+	Minimap:CreateShadow()
 
-TukuiAurasPlayerBuffs:ClearAllPoints()
-TukuiAurasPlayerDebuffs:ClearAllPoints()
+	local Backdrop = self.Backdrop
+	MinimapDataText:Hide()
+	
+	Backdrop:ClearAllPoints()
+	Backdrop:Point("TOPLEFT", self, "TOPLEFT", -1, 1)
+	Backdrop:Point("BOTTOMRIGHT", self, "BOTTOMRIGHT", 1, -1)
+end 
 
-TukuiAurasPlayerBuffs:SetAttribute("wrapAfter", 17)
-TukuiAurasPlayerBuffs:SetAttribute("xOffset", -33)
-TukuiAurasPlayerBuffs:SetAttribute("wrapYOffset", -36)
+function Auras:CreateHeaders()
+	-- First call the base function
+	baseCreateHeaders(self)
+	
+	-- Then my stuff
+	local Headers = Auras.Headers
+	local Buffs = Headers[1]
+	local Debuffs = Headers[2]
+	
+	Buffs:ClearAllPoints()
+	Debuffs:ClearAllPoints()
 
-TukuiAurasPlayerBuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -153, -4)
-TukuiAurasPlayerDebuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -153, -118)
+	Buffs:SetAttribute("wrapAfter", 17)
+	Buffs:SetAttribute("xOffset", -33)
+	Buffs:SetAttribute("wrapYOffset", -36)
+
+	Buffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -149, -4)
+	Debuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -149, -115)
+end

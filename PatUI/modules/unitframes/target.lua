@@ -1,127 +1,131 @@
-local P, C, L, G = unpack(Tukui)
-if C.unitframes.enable ~= true then return end
+local T, C, L = Tukui:unpack()
 
 ------------------------------------------------------------------------
 --	local variables
 ------------------------------------------------------------------------
-local self = _G["TukuiTarget"]
-local font = C.media.pixelfont
-local fsize = C.media.pfontsize
 
-self.panel:Kill()
-self.shadow:Kill()
-self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
+local UnitFrames = T.UnitFrames
+local Noop = function() end
 
-self:SetBackdrop(nil)
-self:SetBackdropColor(0, 0, 0)
+local baseCreateUnits = UnitFrames.CreateUnits
+local baseTarget = UnitFrames.Target
 
-------------------------------------------------------------------------
--- Setup Target Frames
-------------------------------------------------------------------------
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
+    local Target = UnitFrames.Units.Target
 
-self:Size(240, 26)
-
-self.Health:SetHeight(23)
-self.Health:SetFrameLevel(5)
-self.Health:SetFrameStrata("LOW")
-self.Health:CreateBorder()
-
-self.Health.bg:SetTexture(C.media.normTex)
-self.Health.bg:SetVertexColor(.6, .2, .2)
-
-self.Health.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Health.value:Point("LEFT", self.Health, "LEFT", 4, 0)
-self.Health.value:SetShadowOffset(0, 0)
-
-self.Power:ClearAllPoints()
-self.Power:Point("TOPLEFT", self.Health, "BOTTOMLEFT", 4, 1)
-self.Power:SetHeight(3)
-self.Power:SetWidth(90)
-self.Power:CreateBorder()
-self.Power:SetFrameLevel(10)
-
-self.Power.bg:SetVertexColor(.12, .12, .12, .1)
-self.Power.bg:SetTexture(C.media.normTex)
-
-self.Power.colorTapping = true
-self.Power.colorClass = false
-self.Power.colorReaction = false
-
-self.Power.value = P.SetFontString(self.Health, font, fsize, "MONOCHROMEOUTLINE")
-self.Power.value:Point("RIGHT", self.Health, "RIGHT", -4, 0)
-self.Power.value:SetShadowOffset(0, 0)
-
-self.Castbar:CreateBackdrop("Transparent")
-self.Castbar.bg:Kill()
-self.Castbar:ThickBorder()
-
-self:Tag(self.Name, "[Tukui:getnamecolor][Tukui:nameshort][Tukui:diffcolor] [shortclassification]")
-
-if (IsAddOnLoaded("PatUI_Heal")) then
-	self.Castbar:SetSize(240, 16)
-	self.Castbar:ClearAllPoints()
-	self.Castbar:Point("TOP", self.Power, "BOTTOM", 0, -7)
-else
-	self.Castbar:SetSize(240, 19)
-	self.Castbar:ClearAllPoints()
-	self.Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
+	Target:SetHeight(23)
+	Target:SetWidth(240)
+	
+	Target.Shadow:Kill()
+	
+	Target:ClearAllPoints()
+	if C["PatUI"]["Healer"] == true then
+		Target:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 254, 150)
+	else
+		Target:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 160, 50)
+	end
 end
 
-self.Castbar.Time = P.SetFontString( self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
-self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 1)
+function UnitFrames:Target()
+	-- Call the base function first
+	baseTarget(self)
+	
+	-- Then my stuff
+	local Panel = self.Panel
+	local Health = self.Health
+	local Power = self.Power
+	local Castbar = self.Castbar
+	local Name = self.Name
+	local Buffs = self.Buffs
+	local Debuffs = self.Debuffs
+	local Portrait = self.Portrait
+	local CombatFeedbackText = self.CombatFeedbackText
+	local ComboPointsBar = self.ComboPointsBar
+	local RaidIcon = self.RaidTargetIndicator
+	
+	Panel:Hide()
+	Panel:ClearAllPoints()
+	Panel:Point("LEFT", Health, "LEFT", 4, 0)
+	
+	CombatFeedbackText:ClearAllPoints()
+	
+	Health:SetHeight(23)
+	Health:CreateShadow()
+	
+	Health.Value:ClearAllPoints()
+	Health.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
+	
+	Health:SetStatusBarColor(.2, .2, .2)
+	Health.Background:SetColorTexture(.1, .1, .1)
+	
+	Health.colorClass = false
+	Health.colorReaction = false
+    Health.colorTapping = false
+    Health.colorDisconnected = false
 
-self.Castbar.Text = P.SetFontString(self.Castbar, font, fsize, "MONOCHROMEOUTLINE")
-self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 1)
+	Power:ClearAllPoints()
+	Power:Point("TOPLEFT", Health, "BOTTOMLEFT", 4, 1)
+	Power:SetHeight(3)
+	Power:SetWidth(90)
+	Power:SetFrameLevel(10)
+	Power:CreateBackdrop("Default")
+	Power:CreateShadow()
+	Power.Background:Hide()
+	
+	Power.Value:ClearAllPoints()
+	Power.Value:Point("LEFT", Health, "LEFT", 4, 0)
+	Power.Value:SetShadowOffset(0, 0)
+	
+	Name:ClearAllPoints()
+	Name:SetParent(Health)
+	Name:Point("LEFT", Health, "LEFT", 4, 0)
+	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [shortclassification]")
 
--- Thanks to Tukz and FlyingBoots
--- our update (hook) or the original buff/debuffs button creation)
-local function PostCreateAura(self, button)
-	-- kill the glow
-	button.Glow:Kill()
+	Castbar:SetSize(280, 12)
+	Castbar:ClearAllPoints()
+	Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
+	Castbar:CreateBackdrop("Transparent")
+	Castbar.Background:Hide()
+	
+	Castbar.Time:ClearAllPoints()
+	Castbar.Time:Point("RIGHT", Castbar, "RIGHT", -4, 1)
 
-	-- move icon just 1px inside the black inset (it hide 1px borders)
-	button:SetBorder(false, true)
-	button.icon:Point("TOPLEFT", 2, -2)
-	button.icon:Point("BOTTOMRIGHT", -2, 2)
+	Castbar.Text:ClearAllPoints()
+	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
+	Castbar.Text:Size(130, 10) -- prevent long cast names (ex: Bloodbathed Frostbrood Vanquisher) from wrapping and going outside of the castbar
 
-	-- resize the cooldown tex to fix new icon size
-	button.cd:Point("TOPLEFT", button, "TOPLEFT", 0, 0)
-	button.cd:Point("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0)
-
-	-- change the font
-	button.remaining:SetFont(font, fsize, "MONOCHROMEOUTLINE")
-	button.remaining:SetShadowOffset(0, 0)
+	
+	if (C["UnitFrames"]["TargetAuras"]) then
+		Buffs:SetHeight(27)
+		Buffs:SetWidth(260)
+		Buffs.size = 24
+		Buffs.num = 9
+		Buffs.spacing = 1
+		Buffs.initialAnchor = 'TOPLEFT'
+		Buffs["growth-y"] = "UP"
+		Buffs["growth-x"] = "RIGHT"
+		Buffs:ClearAllPoints()
+		Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -1, 1)
+		Buffs:SetParent(Health)
+		Buffs.PostUpdate = UnitFrames.UpdateBuffsHeaderPosition
+		
+		Debuffs:SetHeight(29)
+		Debuffs:SetWidth(240)
+		Debuffs.size = 27
+		Debuffs.num = 16
+		Debuffs.spacing = 1
+		Debuffs.initialAnchor = 'TOPRIGHT'
+		Debuffs["growth-y"] = "UP"
+		Debuffs["growth-x"] = "LEFT"
+		Debuffs:ClearAllPoints()
+		Debuffs:SetPoint("BOTTOMRIGHT", Health, "TOPRIGHT", 0, 35)
+		Debuffs:SetParent(Health)
+		
+		Buffs.ClearAllPoints = T.dummy
+		Debuffs.ClearAllPoints = T.dummy
+	end
 end
-hooksecurefunc(P, "PostCreateAura", PostCreateAura)
-
--- edited position, size, space, etc of buffs
-self.Buffs:SetHeight(27)
-self.Buffs:SetWidth(260)
-self.Buffs.size = 24.5
-self.Buffs.num = 9
-self.Buffs.spacing = 3
-self.Buffs.initialAnchor = 'TOPLEFT'
-self.Buffs["growth-y"] = "UP"
-self.Buffs["growth-x"] = "RIGHT"
-self.Buffs:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", -2, 4)
-self.Buffs.PostCreateIcon = P.PostCreateAura
-self.Buffs.PostUpdateIcon = P.PostUpdateAura
-
--- edited position, size, space, etc of buffs
-self.Debuffs:SetHeight(29)
-self.Debuffs:SetWidth(240)
-self.Debuffs.size = 27.5
-self.Debuffs.num = 21
-self.Debuffs.spacing = 3
-self.Debuffs.initialAnchor = 'TOPRIGHT'
-self.Debuffs["growth-y"] = "UP"
-self.Debuffs["growth-x"] = "LEFT"
-self.Debuffs:ClearAllPoints()
-self.Debuffs:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, 35)
-self.Debuffs.PostCreateIcon = P.PostCreateAura
-self.Debuffs.PostUpdateIcon = P.PostUpdateAura
-
--- because default tukui update regularly the position of buffs/debuffs on this unit
--- we need to disable the position update process
-self.Buffs.ClearAllPoints = P.dummy
-self.Buffs.SetPoint = P.dummy

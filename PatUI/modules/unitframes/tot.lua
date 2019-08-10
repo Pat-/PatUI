@@ -1,32 +1,63 @@
-local P, C, L, G = unpack(Tukui)
-if C.unitframes.enable ~= true then return end
+local T, C, L = Tukui:unpack()
 
 ------------------------------------------------------------------------
 --	local variables
 ------------------------------------------------------------------------
-local font = C.media.pixelfont
-local fsize = C.media.pfontsize
-local self = _G["TukuiTargetTarget"]
 
-self.panel:Kill()
-self.shadow:Kill()
+local UnitFrames = T.UnitFrames
+local Noop = function() end
 
-self:SetBackdrop(nil)
-self:SetBackdropColor(0, 0, 0)
+local baseCreateUnits = UnitFrames.CreateUnits
+local baseToT = UnitFrames.TargetOfTarget
 
-------------------------------------------------------------------------
--- Setup Target of Target Frames Here
-------------------------------------------------------------------------
+function UnitFrames:CreateUnits()
+	-- Call the base function first
+	baseCreateUnits(self)
+	
+	-- Then my stuff
+	local ToT = UnitFrames.Units.TargetOfTarget
+	local Target = UnitFrames.Units.Target
 
-self:SetSize(110, 26)
+	ToT:SetHeight(23)
+	ToT:SetWidth(110)
+	
+	ToT.Shadow:Kill()
+	
+	ToT:ClearAllPoints()
+	if C["PatUI"]["Healer"] == true then
+		ToT:SetPoint("TOPRIGHT", Target, "BOTTOMRIGHT", 0, -36)
+	else
+		ToT:SetPoint("BOTTOM", PatBar1, "TOP", 0, 50)
+	end
+	ToT:SetBackdrop(nil)
+end
 
-self.Health:SetHeight(23)
-self.Health:SetFrameLevel(5)
-self.Health:CreateBorder()
-
-self.Health.bg:SetTexture(C.media.normTex)
-self.Health.bg:SetVertexColor(.6, .2, .2)
-
-self.Name:SetFont(font, fsize, "MONOCHROMEOUTLINE")
-self.Name:SetShadowOffset(0, 0)
-self.Name:Point("CENTER", self.Health, "CENTER", 0, 0)
+function UnitFrames:TargetOfTarget()
+	-- Call the base function first
+	baseToT(self)
+	
+	-- Then my stuff
+	local Panel = self.Panel
+	local Health = self.Health
+	local Name = self.Name
+	local Panel = self.Panel
+	local RaidIcon = self.RaidTargetIndicator
+	
+	Panel:Hide()
+	
+	Health:SetHeight(23)
+	Health:SetFrameLevel(5)
+	Health:CreateShadow()
+	
+	Health:SetStatusBarColor(.2, .2, .2)
+	Health.Background:SetColorTexture(.1, .1, .1)
+	
+	Health.colorClass = false
+	Health.colorReaction = false
+    Health.colorTapping = false
+    Health.colorDisconnected = false
+	
+	Name:ClearAllPoints()
+	Name:SetParent(Health)
+	Name:Point("CENTER", self.Health, "CENTER", 0, 0)
+end

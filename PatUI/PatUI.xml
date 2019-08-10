@@ -1,9 +1,12 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="core\api.lua"/>
-	<Script file="core\functions.lua"/>
+	<!--Script file="core\api.lua"/>
 	<Script file="core\fonts.lua"/>
 	<Script file="core\popups.lua"/>
-	<Script file="core\commands.lua"/>
+	<Script file="core\commands.lua"/-->
+	<Script file="core\functions.lua"/>
+	<Script file="config\config.lua"/>
+	<Script file="config\locales.lua"/>
+	<Script file="media\media.lua"/>
 	
 	<Include file="modules\load_modules.xml"/>
 </Ui>

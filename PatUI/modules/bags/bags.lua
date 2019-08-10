@@ -1,48 +1,32 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L = Tukui:unpack()
 
-if C.bags.enable ~= true then return end
+local Bags = T["Inventory"]["Bags"]
+local Panels = T["Panels"]
 
-local function BagsSlotUpdate(self, b)
-	local scount = _G[b.frame:GetName().."Count"]
-	scount:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-	scount:Point("BOTTOMRIGHT", 0, 2)
-end
-hooksecurefunc(Stuffing, "SlotUpdate", BagsSlotUpdate)
+local baseCreateContainer = Bags.CreateContainer
+local baseCreateReagentContainer = Bags.CreateReagentContainer
 
-local function BagsLayout(self, lb)
-	local f
+function Bags:CreateContainer(storagetype, ...)
+	-- Call the base function first
+	baseCreateContainer(self, storagetype, ...)
+	
+	-- Then my stuff
+	local Container = self[storagetype]
+	local LeftChatBG = Panels.LeftChatBG
 
-	if(lb) then
-		f = self.bankFrame
-	else
-		f = self.frame
+	Container:SetTemplate("Transparent")
+	Container:SetFrameLevel(10)
 
-		f.gold:SetText(GetMoneyString(GetMoney(), 12))
-		f.editbox:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-		f.editbox:SetShadowOffset(0, 0)
-		f.detail:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-		f.detail:SetShadowOffset(0, 0)
-		f.gold:SetFont(C.media.pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-		f.gold:SetShadowOffset(0, 0)
-
-		f.detail:ClearAllPoints()
-		f.detail:Point("TOPLEFT", f, 12, -10)
-		f.detail:Point("RIGHT", -(16 + 24), 0)
+		
+	-- bag anchor
+	if (storagetype == "Bag") then
+		Container:ClearAllPoints()
+		Container:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
 	end
 	
-	f:SetTemplate("Transparent")
-	f:ThickBorder()
+	-- bank anchor
+	if (storagetype == "Bank") then
+		Container:ClearAllPoints()
+		Container:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
+	end	
 end
-hooksecurefunc(Stuffing, "Layout", BagsLayout)
-
-TukuiBags:ClearAllPoints()
-TukuiBags:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
-
-local function BagsUpdateBankPosition(self, value)
-	local bag = _G["Tukui"..value]
-	if(value == "Bank") then
-		bag:ClearAllPoints()
-		bag:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
-	end
-end
-hooksecurefunc(Stuffing, "CreateBagFrame", BagsUpdateBankPosition)
