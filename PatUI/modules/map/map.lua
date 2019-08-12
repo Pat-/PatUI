@@ -53,3 +53,12 @@ function Auras:CreateHeaders()
 	Buffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -149, -4)
 	Debuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -149, -115)
 end
+
+function ObjectiveTracker:SetDefaultPosition()
+	-- First call the base function
+	baseSetDefaultPosition(self)
+	
+	-- Then my stuff
+	TukuiObjectiveTracker:ClearAllPoints()
+	TukuiObjectiveTracker:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 30, -180)
+end

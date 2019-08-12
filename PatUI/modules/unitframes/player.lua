@@ -47,6 +47,7 @@ function UnitFrames:Player()
 	local MasterLooter = self.MasterLooterIndicator 
 	local Leader = self.LeaderIndicator
 	local ComboPointsBar = self.ComboPointsBar
+	local Debuffs = self.Debuffs
 		
 	Panel:Hide()
 	

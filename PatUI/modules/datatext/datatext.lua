@@ -75,7 +75,7 @@ local GetTooltipAnchor = function(self)
 	local From
 	local Anchor = "ANCHOR_RIGHT"
 	local X = 0
-	local Y = T.Scale(5)
+	local Y = 5
 	local Panels = T["Panels"]
 
 ------------------------------------------------------------------------------------------
@@ -84,33 +84,33 @@ local GetTooltipAnchor = function(self)
 	if (Position == 1) then
 		Anchor = "ANCHOR_RIGHT"
 		From = DataPoint1
-		X = T.Scale(-DataPoint1:GetWidth()*1/6)
-		Y = T.Scale(15)
+		X = -DataPoint1:GetWidth()*1/6
+		Y = 15
 	elseif (Position == 2) then
 		Anchor = "ANCHOR_RIGHT"
 		From = DataPoint2
-		X = T.Scale(-DataPoint1:GetWidth()*1/6)
-		Y = T.Scale(15)
+		X = -DataPoint1:GetWidth()*1/6
+		Y = 15
 	elseif (Position == 3) then
 		Anchor = "ANCHOR_RIGHT"
 		From = DataPoint3
-		X = T.Scale(-DataPoint1:GetWidth()*1/6)
-		Y = T.Scale(15)
+		X = -DataPoint1:GetWidth()*1/6
+		Y = 15
 	elseif (Position == 4) then
 		Anchor = "ANCHOR_RIGHT"
 		From = DataPoint4
-		X = T.Scale(-DataPoint1:GetWidth()*1/6)
-		Y = T.Scale(15)
+		X = -DataPoint1:GetWidth()*1/6
+		Y = 15
 	elseif (Position == 5) then
 		Anchor = "ANCHOR_RIGHT"
 		From = DataPoint5
-		X = T.Scale(-DataPoint1:GetWidth()*1/6)
-		Y = T.Scale(15)
+		X = -DataPoint1:GetWidth()*1/6
+		Y = 15
 	elseif (Position == 6) then
 		Anchor = "ANCHOR_RIGHT"
 		From = DataPoint6
-		X = T.Scale(DataPoint1:GetWidth()*1/6)
-		Y = T.Scale(15)
+		X = DataPoint1:GetWidth()*1/6
+		Y = 15
 	end
 	return From, Anchor, X, Y
 end
