@@ -5,7 +5,42 @@ local Chat = T["Chat"]
 
 Chat.RightChatName = LOOT
 
+local baseSetDefaultChatFramesPositions = Chat.SetDefaultChatFramesPositions
+local baseInstall = Chat.Install
+local baseSetChatFramePosition = Chat.SetChatFramePosition
+
+function Chat:SetChatFramePosition()
+	if (not TukuiData[GetRealmName()][UnitName("Player")].Chat) then
+		return
+	end
+	
+	local Frame = self
+	local ID = Frame:GetID()
+	
+	local Settings = TukuiData[GetRealmName()][UnitName("Player")].Chat["Frame" .. ID]
+
+	if Settings then
+		local Anchor1, Anchor2, X, Y, Width, Height = unpack(Settings)
+		
+		if ID == 1 then
+			Frame:SetParent(UIParent)
+			Frame:SetUserPlaced(true)
+			Frame:ClearAllPoints()
+			Frame:SetSize(Width, Height + 1)
+			Frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 14 , 11)
+		elseif ID == 4 then
+			Frame:SetParent(UIParent)
+			Frame:SetUserPlaced(true)
+			Frame:ClearAllPoints()
+			Frame:SetSize(Width, Height + 1)
+			Frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -14, 11)
+			Frame:SetJustifyH("RIGHT")
+		end
+	end
+end
 function Chat:SetDefaultChatFramesPositions()
+	
+	baseSetDefaultChatFramesPositions(self)
 
 	if (not TukuiData[GetRealmName()][UnitName("Player")].Chat) then
 		TukuiData[GetRealmName()][UnitName("Player")].Chat = {}
@@ -43,17 +78,14 @@ function Chat:SetDefaultChatFramesPositions()
 			FCF_SetLocked(Frame, 1)
 		end
 
-		if C["PatUI"]["SmallerChat"] == true then
-			local Anchor1, Parent, Anchor2, X, Y = Frame:GetPoint()
-			TukuiData[GetRealmName()][UnitName("Player")].Chat["Frame" .. i] = {Anchor1, Anchor2, X, Y, Width, 113}
-		else
-			local Anchor1, Parent, Anchor2, X, Y = Frame:GetPoint()
-			TukuiData[GetRealmName()][UnitName("Player")].Chat["Frame" .. i] = {Anchor1, Anchor2, X, Y, Width, 139}
-		end
+		local Anchor1, Parent, Anchor2, X, Y = Frame:GetPoint()
+		TukuiData[GetRealmName()][UnitName("Player")].Chat["Frame" .. i] = {Anchor1, Anchor2, X, Y, Width, 113}
 	end
 end
 
 function Chat:Install()
+	
+	baseInstall(self)
 	-- Create our custom chatframes
 	ResetChatWindows()
 	FCF_SetLocked(ChatFrame1, 1)

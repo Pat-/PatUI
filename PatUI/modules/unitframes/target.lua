@@ -42,10 +42,7 @@ function UnitFrames:Target()
 	local Name = self.Name
 	local Buffs = self.Buffs
 	local Debuffs = self.Debuffs
-	local Portrait = self.Portrait
 	local CombatFeedbackText = self.CombatFeedbackText
-	local ComboPointsBar = self.ComboPointsBar
-	local RaidIcon = self.RaidTargetIndicator
 	
 	Panel:Hide()
 	Panel:ClearAllPoints()
@@ -76,28 +73,16 @@ function UnitFrames:Target()
 	Power:CreateShadow()
 	Power.Background:Hide()
 	
-	Power.Value:ClearAllPoints()
-	Power.Value:Point("LEFT", Health, "LEFT", 4, 0)
-	Power.Value:SetShadowOffset(0, 0)
+	--Power.Value:ClearAllPoints()
+	--Power.Value:Point("LEFT", Health, "LEFT", 4, 0)
+	--Power.Value:SetShadowOffset(0, 0)
 	
 	Name:ClearAllPoints()
 	Name:SetParent(Health)
 	Name:Point("LEFT", Health, "LEFT", 4, 0)
 	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [shortclassification]")
 
-	Castbar:SetSize(280, 12)
 	Castbar:ClearAllPoints()
-	Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
-	Castbar:CreateBackdrop("Transparent")
-	Castbar.Background:Hide()
-	
-	Castbar.Time:ClearAllPoints()
-	Castbar.Time:Point("RIGHT", Castbar, "RIGHT", -4, 1)
-
-	Castbar.Text:ClearAllPoints()
-	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
-	Castbar.Text:Size(130, 10) -- prevent long cast names (ex: Bloodbathed Frostbrood Vanquisher) from wrapping and going outside of the castbar
-
 	
 	if (C["UnitFrames"]["TargetAuras"]) then
 		Buffs:SetHeight(27)

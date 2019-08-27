@@ -40,14 +40,9 @@ function UnitFrames:Player()
 	local Health = self.Health
 	local Power = self.Power
 	local Castbar = self.Castbar
-	local Portrait = self.Portrait
 	local CombatFeedbackText = self.CombatFeedbackText
-	local RaidIcon = self.RaidTargetIndicator
 	local Combat = self.CombatIndicator 
-	local MasterLooter = self.MasterLooterIndicator 
-	local Leader = self.LeaderIndicator
 	local ComboPointsBar = self.ComboPointsBar
-	local Debuffs = self.Debuffs
 		
 	Panel:Hide()
 	
@@ -124,5 +119,4 @@ function UnitFrames:Player()
 			end
 		end
 	end
-	
 end

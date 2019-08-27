@@ -125,6 +125,7 @@ end
 ------------------------------------------------------------------------------------------
 -- Defaults
 ------------------------------------------------------------------------------------------
+
 local baseDT = TukuiDT.AddDefaults
 
 function TukuiDT:AddDefaults()
@@ -132,15 +133,15 @@ function TukuiDT:AddDefaults()
 	baseDT(self)
 	
 	-- Then my stuff
-	TukuiData[GetRealmName()][UnitName("Player")].Texts = {}
+	TukuiData[GetRealmName()][UnitName("player")].Texts = {}
 	
 	-- Picking out our Datatexts
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Time] = {true, 1}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Gold] = {true, 2}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Memory] = {true, 3}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Durability] = {true, 4}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Friends] = {true, 5}
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.Guild] = {true, 6}
+	TukuiData[GetRealmName()][UnitName("player")].Texts["Time"] = {true, 1}
+	TukuiData[GetRealmName()][UnitName("player")].Texts["Gold"] = {true, 2}
+	TukuiData[GetRealmName()][UnitName("player")].Texts["Memory"] = {true, 3}
+	TukuiData[GetRealmName()][UnitName("player")].Texts["Durability"] = {true, 4}
+	TukuiData[GetRealmName()][UnitName("player")].Texts["Friends"] = {true, 5}
+	TukuiData[GetRealmName()][UnitName("player")].Texts["Guild"] = {true, 6}
 	
-	TukuiData[GetRealmName()][UnitName("Player")].Texts[L.DataText.FPSAndMS] = {false, 0}	
+	TukuiData[GetRealmName()][UnitName("player")].Texts["FPSAndMS"] = {false, 0}	
 end

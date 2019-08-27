@@ -39,7 +39,6 @@ function UnitFrames:Pet()
 	local Name = self.Name
 	local Panel = self.Panel
 	local Power = self.Power
-	local RaidIcon = self.RaidTargetIndicator
 	
 	Panel:Hide()
 	Power:SetHeight(0)

@@ -41,7 +41,6 @@ function UnitFrames:TargetOfTarget()
 	local Health = self.Health
 	local Name = self.Name
 	local Panel = self.Panel
-	local RaidIcon = self.RaidTargetIndicator
 	
 	Panel:Hide()
 	

@@ -48,10 +48,8 @@ function UnitFrames:CreateUnits()
 	Raid:ClearAllPoints()
 	if C["PatUI"]["Healer"] == true then
 		Raid:SetPoint("BOTTOM", PatBar1, "TOP", 0, 32)
-	elseif C["PatUI"]["SmallerChat"] == true then
-		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
 	else
-		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
 	end
 end
 
@@ -123,11 +121,7 @@ PatUIRaidPosition:SetScript("OnEvent", function(self, event)
 	
 	PatBar3:HookScript("OnHide", function()
 		raid:ClearAllPoints()
-		if C["PatUI"]["SmallerChat"] == true then
-			raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
-		else
-			raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 14)
-		end
+		raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
 	end)
 	
 	PatBar3:HookScript("OnShow", function()

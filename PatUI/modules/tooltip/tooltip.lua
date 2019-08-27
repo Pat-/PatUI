@@ -21,10 +21,8 @@ function Tooltips:CreateAnchor()
 	local Anchor = Tooltips["Anchor"]
 	local RightChat = Panels["RightChatBG"]
 	
-	if C["PatUI"]["SmallerChat"] then
-		Anchor:ClearAllPoints()
-		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
-	end
+	Anchor:ClearAllPoints()
+	Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
 	
 	-- Override OpenAllBags
 	function Bags:OpenAllBags()
@@ -32,13 +30,11 @@ function Tooltips:CreateAnchor()
 		baseOpenAllBags(self);
 
 		-- Change the Tooltip Anchor When the Bags Get Opened
-		if C["PatUI"]["SmallerChat"] then
-			local Anchor = Tooltips["Anchor"]
-			local Container = _G["TukuiBag"]
-			
-			Anchor:ClearAllPoints()
-			Anchor:SetPoint("BOTTOMRIGHT", Container, "TOPRIGHT", 0, 0)
-		end
+		local Anchor = Tooltips["Anchor"]
+		local Container = _G["TukuiBag"]
+		
+		Anchor:ClearAllPoints()
+		Anchor:SetPoint("BOTTOMRIGHT", Container, "TOPRIGHT", 0, 0)
 	end
 
 	-- Override CloseAllBags
@@ -47,21 +43,10 @@ function Tooltips:CreateAnchor()
 		baseCloseAllBags(self);
 
 		-- Change the Tooltip Anchor Back When the Bags Get Closed
-		if C["PatUI"]["SmallerChat"] then
-			local Anchor = Tooltips["Anchor"]
-			local RightChat = Panels["RightChatBG"]
-			
-			Anchor:ClearAllPoints()
-			Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
-		end
+		local Anchor = Tooltips["Anchor"]
+		local RightChat = Panels["RightChatBG"]
+		
+		Anchor:ClearAllPoints()
+		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
 	end
 end
-
-if C["PatUI"]["CombatHide"] == true then
-	GameTooltip:HookScript("OnShow", function(self)
-		if InCombatLockdown() then
-			self:Hide()
-		end
-	end)
-end
-

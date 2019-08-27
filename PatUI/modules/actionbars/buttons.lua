@@ -69,10 +69,10 @@ function ActionBars:CreateToggleButtons()
 		if button == B2B then
 			if bar:IsShown() then
 				db.hidebar2 = false
-				button.text:SetText("|cff18AA18 - |r")
+				button.text:SetText("|cff18AA18 Hide Bar 2 |r")
 			else
 				db.hidebar2 = true
-				button.text:SetText("|cff18AA18 + |r")
+				button.text:SetText("|cff18AA18 Show Bar 2 |r")
 			end
 		end
 		
@@ -80,13 +80,23 @@ function ActionBars:CreateToggleButtons()
 			if bar:IsShown() then
 				db.hidebar5 = false
 				button:ClearAllPoints()
-				button:Point("LEFT", LeftBar, "RIGHT", 3, 0)
-				button.text:SetText("|cff18AA18 < |r")
+				if C["PatUI"]["SplitBar5"] == true then
+					button:Point("LEFT", LeftBar, "RIGHT", 3, 0)
+					button.text:SetText("|cff18AA18 < |r")
+				else
+					button:Point("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 0, 3)
+					button.text:SetText("|cff18AA18 Hide Bar 5 |r")
+				end
 			else
 				db.hidebar5 = true
 				button:ClearAllPoints()
-				button:Point("LEFT", LeftChatBG, "RIGHT", 3, 0)
-				button.text:SetText("|cff18AA18 > |r")
+				if C["PatUI"]["SplitBar5"] == true then
+					button:Point("LEFT", LeftChatBG, "RIGHT", 3, 0)
+					button.text:SetText("|cff18AA18 > |r")
+				else
+					button:Point("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 0, 3)
+					button.text:SetText("|cff18AA18 Show Bar 5 |r")
+				end
 			end
 		end
 	end
@@ -134,8 +144,13 @@ end
 	B4B.text:SetText("|cff18AA18 Hide SplitBar |r")
 
 	local B2B = CreateFrame("Button", "B2B", UIParent)
-	B2B:Size(PatBar1:GetWidth(), 19)
-	B2B:SetPoint("BOTTOM", PatBar1, "TOP", 0, 3)
+	if C["PatUI"]["SplitBar5"] == true then
+		B2B:Size(PatBar1:GetWidth(), 19)
+		B2B:SetPoint("BOTTOM", PatBar1, "TOP", 0, 3)
+	else
+		B2B:Size(PatBar1:GetWidth()/2, 19)
+		B2B:SetPoint("BOTTOMLEFT", PatBar1, "TOPLEFT", 0, 3)
+	end
 	B2B:SetTemplate("Transparent")
 	B2B:RegisterForClicks("AnyUp")
 	B2B:CreateShadow()
@@ -145,28 +160,37 @@ end
 	B2B:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
 	B2B.text = T.SetFontString(B2B, font, fontsize, "MONOCHROMEOUTLINE")
 	B2B.text:SetPoint("CENTER", 0, 0)
-	B2B.text:SetText("|cff18AA18 - |r")
+	B2B.text:SetText("|cff18AA18 Hide Bar 2 |r")
 
 	local B5B = CreateFrame("Button", "B5B", UIParent)
-	if C["PatUI"]["SmallerChat"] == true then
+	--B5B:Size(18, 178)
+	if C["PatUI"]["SplitBar5"] == true then
+		B5B:Point("LEFT", LeftBar, "RIGHT", 3, 0)
 		B5B:Size(18, 152.5)
 	else
-		B5B:Size(18, 178)
+		B5B:Point("BOTTOMRIGHT", PatBar1, "TOPRIGHT", 0, 3)
+		B5B:Size(PatBar1:GetWidth()/2, 19)
 	end
-	B5B:Point("LEFT", LeftBar, "RIGHT", 2, 0)
 	B5B:SetTemplate("Transparent")
 	B5B:RegisterForClicks("AnyUp")
 	B5B:SetFrameLevel(6)
 	B5B:SetAlpha(0)
 	B5B:SetFrameStrata("HIGH")
 	B5B:CreateShadow()
-	B5B:SetScript("OnClick", function(self) UpdateBar(self, LeftBar) end)
-	B5B:HookScript("OnClick", function(self) UpdateBar(self, RightBar) end)
+	if C["PatUI"]["SplitBar5"] == true then
+		B5B:SetScript("OnClick", function(self) UpdateBar(self, LeftBar) end)
+		B5B:HookScript("OnClick", function(self) UpdateBar(self, RightBar) end)
+		B5B.text = T.SetFontString(B5B, font, fontsize, "MONOCHROMEOUTLINE")
+		B5B.text:Point("CENTER", 0, 0)
+		B5B.text:SetText("|cff18AA18 < |r")
+	else
+		B5B:SetScript("OnClick", function(self) UpdateBar(self, PatBar5) end)
+		B5B.text = T.SetFontString(B5B, font, fontsize, "MONOCHROMEOUTLINE")
+		B5B.text:Point("CENTER", 0, 0)
+		B5B.text:SetText("|cff18AA18 Hide Bar 5 |r")
+	end
 	B5B:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
 	B5B:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
-	B5B.text = T.SetFontString(B5B, font, fontsize, "MONOCHROMEOUTLINE")
-	B5B.text:Point("CENTER", 0, 0)
-	B5B.text:SetText("|cff18AA18 < |r")
 
 	local init = CreateFrame("Frame")
 	init:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -189,8 +213,12 @@ end
 		end
 		
 		if db.hidebar5 then
-			UpdateBar(B5B, LeftBar)
-			UpdateBar(B5B, RightBar)
+			if C["PatUI"]["SplitBar5"] == true then
+				UpdateBar(B5B, LeftBar)
+				UpdateBar(B5B, RightBar)
+			else
+				UpdateBar(B5B, PatBar5)
+			end
 		end
 	end)
 

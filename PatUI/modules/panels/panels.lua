@@ -43,17 +43,12 @@ function Panels:Enable()
 	RightChatBG:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
 	RightChatBG:CreateShadow()
 	
-	if C["PatUI"]["SmallerChat"] == true then
-		LeftChatBG:SetHeight(151.5)
-		RightChatBG:SetHeight(151.5)
-		DataTextLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 126)
-		DataTextRight:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 126)
-		DataTextLeft:Height(24)
-		DataTextRight:Height(24)
-	else
-		DataTextLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 152)
-		DataTextRight:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 152)
-	end
+	LeftChatBG:SetHeight(151.5)
+	RightChatBG:SetHeight(151.5)
+	DataTextLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 126)
+	DataTextRight:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 126)
+	DataTextLeft:Height(24)
+	DataTextRight:Height(24)
 end
 
 function Experience:Create()
