@@ -82,7 +82,15 @@ function UnitFrames:Target()
 	Name:Point("LEFT", Health, "LEFT", 4, 0)
 	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameMedium] [Tukui:DiffColor][level]|r [shortclassification]")
 
+	Castbar:SetSize(280, 12)
 	Castbar:ClearAllPoints()
+	Castbar:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 400)
+	Castbar:CreateBackdrop("Transparent")
+	Castbar.Background:Hide()
+	
+	Castbar.Time:ClearAllPoints()
+
+	Castbar.Text:ClearAllPoints()
 	
 	if (C["UnitFrames"]["TargetAuras"]) then
 		Buffs:SetHeight(27)

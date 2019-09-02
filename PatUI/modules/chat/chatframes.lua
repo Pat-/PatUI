@@ -26,18 +26,19 @@ function Chat:SetChatFramePosition()
 			Frame:SetParent(UIParent)
 			Frame:SetUserPlaced(true)
 			Frame:ClearAllPoints()
-			Frame:SetSize(Width, Height + 1)
+			Frame:SetSize(C.Chat.LeftWidth, C.Chat.LeftHeight + 1)
 			Frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 14 , 11)
 		elseif ID == 4 then
 			Frame:SetParent(UIParent)
 			Frame:SetUserPlaced(true)
 			Frame:ClearAllPoints()
-			Frame:SetSize(Width, Height + 1)
+			Frame:SetSize(C.Chat.RightWidth, C.Chat.RightHeight + 1)
 			Frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -14, 11)
-			Frame:SetJustifyH("RIGHT")
+			Frame:SetJustifyH("LEFT")
 		end
 	end
 end
+
 function Chat:SetDefaultChatFramesPositions()
 	
 	baseSetDefaultChatFramesPositions(self)
@@ -144,6 +145,4 @@ function Chat:Install()
 	ToggleChatColorNamesByClassGroup(true, "SAY")
 
 	DEFAULT_CHAT_FRAME:SetUserPlaced(true)
-	
-	self:SetDefaultChatFramesPositions()
 end

@@ -8,7 +8,14 @@ local Bags = Inventory["Bags"]
 local baseOpenAllBags = Bags.OpenAllBags
 local baseCloseAllBags = Bags.CloseAllBags
 local baseCreateAnchor = Tooltips.CreateAnchor
+local baseSetColor = Tooltips.SetColor
 
+function Tooltips:SetColor()
+	-- First call the base function
+	baseSetColor(self)
+
+	self.Backdrop:SetBackdropColor(0.1, 0.1, 0.1, 0.8) -- 0.8 alpha is just enough trasprancey that things behind it don't make the text unreadable but remains transparent
+end
 
 -- Bags load first in Tukui
 -- so we override the bag functions only after tooltips get created
@@ -34,7 +41,7 @@ function Tooltips:CreateAnchor()
 		local Container = _G["TukuiBag"]
 		
 		Anchor:ClearAllPoints()
-		Anchor:SetPoint("BOTTOMRIGHT", Container, "TOPRIGHT", 0, 0)
+		Anchor:SetPoint("BOTTOMRIGHT", Container, "TOPRIGHT", 0, -25)
 	end
 
 	-- Override CloseAllBags

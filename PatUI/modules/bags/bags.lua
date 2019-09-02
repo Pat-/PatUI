@@ -12,21 +12,21 @@ function Bags:CreateContainer(storagetype, ...)
 	
 	-- Then my stuff
 	local Container = self[storagetype]
+	local RightChatBG = Panels.RightChatBG
 	local LeftChatBG = Panels.LeftChatBG
 
-	Container:SetTemplate("Transparent")
+	Container:SetBackdropColor(0.1, 0.1, 0.1, 0.5)
 	Container:SetFrameLevel(10)
-
 		
 	-- bag anchor
 	if (storagetype == "Bag") then
 		Container:ClearAllPoints()
-		Container:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
+		Container:SetPoint("BOTTOMRIGHT", RightChatBG, "TOPRIGHT", -4, 4)
 	end
 	
 	-- bank anchor
 	if (storagetype == "Bank") then
 		Container:ClearAllPoints()
-		Container:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
+		Container:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 4, 4)
 	end	
 end

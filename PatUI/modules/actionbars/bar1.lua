@@ -39,6 +39,10 @@ function ActionBars:CreatePetBar()
 	
 	--- Then my stuff
 	local PetBar = Panels.PetActionBar
+	local Size = C["ActionBars"]["NormalButtonSize"]
+	local Spacing = C["ActionBars"]["ButtonSpacing"]
+	
+	PetBar.Backdrop:SetTemplate("Transparent")
 	
 	PetBar:ClearAllPoints()
 	PetBar:Point("RIGHT", UIParent, "RIGHT", -3, -14)

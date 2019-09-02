@@ -78,6 +78,7 @@ function UnitFrames:Player()
 	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -1, 3)
 	Castbar:CreateBackdrop("Transparent")
 	Castbar.Background:Hide()
+	Castbar:CreateShadow()
 	
 	Castbar.Time:ClearAllPoints()
 	Castbar.Time:Point("RIGHT", Castbar, "RIGHT", -4, 1)
@@ -119,4 +120,36 @@ function UnitFrames:Player()
 			end
 		end
 	end
+end
+
+local TukuiUnitFrames = T["UnitFrames"]
+local baseNameplates = TukuiUnitFrames.Nameplates
+
+function TukuiUnitFrames:Nameplates()
+	-- First call the base function
+	baseNameplates(self)
+
+	local Health = self.Health
+	local Power = self.Power
+	local Castbar = self.Castbar
+	
+	Health:ClearAllPoints()
+	Health:SetAllPoints(self)
+	Health:SetHeight(9)
+	Health:CreateBackdrop("Transparent")
+	Health.Background:Hide()
+	Health:CreateShadow()
+	
+	self:SetHeight(7)
+	self.Shadow:Kill()
+	
+	Castbar:Hide()
+	Castbar:SetHeight(0)
+	
+	Castbar.Icon:ClearAllPoints()
+	Castbar.Button:ClearAllPoints()
+	Castbar.Button.Shadow:Kill()
+	
+	Power:Hide()
+	Power:SetHeight(0)
 end

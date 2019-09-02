@@ -11,6 +11,7 @@ C["PatUI"] = {
 
 -- General
 C["General"]["HideShadows"] = false
+C["General"]["WorldMapScale"] = 100
 
 -- Actionbars	
 C["ActionBars"]["Enable"] = true
@@ -51,6 +52,10 @@ C["Chat"]["LinkBrackets"] = true
 C["Chat"]["ScrollByX"] = 3
 C["Chat"]["TabFont"] = "PatUI"
 C["Chat"]["ChatFont"] = "Tukui"
+C["Chat"]["LeftWidth"] = 370
+C["Chat"]["LeftHeight"] = 113
+C["Chat"]["RightWidth"] = 370
+C["Chat"]["RightHeight"] = 113
 
 -- Cooldowns
 C["Cooldowns"]["Font"] = "PatUI"

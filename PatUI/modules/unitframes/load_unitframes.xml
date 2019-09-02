@@ -4,5 +4,4 @@
 	<Script file="pet.lua"/>
 	<Script file="tot.lua"/>
 	<Script file="raid.lua"/>
-	<Script file="castbar.lua"/>
 </Ui>

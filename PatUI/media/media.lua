@@ -8,7 +8,7 @@ local ActionBars = T["ActionBars"]
 local baseNameplates = UnitFrames.Nameplates
 local baseSkinButton = ActionBars.SkinButton
 
--- Adding my own Pixelfont to Tukui 
+-- Adding my own Pixelfont to Tukui
 local PatUI = CreateFont("PatUI")
 PatUI:SetFont("Interface\\AddOns\\PatUI\\media\\fonts\\pixelfont.ttf", 10, "MONOCHROMEOUTLINE")
 TukuiMedia:RegisterFont("PatUI", "PatUI")

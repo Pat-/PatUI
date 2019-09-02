@@ -20,6 +20,7 @@ function UnitFrames:CreateUnits()
 
 	Pet:SetHeight(23)
 	Pet:SetWidth(110)
+	Pet.Shadow:Kill()
 	
 	Pet:ClearAllPoints()
 	if C["PatUI"]["Healer"] == true then

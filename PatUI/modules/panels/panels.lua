@@ -21,34 +21,32 @@ function Panels:Enable()
 	local LeftChatBG = Panels.LeftChatBG
 	local RightChatBG = Panels.RightChatBG
 	
-	LeftChatBG.Backdrop.Shadow:Kill()
-	RightChatBG.Backdrop.Shadow:Kill()
-	
-	DataTextLeft:SetBackdrop(nil)
-	DataTextLeft:ClearAllPoints()
-	DataTextLeft:SetFrameStrata("HIGH")
-	
-	DataTextRight:SetBackdrop(nil)
-	DataTextRight:ClearAllPoints()	
-	
 	LeftChatBG:SetParent(UIParent)
 	LeftChatBG:ClearAllPoints()
 	LeftChatBG:SetFrameStrata("BACKGROUND")
 	LeftChatBG:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 4, 4)
+	LeftChatBG:SetHeight(C.Chat.LeftHeight + 38.5)
+	LeftChatBG.Backdrop.Shadow:Kill()
 	LeftChatBG:CreateShadow()
 	
 	RightChatBG:SetParent(UIParent)
 	RightChatBG:ClearAllPoints()
 	RightChatBG:SetFrameStrata("BACKGROUND")
 	RightChatBG:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
+	RightChatBG:SetHeight(C.Chat.RightHeight + 38.5)
+	RightChatBG.Backdrop.Shadow:Kill()
 	RightChatBG:CreateShadow()
 	
-	LeftChatBG:SetHeight(151.5)
-	RightChatBG:SetHeight(151.5)
-	DataTextLeft:Point("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 10, 126)
-	DataTextRight:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 126)
-	DataTextLeft:Height(24)
-	DataTextRight:Height(24)
+	DataTextLeft:SetBackdrop(nil)
+	DataTextLeft:ClearAllPoints()
+	DataTextLeft:SetFrameStrata("HIGH")
+	DataTextLeft:Point("CENTER", TabsBGLeft, "CENTER", 0, 0)
+	DataTextLeft:Height(23)
+	
+	DataTextRight:SetBackdrop(nil)
+	DataTextRight:ClearAllPoints()	
+	DataTextRight:Point("CENTER", TabsBGRight, "CENTER", 0, 0)
+	DataTextRight:Height(23)
 end
 
 function Experience:Create()
