@@ -19,14 +19,14 @@ function ActionBars:CreateBar1()
 	ActionBar1.Backdrop:Kill()
 	ActionBar1.Backdrop.Shadow:Kill()
 	
-	
 	ActionBar1:ClearAllPoints()
 	ActionBar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
+	ActionBar1:SetHeight((Size * 1) + (Spacing * 2))
 	
 	local Bar1 = CreateFrame("Frame", "PatBar1", UIParent, "SecureHandlerStateTemplate")
 	Bar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
 	Bar1:SetWidth((Size * 12) + (Spacing * 13))
-	Bar1:SetHeight((Size * 2) + (Spacing * 3))
+	Bar1:SetHeight((Size * 3) + (Spacing * 4))
 	Bar1:SetTemplate("Transparent")
 	Bar1:CreateShadow()
 	

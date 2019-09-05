@@ -43,14 +43,20 @@ function UnitFrames:Player()
 	local CombatFeedbackText = self.CombatFeedbackText
 	local Combat = self.CombatIndicator 
 	local ComboPointsBar = self.ComboPointsBar
+	local Font = T.GetFont(C["UnitFrames"].Font)
 		
 	Panel:Hide()
 	
 	Health:SetHeight(23)
 	Health:CreateShadow()
 	
-	Health.Value:ClearAllPoints()
-	Health.Value:Point("LEFT", Health, "LEFT", 4, 0)
+	Health.Value:Hide()
+	local HealthCurrent = Health:CreateFontString(nil, "OVERLAY")
+	HealthCurrent:SetParent(Health)
+	HealthCurrent:SetPoint("LEFT", Health, "LEFT", 4, 0)
+	HealthCurrent:SetFontObject(Font)
+	HealthCurrent:SetJustifyH("LEFT")
+	self:Tag(HealthCurrent, "[Tukui:GetNameColor][curhp]")
 	
 	Health:SetStatusBarColor(.2, .2, .2)
 	Health.Background:SetColorTexture(.1, .1, .1)
@@ -69,9 +75,13 @@ function UnitFrames:Player()
 	Power:CreateShadow()
 	Power.Background:Hide()
 	
-	Power.Value:ClearAllPoints()
-	Power.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
-	Power.Value:SetShadowOffset(0, 0)
+	Power.Value:Hide()
+	local PowerCurrent = Power:CreateFontString(nil, "OVERLAY")
+	PowerCurrent:SetParent(Health)
+	PowerCurrent:SetPoint("RIGHT", Health, "RIGHT", -4, 0)
+	PowerCurrent:SetFontObject(Font)
+	PowerCurrent:SetJustifyH("RIGHT")
+	self:Tag(PowerCurrent, "[powercolor][curpp]")
 
 	Castbar:ClearAllPoints()
 	Castbar:SetSize((PatBar1:GetWidth()) - 2, 12)

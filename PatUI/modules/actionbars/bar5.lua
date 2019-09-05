@@ -21,83 +21,36 @@ function ActionBars:CreateBar5()
 	ActionBar5.Backdrop:Kill()
 	ActionBar5.Backdrop.Shadow:Kill()
 	
-	if C["PatUI"]["SplitBar5"] == true then
-		buttonsize = 20.7
+	local Bar5 = CreateFrame("Frame", "PatBar5", UIParent, "SecureHandlerStateTemplate")
+	Bar5:Point("BOTTOMLEFT", ActionBar1, "BOTTOMRIGHT", 3, 0)
+	Bar5:Width((Size * 4) + (Spacing * 5))
+	Bar5:Height((Size * 3) + (Spacing * 4))
+	Bar5:SetTemplate("Transparent")
+	Bar5:SetFrameLevel(ActionBar1:GetFrameLevel())
+	Bar5:SetFrameStrata(ActionBar1:GetFrameStrata())
+	Bar5:CreateShadow()
 
-		local LeftBar = CreateFrame("Frame", "LeftBar", UIParent, "SecureHandlerStateTemplate")
-		LeftBar:Point("LEFT", LeftChatBG, "RIGHT", 4, 0)
-		LeftBar:Width((buttonsize * 1) + (Spacing * 2))
-		LeftBar:Height((buttonsize * 6) + (Spacing * 7))
-		LeftBar:SetFrameStrata("BACKGROUND")
-		LeftBar:SetFrameLevel(3)
-		LeftBar:SetTemplate("Transparent")
-		LeftBar:CreateShadow()
+	local bar = Bar5
+	MultiBarLeft:SetParent(bar)
 
-		local RightBar = CreateFrame("Frame", "RightBar", UIParent, "SecureHandlerStateTemplate")
-		RightBar:Point("RIGHT", RightChatBG, "LEFT", -4, 0)
-		RightBar:Width((buttonsize * 1) + (Spacing * 2))
-		RightBar:Height((buttonsize * 6) + (Spacing * 7))
-		RightBar:SetFrameStrata("BACKGROUND")
-		RightBar:SetFrameLevel(3)
-		RightBar:SetTemplate("Transparent")
-		RightBar:CreateShadow()
-
-		local bar = LeftBar
-		local bar2 = RightBar
-		MultiBarLeft:SetParent(bar)
-
-		for i= 1, Num do
-			local b = _G["MultiBarLeftButton"..i]
-			local b2 = _G["MultiBarLeftButton"..i-1]
-			
-			b:SetSize(buttonsize, buttonsize)
-			b:ClearAllPoints()
-			b:SetFrameStrata("BACKGROUND")
-			b:SetFrameLevel(15)
-			
-			if i == 1 then
-				b:SetPoint("TOPRIGHT", bar, -Spacing, -Spacing)
-			elseif i == 7 then
-				b:SetPoint("TOPRIGHT", bar2, -Spacing, -Spacing)
-			else
-				b:SetPoint("TOP", b2, "BOTTOM", 0, -Spacing)
-			end
+	for i= 1, Num do
+		local b = _G["MultiBarLeftButton"..i]
+		local b2 = _G["MultiBarLeftButton"..i-1]
+		b:SetSize(Size, Size)
+		b:ClearAllPoints()
+		b:SetFrameStrata("BACKGROUND")
+		b:SetFrameLevel(15)
+		
+		if i == 1 then
+			b:SetPoint("BOTTOMLEFT", bar, Spacing, Spacing)
+		elseif i == 5 then
+			b:SetPoint("BOTTOMLEFT", bar, Spacing, 34)
+		elseif i == 9 then
+			b:SetPoint("TOPLEFT", bar, Spacing, -Spacing)
+		else
+			b:SetPoint("LEFT", b2, "RIGHT", Spacing, 0)
 		end
-	else
-		local Bar5 = CreateFrame("Frame", "PatBar5", UIParent, "SecureHandlerStateTemplate")
-		Bar5:Point("CENTER", ActionBar1, "CENTER", 0, 45)
-		Bar5:SetWidth((Size * 12) + (Spacing * 13))
-		Bar5:SetHeight((Size * 2) + (Spacing * 3))
-
-		if Bar5:IsShown() then
-			PatBar1:SetHeight((Size * 3) + (Spacing * 4))
-		end
-
-		Bar5:HookScript("OnHide", function()
-			PatBar1:SetHeight((Size * 2) + (Spacing * 3))
-		end)
-
-		Bar5:HookScript("OnShow", function()
-			PatBar1:SetHeight((Size * 3) + (Spacing * 4))
-		end)
-			
-		local bar = Bar5
-		MultiBarLeft:SetParent(bar)
-
-		-- setup the bar
-		for i=1, Num do
-			local b = _G["MultiBarLeftButton"..i]
-			local b2 = _G["MultiBarLeftButton"..i-1]
-			b:SetSize(Size, Size)
-			b:ClearAllPoints()
-			b:SetFrameStrata("BACKGROUND")
-			b:SetFrameLevel(15)
-			
-			if i == 1 then
-				b:SetPoint("TOPLEFT", bar, Spacing, -Spacing)
-			else
-				b:SetPoint("LEFT", b2, "RIGHT", Spacing, 0)
-			end
-		end
+		
+		Bar5["Button"..i] = b
 	end
 end

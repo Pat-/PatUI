@@ -19,26 +19,16 @@ function ActionBars:CreateBar4()
 	ActionBar4.Backdrop:Kill()
 	ActionBar4.Backdrop.Shadow:Kill()
 
-    local LeftBar4 = CreateFrame("Frame", "LeftBar4", UIParent, "SecureHandlerStateTemplate")
-	LeftBar4:Point("BOTTOMRIGHT", ActionBar1, "BOTTOMLEFT", -6, 0)
-	LeftBar4:Width((Size * 3) + (Spacing * 4))
-	LeftBar4:Height((Size * 2) + (Spacing * 3))
-	LeftBar4:SetTemplate("Transparent")
-	LeftBar4:SetFrameLevel(ActionBar1:GetFrameLevel())
-	LeftBar4:SetFrameStrata(ActionBar1:GetFrameStrata())
-	LeftBar4:CreateShadow()
+    local Bar4 = CreateFrame("Frame", "PatBar4", UIParent, "SecureHandlerStateTemplate")
+	Bar4:Point("BOTTOMRIGHT", ActionBar1, "BOTTOMLEFT", -3, 0)
+	Bar4:Width((Size * 4) + (Spacing * 5))
+	Bar4:Height((Size * 3) + (Spacing * 4))
+	Bar4:SetTemplate("Transparent")
+	Bar4:SetFrameLevel(ActionBar1:GetFrameLevel())
+	Bar4:SetFrameStrata(ActionBar1:GetFrameStrata())
+	Bar4:CreateShadow()
 
-	local RightBar4 = CreateFrame("Frame", "RightBar4", UIParent, "SecureHandlerStateTemplate")
-	RightBar4:Point("BOTTOMLEFT", ActionBar1, "BOTTOMRIGHT", 6, 0)
-	RightBar4:Width((Size * 3) + (Spacing * 4))
-	RightBar4:Height((Size * 2) + (Spacing * 3))
-	RightBar4:SetTemplate("Transparent")
-	RightBar4:SetFrameLevel(ActionBar1:GetFrameLevel())
-	RightBar4:SetFrameStrata(ActionBar1:GetFrameStrata())
-	RightBar4:CreateShadow()
-
-	local bar = LeftBar4
-	local bar2 = RightBar4
+	local bar = Bar4
     MultiBarRight:SetParent(bar)
 
     for i= 1, Num do
@@ -51,12 +41,10 @@ function ActionBars:CreateBar4()
 
         if i == 1 then
 			b:SetPoint("BOTTOMLEFT", bar, Spacing, Spacing)
-		elseif i == 7 then
+		elseif i == 5 then
+			b:SetPoint("BOTTOMLEFT", bar, Spacing, 34)
+		elseif i == 9 then
 			b:SetPoint("TOPLEFT", bar, Spacing, -Spacing)
-		elseif i == 4 then
-			b:SetPoint("BOTTOMLEFT", bar2, Spacing, Spacing)
-		elseif i == 10 then
-			b:SetPoint("TOPLEFT", bar2, Spacing, -Spacing)
 		else
 			b:SetPoint("LEFT", b2, "RIGHT", Spacing, 0)
 		end

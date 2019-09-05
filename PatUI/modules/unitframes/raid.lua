@@ -49,7 +49,7 @@ function UnitFrames:CreateUnits()
 	if C["PatUI"]["Healer"] == true then
 		Raid:SetPoint("BOTTOM", PatBar1, "TOP", 0, 32)
 	else
-		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 10)
 	end
 end
 
@@ -89,7 +89,7 @@ function UnitFrames:Raid()
 
 	-- Name	
 	Name:ClearAllPoints()
-	Name:SetPoint("CENTER", Health, "CENTER", 0, 0)
+	Name:SetPoint("CENTER", Health, "CENTER", 0, 10)
 	Name:SetParent(Health)
 	Name:SetFontObject(RaidFont)
 	self:Tag(Name, "[Tukui:GetNameColor][Tukui:NameShort]")
@@ -106,26 +106,3 @@ function UnitFrames:Raid()
 	RaidIcon:ClearAllPoints()
 	RaidIcon:Point("CENTER", self, "TOP", 20, 0)
 end
-
-local PatUIRaidPosition = CreateFrame("Frame")
-PatUIRaidPosition:RegisterEvent("PLAYER_LOGIN")
-PatUIRaidPosition:SetScript("OnEvent", function(self, event)
-	if C["PatUI"]["Healer"] == true then return end
-	
-	local raid = UnitFrames.Headers.Raid
-	local LeftChatBG = Panels.LeftChatBG
-	
-	if PatBar3:IsShown() then
-		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 1, 3)
-	end
-	
-	PatBar3:HookScript("OnHide", function()
-		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 5)
-	end)
-	
-	PatBar3:HookScript("OnShow", function()
-		raid:ClearAllPoints()
-		raid:SetPoint("BOTTOMLEFT", PatBar3, "TOPLEFT", 1, 3)
-	end)
-end)

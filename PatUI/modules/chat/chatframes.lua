@@ -34,7 +34,7 @@ function Chat:SetChatFramePosition()
 			Frame:ClearAllPoints()
 			Frame:SetSize(C.Chat.RightWidth, C.Chat.RightHeight + 1)
 			Frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -14, 11)
-			Frame:SetJustifyH("LEFT")
+			Frame:SetJustifyH("RIGHT")
 		end
 	end
 end
@@ -145,4 +145,6 @@ function Chat:Install()
 	ToggleChatColorNamesByClassGroup(true, "SAY")
 
 	DEFAULT_CHAT_FRAME:SetUserPlaced(true)
+	
+	self:SetDefaultChatFramesPositions()
 end

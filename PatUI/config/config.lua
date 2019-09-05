@@ -90,13 +90,17 @@ C["Party"]["Enable"] = false
 
 -- Raid	
 C["Raid"]["Enable"] = true
-C["Raid"]["RangeAlpha"] = 0.3
+C["Raid"]["DebuffWatch"] = false
 C["Raid"]["ShowHealthText"] = false
+C["Raid"]["ShowPets"] = false
+C["Raid"]["RangeAlpha"] = 0.3
 C["Raid"]["VerticalHealth"] = false
 C["Raid"]["MaxUnitPerColumn"] = 5
 C["Raid"]["Font"] = "PatUI"
 C["Raid"]["HealthFont"] = "PatUI"
+C["Raid"]["MyRaidBuffs"] = false
 C["Raid"]["GroupBy"]["Value"] = "ROLE"
+C["Raid"]["ShowSolo"] = false
 
 -- Tooltip		
 C["Tooltips"]["Enable"] = true

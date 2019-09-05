@@ -43,6 +43,7 @@ function UnitFrames:Target()
 	local Buffs = self.Buffs
 	local Debuffs = self.Debuffs
 	local CombatFeedbackText = self.CombatFeedbackText
+	local Font = T.GetFont(C["UnitFrames"].Font)
 	
 	Panel:Hide()
 	Panel:ClearAllPoints()
@@ -53,8 +54,13 @@ function UnitFrames:Target()
 	Health:SetHeight(23)
 	Health:CreateShadow()
 	
-	Health.Value:ClearAllPoints()
-	Health.Value:Point("RIGHT", Health, "RIGHT", -4, 0)
+	Health.Value:Hide()
+	local HealthCurrent = Health:CreateFontString(nil, "OVERLAY")
+	HealthCurrent:SetParent(Health)
+	HealthCurrent:SetPoint("RIGHT", Health, "RIGHT", -4, 0)
+	HealthCurrent:SetFontObject(Font)
+	HealthCurrent:SetJustifyH("LEFT")
+	self:Tag(HealthCurrent, "[Tukui:GetNameColor][curhp]")
 	
 	Health:SetStatusBarColor(.2, .2, .2)
 	Health.Background:SetColorTexture(.1, .1, .1)

@@ -24,18 +24,6 @@ function ActionBars:CreateBar2()
 	Bar2:Point("CENTER", ActionBar1, "CENTER", 0, 15)
 	Bar2:SetWidth((Size * 12) + (Spacing * 13))
 	Bar2:SetHeight((Size * 2) + (Spacing * 3))
-
-	if Bar2:IsShown() then
-		PatBar1:SetHeight((Size * 2) + (Spacing * 3))
-	end
-
-	Bar2:HookScript("OnHide", function()
-		PatBar1:SetHeight((Size * 1) + (Spacing * 2))
-	end)
-
-	Bar2:HookScript("OnShow", function()
-		PatBar1:SetHeight((Size * 2) + (Spacing * 3))
-	end)
 		
 	local bar = Bar2
 	MultiBarBottomLeft:SetParent(bar)

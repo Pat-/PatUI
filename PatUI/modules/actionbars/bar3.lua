@@ -15,39 +15,32 @@ function ActionBars:CreateBar3()
 	local Size = C["ActionBars"]["NormalButtonSize"]
 	local Spacing = C["ActionBars"]["ButtonSpacing"]
 	local ActionBar3 = Panels.ActionBar3
-	local LeftChatBG = Panels.LeftChatBG
+	local ActionBar1 = Panels.ActionBar1
 	
 	ActionBar3.Backdrop:SetAlpha(0)
 	ActionBar3.Backdrop.Shadow:Kill()
-
-	local buttonsize = 27.7
-
+	
 	local Bar3 = CreateFrame("Frame", "PatBar3", UIParent, "SecureHandlerStateTemplate")
-	Bar3:Point("BOTTOM", LeftChatBG, "TOP", 0, 4)
-	Bar3:Width((buttonsize * 12) + (Spacing * 13))
-	Bar3:Height((buttonsize * 1) + (Spacing * 2))
-	Bar3:SetFrameStrata("BACKGROUND")
-	Bar3:SetFrameLevel(3)
-	Bar3:SetTemplate("Transparent")
-	Bar3:CreateShadow()
-
+	Bar3:Point("CENTER", ActionBar1, "CENTER", 0, 45)
+	Bar3:SetWidth((Size * 12) + (Spacing * 13))
+	Bar3:SetHeight((Size * 2) + (Spacing * 3))
+	
 	local bar = Bar3
 	MultiBarBottomRight:SetParent(bar)
 
-	for i= 1, Num do
+	-- setup the bar
+	for i=1, Num do
 		local b = _G["MultiBarBottomRightButton"..i]
 		local b2 = _G["MultiBarBottomRightButton"..i-1]
-		b:SetSize(buttonsize, buttonsize)
+		b:SetSize(Size, Size)
 		b:ClearAllPoints()
 		b:SetFrameStrata("BACKGROUND")
 		b:SetFrameLevel(15)
 		
 		if i == 1 then
-			b:SetPoint("BOTTOMLEFT", bar, Spacing, Spacing)
+			b:SetPoint("TOPLEFT", bar, Spacing, -Spacing)
 		else
 			b:SetPoint("LEFT", b2, "RIGHT", Spacing, 0)
 		end
-		
-		Bar3["Button"..i] = b
 	end
 end

@@ -57,4 +57,11 @@ function UnitFrames:Pet()
 	Name:ClearAllPoints()
 	Name:SetParent(Health)
 	Name:Point("CENTER", Health, "CENTER", 0, 0)
+	
+	Name.colorHappiness = true
+	Health.colorHappiness = false
+	
+	Health.Value:ClearAllPoints()
+	Health.Value:SetParent(Health)
+	Health.Value:Point("CENTER", Health, "CENTER", 0, 0)
 end
