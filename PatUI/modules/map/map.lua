@@ -7,7 +7,6 @@ local ObjectiveTracker = T["Miscellaneous"]["ObjectiveTracker"]
 
 local baseEnable = Minimap.Enable
 local baseCreateHeaders = Auras.CreateHeaders
-local baseSetDefaultPosition = ObjectiveTracker.SetDefaultPosition
 
 function Minimap:Enable()
 	-- First call the base function
@@ -21,6 +20,8 @@ function Minimap:Enable()
 	Mail:Point("TOPRIGHT", 0, 0)
 	
 	Minimap.Backdrop.Shadow:Kill() 
+	
+	Minimap:Size(200)
 	
 	Minimap:ClearAllPoints()
 	Minimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -4, -4)
@@ -50,15 +51,6 @@ function Auras:CreateHeaders()
 	Buffs:SetAttribute("xOffset", -33)
 	Buffs:SetAttribute("wrapYOffset", -36)
 
-	Buffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT",  -149, -4)
-	Debuffs:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -149, -115)
-end
-
-function ObjectiveTracker:SetDefaultPosition()
-	-- First call the base function
-	baseSetDefaultPosition(self)
-	
-	-- Then my stuff
-	TukuiObjectiveTracker:ClearAllPoints()
-	TukuiObjectiveTracker:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 30, -180)
+	Buffs:SetPoint("RIGHT", Minimap, "TOPLEFT",  -4, -16)
+	Debuffs:SetPoint("RIGHT", Minimap, "BOTTOMLEFT", -4, 16)
 end
