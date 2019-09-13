@@ -7,6 +7,8 @@ C["PatUI"] = {
 	["RepExpMouseOver"] = true,
 	["SplitBar5"] = true,
 	["HideRight"] = false,
+	["pInterrupt"] = false,
+	["DisableRight"] = false,
 }
 
 -- General

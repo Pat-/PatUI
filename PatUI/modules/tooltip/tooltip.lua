@@ -28,8 +28,13 @@ function Tooltips:CreateAnchor()
 	local Anchor = Tooltips["Anchor"]
 	local RightChat = Panels["RightChatBG"]
 	
-	Anchor:ClearAllPoints()
-	Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
+	if C["PatUI"]["DisableRight"] == true then
+		Anchor:ClearAllPoints()
+		Anchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 0)
+	else
+		Anchor:ClearAllPoints()
+		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
+	end
 	
 	-- Override OpenAllBags
 	function Bags:OpenAllBags()
@@ -53,7 +58,12 @@ function Tooltips:CreateAnchor()
 		local Anchor = Tooltips["Anchor"]
 		local RightChat = Panels["RightChatBG"]
 		
-		Anchor:ClearAllPoints()
-		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
+		if C["PatUI"]["DisableRight"] == true then
+			Anchor:ClearAllPoints()
+			Anchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 0)
+		else
+			Anchor:ClearAllPoints()
+			Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
+		end
 	end
 end

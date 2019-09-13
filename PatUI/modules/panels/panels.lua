@@ -29,13 +29,18 @@ function Panels:Enable()
 	LeftChatBG.Backdrop.Shadow:Kill()
 	LeftChatBG:CreateShadow()
 	
-	RightChatBG:SetParent(UIParent)
-	RightChatBG:ClearAllPoints()
-	RightChatBG:SetFrameStrata("BACKGROUND")
-	RightChatBG:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
-	RightChatBG:SetHeight(C.Chat.RightHeight + 38)
-	RightChatBG.Backdrop.Shadow:Kill()
-	RightChatBG:CreateShadow()
+	if C["PatUI"]["DisableRight"] == true then
+		RightChatBG:ClearAllPoints()
+		TabsBGRight:ClearAllPoints()
+	else
+		RightChatBG:SetParent(UIParent)
+		RightChatBG:ClearAllPoints()
+		RightChatBG:SetFrameStrata("BACKGROUND")
+		RightChatBG:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
+		RightChatBG:SetHeight(C.Chat.RightHeight + 38)
+		RightChatBG.Backdrop.Shadow:Kill()
+		RightChatBG:CreateShadow()
+	end
 	
 	DataTextLeft:SetBackdrop(nil)
 	DataTextLeft:ClearAllPoints()
@@ -47,6 +52,9 @@ function Panels:Enable()
 	DataTextRight:ClearAllPoints()	
 	DataTextRight:Point("CENTER", TabsBGRight, "CENTER", 0, 0)
 	DataTextRight:Height(23)
+	
+	TabsBGLeft:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
+	TabsBGRight:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
 end
 
 function Experience:Create()
@@ -64,7 +72,7 @@ function Experience:Create()
 	XPBar:ClearAllPoints()
 	XPBar:Point("TOPLEFT", Minimap, "BOTTOMLEFT", 0, -3)
 	XPBar:Height(5)
-	XPBar:Width(Minimap:GetWidth())
+	XPBar:Width(200)
 	XPBar:CreateShadow()
 	
 	-- Lets declutter the screen a little and make Exp/Rep Bars hide when not moused over

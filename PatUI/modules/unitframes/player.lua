@@ -40,6 +40,7 @@ function UnitFrames:Player()
 	local Health = self.Health
 	local Power = self.Power
 	local Castbar = self.Castbar
+	local Portrait = self.Portrait
 	local CombatFeedbackText = self.CombatFeedbackText
 	local Combat = self.CombatIndicator 
 	local ComboPointsBar = self.ComboPointsBar

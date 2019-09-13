@@ -8,6 +8,9 @@ Chat.RightChatName = LOOT
 local baseSetDefaultChatFramesPositions = Chat.SetDefaultChatFramesPositions
 local baseInstall = Chat.Install
 local baseSetChatFramePosition = Chat.SetChatFramePosition
+local baseAddToggles = Chat.AddToggles
+local baseHideChatFrame = Chat.HideChatFrame
+local baseShowChatFrame = Chat.ShowChatFrame
 
 function Chat:SetChatFramePosition()
 	if (not TukuiData[GetRealmName()][UnitName("Player")].Chat) then
@@ -23,13 +26,13 @@ function Chat:SetChatFramePosition()
 		local Anchor1, Anchor2, X, Y, Width, Height = unpack(Settings)
 		
 		if ID == 1 then
-			Frame:SetParent(UIParent)
+			Frame:SetParent(Panels.DataTextLeft)
 			Frame:SetUserPlaced(true)
 			Frame:ClearAllPoints()
 			Frame:SetSize(C.Chat.LeftWidth, C.Chat.LeftHeight + 1)
 			Frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 14 , 11)
-		elseif ID == 4 then
-			Frame:SetParent(UIParent)
+		elseif ID == 4 and C["PatUI"]["DisableRight"] == false then
+			Frame:SetParent(Panels.DataTextRight)
 			Frame:SetUserPlaced(true)
 			Frame:ClearAllPoints()
 			Frame:SetSize(C.Chat.RightWidth, C.Chat.RightHeight + 1)
@@ -60,7 +63,7 @@ function Chat:SetDefaultChatFramesPositions()
 		if (ID == 1) then
 			Frame:ClearAllPoints()
 			Frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 14 , 11)
-		elseif (ID == 4) then
+		elseif (ID == 4) and C["PatUI"]["DisableRight"] == false then
 			if (not Frame.isDocked) then
 				Frame:ClearAllPoints()
 				Frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -14, 11)
@@ -95,8 +98,13 @@ function Chat:Install()
 	FCF_OpenNewWindow(GENERAL)
 	FCF_SetLocked(ChatFrame3, 1)
 	FCF_DockFrame(ChatFrame3)
-	FCF_OpenNewWindow(self.RightChatName)
-	FCF_UnDockFrame(ChatFrame4)
+	if C["PatUI"]["DisableRight"] == true then
+		FCF_OpenNewWindow(self.RightChatName)
+		FCF_DockFrame(ChatFrame4, 1)
+	else
+		FCF_OpenNewWindow(self.RightChatName)
+		FCF_UnDockFrame(ChatFrame4)
+	end
 	
 	local Transfers = {
 		"COMBAT_XP_GAIN",
@@ -147,4 +155,18 @@ function Chat:Install()
 	DEFAULT_CHAT_FRAME:SetUserPlaced(true)
 	
 	self:SetDefaultChatFramesPositions()
+end
+
+function Chat:AddToggles()
+	baseAddToggles(self)
+	
+	local Panels = T.Panels
+	
+	Panels.LeftChatToggle:ClearAllPoints()
+	Panels.LeftChatToggle:SetPoint("TOPLEFT", Panels.LeftChatBG, "TOPRIGHT", 6, 0)
+	Panels.LeftChatToggle:SetBackdropColor(0.1, 0.1, 0.1, 0.8)
+	
+	Panels.RightChatToggle:ClearAllPoints()
+	Panels.RightChatToggle:SetPoint("TOPRIGHT", Panels.RightChatBG, "TOPLEFT", -6, 0)
+	Panels.RightChatToggle:SetBackdropColor(0.1, 0.1, 0.1, 0.8)
 end

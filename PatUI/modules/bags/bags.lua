@@ -18,7 +18,10 @@ function Bags:CreateContainer(storagetype, ...)
 	Container:SetFrameLevel(10)
 	
 	-- bag anchor
-	if (storagetype == "Bag") then
+	if (storagetype == "Bag") and C["PatUI"]["DisableRight"] == true then
+		Container:ClearAllPoints()
+		Container:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 4)
+	else
 		Container:ClearAllPoints()
 		Container:SetPoint("BOTTOMRIGHT", RightChatBG, "TOPRIGHT", 0, 4)
 	end

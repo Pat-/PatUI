@@ -5,7 +5,6 @@ local ActionBars = T["ActionBars"]
 local Num = NUM_ACTIONBAR_BUTTONS
 
 local baseCreateBar1 = ActionBars.CreateBar1
-local baseCreatePetBar = ActionBars.CreatePetBar
 
 function ActionBars:CreateBar1()
     -- Call the base function first
@@ -31,19 +30,4 @@ function ActionBars:CreateBar1()
 	Bar1:CreateShadow()
 	
 	ActionBar1:SetParent(Bar1)
-end
-
-function ActionBars:CreatePetBar()
-	-- Call the base function first
-    baseCreatePetBar(self)
-	
-	--- Then my stuff
-	local PetBar = Panels.PetActionBar
-	local Size = C["ActionBars"]["NormalButtonSize"]
-	local Spacing = C["ActionBars"]["ButtonSpacing"]
-	
-	PetBar.Backdrop:SetTemplate("Transparent")
-	
-	PetBar:ClearAllPoints()
-	PetBar:Point("RIGHT", UIParent, "RIGHT", -3, -14)
 end

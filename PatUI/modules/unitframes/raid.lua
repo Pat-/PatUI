@@ -15,7 +15,7 @@ function UnitFrames:GetRaidFramesAttributes()
 			self:SetWidth(header:GetAttribute("initial-width"))
 			self:SetHeight(header:GetAttribute("initial-height"))
 		]],
-		"initial-width", PatBar3:GetWidth()/5 - 3.6,
+		"initial-width", PatBar3:GetWidth()/4.73 - 3.6,
 		"initial-height", 27,
 		"showParty", true,
 		"showRaid", true,

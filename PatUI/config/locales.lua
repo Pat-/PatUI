@@ -9,8 +9,8 @@ local PatUI = function(self)
 	Window:CreateSection("Enable")
 	Window:CreateSwitch("PatUI", "Healer", "A more healer friendly layout")
 	Window:CreateSwitch("PatUI", "RepExpMouseOver", "Enable to make Rep/Exp hide")
-	Window:CreateSwitch("PatUI", "SplitBar5", "Toggle Bar5 to be split or not")
-	Window:CreateSwitch("PatUI", "HideRight", "Hide Right Chatframe and move loot window")
+	Window:CreateSwitch("PatUI", "pInterrupt", "Enables an interrupt announcer (set to /say)")
+	Window:CreateSwitch("PatUI", "DisableRight", "Enable to move loot window to left chatframe (use /tukui chat reset)")
 end
 
 GUI:AddWidgets(PatUI)
