@@ -17,7 +17,7 @@ function UnitFrames:CreateUnits()
 	-- Then my stuff
 	local ToT = UnitFrames.Units.TargetOfTarget
 	local Target = UnitFrames.Units.Target
-
+	
 	ToT:SetHeight(23)
 	ToT:SetWidth(110)
 	
@@ -43,18 +43,19 @@ function UnitFrames:TargetOfTarget()
 	local Panel = self.Panel
 	
 	Panel:Hide()
-	
+		
 	Health:SetHeight(23)
-	Health:SetFrameLevel(5)
 	Health:CreateShadow()
 	
 	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(.1, .1, .1)
+	Health.Background:ClearAllPoints()
+	Health.Background:SetAllPoints()
+	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
 	
 	Health.colorClass = false
 	Health.colorReaction = false
-    Health.colorTapping = false
-    Health.colorDisconnected = false
+	Health.colorTapping = false
+	Health.colorDisconnected = false
 	
 	Name:ClearAllPoints()
 	Name:SetParent(Health)

@@ -45,10 +45,10 @@ function UnitFrames:Player()
 	local Combat = self.CombatIndicator 
 	local ComboPointsBar = self.ComboPointsBar
 	local Font = T.GetFont(C["UnitFrames"].Font)
-		
+	
 	Panel:Hide()
 	
-	Health:SetHeight(23)
+	Health:SetHeight(23)	
 	Health:CreateShadow()
 	
 	Health.Value:Hide()
@@ -60,7 +60,7 @@ function UnitFrames:Player()
 	self:Tag(HealthCurrent, "[Tukui:GetNameColor][curhp]")
 	
 	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(.1, .1, .1)
+	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
 	
 	Health.colorTapping = false
 	Health.colorDisconnected = false
@@ -86,7 +86,7 @@ function UnitFrames:Player()
 
 	Castbar:ClearAllPoints()
 	Castbar:SetSize((PatBar1:GetWidth()) - 2, 12)
-	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -1, 3)
+	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -1, 4)
 	Castbar:CreateBackdrop("Transparent")
 	Castbar.Background:Hide()
 	Castbar:CreateShadow()

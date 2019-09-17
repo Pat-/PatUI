@@ -77,7 +77,7 @@ function UnitFrames:Raid()
 	Health:CreateShadow()
 	
 	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(.1, .1, .1)
+	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
 	
 	Health.colorTapping = false		
 	Health.colorDisconnected = false

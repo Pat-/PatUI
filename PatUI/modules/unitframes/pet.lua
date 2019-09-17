@@ -45,12 +45,15 @@ function UnitFrames:Pet()
 	Power:SetHeight(0)
 	
 	Health:SetHeight(23)
-	Health:SetFrameLevel(5)
 	Health:CreateShadow()
 	
 	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(.1, .1, .1)
+	Health.Background:ClearAllPoints()
+	Health.Background:SetAllPoints()
+	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
 	
+	Health.colorTapping = false
+	Health.colorDisconnected = false
 	Health.colorClass = false
 	Health.colorReaction = false
 	

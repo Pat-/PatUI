@@ -43,6 +43,7 @@ function Panels:Enable()
 	end
 	
 	DataTextLeft:SetBackdrop(nil)
+	DataTextLeft:SetBorderColor(0, 0, 0, 0)
 	DataTextLeft:ClearAllPoints()
 	DataTextLeft:SetFrameStrata("HIGH")
 	DataTextLeft:Point("CENTER", TabsBGLeft, "CENTER", 0, 0)
@@ -53,6 +54,8 @@ function Panels:Enable()
 	DataTextRight:Point("CENTER", TabsBGRight, "CENTER", 0, 0)
 	DataTextRight:Height(23)
 	
+	LeftChatBG:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
+	RightChatBG:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
 	TabsBGLeft:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
 	TabsBGRight:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
 end
@@ -64,16 +67,24 @@ function Experience:Create()
 	-- then my stuff
 	local XPBar = self.XPBar1
 	local XPBar2 = self.XPBar2
+	local RightChatBG = Panels.RightChatBG
 	
 	XPBar.Backdrop.Shadow:Kill()
 	XPBar2.Backdrop.Shadow:Kill()
 	XPBar2:ClearAllPoints()
 	
 	XPBar:ClearAllPoints()
-	XPBar:Point("TOPLEFT", Minimap, "BOTTOMLEFT", 0, -3)
-	XPBar:Height(5)
-	XPBar:Width(200)
 	XPBar:CreateShadow()
+	
+	if C["PatUI"]["DisableRight"] == true then
+		XPBar:Point("TOPLEFT", Minimap, "BOTTOMLEFT", 0, 4)
+		XPBar:Height(5)
+		XPBar:Width(196)
+	else
+		XPBar:Point("BOTTOMLEFT", RightChatBG, "TOPLEFT", 0, 4)
+		XPBar:Height(5)
+		XPBar:Width(RightChatBG:GetWidth())
+	end
 	
 	-- Lets declutter the screen a little and make Exp/Rep Bars hide when not moused over
 	if C["PatUI"]["RepExpMouseOver"] == true then
@@ -112,6 +123,7 @@ for i=1, 6 do
 	DataPoint[i]:SetTemplate("Transparent")
 	DataPoint[i]:SetFrameStrata("BACKGROUND")
 	DataPoint[i]:CreateShadow()
+	
 	
 	if(i == 1) then
 		DataPoint[i]:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -4)

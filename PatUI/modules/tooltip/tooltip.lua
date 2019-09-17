@@ -33,7 +33,7 @@ function Tooltips:CreateAnchor()
 		Anchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 0)
 	else
 		Anchor:ClearAllPoints()
-		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
+		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -18)
 	end
 	
 	-- Override OpenAllBags
@@ -63,7 +63,7 @@ function Tooltips:CreateAnchor()
 			Anchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 0)
 		else
 			Anchor:ClearAllPoints()
-			Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -25)
+			Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -18)
 		end
 	end
 end

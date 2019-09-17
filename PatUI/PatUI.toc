@@ -8,4 +8,4 @@
 ## RequiredDeps: Tukui
 
 PatUI.xml
-interrupt.lua 
+interrupt.lua

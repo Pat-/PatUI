@@ -5,8 +5,6 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 C["PatUI"] = {
 	["Healer"] = false,
 	["RepExpMouseOver"] = true,
-	["SplitBar5"] = true,
-	["HideRight"] = false,
 	["pInterrupt"] = false,
 	["DisableRight"] = false,
 }
@@ -14,13 +12,15 @@ C["PatUI"] = {
 -- General
 C["General"]["HideShadows"] = false
 C["General"]["WorldMapScale"] = 100
+C["General"]["BackdropColor"] = {0.11, 0.11, 0.11}
+C["General"]["BorderColor"] = {0, 0, 0}
 
 -- Actionbars	
 C["ActionBars"]["Enable"] = true
 C["ActionBars"]["HotKey"] = false
 C["ActionBars"]["EquipBorder"] = true
 C["ActionBars"]["Macro"] = true
-C["ActionBars"]["ShapeShift"] = false
+C["ActionBars"]["ShapeShift"] = true
 C["ActionBars"]["Pet"] = true
 C["ActionBars"]["SwitchBarOnStance"] = true
 C["ActionBars"]["NormalButtonSize"] = 26
@@ -32,7 +32,7 @@ C["ActionBars"]["Font"] = "PatUI"
 -- Auras
 C["Auras"]["Enable"] = true
 C["Auras"]["Flash"] = false
-C["Auras"]["ClassicTimer"] = false
+C["Auras"]["ClassicTimer"] = true
 C["Auras"]["HideBuffs"] = false
 C["Auras"]["HideDebuffs"] = false
 C["Auras"]["Animation"] = false

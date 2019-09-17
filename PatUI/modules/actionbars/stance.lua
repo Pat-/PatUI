@@ -16,5 +16,6 @@ function ActionBars:CreateStanceBar()
 	local LeftChatBG = Panels.LeftChatBG
 
 	StanceBar:ClearAllPoints()
-	StanceBar:SetPoint("TOPLEFT", LeftChatBG, "TOPLEFT", -1, 84)
+	StanceBar:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", -1, 4)
+	StanceBar:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
 end

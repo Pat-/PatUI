@@ -16,10 +16,10 @@ function UnitFrames:CreateUnits()
 	
 	-- Then my stuff
     local Target = UnitFrames.Units.Target
-
+	
 	Target:SetHeight(23)
 	Target:SetWidth(240)
-	
+		
 	Target.Shadow:Kill()
 	
 	Target:ClearAllPoints()
@@ -39,6 +39,7 @@ function UnitFrames:Target()
 	local Health = self.Health
 	local Power = self.Power
 	local Castbar = self.Castbar
+	local Portrait = self.Portrait
 	local Name = self.Name
 	local Buffs = self.Buffs
 	local Debuffs = self.Debuffs
@@ -63,12 +64,12 @@ function UnitFrames:Target()
 	self:Tag(HealthCurrent, "[Tukui:GetNameColor][curhp]")
 	
 	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(.1, .1, .1)
+	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
 	
 	Health.colorClass = false
 	Health.colorReaction = false
-    Health.colorTapping = false
-    Health.colorDisconnected = false
+	Health.colorTapping = false
+	Health.colorDisconnected = false
 
 	Power:ClearAllPoints()
 	Power:Point("TOPLEFT", Health, "BOTTOMLEFT", 4, 1)
@@ -95,8 +96,12 @@ function UnitFrames:Target()
 	Castbar.Background:Hide()
 	
 	Castbar.Time:ClearAllPoints()
+	Castbar.Time:Point("RIGHT", Castbar, "RIGHT", -4, 1)
+	Castbar.Time:SetJustifyH("RIGHT")
 
 	Castbar.Text:ClearAllPoints()
+	Castbar.Text:Point("LEFT", Castbar, "LEFT", 4, 1)
+	Castbar.Text:Size(160, 10)
 	
 	if (C["UnitFrames"]["TargetAuras"]) then
 		Buffs:SetHeight(27)
