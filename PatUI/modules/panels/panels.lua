@@ -28,6 +28,9 @@ function Panels:Enable()
 	LeftChatBG:SetHeight(C.Chat.LeftHeight + 38)
 	LeftChatBG.Backdrop.Shadow:Kill()
 	LeftChatBG:CreateShadow()
+	if C["PatUI"]["ThickBorders"] == true then
+		LeftChatBG:PatUI("Transparent")
+	end
 	
 	if C["PatUI"]["DisableRight"] == true then
 		RightChatBG:ClearAllPoints()
@@ -40,6 +43,9 @@ function Panels:Enable()
 		RightChatBG:SetHeight(C.Chat.RightHeight + 38)
 		RightChatBG.Backdrop.Shadow:Kill()
 		RightChatBG:CreateShadow()
+		if C["PatUI"]["ThickBorders"] == true then
+			RightChatBG:PatUI("Transparent")
+		end
 	end
 	
 	DataTextLeft:SetBackdrop(nil)
@@ -56,8 +62,27 @@ function Panels:Enable()
 	
 	LeftChatBG:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
 	RightChatBG:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
-	TabsBGLeft:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
-	TabsBGRight:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
+	
+	
+	if C["PatUI"]["ThickBorders"] == true then
+		local LeftTab = CreateFrame("Frame", nil, LeftChatBG)
+		LeftTab:Size(370, 23)
+		LeftTab:SetFrameLevel(DataTextLeft:GetFrameLevel() + 1)
+		LeftTab:PatUI("Transparent")
+		LeftTab:Point("CENTER", LeftChatBG, "CENTER", 0, 59)
+	
+		local RightTab = CreateFrame("Frame", nil, RightChatBG)
+		RightTab:Size(370, 23)
+		RightTab:SetFrameLevel(DataTextRight:GetFrameLevel() + 1)
+		RightTab:PatUI("Transparent")
+		RightTab:Point("CENTER", RightChatBG, "CENTER", 0, 59)
+	
+		TabsBGLeft:SetBackdropColor(0, 0, 0, 0)
+		TabsBGRight:SetBackdropColor(0, 0, 0, 0)
+	else
+		TabsBGLeft:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
+		TabsBGRight:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
+	end
 end
 
 function Experience:Create()
@@ -74,16 +99,26 @@ function Experience:Create()
 	XPBar2:ClearAllPoints()
 	
 	XPBar:ClearAllPoints()
-	XPBar:CreateShadow()
+	
+	if C["PatUI"]["ThickBorders"] == true then
+		local XPBG = CreateFrame("Frame", nil, XPBar)
+		XPBG:PatUI()
+		XPBG:SetFrameLevel(XPBar:GetFrameLevel() - 1)
+		XPBG:Size(XPBar:GetWidth(), 9)
+		XPBG:Point("CENTER", XPBar, "CENTER", 0, 0)
+		XPBG:CreateShadow()
+	else
+		XPBar:CreateShadow()
+	end
 	
 	if C["PatUI"]["DisableRight"] == true then
 		XPBar:Point("TOPLEFT", Minimap, "BOTTOMLEFT", 0, 4)
 		XPBar:Height(5)
 		XPBar:Width(196)
 	else
-		XPBar:Point("BOTTOMLEFT", RightChatBG, "TOPLEFT", 0, 4)
+		XPBar:Point("BOTTOMLEFT", RightChatBG, "TOPLEFT", 2, 5)
 		XPBar:Height(5)
-		XPBar:Width(RightChatBG:GetWidth())
+		XPBar:Width(RightChatBG:GetWidth() - 4)
 	end
 	
 	-- Lets declutter the screen a little and make Exp/Rep Bars hide when not moused over
@@ -120,7 +155,11 @@ for i=1, 6 do
 	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
 	DataPoint[i]:Width(120)
 	DataPoint[i]:Height(18)
-	DataPoint[i]:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		DataPoint[i]:PatUI("Transparent")
+	else
+		DataPoint[i]:SetTemplate("Transparent")
+	end
 	DataPoint[i]:SetFrameStrata("BACKGROUND")
 	DataPoint[i]:CreateShadow()
 	

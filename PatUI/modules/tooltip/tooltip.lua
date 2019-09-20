@@ -5,16 +5,22 @@ local Inventory = T["Inventory"]
 local Panels = T["Panels"]
 local Bags = Inventory["Bags"]
 
+local HealthBar = GameTooltipStatusBar
+
 local baseOpenAllBags = Bags.OpenAllBags
 local baseCloseAllBags = Bags.CloseAllBags
 local baseCreateAnchor = Tooltips.CreateAnchor
 local baseSetColor = Tooltips.SetColor
+local baseSkin = Tooltips.Skin
+local baseEnable = Tooltips.Enable
 
 function Tooltips:SetColor()
 	-- First call the base function
 	baseSetColor(self)
 
-	self.Backdrop:SetBackdropColor(0.1, 0.1, 0.1, 0.8) -- 0.8 alpha is just enough trasprancey that things behind it don't make the text unreadable but remains transparent
+	if C["PatUI"]["ThickBorders"] then return end
+	
+	self.Backdrop:SetBackdropColor(.1, .1, .1, .8)
 end
 
 -- Bags load first in Tukui
@@ -33,7 +39,7 @@ function Tooltips:CreateAnchor()
 		Anchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 0)
 	else
 		Anchor:ClearAllPoints()
-		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -18)
+		Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", -2, -13)
 	end
 	
 	-- Override OpenAllBags
@@ -63,7 +69,45 @@ function Tooltips:CreateAnchor()
 			Anchor:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -4, 0)
 		else
 			Anchor:ClearAllPoints()
-			Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", 0, -18)
+			Anchor:SetPoint("BOTTOMRIGHT", RightChat, "TOPRIGHT", -2, -13)
 		end
 	end
+end
+
+function Tooltips:Skin()
+	baseSkin(self)
+	--[[
+	if C["PatUI"]["ThickBorders"] == true then		
+		local bg = CreateFrame("Frame", nil, self)
+		bg:Size(1, 1)
+		bg:PatUI()
+		bg:SetFrameLevel(self:GetFrameLevel() - 1)
+		bg:SetFrameStrata(self:GetFrameStrata())
+		bg:Point("TOPLEFT", self, -2, 2)
+		bg:Point("BOTTOMRIGHT", self, 2, -2)
+		
+		--self.Shadow:Kill()
+	end
+	]]--
+end
+
+function Tooltips:Enable()
+	baseEnable(self)
+	--[[
+	if not C["PatUI"]["ThickBorders"] then return end
+	
+	HealthBar.Backdrop.Shadow:Kill()
+	
+	local bg = CreateFrame("Frame", nil, HealthBar)
+	bg:Size(1, 1)
+	bg:PatUI()
+	bg:SetFrameLevel(HealthBar:GetFrameLevel())
+	bg:SetFrameStrata(HealthBar:GetFrameStrata())
+	bg:Point("TOPLEFT", HealthBar, -2, 2)
+	bg:Point("BOTTOMRIGHT", HealthBar, 2, -2)
+	
+	HealthBar:ClearAllPoints()
+	HealthBar:Point("BOTTOMLEFT", HealthBar:GetParent(), "TOPLEFT", 0, 7)
+	HealthBar:Point("BOTTOMRIGHT", HealthBar:GetParent(), "TOPRIGHT", 0, 7)
+	]]--
 end

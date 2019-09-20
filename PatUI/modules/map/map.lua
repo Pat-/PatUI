@@ -1,12 +1,10 @@
 local T, C, L = Tukui:unpack()
 
 local Panels = T["Panels"]
-local Auras = T["Auras"]
 local Minimap = T["Maps"]["Minimap"]
-local ObjectiveTracker = T["Miscellaneous"]["ObjectiveTracker"]
 
 local baseEnable = Minimap.Enable
-local baseCreateHeaders = Auras.CreateHeaders
+local baseAddZoneAndCoords = Minimap.AddZoneAndCoords
 
 function Minimap:Enable()
 	-- First call the base function
@@ -26,6 +24,9 @@ function Minimap:Enable()
 	Minimap:ClearAllPoints()
 	Minimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -4, -4)
 	Minimap:CreateShadow()
+	if C["PatUI"]["ThickBorders"] == true then
+		Minimap:PatUI()
+	end
 
 	local Backdrop = self.Backdrop
 	MinimapDataText:Hide()
@@ -35,22 +36,30 @@ function Minimap:Enable()
 	Backdrop:Point("BOTTOMRIGHT", self, "BOTTOMRIGHT", 1, -1)
 end 
 
-function Auras:CreateHeaders()
-	-- First call the base function
-	baseCreateHeaders(self)
+function Minimap:AddZoneAndCoords()
+	baseAddZoneAndCoords(self)
 	
-	-- Then my stuff
-	local Headers = Auras.Headers
-	local Buffs = Headers[1]
-	local Debuffs = Headers[2]
+	local MinimapZone = self.MinimapZone
+	local MinimapCoords = self.MinimapCoords
 	
-	Buffs:ClearAllPoints()
-	Debuffs:ClearAllPoints()
-
-	Buffs:SetAttribute("wrapAfter", 17)
-	Buffs:SetAttribute("xOffset", -33)
-	Buffs:SetAttribute("wrapYOffset", -36)
-
-	Buffs:SetPoint("RIGHT", Minimap, "TOPLEFT",  -4, -16)
-	Debuffs:SetPoint("RIGHT", Minimap, "BOTTOMLEFT", -4, 16)
+	MinimapZone:SetWidth(186)
+	MinimapZone:ClearAllPoints()
+	MinimapZone:Point("TOP", self, 0, -5)
+	
+	local zonebg = CreateFrame("Frame", nil, MinimapZone)
+	zonebg:Size(1, 1)
+	zonebg:PatUI()
+	zonebg:Point("TOPLEFT", MinimapZone, -1.5, 1.5)
+	zonebg:Point("BOTTOMRIGHT", MinimapZone, 1.5, -1.5)
+	zonebg:SetFrameLevel(MinimapZone:GetFrameLevel() - 1)
+	
+	MinimapCoords:ClearAllPoints()
+	MinimapCoords:Point("BOTTOMLEFT", self, "BOTTOMLEFT", 5, 5)
+	
+	local coordsbg = CreateFrame("Frame", nil, MinimapCoords)
+	coordsbg:Size(1, 1)
+	coordsbg:PatUI()
+	coordsbg:Point("TOPLEFT", MinimapCoords, -1.5, 1.5)
+	coordsbg:Point("BOTTOMRIGHT", MinimapCoords, 1.5, -1.5)
+	coordsbg:SetFrameLevel(MinimapCoords:GetFrameLevel() - 1)
 end

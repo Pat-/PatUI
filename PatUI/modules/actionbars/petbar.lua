@@ -20,7 +20,11 @@ function ActionBars:CreatePetBar()
 	BarPet:SetPoint("RIGHT", UIParent, "RIGHT", -4, 0)
 	BarPet:SetWidth((Size) + (Spacing * 2))
 	BarPet:SetHeight((Size * 10) + (Spacing * 11))
-	BarPet:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		BarPet:PatUI("Transparent")
+	else
+		BarPet:SetTemplate("Transparent")
+	end
 	BarPet:CreateShadow()
 	BarPet:SetFrameStrata("BACKGROUND")
 	

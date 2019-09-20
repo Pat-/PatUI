@@ -1,7 +1,9 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="core.lua"/>
 	<Script file="player.lua"/>
 	<Script file="target.lua"/>
 	<Script file="pet.lua"/>
 	<Script file="tot.lua"/>
 	<Script file="raid.lua"/>
+	<Script file="nameplates.lua"/>
 </Ui>

@@ -23,7 +23,11 @@ function ActionBars:CreateBar4()
 	Bar4:Point("BOTTOMRIGHT", ActionBar1, "BOTTOMLEFT", -3, 0)
 	Bar4:Width((Size * 4) + (Spacing * 5))
 	Bar4:Height((Size * 3) + (Spacing * 4))
-	Bar4:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		Bar4:PatUI("Transparent")
+	else
+		Bar4:SetTemplate("Transparent")
+	end
 	Bar4:SetFrameLevel(ActionBar1:GetFrameLevel())
 	Bar4:SetFrameStrata(ActionBar1:GetFrameStrata())
 	Bar4:CreateShadow()

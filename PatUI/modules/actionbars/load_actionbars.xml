@@ -7,4 +7,5 @@
 	<Script file="bar5.lua"/>
 	<Script file="petbar.lua"/>
 	<Script file="buttons.lua"/>
+	<Script file="skin.lua"/>
 </Ui>

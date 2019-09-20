@@ -4,6 +4,7 @@
 	<Script file="datatext\datatext.lua"/>
 	<Script file="bags\bags.lua"/>
 	<Script file="map\map.lua"/>
+	<Script file="map\auras.lua"/>
 	<Script file="tooltip\tooltip.lua"/>
 
 	<Include file="actionbars\load_actionbars.xml"/>

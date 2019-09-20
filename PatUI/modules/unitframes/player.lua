@@ -48,8 +48,7 @@ function UnitFrames:Player()
 	
 	Panel:Hide()
 	
-	Health:SetHeight(23)	
-	Health:CreateShadow()
+	Health:Height(23)
 	
 	Health.Value:Hide()
 	local HealthCurrent = Health:CreateFontString(nil, "OVERLAY")
@@ -59,8 +58,8 @@ function UnitFrames:Player()
 	HealthCurrent:SetJustifyH("LEFT")
 	self:Tag(HealthCurrent, "[Tukui:GetNameColor][curhp]")
 	
-	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
+	Health:SetStatusBarColor(.15, .15, .15)
+	Health.Background:SetColorTexture(.05, .05, .05)
 	
 	Health.colorTapping = false
 	Health.colorDisconnected = false
@@ -73,7 +72,6 @@ function UnitFrames:Player()
 	Power:SetWidth(90)
 	Power:SetFrameLevel(10)
 	Power:CreateBackdrop("Default")
-	Power:CreateShadow()
 	Power.Background:Hide()
 	
 	Power.Value:Hide()
@@ -85,11 +83,10 @@ function UnitFrames:Player()
 	self:Tag(PowerCurrent, "[powercolor][curpp]")
 
 	Castbar:ClearAllPoints()
-	Castbar:SetSize((PatBar1:GetWidth()) - 2, 12)
-	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -1, 4)
+	Castbar:SetSize((PatBar1:GetWidth()) - 4, 12)
+	Castbar:SetPoint("BOTTOMRIGHT", PatBar1, "TOPRIGHT", -2, 5)
 	Castbar:CreateBackdrop("Transparent")
 	Castbar.Background:Hide()
-	Castbar:CreateShadow()
 	
 	Castbar.Time:ClearAllPoints()
 	Castbar.Time:Point("RIGHT", Castbar, "RIGHT", -4, 1)
@@ -131,36 +128,36 @@ function UnitFrames:Player()
 			end
 		end
 	end
-end
-
-local TukuiUnitFrames = T["UnitFrames"]
-local baseNameplates = TukuiUnitFrames.Nameplates
-
-function TukuiUnitFrames:Nameplates()
-	-- First call the base function
-	baseNameplates(self)
-
-	local Health = self.Health
-	local Power = self.Power
-	local Castbar = self.Castbar
 	
-	Health:ClearAllPoints()
-	Health:SetAllPoints(self)
-	Health:SetHeight(9)
-	Health:CreateBackdrop("Transparent")
-	Health.Background:Hide()
-	Health:CreateShadow()
-	
-	self:SetHeight(7)
-	self.Shadow:Kill()
-	
-	Castbar:Hide()
-	Castbar:SetHeight(0)
-	
-	Castbar.Icon:ClearAllPoints()
-	Castbar.Button:ClearAllPoints()
-	Castbar.Button.Shadow:Kill()
-	
-	Power:Hide()
-	Power:SetHeight(0)
+	if C["PatUI"]["ThickBorders"] == true then
+		local ufbg = CreateFrame("Frame", nil, self)
+		ufbg:SetFrameLevel(Health:GetFrameLevel() - 1)
+		ufbg:SetFrameStrata(Health:GetFrameStrata())
+		ufbg:Size(1, 1)
+		ufbg:Point("TOPLEFT", Health, -2, 2)
+		ufbg:Point("BOTTOMRIGHT", Health, 2, -2)
+		ufbg:PatUI()
+		ufbg:CreateShadow()
+		
+		local powerbg = CreateFrame("Frame", nil, self)
+		powerbg:SetFrameLevel(Health:GetFrameLevel() + 1)
+		powerbg:SetFrameStrata(Health:GetFrameStrata())
+		powerbg:Size(1, 1)
+		powerbg:Point("TOPLEFT", Power, -2, 2)
+		powerbg:Point("BOTTOMRIGHT", Power, 2, -2)
+		powerbg:PatUI()
+		powerbg:CreateShadow()
+		
+		local castbg = CreateFrame("Frame", nil, Castbar)
+		castbg:PatUI("Transparent")
+		castbg:Size(1, 1)
+		castbg:Point("TOPLEFT", Castbar, -2, 2)
+		castbg:Point("BOTTOMRIGHT", Castbar, 2, -2)
+		castbg:SetFrameLevel(Castbar:GetFrameLevel() - 1)
+		castbg:CreateShadow()
+	else
+		Health:CreateShadow()
+		Power:CreateShadow()
+		Castbar:CreateShadow()
+	end
 end

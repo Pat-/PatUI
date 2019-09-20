@@ -45,12 +45,24 @@ function UnitFrames:Pet()
 	Power:SetHeight(0)
 	
 	Health:SetHeight(23)
-	Health:CreateShadow()
 	
-	Health:SetStatusBarColor(.2, .2, .2)
+	if C["PatUI"]["ThickBorders"] == true then
+		local ufbg = CreateFrame("Frame", nil, self)
+		ufbg:SetFrameLevel(Health:GetFrameLevel() - 1)
+		ufbg:SetFrameStrata(Health:GetFrameStrata())
+		ufbg:Size(1, 1)
+		ufbg:Point("TOPLEFT", Health, -2, 2)
+		ufbg:Point("BOTTOMRIGHT", Health, 2, -2)
+		ufbg:PatUI()
+		ufbg:CreateShadow()
+	else
+		Health:CreateShadow()
+	end
+	
+	Health:SetStatusBarColor(.15, .15, .15)
+	Health.Background:SetColorTexture(.05, .05, .05)
 	Health.Background:ClearAllPoints()
 	Health.Background:SetAllPoints()
-	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
 	
 	Health.colorTapping = false
 	Health.colorDisconnected = false

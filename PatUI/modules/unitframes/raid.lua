@@ -5,32 +5,62 @@ local UnitFrames = T["UnitFrames"]
 local Panels = T["Panels"]
 local Class = select(2, UnitClass("player"))
 
-function UnitFrames:GetRaidFramesAttributes()
-	return
-		"TukuiRaid", 
-		nil, 
-		"solo,party,raid",
-		"oUF-initialConfigFunction", [[
-			local header = self:GetParent()
-			self:SetWidth(header:GetAttribute("initial-width"))
-			self:SetHeight(header:GetAttribute("initial-height"))
-		]],
-		"initial-width", PatBar3:GetWidth()/4.73 - 3.6,
-		"initial-height", 27,
-		"showParty", true,
-		"showRaid", true,
-		"showPlayer", true,
-		"showSolo", C["Raid"]["ShowSolo"],
-		"xoffset", 4,
-		"yOffset", -4,
-		"point", "LEFT",
-		"groupFilter", "1,2,3,4,5,6,7,8",
-		"groupingOrder", "1,2,3,4,5,6,7,8",
-		"groupBy", "GROUP",
-		"maxColumns", math.ceil(40/5),
-		"unitsPerColumn", C["Raid"].MaxUnitPerColumn,
-		"columnSpacing", 4,
-		"columnAnchorPoint", "BOTTOM"
+if C["PatUI"]["ThickBorders"] == true then
+	function UnitFrames:GetRaidFramesAttributes()
+		return
+			"TukuiRaid", 
+			nil, 
+			"solo,party,raid",
+			"oUF-initialConfigFunction", [[
+				local header = self:GetParent()
+				self:SetWidth(header:GetAttribute("initial-width"))
+				self:SetHeight(header:GetAttribute("initial-height"))
+			]],
+			"initial-width", 70,
+			"initial-height", 27,
+			"showParty", true,
+			"showRaid", true,
+			"showPlayer", true,
+			"showSolo", false,
+			"xoffset", 7,
+			"yOffset", -7,
+			"point", "LEFT",
+			"groupFilter", "1,2,3,4,5,6,7,8",
+			"groupingOrder", "1,2,3,4,5,6,7,8",
+			"groupBy", "GROUP",
+			"maxColumns", math.ceil(40/5),
+			"unitsPerColumn", C["Raid"].MaxUnitPerColumn,
+			"columnSpacing", 4,
+			"columnAnchorPoint", "BOTTOM"
+	end
+else
+	function UnitFrames:GetRaidFramesAttributes()
+		return
+			"TukuiRaid", 
+			nil, 
+			"solo,party,raid",
+			"oUF-initialConfigFunction", [[
+				local header = self:GetParent()
+				self:SetWidth(header:GetAttribute("initial-width"))
+				self:SetHeight(header:GetAttribute("initial-height"))
+			]],
+			"initial-width", 73.7,
+			"initial-height", 27,
+			"showParty", true,
+			"showRaid", true,
+			"showPlayer", true,
+			"showSolo", false,
+			"xoffset", 3,
+			"yOffset", -3,
+			"point", "LEFT",
+			"groupFilter", "1,2,3,4,5,6,7,8",
+			"groupingOrder", "1,2,3,4,5,6,7,8",
+			"groupBy", "GROUP",
+			"maxColumns", math.ceil(40/5),
+			"unitsPerColumn", C["Raid"].MaxUnitPerColumn,
+			"columnSpacing", 4,
+			"columnAnchorPoint", "BOTTOM"
+	end
 end
 
 local baseCreateUnits = UnitFrames.CreateUnits
@@ -48,8 +78,10 @@ function UnitFrames:CreateUnits()
 	Raid:ClearAllPoints()
 	if C["PatUI"]["Healer"] == true then
 		Raid:SetPoint("BOTTOM", PatBar1, "TOP", 0, 32)
+	elseif C["PatUI"]["ThickBorders"] == true then
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 2, 11)
 	else
-		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 0, 10)
+		Raid:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", 1, 11)
 	end
 end
 
@@ -74,10 +106,22 @@ function UnitFrames:Raid()
 	
 	-- health
 	Health:CreateBackdrop("Default")
-	Health:CreateShadow()
 	
-	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
+	if C["PatUI"]["ThickBorders"] == true then
+		local ufbg = CreateFrame("Frame", nil, self)
+		ufbg:SetFrameLevel(Health:GetFrameLevel() - 1)
+		ufbg:SetFrameStrata(Health:GetFrameStrata())
+		ufbg:Point("TOPLEFT", Health, -2, 2)
+		ufbg:Point("BOTTOMRIGHT", Health, 2, -2)
+		ufbg:Size(1, 1)
+		ufbg:PatUI()
+		ufbg:CreateShadow()
+	else
+		Health:CreateShadow()
+	end
+	
+	Health:SetStatusBarColor(.15, .15, .15)
+	Health.Background:SetColorTexture(.05, .05, .05)
 	
 	Health.colorTapping = false		
 	Health.colorDisconnected = false

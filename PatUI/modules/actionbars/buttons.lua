@@ -139,7 +139,11 @@ function ActionBars:CreateToggleButtons()
 	local B3B = CreateFrame("Button", "B3B", UIParent)
 	B3B:Point("BOTTOM", PatBar1, "TOP", 0, 3)
 	B3B:Size(PatBar1:GetWidth(), 19)
-	B3B:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		B3B:PatUI("Transparent")
+	else
+		B3B:SetTemplate("Transparent")
+	end
 	B3B:RegisterForClicks("AnyUp")
 	B3B:SetAlpha(0)
 	B3B:CreateShadow()
@@ -153,7 +157,11 @@ function ActionBars:CreateToggleButtons()
 	local B4B = CreateFrame("Button", "B4B", UIParent)
 	B4B:Size(19, PatBar1:GetHeight())
 	B4B:Point("RIGHT", PatBar4, "LEFT", -3, 0)
-	B4B:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		B4B:PatUI("Transparent")
+	else
+		B4B:SetTemplate("Transparent")
+	end
 	B4B:RegisterForClicks("AnyUp")
 	B4B:SetAlpha(0)
 	B4B:CreateShadow()
@@ -167,7 +175,11 @@ function ActionBars:CreateToggleButtons()
 	local B2B = CreateFrame("Button", "B2B", UIParent)
 	B2B:Size(PatBar1:GetWidth(), 19)
 	B2B:SetPoint("TOP", PatBar1, "BOTTOM", 0, -3)
-	B2B:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		B2B:PatUI("Transparent")
+	else
+		B2B:SetTemplate("Transparent")
+	end
 	B2B:RegisterForClicks("AnyUp")
 	B2B:CreateShadow()
 	B2B:SetAlpha(0)
@@ -181,7 +193,11 @@ function ActionBars:CreateToggleButtons()
 	local B5B = CreateFrame("Button", "B5B", UIParent)	
 	B5B:Size(19, PatBar1:GetHeight())
 	B5B:Point("LEFT", PatBar5, "RIGHT", 3, 0)
-	B5B:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		B5B:PatUI("Transparent")
+	else
+		B5B:SetTemplate("Transparent")
+	end
 	B5B:RegisterForClicks("AnyUp")
 	B5B:SetAlpha(0)
 	B5B:CreateShadow()

@@ -26,7 +26,11 @@ function ActionBars:CreateBar1()
 	Bar1:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 23)
 	Bar1:SetWidth((Size * 12) + (Spacing * 13))
 	Bar1:SetHeight((Size * 3) + (Spacing * 4))
-	Bar1:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		Bar1:PatUI("Transparent")
+	else
+		Bar1:SetTemplate("Transparent")
+	end
 	Bar1:CreateShadow()
 	
 	ActionBar1:SetParent(Bar1)

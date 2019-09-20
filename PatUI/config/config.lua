@@ -4,9 +4,10 @@ local class = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 -- Creating our own section of the Tukui Config
 C["PatUI"] = {
 	["Healer"] = false,
-	["RepExpMouseOver"] = true,
+	["RepExpMouseOver"] = false,
 	["pInterrupt"] = false,
 	["DisableRight"] = false,
+	["ThickBorders"] = true,
 }
 
 -- General

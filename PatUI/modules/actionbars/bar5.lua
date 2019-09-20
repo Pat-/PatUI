@@ -25,7 +25,11 @@ function ActionBars:CreateBar5()
 	Bar5:Point("BOTTOMLEFT", ActionBar1, "BOTTOMRIGHT", 3, 0)
 	Bar5:Width((Size * 4) + (Spacing * 5))
 	Bar5:Height((Size * 3) + (Spacing * 4))
-	Bar5:SetTemplate("Transparent")
+	if C["PatUI"]["ThickBorders"] == true then
+		Bar5:PatUI("Transparent")
+	else
+		Bar5:SetTemplate("Transparent")
+	end
 	Bar5:SetFrameLevel(ActionBar1:GetFrameLevel())
 	Bar5:SetFrameStrata(ActionBar1:GetFrameStrata())
 	Bar5:CreateShadow()

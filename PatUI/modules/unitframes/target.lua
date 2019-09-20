@@ -4,7 +4,7 @@ local T, C, L = Tukui:unpack()
 --	local variables
 ------------------------------------------------------------------------
 
-local UnitFrames = T.UnitFrames
+local UnitFrames = T["UnitFrames"]
 local Noop = function() end
 
 local baseCreateUnits = UnitFrames.CreateUnits
@@ -53,7 +53,6 @@ function UnitFrames:Target()
 	CombatFeedbackText:ClearAllPoints()
 	
 	Health:SetHeight(23)
-	Health:CreateShadow()
 	
 	Health.Value:Hide()
 	local HealthCurrent = Health:CreateFontString(nil, "OVERLAY")
@@ -63,8 +62,8 @@ function UnitFrames:Target()
 	HealthCurrent:SetJustifyH("LEFT")
 	self:Tag(HealthCurrent, "[Tukui:GetNameColor][curhp]")
 	
-	Health:SetStatusBarColor(.2, .2, .2)
-	Health.Background:SetColorTexture(0.6, 0.6, 0.6)
+	Health:SetStatusBarColor(.15, .15, .15)
+	Health.Background:SetColorTexture(.05, .05, .05)
 	
 	Health.colorClass = false
 	Health.colorReaction = false
@@ -77,12 +76,7 @@ function UnitFrames:Target()
 	Power:SetWidth(90)
 	Power:SetFrameLevel(10)
 	Power:CreateBackdrop("Default")
-	Power:CreateShadow()
 	Power.Background:Hide()
-	
-	--Power.Value:ClearAllPoints()
-	--Power.Value:Point("LEFT", Health, "LEFT", 4, 0)
-	--Power.Value:SetShadowOffset(0, 0)
 	
 	Name:ClearAllPoints()
 	Name:SetParent(Health)
@@ -115,6 +109,8 @@ function UnitFrames:Target()
 		Buffs:ClearAllPoints()
 		Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -1, 1)
 		Buffs:SetParent(Health)
+		Buffs.PostCreateIcon = UnitFrames.PostCreateAura
+		Buffs.PostUpdateIcon = UnitFrames.PostUpdateAura
 		Buffs.PostUpdate = UnitFrames.UpdateBuffsHeaderPosition
 		
 		Debuffs:SetHeight(29)
@@ -128,8 +124,42 @@ function UnitFrames:Target()
 		Debuffs:ClearAllPoints()
 		Debuffs:SetPoint("BOTTOMRIGHT", Health, "TOPRIGHT", 0, 35)
 		Debuffs:SetParent(Health)
+		Debuffs.PostCreateIcon = UnitFrames.PostCreateAura
+		Debuffs.PostUpdateIcon = UnitFrames.PostUpdateAura
 		
 		Buffs.ClearAllPoints = T.dummy
 		Debuffs.ClearAllPoints = T.dummy
+	end
+	
+	if C["PatUI"]["ThickBorders"] == true then
+		local ufbg = CreateFrame("Frame", nil, self)
+		ufbg:SetFrameLevel(Health:GetFrameLevel() - 1)
+		ufbg:SetFrameStrata(Health:GetFrameStrata())
+		ufbg:Size(1, 1)
+		ufbg:Point("TOPLEFT", Health, -2, 2)
+		ufbg:Point("BOTTOMRIGHT", Health, 2, -2)
+		ufbg:PatUI()
+		ufbg:CreateShadow()
+		
+		local powerbg = CreateFrame("Frame", nil, self)
+		powerbg:SetFrameLevel(Health:GetFrameLevel() + 1)
+		powerbg:SetFrameStrata(Health:GetFrameStrata())
+		powerbg:Size(1, 1)
+		powerbg:Point("TOPLEFT", Power, -2, 2)
+		powerbg:Point("BOTTOMRIGHT", Power, 2, -2)
+		powerbg:PatUI()
+		powerbg:CreateShadow()
+		
+		local castbg = CreateFrame("Frame", nil, Castbar)
+		castbg:PatUI("Transparent")
+		castbg:Size(1, 1)
+		castbg:Point("TOPLEFT", Castbar, -2, 2)
+		castbg:Point("BOTTOMRIGHT", Castbar, 2, -2)
+		castbg:SetFrameLevel(Castbar:GetFrameLevel() - 1)
+		castbg:CreateShadow()
+	else
+		Health:CreateShadow()
+		Power:CreateShadow()
+		Castbar:CreateShadow()
 	end
 end

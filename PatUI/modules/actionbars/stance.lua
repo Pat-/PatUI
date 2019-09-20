@@ -18,4 +18,8 @@ function ActionBars:CreateStanceBar()
 	StanceBar:ClearAllPoints()
 	StanceBar:SetPoint("BOTTOMLEFT", LeftChatBG, "TOPLEFT", -1, 4)
 	StanceBar:SetBackdropColor(0.1, 0.1, 0.1, 0.4)
+	if C["PatUI"]["ThickBorders"] == true then
+		StanceBar.Backdrop:PatUI()
+		StanceBar.Backdrop:SetBorderColor(.2, .2, .2)
+	end
 end
