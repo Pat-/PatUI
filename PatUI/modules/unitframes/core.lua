@@ -8,14 +8,20 @@ local UnitFrames = T["UnitFrames"]
 local Noop = function() end
 
 local basePostCreateAura = UnitFrames.PostCreateAura
---[[
-function UnitFrames:PostCreateAura()
-	basePostCreateAura(self)
+
+function UnitFrames:PostCreateAura(button)
+	basePostCreateAura(self, button)
 	
-	self:CreateBackdrop()
-	self.Backdrop:Point("TOPLEFT", self, "TOPLEFT", -1.5, 1.5)
-	self.Backdrop:Point("BOTTOMRIGHT", self, "BOTTOMRIGHT", 1.5, -1.5)
-	self:SetTemplate("Triple")
-	self.icon:SetInside(self.Backdrop, 2, 2)
+	if C["PatUI"]["ThickBorders"] == true then
+		local bg = CreateFrame("Frame", nil, button)
+		bg:SetFrameLevel(button:GetFrameLevel() - 1)
+		bg:SetFrameStrata(button:GetFrameStrata())
+		bg:Size(1, 1)
+		bg:Point("TOPLEFT", button, -1.5, 1.5)
+		bg:Point("BOTTOMRIGHT", button, 1.5, -1.5)
+		bg:PatUI("Transparent")
+		bg:CreateShadow()		
+		
+		button.Shadow:Kill()
+	end
 end
-]]--

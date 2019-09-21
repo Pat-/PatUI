@@ -4,10 +4,10 @@ local T, C, L = Tukui:unpack()
 --	local variables
 ------------------------------------------------------------------------
 
-local TukuiUnitFrames = T["UnitFrames"]
-local baseNameplates = TukuiUnitFrames.Nameplates
+local UnitFrames = T["UnitFrames"]
+local baseNameplates = UnitFrames.Nameplates
 
-function TukuiUnitFrames:Nameplates()
+function UnitFrames:Nameplates()
 	-- First call the base function
 	baseNameplates(self)
 
@@ -36,7 +36,6 @@ function TukuiUnitFrames:Nameplates()
 
 	self:SetHeight(7)
 	self.Shadow:Kill()
-	
 	
 	if C["NamePlates"]["NameplateCastBar"] == true then
 		Castbar:Hide()

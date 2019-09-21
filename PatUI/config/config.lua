@@ -129,7 +129,7 @@ C["Textures"]["NPCastTexture"] = "Blank"
 
 -- Unitframes	
 C["UnitFrames"]["Enable"] = true
-C["UnitFrames"]["Portrait"] = false
+C["UnitFrames"]["Portrait"] = true
 C["UnitFrames"]["CastBar"] = true
 C["UnitFrames"]["ComboBar"] = true
 C["UnitFrames"]["CastBarIcon"] = false

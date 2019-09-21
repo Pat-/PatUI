@@ -93,8 +93,9 @@ end
 
 function Tooltips:Enable()
 	baseEnable(self)
-	--[[
 	if not C["PatUI"]["ThickBorders"] then return end
+	
+	print("Tooltips:Enable running...")
 	
 	HealthBar.Backdrop.Shadow:Kill()
 	
@@ -109,5 +110,4 @@ function Tooltips:Enable()
 	HealthBar:ClearAllPoints()
 	HealthBar:Point("BOTTOMLEFT", HealthBar:GetParent(), "TOPLEFT", 0, 7)
 	HealthBar:Point("BOTTOMRIGHT", HealthBar:GetParent(), "TOPRIGHT", 0, 7)
-	]]--
 end

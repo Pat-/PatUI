@@ -64,33 +64,38 @@ end
 function Bags:SkinBagButton()
 	baseSkinBagButton(self)
 	
-	if C["PatUI"]["ThickBorders"] == true then
-		local bg = CreateFrame("Frame", nil, self)
-		bg:SetFrameLevel(self:GetFrameLevel() - 1)
-		bg:SetFrameStrata(self:GetFrameStrata())
-		bg:Size(1, 1)
-		bg:Point("TOPLEFT", self, -1.5, 1.5)
-		bg:Point("BOTTOMRIGHT", self, 1.5, -1.5)
-		bg:PatUI()
-	end
+	if not C["PatUI"]["ThickBorders"] then return end
+	
+	local bg = CreateFrame("Frame", nil, self)
+	bg:SetFrameLevel(self:GetFrameLevel() - 1)
+	bg:SetFrameStrata(self:GetFrameStrata())
+	bg:Size(1, 1)
+	bg:Point("TOPLEFT", self, -1.5, 1.5)
+	bg:Point("BOTTOMRIGHT", self, 1.5, -1.5)
+	bg:PatUI()
 end
 
 function Loot:Enable()
 	baseEnable(self)
 	
-	if C["PatUI"]["ThickBorders"] == true then
-		TukuiLootFrame.Overlay:PatUI("Transparent")
-	end
+	if not C["PatUI"]["ThickBorders"] then return end
+	
+	TukuiLootFrame.Overlay:PatUI("Transparent")
 end
 
---[[
-function Loot:CreateSlots()
-	baseCreateSlots(id)
+function Loot:CreateSlots(id)
+	baseCreateSlots(self, id)
+	
+	if not C["PatUI"]["ThickBorders"] then return end
 	
 	local frame = TukuiLootFrame.LootSlots[id]
+	local iconFrame = frame.iconFrame
+	local icon = frame.icon
 	
-	if C["PatUI"]["ThickBorders"] == true then
-		frame:PatUI("Transparent")
-	end
+	frame:PatUI("Transparent")
+	iconFrame:PatUI()
+	iconFrame:SetBorderColor(.2, .2, .2)
+	icon:SetInside(iconFrame, 2, 2)
+	
+	return frame
 end
-]]--

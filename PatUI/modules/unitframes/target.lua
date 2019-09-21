@@ -98,16 +98,24 @@ function UnitFrames:Target()
 	Castbar.Text:Size(160, 10)
 	
 	if (C["UnitFrames"]["TargetAuras"]) then
+		if C["PatUI"]["ThickBorders"] == true then
+			Buffs.spacing = 4
+			Debuffs.spacing = 4
+			Buffs:ClearAllPoints()
+			Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -1, 3)
+		else
+			Buffs.spacing = 1
+			Debuffs.spacing = 1
+			Buffs:ClearAllPoints()
+			Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -1, 1)		
+		end
 		Buffs:SetHeight(27)
 		Buffs:SetWidth(260)
 		Buffs.size = 24
 		Buffs.num = 9
-		Buffs.spacing = 1
 		Buffs.initialAnchor = 'TOPLEFT'
 		Buffs["growth-y"] = "UP"
 		Buffs["growth-x"] = "RIGHT"
-		Buffs:ClearAllPoints()
-		Buffs:SetPoint("BOTTOMLEFT", Health, "TOPLEFT", -1, 1)
 		Buffs:SetParent(Health)
 		Buffs.PostCreateIcon = UnitFrames.PostCreateAura
 		Buffs.PostUpdateIcon = UnitFrames.PostUpdateAura
@@ -117,7 +125,6 @@ function UnitFrames:Target()
 		Debuffs:SetWidth(240)
 		Debuffs.size = 27
 		Debuffs.num = 16
-		Debuffs.spacing = 1
 		Debuffs.initialAnchor = 'TOPRIGHT'
 		Debuffs["growth-y"] = "UP"
 		Debuffs["growth-x"] = "LEFT"
@@ -129,6 +136,27 @@ function UnitFrames:Target()
 		
 		Buffs.ClearAllPoints = T.dummy
 		Debuffs.ClearAllPoints = T.dummy
+	end
+	
+	if C["UnitFrames"]["Portrait"] == true then
+		Portrait:Size(40, 40)
+		Portrait:ClearAllPoints()
+		Portrait:Point("LEFT", Health, "RIGHT", 8, 9)
+			
+		Health:ClearAllPoints()
+		Health:SetAllPoints(self)
+		if C["PatUI"]["ThickBorders"] == true then			
+			local portraitbg = CreateFrame("Frame", nil, self)
+			portraitbg:SetFrameLevel(Portrait:GetFrameLevel())
+			portraitbg:SetFrameStrata(Portrait:GetFrameStrata())
+			portraitbg:Size(46, 45)
+			portraitbg:Point("CENTER", Portrait, "CENTER", 0, 0)
+			portraitbg:PatUI()
+			portraitbg:CreateShadow()
+			
+			Health:ClearAllPoints()
+			Health:SetAllPoints(self)
+		end
 	end
 	
 	if C["PatUI"]["ThickBorders"] == true then

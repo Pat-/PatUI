@@ -100,6 +100,24 @@ function UnitFrames:Player()
 	
 	CombatFeedbackText:ClearAllPoints()
 	
+	if C["UnitFrames"]["Portrait"] == true then
+		Portrait:Size(40, 40)
+		Portrait:ClearAllPoints()
+		Portrait:Point("RIGHT", Health, "LEFT", -8, 9)
+	
+		Health:ClearAllPoints()
+		Health:SetAllPoints(self)
+		if C["PatUI"]["ThickBorders"] == true then			
+			local portraitbg = CreateFrame("Frame", nil, self)
+			portraitbg:SetFrameLevel(Portrait:GetFrameLevel())
+			portraitbg:SetFrameStrata(Portrait:GetFrameStrata())
+			portraitbg:Size(46, 45)
+			portraitbg:Point("CENTER", Portrait, "CENTER", 0, 0)
+			portraitbg:PatUI()
+			portraitbg:CreateShadow()
+		end
+	end
+	
 	if (Class == "ROGUE" or Class == "DRUID") then
 		
 		ComboPointsBar:ClearAllPoints()
@@ -108,11 +126,32 @@ function UnitFrames:Player()
 		ComboPointsBar:SetAlpha(1)
 		ComboPointsBar:SetBackdrop(nil)
 		ComboPointsBar:CreateBackdrop("Transparent")
-		ComboPointsBar:CreateShadow()
 		
-		ComboPointsBar:SetPoint("BOTTOM", Health, "TOP", 0, 3)
+		if C["PatUI"]["ThickBorders"] == true then
+			ComboPointsBar:SetPoint("BOTTOM", Health, "TOP", 0, 6)
+			
+			local bg = CreateFrame("Frame", "ComboBG", ComboPointsBar)
+			bg:SetFrameLevel(ComboPointsBar:GetFrameLevel() - 1)
+			bg:SetFrameStrata(ComboPointsBar:GetFrameStrata())
+			bg:Size(1, 1)
+			bg:Point("TOPLEFT", ComboPointsBar, -2, 2)
+			bg:Point("BOTTOMRIGHT", ComboPointsBar, 2, -2)
+			bg:PatUI("Transparent")
+			bg:Hide()
+		else
+			ComboPointsBar:SetPoint("BOTTOM", Health, "TOP", 0, 3)
+			ComboPointsBar:CreateShadow()
+		end
 		
-		for i = 1, 5 do -- classic is capped at 5
+		ComboPointsBar:SetScript("OnShow", function(self)
+			ComboBG:Show()
+		end)
+
+		ComboPointsBar:SetScript("OnHide", function(self)
+			ComboBG:Hide()
+		end)
+		
+		for i = 1, 5 do
 		ComboPointsBar[i]:ClearAllPoints()
 		ComboPointsBar[i]:CreateBackdrop()
 		ComboPointsBar[i]:Height(5)
@@ -120,11 +159,9 @@ function UnitFrames:Player()
 			if i == 1 then
 				ComboPointsBar[i]:Point("LEFT", ComboPointsBar, "LEFT", 0, 0)
 				ComboPointsBar[i]:SetWidth(48)
-				ComboPointsBar[i].BarSizeForMaxComboIs5 = 48
 			else
 				ComboPointsBar[i]:Point("LEFT", ComboPointsBar[i-1], "RIGHT", 1, 0)
 				ComboPointsBar[i]:SetWidth(47)
-				ComboPointsBar[i].BarSizeForMaxComboIs5 = 47
 			end
 		end
 	end
