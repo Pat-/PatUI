@@ -120,13 +120,15 @@ function UnitFrames:Raid()
 		Health:CreateShadow()
 	end
 	
-	Health:SetStatusBarColor(.15, .15, .15)
-	Health.Background:SetColorTexture(.05, .05, .05)
+	--Health:SetStatusBarColor(.15, .15, .15)
+	--Health.Background:SetColorTexture(.05, .05, .05)
 	
 	Health.colorTapping = false		
 	Health.colorDisconnected = false
 	Health.colorClass = false
 	Health.colorReaction = false
+	
+	Health.PostUpdate = UnitFrames.PostUpdateHealth
 	
 	-- Power	
 	Power:ClearAllPoints()

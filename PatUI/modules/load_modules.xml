@@ -6,6 +6,7 @@
 	<Script file="map\map.lua"/>
 	<Script file="map\auras.lua"/>
 	<Script file="tooltip\tooltip.lua"/>
+	<Script file="misc\interrupt.lua"/>
 
 	<Include file="actionbars\load_actionbars.xml"/>
 	<Include file="unitframes\load_unitframes.xml"/>

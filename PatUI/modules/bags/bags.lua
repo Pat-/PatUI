@@ -18,6 +18,7 @@ function Bags:CreateContainer(storagetype, ...)
 	local Container = self[storagetype]
 	local RightChatBG = Panels.RightChatBG
 	local LeftChatBG = Panels.LeftChatBG
+	local SearchBox = Container.SearchBox
 
 	Container:SetBackdropColor(0.1, 0.1, 0.1, 0.5)
 	Container:SetFrameLevel(10)
@@ -43,6 +44,8 @@ function Bags:CreateContainer(storagetype, ...)
 		elseif C["PatUI"]["ThickBorders"] == true then
 			Container:ClearAllPoints()
 			Container:SetPoint("BOTTOMRIGHT", RightChatBG, "TOPRIGHT", -1, 16)
+			
+			SearchBox.Backdrop:PatUI()
 		else
 			Container:ClearAllPoints()
 			Container:SetPoint("BOTTOMRIGHT", RightChatBG, "TOPRIGHT", 0, 14)

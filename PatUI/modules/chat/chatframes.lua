@@ -163,10 +163,17 @@ function Chat:AddToggles()
 	local Panels = T.Panels
 	
 	Panels.LeftChatToggle:ClearAllPoints()
-	Panels.LeftChatToggle:SetPoint("TOPLEFT", Panels.LeftChatBG, "TOPRIGHT", 6, 0)
+	Panels.LeftChatToggle:SetPoint("TOPLEFT", Panels.LeftChatBG, "TOPRIGHT", 5, 0)
 	Panels.LeftChatToggle:SetBackdropColor(0.1, 0.1, 0.1, 0.8)
 	
 	Panels.RightChatToggle:ClearAllPoints()
-	Panels.RightChatToggle:SetPoint("TOPRIGHT", Panels.RightChatBG, "TOPLEFT", -6, 0)
+	Panels.RightChatToggle:SetPoint("TOPRIGHT", Panels.RightChatBG, "TOPLEFT", -5, 0)
 	Panels.RightChatToggle:SetBackdropColor(0.1, 0.1, 0.1, 0.8)
+	
+	if C["PatUI"]["ThickBorders"] == true then
+		Panels.RightChatToggle:PatUI("Transparent")
+		Panels.RightChatToggle:SetBorderColor(.2, .2, .2)
+		Panels.LeftChatToggle:PatUI("Transparent")
+		Panels.LeftChatToggle:SetBorderColor(.2, .2, .2)
+	end
 end

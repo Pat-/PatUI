@@ -11,7 +11,6 @@ local PatUI = function(self)
 	Window:CreateSwitch("PatUI", "RepExpMouseOver", "Enable to make Rep/Exp hide")
 	Window:CreateSwitch("PatUI", "pInterrupt", "Enables an interrupt announcer (set to /say)")
 	Window:CreateSwitch("PatUI", "DisableRight", "Enable to move loot window to left chatframe (use /tukui chat reset)")
-	Window:CreateSwitch("PatUI", "ThickBorders", "Enables 3px borders on Tukui frames")
 end
 
 GUI:AddWidgets(PatUI)
