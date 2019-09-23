@@ -97,10 +97,6 @@ function UnitFrames:Raid()
 	local Name = self.Name
 	local ReadyCheck = self.ReadyCheckIndicator
 	local RaidIcon = self.RaidTargetIndicator
-	
-	local IsInGroup = IsInGroup
-	local UnitIsUnit = UnitIsUnit
-	local raidscale = 1
 		
 	self.Shadow:Kill()
 	
@@ -120,8 +116,8 @@ function UnitFrames:Raid()
 		Health:CreateShadow()
 	end
 	
-	--Health:SetStatusBarColor(.15, .15, .15)
-	--Health.Background:SetColorTexture(.05, .05, .05)
+	Health.Background:ClearAllPoints()
+	Health.Background:SetAllPoints()
 	
 	Health.colorTapping = false		
 	Health.colorDisconnected = false

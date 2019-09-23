@@ -8,6 +8,7 @@ C["PatUI"] = {
 	["pInterrupt"] = false,
 	["DisableRight"] = false,
 	["ThickBorders"] = true,
+	["DataText"] = 6,
 }
 
 -- General

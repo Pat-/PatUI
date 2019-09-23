@@ -4,6 +4,7 @@ local Panels = T["Panels"]
 local Experience = T["Miscellaneous"]["Experience"]
 local Reputation = T["Miscellaneous"]["Reputation"]
 local Minimap = T["Maps"]["Minimap"]
+local Movers = T["Movers"]
 
 local baseEnable = Panels.Enable
 local baseExp = Experience.Create
@@ -150,9 +151,15 @@ end
 ------------------------------------------------------------------------
 
 local DataPoint = {}
+local NumDataText = C["PatUI"]["DataText"]
 
-for i=1, 6 do	
-	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, UIParent)
+local InvFrame = CreateFrame("Frame", "DataTextMover", UIParent)
+InvFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -4)
+InvFrame:Size(120, 18)
+Movers:RegisterFrame(InvFrame)
+
+for i=1, NumDataText do
+	DataPoint[i] = CreateFrame("Frame", "DataPoint"..i, DataTextMover)
 	DataPoint[i]:Width(120)
 	DataPoint[i]:Height(18)
 	if C["PatUI"]["ThickBorders"] == true then
@@ -165,7 +172,7 @@ for i=1, 6 do
 	
 	
 	if(i == 1) then
-		DataPoint[i]:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 4, -4)
+		DataPoint[i]:SetPoint("CENTER", DataTextMover, "CENTER", 0, 0)
 	else
 		DataPoint[i]:Point("TOP", "DataPoint"..i - 1, "BOTTOM", 0, -3)
 	end

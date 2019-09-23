@@ -152,6 +152,49 @@ function UnitFrames:Player()
 		Combat:Point("CENTER", Health, "CENTER", 0, 0)
 		
 		CombatFeedbackText:ClearAllPoints()
+		
+		if (Class == "ROGUE" or Class == "DRUID") then
+			
+			ComboPointsBar:ClearAllPoints()
+			ComboPointsBar:Size(225, 5)
+			ComboPointsBar:SetFrameLevel(15)
+			ComboPointsBar:SetAlpha(1)
+			ComboPointsBar:SetBackdrop(nil)
+			ComboPointsBar:CreateBackdrop("Transparent")
+			ComboPointsBar:SetPoint("BOTTOM", Health, "TOP", 0, 7)
+				
+			local bg = CreateFrame("Frame", "ComboBG", ComboPointsBar)
+			bg:SetFrameLevel(ComboPointsBar:GetFrameLevel() - 1)
+			bg:SetFrameStrata(ComboPointsBar:GetFrameStrata())
+			bg:Size(1, 1)
+			bg:Point("TOPLEFT", ComboPointsBar, -2, 2)
+			bg:Point("BOTTOMRIGHT", ComboPointsBar, 2, -2)
+			bg:PatUI("Transparent")
+			bg:CreateShadow()
+			bg:Hide()
+			
+			ComboPointsBar:SetScript("OnShow", function(self)
+				ComboBG:Show()
+			end)
+
+			ComboPointsBar:SetScript("OnHide", function(self)
+				ComboBG:Hide()
+			end)
+			
+			for i = 1, 5 do
+			ComboPointsBar[i]:ClearAllPoints()
+			ComboPointsBar[i]:CreateBackdrop()
+			ComboPointsBar[i]:Height(5)
+
+				if i == 1 then
+					ComboPointsBar[i]:Point("LEFT", ComboPointsBar, "LEFT", 0, 0)
+					ComboPointsBar[i]:SetWidth(45)
+				else
+					ComboPointsBar[i]:Point("LEFT", ComboPointsBar[i-1], "RIGHT", 1, 0)
+					ComboPointsBar[i]:SetWidth(44)
+				end
+			end
+		end
 	else
 		Health:Height(23)
 		

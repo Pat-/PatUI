@@ -33,11 +33,12 @@ end
 ------------------------------------------------------------------------------------------
 -- Datatexts anchors
 ------------------------------------------------------------------------------------------
+
 function TukuiDT:CreateAnchors()
 		local Panels = T["Panels"]
 		local points = { DataPoint2, DataPoint3, DataPoint4, DataPoint5, DataPoint6 }
 
-		self.NumAnchors = 6
+		self.NumAnchors = C["PatUI"]["DataText"]
 		
 	------------------------------------------------------------------------------------------	
 		-- anchor frame setup

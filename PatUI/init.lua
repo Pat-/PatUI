@@ -4,7 +4,7 @@ local Toons = {
   ["Patqt-Mankrik"] = true,
   ["Patlol-Mankrik"] = true,
   ["Maydie-Mankrik"] = true,
-  ["Akirios-Mankrik"] = true,
+  ["Akrios-Mankrik"] = true,
   ["Teller-Mankrik"] = true
 }
 

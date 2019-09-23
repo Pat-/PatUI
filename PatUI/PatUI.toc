@@ -2,7 +2,7 @@
 ## Title: |cff18AA18PatUI|r
 ## Notes: PatUI Edit for Tukui Classic
 ## Credits: Tukz, Sinaris, Ekst, Flyingboots, Elv22, Eclipse, Hydra, Dandraffbal
-## Version: 0.3
+## Version: 0.3.1
 ## Author: Pat
 ## SavedVariablesPerCharacter: PatUICharData
 ## RequiredDeps: Tukui
