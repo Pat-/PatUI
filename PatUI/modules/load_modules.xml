@@ -1,15 +1,21 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">	
 	<Script file="panels\panels.lua"/>
 	<Script file="chat\chatframes.lua"/>
+	<Script file="chat\bubbles.lua"/>
 	<Script file="datatext\datatext.lua"/>
 	<Script file="bags\bags.lua"/>
 	<Script file="map\map.lua"/>
+	<Script file="map\worldmap.lua"/>
 	<Script file="tooltip\tooltip.lua"/>
-	<SCript file="nameplates\nameplates.lua"/>
+	<Script file="misc\altpower.lua"/>
+	<Script file="misc\RepExp.lua"/>
+	<Script file="misc\misc.lua"/>
+	<Script file="misc\objective.lua"/>
+	<!--Script file="nameplates\nameplates.lua"/-->
 
 	<Include file="actionbars\load_actionbars.xml"/>
 	<Include file="unitframes\load_unitframes.xml"/>
 	<Include file="classbars\load_classbars.xml"/>
-	<Include file="misc\load_misc.xml"/>
-	<Include file="skins\load_skins.xml"/>
+	<!--Include file="misc\load_misc.xml"/>
+	<Include file="skins\load_skins.xml"/-->
 </Ui>

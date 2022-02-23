@@ -1,7 +1,0 @@
-## Interface: 50400
-## Title: |cff18AA18PatUI Healing|r
-## Notes:
-## Author: Pat
-## RequiredDeps: Tukui, PatUI, !PatUI_Config
-
-Healing.lua

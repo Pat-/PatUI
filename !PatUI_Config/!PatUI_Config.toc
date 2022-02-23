@@ -1,6 +1,0 @@
-## Interface: 50400
-## Title: |cff18AA18!PatUI Config|r
-## Notes:
-## Author: Pat
-
-config.lua

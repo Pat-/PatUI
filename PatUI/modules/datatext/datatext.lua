@@ -1,70 +1,126 @@
-local P, C, L, G = unpack(Tukui)
+local T, C, L = Tukui:unpack()
 
---our own datatext position function because we made our custom panel
-local DataTextPosition = function(f, t, o)
-	local points = { DataPoint1, DataPoint2, DataPoint3, DataPoint4, DataPoint5, DataPoint6 }
+local TukuiDT = T["DataTexts"]
+local Chat = T["Chat"]
+
+local baseEnable = TukuiDT.Enable
+
+function TukuiDT:Enable()
+	baseEnable(self)
+
+	TukuiLeftDataTextBox:ClearAllPoints()
+	TukuiLeftDataTextBox:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 22, 9)
+	TukuiLeftDataTextBox:SetHeight(22)
+	TukuiLeftDataTextBox:PatUI()
+	TukuiLeftDataTextBox:SetFrameLevel(5)
+	TukuiLeftDataTextBox.Backdrop:SetFrameStrata("BACKGROUND")
+
+	TukuiRightDataTextBox:ClearAllPoints()
+	TukuiRightDataTextBox:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -22, 9)
+	TukuiRightDataTextBox:SetHeight(22)
+	TukuiRightDataTextBox:PatUI()
+	TukuiRightDataTextBox:SetFrameLevel(5)
+	TukuiRightDataTextBox.Backdrop:SetFrameStrata("BACKGROUND")
+end
+
+------------------------------------------------------------------------------------------
+-- Datatexts
+------------------------------------------------------------------------------------------
+local RemoveData = function(self)
+	if self.Data then
+		self.Data.Position = 0
+		self.Data:Disable()
+	end
+	self.Data = nil
+end
+
+local SetData = function(self, object)
+	-- Disable the old data text in use
+	if self.Data then
+		RemoveData(self)
+	end
+	-- Set the new data text
+	self.Data = object
+	self.Data:Enable()
+	self.Data.Text:SetPoint("RIGHT", self, 0, 0)
+	self.Data.Text:SetPoint("LEFT", self, 0, 0)
+	self.Data.Text:SetPoint("TOP", self, 0, -1)
+	self.Data.Text:SetPoint("BOTTOM", self, 0, -1)
+	self.Data.Position = self.Num
+	self.Data:SetAllPoints(self.Data.Text)
+	self.Data.Text:SetFontObject(T.GetFont(C["DataTexts"].Font))
+end
+
+------------------------------------------------------------------------------------------
+-- Datatexts anchors
+------------------------------------------------------------------------------------------
+function TukuiDT:CreateAnchors()
+		local Panels = T["Panels"]
+
+		self.NumAnchors = 6
 		
-	if o >= 1 and o <= 6 then
-		t:ClearAllPoints()
-		t:SetParent(points[o])
-		t:SetPoint("TOPLEFT")
-		t:SetPoint("BOTTOMRIGHT", 0, 1)
-	elseif o == 7 then
-		t:ClearAllPoints()
-		t:SetParent(TukuiTabsRightBackground)
-		t:SetPoint("CENTER")
-		t:SetPoint("CENTER", 0, 1)
-	elseif o == 8 then
-		t:ClearAllPoints()
-		t:SetParent(TukuiTabsRightBackground)
-		t:SetPoint("RIGHT")
-		t:SetPoint("RIGHT", -18, 1)
-	else
-		-- hide everything that we don't use and enabled by default on tukui
-		f:Hide()
-		t:Hide()
+	------------------------------------------------------------------------------------------	
+		-- anchor frame setup
+	------------------------------------------------------------------------------------------
+	for i = 1, self.NumAnchors do
+		local Frame = CreateFrame("Button", nil, UIParent)
+		Frame:SetFrameLevel(TukuiLeftDataTextBox:GetFrameLevel() + 1)
+		Frame:SetFrameStrata("HIGH")
+		Frame:EnableMouse(false)
+		Frame.SetData = SetData
+		Frame.RemoveData = RemoveData
+		Frame.Num = i
+		Frame.Tex = Frame:CreateTexture()
+		Frame.Tex:SetAllPoints()
+		self.Anchors[i] = Frame
+		
+	------------------------------------------------------------------------------------------		
+			-- Setting Datatexts points
+	------------------------------------------------------------------------------------------			
+		if i == 1 then
+			Frame:SetPoint("LEFT", TukuiLeftDataTextBox, 0, 2)
+			Frame:SetSize(TukuiLeftDataTextBox:GetWidth() / 3, 24)
+		elseif i == 2 then
+			Frame:SetPoint("LEFT", self.Anchors[i-1], "RIGHT", 1, 0)
+			Frame:SetSize(TukuiLeftDataTextBox:GetWidth() / 3, 24)
+		elseif i == 3 then
+			Frame:SetPoint("LEFT", self.Anchors[i-1], "RIGHT", 1, 0)
+			Frame:SetSize(TukuiLeftDataTextBox:GetWidth() / 3, 24)
+		elseif i == 4 then
+			Frame:SetPoint("LEFT", TukuiRightDataTextBox, 0, 2)
+			Frame:SetSize(TukuiRightDataTextBox:GetWidth() / 3, 24)
+		elseif i == 5 then
+			Frame:SetPoint("LEFT", self.Anchors[i-1], "RIGHT", 1, 0)
+			Frame:SetSize(TukuiRightDataTextBox:GetWidth() / 3, 24)
+		elseif i == 6 then
+			Frame:SetPoint("LEFT", self.Anchors[i-1], "RIGHT", 1, 0)
+			Frame:SetSize(TukuiRightDataTextBox:GetWidth() / 3, 24)
+		end
 	end
 end
 
--- Tukui DataText List
-local datatext = {
-	"Guild",
-	"Friends",
-	"Gold",
-	"FPS",
-	"System",
-	"Bags",
-	"Gold",
-	"Time",
-	"Durability",
-	"Heal",
-	"Damage",
-	"Power",
-	"Haste",
-	"Crit",
-	"Avoidance",
-	"Armor",
-	"Currency",
-	"Hit",
-	"Mastery",
-	"MicroMenu",
-	"Regen",
-	"Talent",
-	"CallToArms",
-}
+------------------------------------------------------------------------------------------
+-- Datatexts tooltip anchoring
+------------------------------------------------------------------------------------------
 
--- Overwrite & Update Show/Hide/Position of all Datatext
-for _, data in pairs(datatext) do
-	local t = "TukuiStat"
-	local frame = _G[t..data]
-	local text = _G[t..data.."Text"]
+------------------------------------------------------------------------------------------
+-- Defaults
+------------------------------------------------------------------------------------------
 
-	if frame and frame.Option then
-		DataTextPosition(frame, text, frame.Option)
-		text:SetFont(C["media"].pixelfont, C.media.pfontsize, "MONOCHROMEOUTLINE")
-	end
-end
+local baseDT = TukuiDT.AddDefaults
 
-if C.datatext.friends > 0 then
-	TukuiStatFriendsText:SetShadowOffset(0, 0)
+function TukuiDT:AddDefaults()
+	-- Call the base function first
+	baseDT(self)
+	
+	-- Then my stuff
+	TukuiDatabase.Variables[GetRealmName()][UnitName("player")].DataTexts = {}
+	
+	-- Picking out our Datatexts
+	TukuiDatabase.Variables[GetRealmName()][UnitName("player")].DataTexts["Time"] = {true, 6}
+	TukuiDatabase.Variables[GetRealmName()][UnitName("player")].DataTexts["Gold"] = {true, 4}
+	TukuiDatabase.Variables[GetRealmName()][UnitName("player")].DataTexts["System"] = {true, 5}
+	TukuiDatabase.Variables[GetRealmName()][UnitName("player")].DataTexts["Character"] = {true, 3}	
+	TukuiDatabase.Variables[GetRealmName()][UnitName("player")].DataTexts["Friends"] = {true, 2}
+	TukuiDatabase.Variables[GetRealmName()][UnitName("player")].DataTexts["Guild"] = {true, 1}
 end
